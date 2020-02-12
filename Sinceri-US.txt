@@ -1,4 +1,0 @@
-
-1.	As a beginner user, I want a tutorial, so that I understand how to use the system.
-2.	As a user, I want to book a restaurant, so that I can eat.
-3.	As a user, I want to have a review system, so that I can review the places.

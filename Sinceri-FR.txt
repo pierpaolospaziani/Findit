@@ -1,8 +1,0 @@
-
-1.	The system shall find a point of interest based on the filters (e.g. name, position, rating review, place, price, type, services) chosen by the user.
-2.	The system shall book at the point of interest chosen by the user. (based on the number of people and the date of the days chosen)
-3.	The system shall provide a review system(e.g.  1 to 5 stars with a personal comment) for the points of interest.
-
-Dictionary
-Point of interest: hotel, museum, restaurant, tourist attraction.
-
