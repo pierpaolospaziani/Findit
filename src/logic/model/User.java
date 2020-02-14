@@ -4,7 +4,8 @@ public class User {
 	
 	private String username;
 	private String password;
-	
+	private boolean isLogged = false;
+
 	public User() {
 		this.username = "";
 		this.password ="";
@@ -32,12 +33,13 @@ public class User {
 		this.password = password;
 	}
 	
-	public void registerUser() {
-		
+	public boolean getLogged() {
+		return isLogged;
 	}
-	public boolean validateUser() {
-		 boolean result = false;
-		 // codice...
-		 return result;
+
+	public void setLogged(boolean isLogged) {
+		this.isLogged = isLogged;
 	}
+	
+	 
 }

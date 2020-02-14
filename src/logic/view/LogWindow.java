@@ -14,8 +14,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import logic.model.User;
-import logic.model.DB_Dao;
+import logic.bean.LoginBean;
+import logic.controller.LoginController;
 
 public class LogWindow {
     
@@ -39,10 +39,8 @@ public class LogWindow {
     
     static boolean alreadyRegistred = false;
     static boolean isRegistred = false;
-    
-    protected static User user = new User();
 
-	public static User Login() {
+	public void Log(LoginController controller, LoginBean bean) {
 		
 		loginScene = new VBox();
         loginHBox = new HBox();
@@ -118,12 +116,10 @@ public class LogWindow {
         window.setScene(scene);
         window.setResizable(false);
         
-        loginButton.setOnAction(new EventHandler<ActionEvent>(){  // bisogna prendere questi pezzi di codice e buutarli nel model/controller
-			public void handle(ActionEvent event) {					// e qui bisogna solo inserire la chiamta all'eventuale metodo
-																	// la view non può comunicare col model
-				//LogWindowController.windowControl(username, password);
+        loginButton.setOnAction(new EventHandler<ActionEvent>(){
+			public void handle(ActionEvent event) {
 				
-		        username = usernameTextField.getText();  //questo passaggio di parametri va fato tramite bean al controllore
+		        username = usernameTextField.getText();
 		        password = passwordTextField.getText();
 		        
 		        if (username.equals("")) {
@@ -133,21 +129,17 @@ public class LogWindow {
 					label.setText("Insert Password!");
 			        label.setStyle("-fx-text-fill: #ff0000;");
 		        } else {
-			        
-			        try {
-						user = DB_Dao.getUser(username);
-					} catch (Exception e) {
-				        System.out.println("# DB_Dao error! #");
-				        System.out.println(e);
-					}
 		        	
-			        if (username.equals(user.getUsername()) && password.equals(user.getPassword())) {
+		        	bean.setUsername(usernameTextField.getText());
+		        	bean.setPassword(passwordTextField.getText());
+			        
+			        controller.login();
+		        	
+			        if (bean.getResult()) {
 						window.close();
-					} else if (username.equals(user.getUsername()) && !password.equals(user.getPassword())){
-						label.setText("Wrong Password!");
-				        label.setStyle("-fx-text-fill: #ff0000;");
+						controller.loggedScene(username);
 					} else {
-						label.setText("Unknown User, try again or Register your profile!");
+						label.setText("Error, try again or Register your profile!");
 				        label.setStyle("-fx-text-fill: #ff0000;");
 					}
 		        }
@@ -155,11 +147,9 @@ public class LogWindow {
 		});
         
         window.showAndWait();
-        
-		return user;
 	}
 	
-	public static Boolean Register() {
+	public boolean Register(LoginController controller, LoginBean bean) {
 		
 		loginScene = new VBox();
         loginHBox = new HBox();
@@ -269,26 +259,20 @@ public class LogWindow {
 			        label.setStyle("-fx-text-fill: #ff0000;");
 		        } else {
 			        
-			        try {
-						alreadyRegistred = DB_Dao.setUser(username,password);
-					} catch (Exception e) {
-				        System.out.println("# DB_Dao error! #");
-				        System.out.println(e);
-					}
+		        	bean.setUsername(usernameTextField.getText());
+		        	bean.setPassword(passwordTextField.getText());
 		        	
-			        if (alreadyRegistred == true) {
-			        	isRegistred = true;
+		        	if (controller.register()) {
 						window.close();
-					} else {
+						isRegistred = true;
+		        	} else {
 						label.setText("This Username is already been used!");
 				        label.setStyle("-fx-text-fill: #ff0000;");
 					}
 		        }
 			}
 		});
-        
         window.showAndWait();
-        
-    	return isRegistred;
+        return isRegistred;
 	}
 }

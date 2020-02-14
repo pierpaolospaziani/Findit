@@ -4,6 +4,7 @@ public class LoginBean {
 	
 	private String username;
 	private String password;
+	private boolean result;
 	
 	public String getUsername() {
 		return username;
@@ -17,7 +18,10 @@ public class LoginBean {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	
-
+	public boolean getResult() {
+		return result;
+	}
+	public void setResult(boolean result) {
+		this.result = result;
+	}
 }

@@ -4,13 +4,18 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import logic.controller.EventsController;
+import logic.controller.HomeController;
+import logic.controller.HotelController;
+import logic.controller.LoginController;
+import logic.controller.MapController;
+import logic.controller.RestaurantsController;
 
 public class Main extends Application{
 	
     protected AnchorPane pane;
     protected AnchorPane scenePane;
     protected MainMenu baseScene;
-    protected HomeScene homeScene;
     
 	public static void main(String[] args) {
         launch(args);
@@ -21,8 +26,14 @@ public class Main extends Application{
     	pane = new AnchorPane();
     	scenePane = new AnchorPane();
     	
-    	baseScene = new MainMenu(scenePane);
-    	homeScene = new HomeScene();
+		HomeController homeController = new HomeController();
+		HotelController hotelController = new HotelController();
+		RestaurantsController restaurantsController = new RestaurantsController();
+		EventsController eventsController = new EventsController();
+    	MapController mapController = new MapController();
+		LoginController loginController = new LoginController(scenePane);
+    	
+    	baseScene = new MainMenu(scenePane,homeController,hotelController,restaurantsController,eventsController,mapController,loginController);
 
     	scenePane.setLayoutX(0.0);
     	scenePane.setLayoutY(155.0);
@@ -31,7 +42,8 @@ public class Main extends Application{
     	
         pane.getChildren().add(baseScene);
         pane.getChildren().add(scenePane);
-        scenePane.getChildren().add(homeScene);
+        
+        homeController.changeScene(scenePane);
         
         pane.setId("pane");
         

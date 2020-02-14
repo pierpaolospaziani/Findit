@@ -24,11 +24,11 @@ public class UserScene_2 extends HBox{
     protected Label label3;
     protected Button button0;
     
-    public UserScene_2() {
-    	setUp();
+    public UserScene_2(String username) {
+    	setUp(username);
     }
     
-    public void setUp() {
+    public void setUp(String username) {
     	
     	vBox = new VBox();
         label = new Label();
@@ -51,7 +51,7 @@ public class UserScene_2 extends HBox{
         vBox.setPrefWidth(350.0);
         vBox.setSpacing(10.0);
 
-        label.setText("User");
+        label.setText(username);
         label.setFont(new Font(48.0));
         VBox.setMargin(label, new Insets(30.0, 0.0, 0.0, 0.0));
 

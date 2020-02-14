@@ -7,49 +7,57 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
+import logic.controller.EventsController;
+import logic.controller.HomeController;
+import logic.controller.HotelController;
+import logic.controller.LoginController;
+import logic.controller.MapController;
+import logic.controller.RestaurantsController;
 
 public class MainMenu extends HBox{
 	
-	protected Button b_findit;
+	protected Button buttonFindit;
     protected HBox baseScene;;
     protected HBox baseHBox;
-    protected Button b_hotel;
-    protected Button b_rest;
-    protected Button b_events;
-    protected Button b_map;
-    protected Button b_profile;
+    protected Button buttonHotel;
+    protected Button buttonRestaurants;
+    protected Button buttonEvents;
+    protected Button buttonMap;
+    protected Button buttonProfile;
     
     protected HomeScene homeScene;
     protected HotelScene hotelScene;
     protected RestaurantsScene restaurantsScene;
     protected EventsScene eventsScene;
     protected ProfileScene profileScene;
-
-	public MainMenu(AnchorPane scenePane){
-		setUp(scenePane);
-	}
-	
-	public void setUp(AnchorPane scenePane) {
+    
+    public MainMenu(AnchorPane scenePane,
+			HomeController homeController,
+			HotelController hotelController,
+			RestaurantsController restaurantsController,
+			EventsController eventsController,
+			MapController mapController,
+			LoginController profileController){
 		
-		b_findit = new Button();
+		buttonFindit = new Button();
         baseHBox = new HBox();
-        b_hotel = new Button();
-        b_rest = new Button();
-        b_events = new Button();
-        b_map = new Button();
-        b_profile = new Button();
+        buttonHotel = new Button();
+        buttonRestaurants = new Button();
+        buttonEvents = new Button();
+        buttonMap = new Button();
+        buttonProfile = new Button();
     	
-    	b_findit.setLayoutX(0.0);
-    	b_findit.setLayoutY(0.0);
-    	b_findit.setMnemonicParsing(false);
-    	b_findit.setPrefHeight(82.0);
-    	b_findit.setPrefWidth(215.0);
-    	b_findit.setMinWidth(215.0);
-    	b_findit.setText("FindIT");
-    	b_findit.setUnderline(true);
-    	b_findit.setFont(new Font(72.0));
-        b_findit.setPadding(new Insets(0.0, 0.0, 0.0, 0.0));
-        HBox.setMargin(b_findit, new Insets(25.0, 0.0, 20.0, 0.0));
+    	buttonFindit.setLayoutX(0.0);
+    	buttonFindit.setLayoutY(0.0);
+    	buttonFindit.setMnemonicParsing(false);
+    	buttonFindit.setPrefHeight(82.0);
+    	buttonFindit.setPrefWidth(215.0);
+    	buttonFindit.setMinWidth(215.0);
+    	buttonFindit.setText("FindIT");
+    	buttonFindit.setUnderline(true);
+    	buttonFindit.setFont(new Font(72.0));
+        buttonFindit.setPadding(new Insets(0.0, 0.0, 0.0, 0.0));
+        HBox.setMargin(buttonFindit, new Insets(25.0, 0.0, 20.0, 0.0));
         
         setAlignment(javafx.geometry.Pos.BOTTOM_RIGHT);
         setLayoutX(0.0);
@@ -63,177 +71,140 @@ public class MainMenu extends HBox{
         baseHBox.setPrefHeight(145.0);
         baseHBox.setPrefWidth(764.0);
         
-        b_hotel.setMnemonicParsing(false);
-        b_hotel.setText("Hotels");
-        b_hotel.setTextFill(javafx.scene.paint.Color.WHITE);
-        b_hotel.setUnderline(true);
-        b_hotel.setFont(new Font(24.0));
+        buttonHotel.setMnemonicParsing(false);
+        buttonHotel.setText("Hotels");
+        buttonHotel.setTextFill(javafx.scene.paint.Color.WHITE);
+        buttonHotel.setUnderline(true);
+        buttonHotel.setFont(new Font(24.0));
         
-        b_rest.setMnemonicParsing(false);
-        b_rest.setText("Restaurants");
-        b_rest.setTextFill(javafx.scene.paint.Color.WHITE);
-        b_rest.setUnderline(true);
-        b_rest.setFont(new Font(24.0));
+        buttonRestaurants.setMnemonicParsing(false);
+        buttonRestaurants.setText("Restaurants");
+        buttonRestaurants.setTextFill(javafx.scene.paint.Color.WHITE);
+        buttonRestaurants.setUnderline(true);
+        buttonRestaurants.setFont(new Font(24.0));
 
-        b_events.setMnemonicParsing(false);
-        b_events.setText("Events");
-        b_events.setTextFill(javafx.scene.paint.Color.WHITE);
-        b_events.setUnderline(true);
-        b_events.setFont(new Font(24.0));
+        buttonEvents.setMnemonicParsing(false);
+        buttonEvents.setText("Events");
+        buttonEvents.setTextFill(javafx.scene.paint.Color.WHITE);
+        buttonEvents.setUnderline(true);
+        buttonEvents.setFont(new Font(24.0));
 
-        b_map.setMnemonicParsing(false);
-        b_map.setText("Map");
-        b_map.setTextFill(javafx.scene.paint.Color.WHITE);
-        b_map.setUnderline(true);
-        b_map.setFont(new Font(24.0));
+        buttonMap.setMnemonicParsing(false);
+        buttonMap.setText("Map");
+        buttonMap.setTextFill(javafx.scene.paint.Color.WHITE);
+        buttonMap.setUnderline(true);
+        buttonMap.setFont(new Font(24.0));
 
-        b_profile.setMnemonicParsing(false);
-        b_profile.setText("Profile");
-        b_profile.setTextFill(javafx.scene.paint.Color.WHITE);
-        b_profile.setUnderline(true);
-        b_profile.setFont(new Font(24.0));
+        buttonProfile.setMnemonicParsing(false);
+        buttonProfile.setText("Profile");
+        buttonProfile.setTextFill(javafx.scene.paint.Color.WHITE);
+        buttonProfile.setUnderline(true);
+        buttonProfile.setFont(new Font(24.0));
         
-        b_findit.setId("b_selected");
-        b_hotel.setId("b_menu");
-        b_rest.setId("b_menu");
-        b_events.setId("b_menu");
-        b_map.setId("b_menu");
-        b_profile.setId("b_menu");
+        buttonFindit.setId("b_selected");
+        buttonHotel.setId("b_menu");
+        buttonRestaurants.setId("b_menu");
+        buttonEvents.setId("b_menu");
+        buttonMap.setId("b_menu");
+        buttonProfile.setId("b_menu");
         
-        b_findit.setOnAction(new EventHandler<ActionEvent>(){
+        buttonFindit.setOnAction(new EventHandler<ActionEvent>(){
 			public void handle(ActionEvent event) {
-				homeScene(scenePane);
+				buttonFindit.setId("b_selected");
+		        buttonHotel.setId("b_menu");
+		        buttonRestaurants.setId("b_menu");
+		        buttonEvents.setId("b_menu");
+		        buttonMap.setId("b_menu");
+		        buttonProfile.setId("b_menu");
+		        
+				homeController.changeScene(scenePane);
 			}
 		});
         
-        b_hotel.setOnAction(new EventHandler<ActionEvent>(){
+        buttonHotel.setOnAction(new EventHandler<ActionEvent>(){
 			public void handle(ActionEvent event) {
-				hotelScene(scenePane);
+				buttonFindit.setId("b_menu");
+		        buttonHotel.setId("b_selected");
+		        buttonRestaurants.setId("b_menu");
+		        buttonEvents.setId("b_menu");
+		        buttonMap.setId("b_menu");
+		        buttonProfile.setId("b_menu");
+		        
+				hotelController.changeScene(scenePane);
 			}
 		});
         
-        b_rest.setOnAction(new EventHandler<ActionEvent>(){
+        buttonRestaurants.setOnAction(new EventHandler<ActionEvent>(){
 			public void handle(ActionEvent event) {
-				restScene(scenePane);
+				buttonFindit.setId("b_menu");
+		        buttonHotel.setId("b_menu");
+		        buttonRestaurants.setId("b_selected");
+		        buttonEvents.setId("b_menu");
+		        buttonMap.setId("b_menu");
+		        buttonProfile.setId("b_menu");
+		        
+				restaurantsController.changeScene(scenePane);
 			}
 		});
         
-        b_events.setOnAction(new EventHandler<ActionEvent>(){
+        buttonEvents.setOnAction(new EventHandler<ActionEvent>(){
 			public void handle(ActionEvent event) {
-				eventsScene(scenePane);
+				buttonFindit.setId("b_menu");
+		        buttonHotel.setId("b_menu");
+		        buttonRestaurants.setId("b_menu");
+		        buttonEvents.setId("b_selected");
+		        buttonMap.setId("b_menu");
+		        buttonProfile.setId("b_menu");
+		        
+				eventsController.changeScene(scenePane);
 			}
 		});
         
-        b_map.setOnAction(new EventHandler<ActionEvent>(){
+        buttonMap.setOnAction(new EventHandler<ActionEvent>(){
 			public void handle(ActionEvent event) {
-				mapScene(scenePane);
+				buttonFindit.setId("b_menu");
+		        buttonHotel.setId("b_menu");
+		        buttonRestaurants.setId("b_menu");
+		        buttonEvents.setId("b_menu");
+		        buttonMap.setId("b_selected");
+		        buttonProfile.setId("b_menu");
+		        
+				mapController.changeScene(scenePane);
 			}
 		});
         
-        b_profile.setOnAction(new EventHandler<ActionEvent>(){
+        buttonProfile.setOnAction(new EventHandler<ActionEvent>(){
 			public void handle(ActionEvent event) {
-				profileScene(scenePane);
+				buttonFindit.setId("b_menu");
+		        buttonHotel.setId("b_menu");
+		        buttonRestaurants.setId("b_menu");
+		        buttonEvents.setId("b_menu");
+		        buttonMap.setId("b_menu");
+		        buttonProfile.setId("b_selected");
+		        
+				profileController.changeScene();
 			}
 		});
         
-        getChildren().add(b_findit);
+        getChildren().add(buttonFindit);
         getChildren().add(baseHBox);
-        baseHBox.getChildren().add(b_hotel);
-        baseHBox.getChildren().add(b_rest);
-        baseHBox.getChildren().add(b_events);
-        baseHBox.getChildren().add(b_map);
-        baseHBox.getChildren().add(b_profile);
+        baseHBox.getChildren().add(buttonHotel);
+        baseHBox.getChildren().add(buttonRestaurants);
+        baseHBox.getChildren().add(buttonEvents);
+        baseHBox.getChildren().add(buttonMap);
+        baseHBox.getChildren().add(buttonProfile);
+        scenePane.getChildren().add(this);
 	}
-
-	public void homeScene(AnchorPane scenePane) {
-    	b_findit.setId("b_selected");
-        b_hotel.setId("b_menu");
-        b_rest.setId("b_menu");
-        b_events.setId("b_menu");
-        b_map.setId("b_menu");
-        b_profile.setId("b_menu");
-        
-        homeScene = new HomeScene();
-
-        scenePane.getChildren().clear();
-        scenePane.getChildren().add(homeScene);
-    }
-    
-    public void hotelScene(AnchorPane scenePane) {
-    	b_findit.setId("b_menu");
-        b_hotel.setId("b_selected");
-        b_rest.setId("b_menu");
-        b_events.setId("b_menu");
-        b_map.setId("b_menu");
-        b_profile.setId("b_menu");
-        
-        hotelScene = new HotelScene();
-
-        scenePane.getChildren().clear();
-		scenePane.getChildren().add(hotelScene);
-    }
-    
-    public void restScene(AnchorPane scenePane) {
-
-    	b_findit.setId("b_menu");
-        b_hotel.setId("b_menu");
-        b_rest.setId("b_selected");
-        b_events.setId("b_menu");
-        b_map.setId("b_menu");
-        b_profile.setId("b_menu");
-        
-        restaurantsScene = new RestaurantsScene();
-
-        scenePane.getChildren().clear();
-        scenePane.getChildren().add(restaurantsScene);
-    }
-    
-    public void eventsScene(AnchorPane scenePane) {
-
-    	b_findit.setId("b_menu");
-        b_hotel.setId("b_menu");
-        b_rest.setId("b_menu");
-        b_events.setId("b_selected");
-        b_map.setId("b_menu");
-        b_profile.setId("b_menu");
-        
-        eventsScene = new EventsScene();
-
-        scenePane.getChildren().clear();
-        scenePane.getChildren().add(eventsScene);
-    }
-    
+    /*
     public void mapScene(AnchorPane scenePane) {
-		b_findit.setId("b_menu");
-        b_hotel.setId("b_menu");
-        b_rest.setId("b_menu");
-        b_events.setId("b_menu");
-        b_map.setId("b_selected");
-        b_profile.setId("b_menu");
-        
+		
         scenePane.getChildren().clear();
-        /*
+        
 		webView.setLayoutY(155.0);
 		webView.setPrefHeight(525.0);
 		webView.setPrefWidth(1050.0);
 		scenePane.getChildren().add(webView);
 		//getChildren().add(mapScene);
-		*/
     }
-    
-    public void profileScene(AnchorPane scenePane) {
-		b_findit.setId("b_menu");
-        b_hotel.setId("b_menu");
-        b_rest.setId("b_menu");
-        b_events.setId("b_menu");
-        b_map.setId("b_menu");
-        b_profile.setId("b_selected");
-        
-        profileScene = new ProfileScene(b_profile);
-
-        scenePane.getChildren().clear();
-        scenePane.getChildren().add(profileScene);
-    }
-    
-
+    */
 }

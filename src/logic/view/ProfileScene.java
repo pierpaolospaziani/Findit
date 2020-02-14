@@ -9,6 +9,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
+import logic.controller.LoginController;
 import logic.model.User;
 
 public class ProfileScene extends VBox{
@@ -35,12 +36,9 @@ public class ProfileScene extends VBox{
     protected static User user;
     protected boolean isLogged = false;
     
-    public ProfileScene(Button b_profile) {
-    	setUp(b_profile);
-    }
-    
-    public void setUp(Button b_profile) {
-    	
+    // manca il bottone come argomento per il cambio nome
+    public ProfileScene(LoginController controller) {
+
     	profileHBox = new HBox();
         profileVBox0 = new VBox();
         profileLabel = new Label();
@@ -151,15 +149,16 @@ public class ProfileScene extends VBox{
         
         profileLoginButton.setOnAction(new EventHandler<ActionEvent>(){
 			public void handle(ActionEvent event) {
-				//user = ProfileController.openWindow();
-				user = LogWindow.Login();
+
+				controller.openLogWindow();
+
 				if (user.getUsername() == null) {
 					isLogged = false;
 				} else if (!(user.getUsername().equals(""))) {
 					isLogged = true;
 				}
 		        if (isLogged == true) {
-		        	b_profile.setText(user.getUsername());
+		        	//b_profile.setText(user.getUsername());
 		        	getChildren().clear();
 		            userScene = new UserPage(user.getUsername());
 		        	getChildren().add(userScene);
@@ -169,15 +168,17 @@ public class ProfileScene extends VBox{
         
         profileRegisterButton.setOnAction(new EventHandler<ActionEvent>(){
 			public void handle(ActionEvent event) {
-				if (LogWindow.Register()) {
-					user = LogWindow.Login();
+				
+				if (controller.openRegisterWindow()) {
+					controller.openLogWindow();
+
 					if (user.getUsername() == null) {
 						isLogged = false;
 					} else if (!(user.getUsername().equals(""))) {
 						isLogged = true;
 					}
 			        if (isLogged == true) {
-			        	b_profile.setText(user.getUsername());
+			        	//b_profile.setText(user.getUsername());
 			        	getChildren().clear();
 			            userScene = new UserPage(user.getUsername());
 			        	getChildren().add(userScene);

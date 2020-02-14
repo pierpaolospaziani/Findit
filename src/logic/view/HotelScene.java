@@ -198,19 +198,19 @@ public class HotelScene extends VBox{
         VBox.setMargin(hotelLabel3, new Insets(0.0));
 
         check50_100.setMnemonicParsing(false);
-        check50_100.setText("€50 - €100 for night");
+        check50_100.setText("â‚¬50 - â‚¬100 for night");
         check50_100.setFont(new Font(18.0));
 
         check100_150.setMnemonicParsing(false);
-        check100_150.setText("€100 - €150 for night");
+        check100_150.setText("â‚¬100 - â‚¬150 for night");
         check100_150.setFont(new Font(18.0));
 
         check150_200.setMnemonicParsing(false);
-        check150_200.setText("€150 - €200 for night");
+        check150_200.setText("â‚¬150 - â‚¬200 for night");
         check150_200.setFont(new Font(18.0));
 
         check200.setMnemonicParsing(false);
-        check200.setText("€200 + for night");
+        check200.setText("â‚¬200 + for night");
         check200.setFont(new Font(18.0));
 
         hotelVBox3.setPrefHeight(133.0);
