@@ -1,16 +1,18 @@
 package logic.view;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
+import logic.bean.RestaurantsBean;
+import logic.controller.RestaurantsController;
 
 public class RestaurantsScene extends VBox{
 
@@ -25,34 +27,52 @@ public class RestaurantsScene extends VBox{
     protected TextField restText1;
     protected Line restLine;
     protected VBox restaurantsBox1;
-    protected HBox restHBox2;
-    protected Label restLabel2;
-    //protected Rating rating;
-    protected HBox restHBox3;
-    protected Label restLabel3;
-    protected MenuButton restPriceMenu;
-    protected MenuItem restPrice1;
-    protected MenuItem restPrice2;
-    protected MenuItem restPrice3;
+    
+    protected HBox hBox;
+    protected VBox vBox;
+    protected Label label;
+    
+    protected CheckBox €;
+    protected CheckBox €€;
+    protected CheckBox €€€;
+    protected CheckBox €€€€;
+    
+    protected VBox vBox0;
+    protected Label label0;
+    
+    protected CheckBox star1;
+    protected CheckBox star2;
+    protected CheckBox star3;
+    protected CheckBox star4;
+    protected CheckBox star5;
+    
     protected Label restLabel4;
     protected HBox restHBox4;
     protected VBox restaurantsBox2;
+    
     protected CheckBox pizzaCheck;
     protected CheckBox sushiCheck;
     protected CheckBox hamburgerCheck;
     protected CheckBox pastaCheck;
+    
     protected VBox restaurantsBox3;
+    
     protected CheckBox meatCheck;
     protected CheckBox fishCheck;
     protected CheckBox veganCheck;
-    protected CheckBox gurmetCheck;
+    protected CheckBox gourmetCheck;
+    
     protected Button restSearchButton;
     
-    public RestaurantsScene(){
-    	setUp();
-    }
+    private boolean Ok = false, peopleOk = false;
     
-    public void setUp() {
+    private String name;
+    
+    private String city;
+    
+    private int people;
+    
+    public RestaurantsScene(RestaurantsController controller, RestaurantsBean bean){
     	
     	restHBox0 = new HBox();
         restaurantsBox0 = new VBox();
@@ -65,15 +85,22 @@ public class RestaurantsScene extends VBox{
         restText1 = new TextField();
         restLine = new Line();
         restaurantsBox1 = new VBox();
-        restHBox2 = new HBox();
-        restLabel2 = new Label();
-        //rating = new Rating();
-        restHBox3 = new HBox();
-        restLabel3 = new Label();
-        restPriceMenu = new MenuButton();
-        restPrice1 = new MenuItem();
-        restPrice2 = new MenuItem();
-        restPrice3 = new MenuItem();
+
+        hBox = new HBox();
+        vBox = new VBox();
+        label = new Label();
+        € = new CheckBox();
+        €€ = new CheckBox();
+        €€€ = new CheckBox();
+        €€€€ = new CheckBox();
+        vBox0 = new VBox();
+        label0 = new Label();
+        star1 = new CheckBox();
+        star2 = new CheckBox();
+        star3 = new CheckBox();
+        star4 = new CheckBox();
+        star5 = new CheckBox();
+        
         restLabel4 = new Label();
         restHBox4 = new HBox();
         restaurantsBox2 = new VBox();
@@ -85,7 +112,7 @@ public class RestaurantsScene extends VBox{
         meatCheck = new CheckBox();
         fishCheck = new CheckBox();
         veganCheck = new CheckBox();
-        gurmetCheck = new CheckBox();
+        gourmetCheck = new CheckBox();
         restSearchButton = new Button();
         
         setAlignment(javafx.geometry.Pos.TOP_CENTER);
@@ -141,39 +168,63 @@ public class RestaurantsScene extends VBox{
         restLine.setStartY(-180.0);
 
         restaurantsBox1.setAlignment(javafx.geometry.Pos.TOP_CENTER);
-        restaurantsBox1.setSpacing(35.0);
+        restaurantsBox1.setSpacing(27.45);
 
-        restHBox2.setAlignment(javafx.geometry.Pos.CENTER);
-        restHBox2.setSpacing(15.0);
+        hBox.setAlignment(javafx.geometry.Pos.CENTER);
+        hBox.setPrefHeight(159.0);
+        hBox.setPrefWidth(290.0);
+        hBox.setSpacing(30.0);
 
-        restLabel2.setText("Rated:");
-        restLabel2.setFont(new Font(24.0));
+        vBox.setPrefHeight(396.0);
+        vBox.setSpacing(5.0);
 
-        VBox.setMargin(restHBox2, new Insets(0.0));
+        label.setText("Budget");
+        label.setFont(new Font(24.0));
+        VBox.setMargin(label, new Insets(0.0));
 
-        restHBox3.setAlignment(javafx.geometry.Pos.CENTER);
-        restHBox3.setSpacing(15.0);
+        €.setMnemonicParsing(false);
+        €.setText("€ - €€");
+        €.setFont(new Font(18.0));
 
-        restLabel3.setText("Price range:");
-        restLabel3.setFont(new Font(24.0));
-        HBox.setMargin(restLabel3, new Insets(0.0));
+        €€.setMnemonicParsing(false);
+        €€.setText("€€ - €€€");
+        €€.setFont(new Font(18.0));
 
-        restPriceMenu.setMnemonicParsing(false);
-        restPriceMenu.setPrefWidth(160.0);
-        restPriceMenu.setStyle("-fx-background-color: #e2e8ff; -fx-background-radius: 20;");
+        €€€.setMnemonicParsing(false);
+        €€€.setText("€€€ - €€€€");
+        €€€.setFont(new Font(18.0));
 
-        restPrice1.setMnemonicParsing(false);
-        restPrice1.setText("€ - €€");
+        €€€€.setMnemonicParsing(false);
+        €€€€.setText("€€€€");
+        €€€€.setFont(new Font(18.0));
 
-        restPrice2.setMnemonicParsing(false);
-        restPrice2.setText("€€ - €€€");
+        vBox0.setPrefHeight(396.0);
+        vBox0.setSpacing(2.0);
 
-        restPrice3.setMnemonicParsing(false);
-        restPrice3.setText("€€€ - €€€€");
-        restPriceMenu.setFont(new Font(18.0));
-        VBox.setMargin(restHBox3, new Insets(0.0));
+        label0.setText("Rating");
+        label0.setFont(new Font(24.0));
 
-        restLabel4.setText("Check your preferences:");
+        star1.setMnemonicParsing(false);
+        star1.setText("1 star");
+        star1.setFont(new Font(18.0));
+
+        star2.setMnemonicParsing(false);
+        star2.setText("2 stars");
+        star2.setFont(new Font(18.0));
+
+        star3.setMnemonicParsing(false);
+        star3.setText("3 stars");
+        star3.setFont(new Font(18.0));
+
+        star4.setMnemonicParsing(false);
+        star4.setText("4 stars");
+        star4.setFont(new Font(18.0));
+
+        star5.setMnemonicParsing(false);
+        star5.setText("5 stars");
+        star5.setFont(new Font(18.0));
+
+        restLabel4.setText("Check your preferences");
         restLabel4.setFont(new Font(24.0));
 
         restHBox4.setAlignment(javafx.geometry.Pos.TOP_CENTER);
@@ -212,9 +263,9 @@ public class RestaurantsScene extends VBox{
         veganCheck.setText("Vegan");
         veganCheck.setFont(new Font(18.0));
 
-        gurmetCheck.setMnemonicParsing(false);
-        gurmetCheck.setText("Gurmet");
-        gurmetCheck.setFont(new Font(18.0));
+        gourmetCheck.setMnemonicParsing(false);
+        gourmetCheck.setText("Gourmet");
+        gourmetCheck.setFont(new Font(18.0));
         VBox.setMargin(restHBox4, new Insets(-20.0, 0.0, 0.0, 0.0));
         HBox.setMargin(restaurantsBox1, new Insets(20.0, 54.0, 0.0, 54.0));
 
@@ -234,15 +285,20 @@ public class RestaurantsScene extends VBox{
         restaurantsBox0.getChildren().add(restHBox1);
         restHBox0.getChildren().add(restaurantsBox0);
         restHBox0.getChildren().add(restLine);
-        restHBox2.getChildren().add(restLabel2);
-        //restHBox2.getChildren().add(rating);
-        restaurantsBox1.getChildren().add(restHBox2);
-        restHBox3.getChildren().add(restLabel3);
-        restPriceMenu.getItems().add(restPrice1);
-        restPriceMenu.getItems().add(restPrice2);
-        restPriceMenu.getItems().add(restPrice3);
-        restHBox3.getChildren().add(restPriceMenu);
-        restaurantsBox1.getChildren().add(restHBox3);
+        vBox.getChildren().add(label);
+        vBox.getChildren().add(€);
+        vBox.getChildren().add(€€);
+        vBox.getChildren().add(€€€);
+        vBox.getChildren().add(€€€€);
+        hBox.getChildren().add(vBox);
+        vBox0.getChildren().add(label0);
+        vBox0.getChildren().add(star1);
+        vBox0.getChildren().add(star2);
+        vBox0.getChildren().add(star3);
+        vBox0.getChildren().add(star4);
+        vBox0.getChildren().add(star5);
+        hBox.getChildren().add(vBox0);
+        restaurantsBox1.getChildren().add(hBox);
         restaurantsBox1.getChildren().add(restLabel4);
         restaurantsBox2.getChildren().add(pizzaCheck);
         restaurantsBox2.getChildren().add(sushiCheck);
@@ -252,11 +308,120 @@ public class RestaurantsScene extends VBox{
         restaurantsBox3.getChildren().add(meatCheck);
         restaurantsBox3.getChildren().add(fishCheck);
         restaurantsBox3.getChildren().add(veganCheck);
-        restaurantsBox3.getChildren().add(gurmetCheck);
+        restaurantsBox3.getChildren().add(gourmetCheck);
         restHBox4.getChildren().add(restaurantsBox3);
         restaurantsBox1.getChildren().add(restHBox4);
         restHBox0.getChildren().add(restaurantsBox1);
         getChildren().add(restHBox0);
         getChildren().add(restSearchButton);
+        
+        restSearchButton.setOnAction(new EventHandler<ActionEvent>(){
+			public void handle(ActionEvent event) {
+				
+				name = restText.getText();
+				city = restText0.getText();
+				
+				if (name.equals("") && city.equals("")) {
+					Ok = false;
+				}
+		        
+				if (!name.equals("")) {
+					restLabel.setStyle("-fx-text-fill: black");
+		        	bean.setCity(city);
+		        	Ok = true;
+		        } else if (Ok != true){
+		        	restLabel.setStyle("-fx-text-fill: red");
+		        } else {
+		        	restLabel.setStyle("-fx-text-fill: black");
+		        }
+					        
+				if (!city.equals("")) {
+					restLabel0.setStyle("-fx-text-fill: black");
+		        	restLabel.setStyle("-fx-text-fill: black");
+		        	bean.setCity(city);
+		        	Ok = true;
+		        } else if (Ok != true){
+		        	restLabel0.setStyle("-fx-text-fill: red");
+		        } else {
+		        	restLabel0.setStyle("-fx-text-fill: black");
+		        }
+				
+				if (!restText1.getText().equals("")) {
+					try {
+						people = Integer.valueOf(restText1.getText());
+					} catch (NumberFormatException e) {
+						restLabel1.setStyle("-fx-text-fill: red");
+					}
+					if (people > 0) {
+						restLabel1.setStyle("-fx-text-fill: black");
+			        	bean.setNumPeople(people);
+			        	peopleOk = true;
+					} else {
+						restLabel1.setStyle("-fx-text-fill: red");
+			        }
+		        } else {
+		        	restLabel1.setStyle("-fx-text-fill: red");
+		        }
+				
+				if (Ok == true&& peopleOk == true) {
+					
+					if (€.isSelected()) {
+						bean.setBudget1(true);
+					}
+					if (€€.isSelected()) {
+						bean.setBudget2(true);
+					}
+					if (€€€.isSelected()) {
+						bean.setBudget3(true);
+					}
+					if (€€€€.isSelected()) {
+						bean.setBudget4(true);
+					}
+					
+					if (star1.isSelected()) {
+						bean.setStar1(true);
+					}
+					if (star2.isSelected()) {
+						bean.setStar2(true);
+					}
+					if (star3.isSelected()) {
+						bean.setStar3(true);
+					}
+					if (star4.isSelected()) {
+						bean.setStar4(true);
+					}
+					if (star5.isSelected()) {
+						bean.setStar5(true);
+					}
+					
+					if (pizzaCheck.isSelected()) {
+						bean.setPizza(true);
+					}
+					if (sushiCheck.isSelected()) {
+						bean.setSushi(true);
+					}
+					if (hamburgerCheck.isSelected()) {
+						bean.setHamburger(true);
+					}
+					if (pastaCheck.isSelected()) {
+						bean.setPasta(true);
+					}
+					if (meatCheck.isSelected()) {
+						bean.setMeat(true);
+					}
+					if (fishCheck.isSelected()) {
+						bean.setFish(true);
+					}
+					if (veganCheck.isSelected()) {
+						bean.setVegan(true);
+					}
+					if (gourmetCheck.isSelected()) {
+						bean.setGourmet(true);
+					}
+					
+					controller.changeScene2();
+				}
+			}
+		});
     }
 }

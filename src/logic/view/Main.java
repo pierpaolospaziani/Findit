@@ -27,9 +27,9 @@ public class Main extends Application{
     	scenePane = new AnchorPane();
     	
 		HomeController homeController = new HomeController();
-		HotelController hotelController = new HotelController();
-		RestaurantsController restaurantsController = new RestaurantsController();
-		EventsController eventsController = new EventsController();
+		HotelController hotelController = new HotelController(scenePane);
+		RestaurantsController restaurantsController = new RestaurantsController(scenePane);
+		EventsController eventsController = new EventsController(scenePane);
     	MapController mapController = new MapController();
 		LoginController loginController = new LoginController(scenePane);
     	

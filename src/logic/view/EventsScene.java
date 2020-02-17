@@ -1,8 +1,13 @@
 package logic.view;
 
+import java.time.LocalDate;
+
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -10,6 +15,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
+import logic.bean.EventBean;
+import logic.controller.EventsController;
 
 public class EventsScene extends VBox{
 	
@@ -38,11 +45,20 @@ public class EventsScene extends VBox{
 	protected CheckBox museumCheck;
 	protected Button eventsSearchButton;
     
-	public EventsScene(){
-		setUp();
-	}
+    private boolean Ok = false, peopleOk = false, timeOk = true;
+    
+    private String name;
+    
+    private String city;
+    
+    private int people;
+    
+    private int year, month, day;
+    
+    private int hour = 25;
+    
+	public EventsScene(EventsController controller, EventBean bean){
 	
-	public void setUp() {
 		eventsHBox = new HBox();
 		eventsVBox0 = new VBox();
 		eventsLabel = new Label();
@@ -133,11 +149,20 @@ public class EventsScene extends VBox{
 		eventsHBox1.setSpacing(15.0);
 
 		eventsDatePicker.setPrefHeight(45.0);
+		
+		eventsDatePicker.setDayCellFactory(picker -> new DateCell() {
+			public void updateItem(LocalDate date, boolean empty) {
+				super.updateItem(date, empty);
+				LocalDate today = LocalDate.now();
+				
+				setDisable(empty || date.compareTo(today) < 0);
+			}
+		});
 
 		eventsText2.setAlignment(javafx.geometry.Pos.CENTER);
 		eventsText2.setPrefHeight(45.0);
 		eventsText2.setPrefWidth(95.0);
-		eventsText2.setPromptText("00:00");
+		eventsText2.setPromptText("0-24");
 		eventsText2.setStyle("-fx-background-color: #e2e8ff; -fx-background-radius: 20;");
 		eventsText2.setFont(new Font(24.0));
 		VBox.setMargin(eventsHBox1, new Insets(-20.0, 0.0, 0.0, 0.0));
@@ -203,5 +228,113 @@ public class EventsScene extends VBox{
 		eventsHBox.getChildren().add(eventsVBox1);
 		getChildren().add(eventsHBox);
 		getChildren().add(eventsSearchButton);
+		
+		eventsSearchButton.setOnAction(new EventHandler<ActionEvent>(){
+			public void handle(ActionEvent event) {
+				
+				name = eventsText.getText();
+				city = eventsText0.getText();
+				
+				if (name.equals("") && city.equals("")) {
+					Ok = false;
+				}
+		        
+				if (!name.equals("")) {
+					eventsLabel.setStyle("-fx-text-fill: black");
+		        	bean.setCity(name);
+		        	Ok = true;
+		        } else if (Ok != true){
+		        	eventsLabel.setStyle("-fx-text-fill: red");
+		        } else {
+					eventsLabel.setStyle("-fx-text-fill: black");
+		        }
+		        
+				if (!city.equals("")) {
+					eventsLabel0.setStyle("-fx-text-fill: black");
+					eventsLabel.setStyle("-fx-text-fill: black");
+		        	bean.setCity(city);
+		        	Ok = true;
+		        } else if (Ok != true){
+		        	eventsLabel0.setStyle("-fx-text-fill: red");
+		        } else {
+					eventsLabel0.setStyle("-fx-text-fill: black");
+		        }
+				
+				if (!eventsText1.getText().equals("")) {
+					try {
+						people = Integer.valueOf(eventsText1.getText());
+						
+						if (people > 0) {
+							eventsLabel1.setStyle("-fx-text-fill: black");
+				        	bean.setPeople(people);
+				        	peopleOk = true;
+						} else {
+							eventsLabel1.setStyle("-fx-text-fill: red");
+				        }						
+					} catch (NumberFormatException e) {
+						eventsLabel1.setStyle("-fx-text-fill: red");
+					}					
+		        } else {
+		        	eventsLabel1.setStyle("-fx-text-fill: red");
+		        }
+				
+				if (Ok == true && peopleOk == true) {
+					
+					if (!eventsText2.getText().equals("")) {
+						try {
+							hour = Integer.valueOf(eventsText2.getText());
+							if (hour > 0 && hour < 24) {
+								eventsLabel2.setStyle("-fx-text-fill: black");
+								eventsLabel2.setText("When?");
+					        	bean.setHour(hour);
+					        	timeOk = true;
+							} else {
+								eventsLabel2.setStyle("-fx-text-fill: red");
+								eventsLabel2.setText("Type only Hours!");
+					        	timeOk = false;
+					        }							
+						} catch (NumberFormatException e) {
+							eventsLabel2.setText("Type only Hours!");
+							eventsLabel2.setStyle("-fx-text-fill: red");
+				        	timeOk = false;
+						}
+			        }
+					
+					if (timeOk == true) {
+						
+						if (cinemaCheck.isSelected()) {
+							bean.setCinema(true);
+						}
+						if (theatreCheck.isSelected()) {
+							bean.setTheatre(true);
+						}
+						if (museumCheck.isSelected()) {
+							bean.setMuseum(true);
+						}
+						if (concertCheck.isSelected()) {
+							bean.setConcert(true);
+						}
+						
+						controller.changeScene2();
+					}
+					
+				}
+			}
+		});
+		
+		eventsDatePicker.setOnAction(new EventHandler<ActionEvent>(){
+			public void handle(ActionEvent event) {
+				
+				LocalDate ld = eventsDatePicker.getValue();
+				
+				year = ld.getYear();
+				month = ld.getMonth().getValue();
+				day = ld.getDayOfMonth();
+				
+				bean.setYear(year);
+				bean.setMonth(month);
+				bean.setDay(day);
+			}
+		});
 	}
 }

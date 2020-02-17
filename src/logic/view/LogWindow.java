@@ -21,7 +21,7 @@ public class LogWindow {
     
     protected static VBox loginScene;
     protected static HBox loginHBox;
-    protected static Label label;;
+    protected static Label label;
     protected static Label usernameLabel;
     protected static TextField usernameTextField;
     protected static String username;

@@ -130,7 +130,7 @@ public class MainMenu extends HBox{
 		        buttonMap.setId("b_menu");
 		        buttonProfile.setId("b_menu");
 		        
-				hotelController.changeScene(scenePane);
+				hotelController.changeScene();
 			}
 		});
         
@@ -143,7 +143,7 @@ public class MainMenu extends HBox{
 		        buttonMap.setId("b_menu");
 		        buttonProfile.setId("b_menu");
 		        
-				restaurantsController.changeScene(scenePane);
+				restaurantsController.changeScene();
 			}
 		});
         
@@ -156,7 +156,7 @@ public class MainMenu extends HBox{
 		        buttonMap.setId("b_menu");
 		        buttonProfile.setId("b_menu");
 		        
-				eventsController.changeScene(scenePane);
+				eventsController.changeScene();
 			}
 		});
         

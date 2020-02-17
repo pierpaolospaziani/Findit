@@ -1,8 +1,13 @@
 package logic.view;
 
+import java.time.LocalDate;
+
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -10,6 +15,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
+import logic.bean.HotelBean;
+import logic.controller.HotelController;
 
 public class HotelScene extends VBox{
 	
@@ -56,14 +63,18 @@ public class HotelScene extends VBox{
     protected CheckBox check4Star;
     protected CheckBox check5Star;
     protected Button hotelSearchButton;
-	
-    public HotelScene() {
-    	setUp();
-    }
     
-    public void setUp() {
-    	
-        hotelHBox = new HBox();
+    private boolean cityOk = false, dateOk = false, peopleOk = false;
+    
+    private String city;
+    
+    private int people;
+    
+    private int yearOut, yearIn, monthOut, monthIn, dayOut, dayIn;
+	
+    public HotelScene(HotelController controller, HotelBean bean) {
+    
+    	hotelHBox = new HBox();
         hotelVBox0 = new VBox();
         hotelLabel = new Label();
         hotelTextField = new TextField();
@@ -131,7 +142,7 @@ public class HotelScene extends VBox{
         hotelTextField.setStyle("-fx-background-color: #e2e8ff#e2e8ff; -fx-background-radius: 20;");
         hotelTextField.setFont(new Font(24.0));
         VBox.setMargin(hotelTextField, new Insets(15.0, 0.0, 0.0, 0.0));
-
+        
         hotelHBox0.setAlignment(javafx.geometry.Pos.CENTER);
         hotelHBox0.setPrefHeight(35.0);
         hotelHBox0.setPrefWidth(402.0);
@@ -153,11 +164,21 @@ public class HotelScene extends VBox{
         hotelCheckIn.setEditable(false);
         hotelCheckIn.setPrefHeight(51.0);
         hotelCheckIn.setPrefWidth(176.0);
+		
+		hotelCheckIn.setDayCellFactory(picker -> new DateCell() {
+			public void updateItem(LocalDate date, boolean empty) {
+				super.updateItem(date, empty);
+				LocalDate today = LocalDate.now();
+				
+				setDisable(empty || date.compareTo(today) < 0);
+			}
+		});
 
         hotelCheckOut.setEditable(false);
         hotelCheckOut.setPrefHeight(51.0);
         hotelCheckOut.setPrefWidth(176.0);
         VBox.setMargin(hotelHBox1, new Insets(15.0, 0.0, 0.0, 0.0));
+        hotelCheckOut.setDisable(true);
 
         hotelHBox2.setAlignment(javafx.geometry.Pos.CENTER);
         hotelHBox2.setPrefHeight(34.0);
@@ -175,7 +196,7 @@ public class HotelScene extends VBox{
         hotelTextField0.setStyle("-fx-background-color: #e2e8ff#e2e8ff; -fx-background-radius: 20;");
         hotelTextField0.setFont(new Font(24.0));
         hotelHBox2.setPadding(new Insets(35.0, 0.0, 0.0, 0.0));
-
+        
         line.setEndY(180.0);
         line.setStartY(-180.0);
 
@@ -343,6 +364,146 @@ public class HotelScene extends VBox{
         hotelHBox.getChildren().add(hotelVBox1);
         getChildren().add(hotelHBox);
         getChildren().add(hotelSearchButton);
+        
+        hotelSearchButton.setOnAction(new EventHandler<ActionEvent>(){
+			public void handle(ActionEvent event) {
+				
+		        city = hotelTextField.getText();
+		        
+				if (!city.equals("")) {
+					hotelLabel.setStyle("-fx-text-fill: black");
+		        	bean.setCity(city);
+		        	cityOk = true;
+		        } else {
+		        	hotelLabel.setStyle("-fx-text-fill: red");
+		        }
+				
+				if (!hotelTextField0.getText().equals("")) {
+					try {
+						people = Integer.valueOf(hotelTextField0.getText());
+					} catch (NumberFormatException e) {
+						hotelLabel2.setStyle("-fx-text-fill: red");
+					}
+					if (people > 0) {
+						hotelLabel2.setStyle("-fx-text-fill: black");
+			        	bean.setNumPeople(people);
+			        	peopleOk = true;
+					} else {
+						hotelLabel2.setStyle("-fx-text-fill: red");
+			        }
+		        } else {
+		        	hotelLabel2.setStyle("-fx-text-fill: red");
+		        }
+				
+				if (dateOk != true) {
+					hotelLabel0.setStyle("-fx-text-fill: red");
+					hotelLabel1.setStyle("-fx-text-fill: red");
+				}
+				
+				if (cityOk == true && dateOk == true && peopleOk == true) {
+					
+					if (check50_100.isSelected()) {
+						bean.setBudget1(true);
+					}
+					if (check100_150.isSelected()) {
+						bean.setBudget2(true);
+					}
+					if (check150_200.isSelected()) {
+						bean.setBudget3(true);
+					}
+					if (check200.isSelected()) {
+						bean.setBudget4(true);
+					}
+
+					if (checkApartaments.isSelected()) {
+						bean.setApartment(true);
+					}
+					if (checkHotels.isSelected()) {
+						bean.setHotel(true);
+					}
+					if (checkBeB.isSelected()) {
+						bean.setBeb(true);
+					}
+					if (checkHostels.isSelected()) {
+						bean.setHostel(true);
+					}
+					
+
+					if (checkParking.isSelected()) {
+						bean.setParking(true);
+					}
+					if (checkRestaurant.isSelected()) {
+						bean.setRestaurant(true);
+					}
+					if (checkRoomService.isSelected()) {
+						bean.setRoomService(true);
+					}
+					if (checkFitnessCenter.isSelected()) {
+						bean.setGym(true);
+					}
+					
+					if (check1Star.isSelected()) {
+						bean.setStar1(true);
+					}
+					if (check2Star.isSelected()) {
+						bean.setStar2(true);
+					}
+					if (check3Star.isSelected()) {
+						bean.setStar3(true);
+					}
+					if (check4Star.isSelected()) {
+						bean.setStar4(true);
+					}
+					if (check5Star.isSelected()) {
+						bean.setStar5(true);
+					}
+					
+					controller.changeScene2();
+				}
+			}
+		});
+        
+        hotelCheckIn.setOnAction(new EventHandler<ActionEvent>(){
+			public void handle(ActionEvent event) {
+				LocalDate ld = hotelCheckIn.getValue();
+				
+				yearIn = ld.getYear();
+				monthIn = ld.getMonth().getValue();
+				dayIn = ld.getDayOfMonth();
+				
+				bean.setCheckInYear(yearIn);
+				bean.setCheckInMonth(monthIn);
+				bean.setCheckInDay(dayIn);
+				
+				hotelCheckOut.setDisable(false);
+				hotelCheckOut.getEditor().clear();
+		        
+		        hotelCheckOut.setDayCellFactory(picker -> new DateCell() {
+					public void updateItem(LocalDate date, boolean empty) {
+						super.updateItem(date, empty);
+						
+						setDisable(empty || date.compareTo(ld) < 1);
+					}
+				});
+			}
+		});
+        
+        hotelCheckOut.setOnAction(new EventHandler<ActionEvent>(){
+			public void handle(ActionEvent event) {
+				
+				LocalDate ld = hotelCheckOut.getValue();
+				
+				yearOut = ld.getYear();
+				monthOut = ld.getMonth().getValue();
+				dayOut = ld.getDayOfMonth();
+				
+				bean.setCheckOutYear(yearOut);
+				bean.setCheckOutMonth(monthOut);
+				bean.setCheckOutDay(dayOut);
+
+				dateOk = true;
+			}
+		});
     }
 }
 
