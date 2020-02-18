@@ -17,9 +17,9 @@ public class HotelController {
 	public HotelController(AnchorPane pane) {
 	
 		this.bean = new HotelBean();
-		this.hotel1 = new Hotel();
-		this.hotel2 = new Hotel();
-		this.hotel3 = new Hotel();
+		//this.hotel1 = new Hotel();
+		//this.hotel2 = new Hotel();  // per adesso le commento perchè non le sto usando e devo ancora definire bene la classe hotel
+		//this.hotel3 = new Hotel();
 		this.pane = pane;
 	}
 	

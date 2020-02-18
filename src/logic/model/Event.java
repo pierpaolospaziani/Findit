@@ -3,7 +3,7 @@ package logic.model;
 public class Event {
 
 	private String name;
-	private String owner;
+	private String owner;  // questo deve essere un riferimento a istanza di classe utente proprietario
 	private String type;
 	private String city;
 	private int hour;
