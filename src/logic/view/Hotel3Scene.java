@@ -9,26 +9,28 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import logic.bean.HotelBean;
+import logic.controller.HotelController;
 
 
 public class Hotel3Scene extends VBox{
 	
-	protected final VBox vBox;
-    protected final HBox hBoxHotelName;
-    protected final ImageView imageViewHotel;
-    protected final VBox vBoxHotelInfo;
-    protected final Text textName;
-    protected final Text textAddress;
-    protected final Text textNStars;
-    protected final VBox vBoxReview;
-    protected final Button btnReview;
-    protected final VBox vBoxDescription;
-    protected final Text textDescription;
-    protected final HBox hBoxBtn;
-    protected final Button btnUndo;
-    protected final Button btnBook;
+	protected VBox vBox;
+    protected HBox hBoxHotelName;
+    protected ImageView imageViewHotel;
+    protected VBox vBoxHotelInfo;
+    protected Text textName;
+    protected Text textAddress;
+    protected Text textNStars;
+    protected VBox vBoxReview;
+    protected Button btnReview;
+    protected VBox vBoxDescription;
+    protected Text textDescription;
+    protected HBox hBoxBtn;
+    protected Button btnUndo;
+    protected Button btnBook;
 
-    public Hotel3Scene() {
+    public Hotel3Scene(HotelController controller, HotelBean bean) {
 
         
         vBox = new VBox();

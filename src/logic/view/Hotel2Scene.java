@@ -16,25 +16,25 @@ import logic.controller.HotelController;
 public class Hotel2Scene extends VBox{
 
 	
-    protected final VBox vBoxListHotel;
-    protected final HBox hBoxHotel1;
-    protected final ImageView imageViewHotel1;
-    protected final VBox vBoxInfo1;
-    protected final Button btnHotel1;
-    protected final Label labelAddress1;
-    protected final HBox hBoxHotel2;
-    protected final ImageView imageVieHotel2;
-    protected final VBox vBoxInfo2;
-    protected final Button btnHotel2;
-    protected final Label labelAddress2;
-    protected final HBox hBoxHotel3;
-    protected final ImageView imageViewHotel3;
-    protected final VBox vBoxInfo3;
-    protected final Button btnHotel3;
-    protected final Label labelAddress3;
-    protected final HBox hBoxBtn;
-    protected final Button btnPrecedent;
-    protected final Button btnNext;
+    protected VBox vBoxListHotel;
+    protected HBox hBoxHotel1;
+    protected ImageView imageViewHotel1;
+    protected VBox vBoxInfo1;
+    protected Button btnHotel1;
+    protected Label labelAddress1;
+    protected HBox hBoxHotel2;
+    protected ImageView imageVieHotel2;
+    protected VBox vBoxInfo2;
+    protected Button btnHotel2;
+    protected Label labelAddress2;
+    protected HBox hBoxHotel3;
+    protected ImageView imageViewHotel3;
+    protected VBox vBoxInfo3;
+    protected Button btnHotel3;
+    protected Label labelAddress3;
+    protected HBox hBoxBtn;
+    protected Button btnPrecedent;
+    protected Button btnNext;
 
     public Hotel2Scene(HotelController controller, HotelBean bean) {
 
