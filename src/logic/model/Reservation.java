@@ -2,13 +2,19 @@ package logic.model;
 
 public class Reservation {
 	
-	private int reservationId;
-	// date dovrebbe essere una stringa da cui poi ricavi 3 interi: giorno-mese-anno
-	private int date;             // l'idea era di avere una signola istanza di prenotazione per ogni giorno
-	private User userBooked;      // inserite singolarmente su DB , anche se la prenotazione era per più giorni
+	private int id;
+	private int date;
+	private String userBooked;
 	
-	public Reservation(int reservationId, int date, User userBooked) {  //costruzione NUOVA istanza di prenotazione
-		this.reservationId = reservationId;
+	public Reservation() {
+		/* iserisco un cotruttore di default 
+		 * nell'evantualità si vuole costruire 
+		 * un'istanza senza passaggio di parametri iniziale
+		 */
+	}
+	
+	public Reservation(int reservationId, int date, String userBooked) {  //costruzione NUOVA istanza di prenotazione
+		this.id = reservationId;
 		this.date = date;
 		this.userBooked = userBooked;
 	}
@@ -18,10 +24,10 @@ public class Reservation {
 	}
 	
 	public int getReservationId() {
-		return reservationId;
+		return id;
 	}
 	public void setReservationId(int reservationId) {
-		this.reservationId = reservationId;
+		this.id = reservationId;
 	}
 	public int getDate() {
 		return date;
@@ -29,10 +35,10 @@ public class Reservation {
 	public void setDate(int date) {
 		this.date = date;
 	}
-	public User getUserBooked() {
+	public String getUserBooked() {
 		return userBooked;
 	}
-	public void setUserBooked(User userBooked) {
+	public void setUserBooked(String userBooked) {
 		this.userBooked = userBooked;
 	}
 }

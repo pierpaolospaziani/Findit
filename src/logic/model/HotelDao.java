@@ -40,6 +40,9 @@ public class HotelDao {
 			System.out.println("--- Rooms Table: " + hotel.getRooms());
 			System.out.println("--- Agenda Table: " + hotel.getAgenda());
 			
+    		hotel = searchHotel("Roma", 1);
+    		hotel = searchHotel("Roma", 2);
+    		hotel = searchHotel("Roma", 3);
 		} catch (Exception e) {
 	        System.out.println("# DB error! #");
 	        System.out.println(e);
@@ -47,20 +50,20 @@ public class HotelDao {
     }
     */
     
-	public static Hotel getHotel(String username) throws Exception{
+	public static Hotel getHotel(String hotelName) throws Exception{
 
-    	String nameQuery = "select name from hotels where name = '" + username + "'";
-    	String ownerQuery = "select owner from hotels where name = '" + username + "'";
-    	String typeQuery = "select type from hotels where name = '" + username + "'";
-    	String cityQuery = "select city from hotels where name = '" + username + "'";
-    	String addressQuery = "select address from hotels where name = '" + username + "'";
-    	String ratingQuery = "select rating from hotels where name = '" + username + "'";
-    	String parkingQuery = "select parking from hotels where name = '" + username + "'";
-    	String restaurantQuery = "select restaurant from hotels where name = '" + username + "'";
-    	String roomServiceQuery = "select roomService from hotels where name = '" + username + "'";
-    	String gymQuery = "select gym from hotels where name = '" + username + "'";
-    	String roomsQuery = "select rooms from hotels where name = '" + username + "'";
-    	String agendaQuery = "select agenda from hotels where name = '" + username + "'";
+    	String nameQuery = "select name from hotels where name = '" + hotelName + "'";
+    	String ownerQuery = "select owner from hotels where name = '" + hotelName + "'";
+    	String typeQuery = "select type from hotels where name = '" + hotelName + "'";
+    	String cityQuery = "select city from hotels where name = '" + hotelName + "'";
+    	String addressQuery = "select address from hotels where name = '" + hotelName + "'";
+    	String ratingQuery = "select rating from hotels where name = '" + hotelName + "'";
+    	String parkingQuery = "select parking from hotels where name = '" + hotelName + "'";
+    	String restaurantQuery = "select restaurant from hotels where name = '" + hotelName + "'";
+    	String roomServiceQuery = "select roomService from hotels where name = '" + hotelName + "'";
+    	String gymQuery = "select gym from hotels where name = '" + hotelName + "'";
+    	String roomsQuery = "select rooms from hotels where name = '" + hotelName + "'";
+    	String agendaQuery = "select agenda from hotels where name = '" + hotelName + "'";
     	
     	Hotel hotel = new Hotel();
     	
@@ -262,5 +265,60 @@ public class HotelDao {
     		con.close();
     		
     	}
+    }
+	
+	public static Hotel searchHotel(String city, int index) throws Exception{
+
+		String serachQuery = "select * from hotels where city = '" + city + "'";
+		
+    	String nameQuery = "select name from hotels where city = '" + city + "'";
+    	
+    	Hotel hotel = new Hotel();
+    	
+    	Connection con = null;
+		Statement st = null;
+		
+    	try {
+    		Class.forName(DRIVER_CLASS_NAME);
+    		try{
+				con = DriverManager.getConnection(url,name,pass);
+			} catch(SQLException e){
+		        System.out.println("Couldn't connect: exit.");
+		        System.exit(1);
+		        }
+			
+			st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+	                ResultSet.CONCUR_READ_ONLY);
+		
+			ResultSet rs = st.executeQuery(serachQuery);
+		
+			rs.next();
+			
+			// CHECK SE NON C'E'
+			if (!rs.first()) {
+				return hotel;
+			}
+			
+			ResultSet rs1 = st.executeQuery(nameQuery);
+			rs1.next();
+			
+			for (int i=1; i<index; i++) {
+				if (!rs1.next()) {
+					return hotel;
+				}
+			}
+			
+			String hotelName = rs1.getNString("name");
+			hotel = getHotel(hotelName);
+			rs1.close();
+    
+    	} finally {
+    		
+    		st.close();
+    		con.close();
+    		
+    	}
+    	
+		return hotel;
     }
 }

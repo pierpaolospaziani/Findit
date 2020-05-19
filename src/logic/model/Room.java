@@ -7,7 +7,10 @@ public class Room {
 	private int beds;
 	
 	public Room() {
-		// iserisco un cotruttore di default nell'evantualità si vuole costruire un'istanza senza passaggio di parametri iniziale
+		/* iserisco un cotruttore di default 
+		 * nell'evantualità si vuole costruire 
+		 * un'istanza senza passaggio di parametri iniziale
+		 */
 	}
 	
 	public Room(int roomId) {
@@ -40,7 +43,4 @@ public class Room {
 	public void setBeds(int beds) {
 		this.beds = beds;
 	}
-	
-	
-
 }

@@ -1,5 +1,7 @@
 package logic.bean;
 
+import java.time.LocalDate;
+
 public class HotelBean {
 
 	private String city;
@@ -11,6 +13,10 @@ public class HotelBean {
 	private int checkOutMonth;
 	private int checkOutYear;
 	
+	private int days;
+	private LocalDate localDateIn;
+	private LocalDate localDateOut;
+
 	private int numPeople;
 	
 	private boolean budget1 = false;
@@ -232,5 +238,29 @@ public class HotelBean {
 
 	public void setStar5(boolean star5) {
 		this.star5 = star5;
+	}
+
+	public int getDays() {
+		return days;
+	}
+
+	public void setDays(int days) {
+		this.days = days;
+	}	
+	
+	public LocalDate getLocalDateIn() {
+		return localDateIn;
+	}
+
+	public void setLocalDateIn(LocalDate localDateIn) {
+		this.localDateIn = localDateIn;
+	}
+
+	public LocalDate getLocalDateOut() {
+		return localDateOut;
+	}
+
+	public void setLocalDateOut(LocalDate localDateOut) {
+		this.localDateOut = localDateOut;
 	}
 }

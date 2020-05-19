@@ -219,7 +219,7 @@ public class HotelScene extends VBox{
         VBox.setMargin(hotelLabel3, new Insets(0.0));
 
         check50_100.setMnemonicParsing(false);
-        check50_100.setText("€50 - €100 for night");
+        check50_100.setText("€0 - €100 for night");
         check50_100.setFont(new Font(18.0));
 
         check100_150.setMnemonicParsing(false);
@@ -365,6 +365,58 @@ public class HotelScene extends VBox{
         getChildren().add(hotelHBox);
         getChildren().add(hotelSearchButton);
         
+        check200.setOnAction(new EventHandler<ActionEvent>(){
+			public void handle(ActionEvent event) {
+				if (!check200.isSelected()) {
+					check200.setSelected(false);
+				} else {
+					check50_100.setSelected(true);
+	        		check100_150.setSelected(true);	        	
+		        	check150_200.setSelected(true);
+	        		check200.setSelected(true);
+				}	
+			}
+		});
+        
+        check150_200.setOnAction(new EventHandler<ActionEvent>(){
+			public void handle(ActionEvent event) {
+				if (!check150_200.isSelected() && !check200.isSelected()) {
+					check150_200.setSelected(false);
+				} else {
+					check50_100.setSelected(true);
+	        		check100_150.setSelected(true);	        	
+		        	check150_200.setSelected(true);
+	        		check200.setSelected(false);
+				}		
+	        }
+		});
+        
+        check100_150.setOnAction(new EventHandler<ActionEvent>(){
+			public void handle(ActionEvent event) {
+				if (!check100_150.isSelected() && !check150_200.isSelected() && !check200.isSelected()) {
+					check100_150.setSelected(false);
+				} else {
+		        	check50_100.setSelected(true);
+		        	check100_150.setSelected(true);	        	
+			        check150_200.setSelected(false);
+		        	check200.setSelected(false);
+				}			
+	        }
+		});
+        
+        check50_100.setOnAction(new EventHandler<ActionEvent>(){
+			public void handle(ActionEvent event) {
+				if (!check50_100.isSelected() && !check100_150.isSelected() && !check150_200.isSelected() && !check200.isSelected()) {
+					check50_100.setSelected(false);
+				} else {
+		        	check50_100.setSelected(true);
+		        	check100_150.setSelected(false);	        	
+			        check150_200.setSelected(false);
+		        	check200.setSelected(false);
+				}
+	        }
+		});
+        
         hotelSearchButton.setOnAction(new EventHandler<ActionEvent>(){
 			public void handle(ActionEvent event) {
 				
@@ -475,6 +527,8 @@ public class HotelScene extends VBox{
 				bean.setCheckInMonth(monthIn);
 				bean.setCheckInDay(dayIn);
 				
+				bean.setLocalDateIn(ld);
+				
 				hotelCheckOut.setDisable(false);
 				hotelCheckOut.getEditor().clear();
 		        
@@ -500,6 +554,10 @@ public class HotelScene extends VBox{
 				bean.setCheckOutYear(yearOut);
 				bean.setCheckOutMonth(monthOut);
 				bean.setCheckOutDay(dayOut);
+				
+				bean.setLocalDateOut(ld);
+				
+				bean.setDays(ld.compareTo(hotelCheckIn.getValue()));
 
 				dateOk = true;
 			}
