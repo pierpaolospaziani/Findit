@@ -70,7 +70,7 @@ public class HotelScene extends VBox{
     
     private int people;
     
-    private int yearOut, yearIn, monthOut, monthIn, dayOut, dayIn;
+    //private int yearOut, yearIn, monthOut, monthIn, dayOut, dayIn;
 	
     public HotelScene(HotelController controller, HotelBean bean) {
     
@@ -518,7 +518,7 @@ public class HotelScene extends VBox{
         hotelCheckIn.setOnAction(new EventHandler<ActionEvent>(){
 			public void handle(ActionEvent event) {
 				LocalDate ld = hotelCheckIn.getValue();
-				
+				/*
 				yearIn = ld.getYear();
 				monthIn = ld.getMonth().getValue();
 				dayIn = ld.getDayOfMonth();
@@ -526,7 +526,7 @@ public class HotelScene extends VBox{
 				bean.setCheckInYear(yearIn);
 				bean.setCheckInMonth(monthIn);
 				bean.setCheckInDay(dayIn);
-				
+				*/
 				bean.setLocalDateIn(ld);
 				
 				hotelCheckOut.setDisable(false);
@@ -546,7 +546,7 @@ public class HotelScene extends VBox{
 			public void handle(ActionEvent event) {
 				
 				LocalDate ld = hotelCheckOut.getValue();
-				
+				/*
 				yearOut = ld.getYear();
 				monthOut = ld.getMonth().getValue();
 				dayOut = ld.getDayOfMonth();
@@ -554,7 +554,7 @@ public class HotelScene extends VBox{
 				bean.setCheckOutYear(yearOut);
 				bean.setCheckOutMonth(monthOut);
 				bean.setCheckOutDay(dayOut);
-				
+				*/
 				bean.setLocalDateOut(ld);
 				
 				bean.setDays(ld.compareTo(hotelCheckIn.getValue()));

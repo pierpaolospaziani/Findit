@@ -62,82 +62,230 @@ public class HotelController {
 			budget = 100;
 		}
 		
+		boolean valid = true;
+		int hotelIndex = 0;
+		
 		try {
-			hotel1 = HotelDao.searchHotel(bean.getCity(), 1);
 			
-			if (hotel1.getName() != null) {
+			while (valid) {
 				
-				int roomIndex = 1;
+				hotelIndex++;
 				
-				try {
-					while (true) {
-						room1 = RoomDao.searchRoom(hotel1.getRooms(), bean.getNumPeople(), budget, roomIndex);
-						System.out.println("Proviamo la stanza con ID: " + room1.getRoomId());
-						if (room1.getRoomId() == 0) {
-							System.out.println("Non c'ho stanze!");
-							break;
-						}
-						
-						LocalDate day = bean.getLocalDateIn();
-						day = day.plusDays(-1);
-						
-						int dayIndex = 0;
-						
-						boolean validRoom = false;
-						
-						while (dayIndex<=bean.getDays()) {
-							
-							day = day.plusDays(1);
-							System.out.println(day);
-							
-							int date = (day.getYear()*10000) + (day.getMonth().getValue()*100) + (day.getDayOfMonth());
-							
-							reservation1 = ReservationDao.searchReservation(hotel1.getAgenda(), room1.getRoomId(), date);
-							if (room1.getRoomId() == reservation1.getReservationId()) {
-								System.out.println("E' prenotata, prova un'altra");
-								validRoom = false;
+				hotel1 = HotelDao.searchHotel(bean.getCity(), hotelIndex);
+				//System.out.println(hotel1.getName());
+				
+				if (hotel1.getName() != null) {
+					
+					int roomIndex = 1;
+					
+					try {
+						while (true) {
+							room1 = RoomDao.searchRoom(hotel1.getRooms(), bean.getNumPeople(), budget, roomIndex);
+							//System.out.println("Proviamo la stanza con ID: " + room1.getRoomId());
+							if (room1.getRoomId() == 0) {
+								//System.out.println("Non c'ho stanze!");
 								break;
+							}
 							
+							LocalDate day = bean.getLocalDateIn();
+							day = day.plusDays(-1);
+							
+							int dayIndex = 0;
+							
+							boolean validRoom = false;
+							
+							while (dayIndex<=bean.getDays()) {
+								
+								day = day.plusDays(1);
+								//System.out.println(day);
+								
+								int date = (day.getYear()*10000) + (day.getMonth().getValue()*100) + (day.getDayOfMonth());
+								
+								reservation1 = ReservationDao.searchReservation(hotel1.getAgenda(), room1.getRoomId(), date);
+								if (room1.getRoomId() == reservation1.getReservationId()) {
+									//System.out.println("E' prenotata, prova un'altra");
+									validRoom = false;
+									break;
+								
+								} else {
+									//System.out.println("Non è prenotata");
+									dayIndex++;
+									validRoom = true;
+								}
+							}
+							
+							if (validRoom == false) {
+								//System.out.println("Stanza non buona");
+								roomIndex++;
 							} else {
-								System.out.println("Non è prenotata");
-								dayIndex++;
-								validRoom = true;
+								//System.out.println("Stanza buona");
+								valid = false;
+								break;							
 							}
 						}
 						
-						if (validRoom == false) {
-							System.out.println("Stanza non buona");
-							roomIndex++;
-						} else {
-							System.out.println("Stanza buona");
-							break;							
-						}
+					} catch (Exception e) {
+						e.printStackTrace();
 					}
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+					
+				} else {
+					break;				
+				}	
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
+		valid = true;
+		
 		try {
-			hotel2 = HotelDao.searchHotel(bean.getCity(), 2);
+			
+			while (valid) {
+				
+				hotelIndex++;
+				
+				hotel2 = HotelDao.searchHotel(bean.getCity(), hotelIndex);
+				//System.out.println(hotel2.getName());
+				
+				if (hotel2.getName() != null) {
+					
+					int roomIndex = 1;
+					
+					try {
+						while (true) {
+							room2 = RoomDao.searchRoom(hotel2.getRooms(), bean.getNumPeople(), budget, roomIndex);
+							//System.out.println("Proviamo la stanza con ID: " + room2.getRoomId());
+							if (room2.getRoomId() == 0) {
+								//System.out.println("Non c'ho stanze!");
+								break;
+							}
+							
+							LocalDate day = bean.getLocalDateIn();
+							day = day.plusDays(-1);
+							
+							int dayIndex = 0;
+							
+							boolean validRoom = false;
+							
+							while (dayIndex<=bean.getDays()) {
+								
+								day = day.plusDays(1);
+								//System.out.println(day);
+								
+								int date = (day.getYear()*10000) + (day.getMonth().getValue()*100) + (day.getDayOfMonth());
+								
+								reservation2 = ReservationDao.searchReservation(hotel2.getAgenda(), room2.getRoomId(), date);
+								if (room2.getRoomId() == reservation2.getReservationId()) {
+									//System.out.println("E' prenotata, prova un'altra");
+									validRoom = false;
+									break;
+								
+								} else {
+									//System.out.println("Non è prenotata");
+									dayIndex++;
+									validRoom = true;
+								}
+							}
+							
+							if (validRoom == false) {
+								//System.out.println("Stanza non buona");
+								roomIndex++;
+							} else {
+								//System.out.println("Stanza buona");
+								valid = false;
+								break;							
+							}
+						}
+						
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					
+				} else {
+					break;				
+				}	
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
+		valid = true;
+		
 		try {
-			hotel3 = HotelDao.searchHotel(bean.getCity(), 3);
+			
+			while (valid) {
+				
+				hotelIndex++;
+				
+				hotel3 = HotelDao.searchHotel(bean.getCity(), hotelIndex);
+				//System.out.println(hotel3.getName());
+				
+				if (hotel3.getName() != null) {
+					
+					int roomIndex = 1;
+					
+					try {
+						while (true) {
+							room3 = RoomDao.searchRoom(hotel3.getRooms(), bean.getNumPeople(), budget, roomIndex);
+							//System.out.println("Proviamo la stanza con ID: " + room3.getRoomId());
+							if (room3.getRoomId() == 0) {
+								//System.out.println("Non c'ho stanze!");
+								break;
+							}
+							
+							LocalDate day = bean.getLocalDateIn();
+							day = day.plusDays(-1);
+							
+							int dayIndex = 0;
+							
+							boolean validRoom = false;
+							
+							while (dayIndex<=bean.getDays()) {
+								
+								day = day.plusDays(1);
+								//System.out.println(day);
+								
+								int date = (day.getYear()*10000) + (day.getMonth().getValue()*100) + (day.getDayOfMonth());
+								
+								reservation3 = ReservationDao.searchReservation(hotel3.getAgenda(), room3.getRoomId(), date);
+								if (room3.getRoomId() == reservation3.getReservationId()) {
+									//System.out.println("E' prenotata, prova un'altra");
+									validRoom = false;
+									break;
+								
+								} else {
+									//System.out.println("Non è prenotata");
+									dayIndex++;
+									validRoom = true;
+								}
+							}
+							
+							if (validRoom == false) {
+								//System.out.println("Stanza non buona");
+								roomIndex++;
+							} else {
+								//System.out.println("Stanza buona");
+								valid = false;
+								break;							
+							}
+						}
+						
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					
+				} else {
+					break;				
+				}	
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		/*
-		 * devo passarci gli hotel per popolare le righe
-		 */
-		hotel2Scene = new Hotel2Scene(this,bean);
+		hotel2Scene = new Hotel2Scene(this,bean,hotel1,hotel2,hotel3);
 		
 		pane.getChildren().clear();
 		pane.getChildren().add(hotel2Scene);

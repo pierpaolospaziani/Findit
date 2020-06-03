@@ -11,6 +11,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import logic.bean.HotelBean;
 import logic.controller.HotelController;
+import logic.model.Hotel;
 
 
 public class Hotel2Scene extends VBox{
@@ -36,7 +37,7 @@ public class Hotel2Scene extends VBox{
     protected final Button btnPrecedent;
     protected final Button btnNext;
 
-    public Hotel2Scene(HotelController controller, HotelBean bean) {
+    public Hotel2Scene(HotelController controller, HotelBean bean, Hotel hotel1, Hotel hotel2, Hotel hotel3) {
 
 
         vBoxListHotel = new VBox();
@@ -83,12 +84,19 @@ public class Hotel2Scene extends VBox{
 
         btnHotel1.setMnemonicParsing(false);
         btnHotel1.setStyle("-fx-background-color: transparent;");
-        btnHotel1.setText("Hotel1");
+        //btnHotel1.setText("Hotel1");
+        btnHotel1.setText(hotel1.getName());
+        
+        if (hotel1.getName() == null) {
+        	btnHotel1.setText("Hotel not found!");
+        }
+        
         btnHotel1.setUnderline(true);
         btnHotel1.setPadding(new Insets(1.0, 0.0, 0.0, 0.0));
         btnHotel1.setFont(new Font(24.0));
 
-        labelAddress1.setText("Indirizzo");
+        //labelAddress1.setText("Indirizzo");
+        labelAddress1.setText(hotel1.getAddress());
         labelAddress1.setFont(new Font(18.0));
         hBoxHotel1.setPadding(new Insets(5.0));
 
@@ -107,11 +115,18 @@ public class Hotel2Scene extends VBox{
         btnHotel2.setMnemonicParsing(false);
         btnHotel2.setStyle("-fx-background-color: transparent;");
         btnHotel2.setText("Hotel2");
+        btnHotel2.setText(hotel2.getName());
+        
+        if (hotel2.getName() == null) {
+        	btnHotel2.setText("Hotel not found!");
+        }
+                
         btnHotel2.setUnderline(true);
         btnHotel2.setPadding(new Insets(1.0, 0.0, 0.0, 0.0));
         btnHotel2.setFont(new Font(24.0));
 
-        labelAddress2.setText("Indirizzo");
+        //labelAddress2.setText("Indirizzo");
+        labelAddress2.setText(hotel2.getAddress());
         labelAddress2.setFont(new Font(18.0));
         hBoxHotel2.setPadding(new Insets(5.0));
 
@@ -130,11 +145,18 @@ public class Hotel2Scene extends VBox{
         btnHotel3.setMnemonicParsing(false);
         btnHotel3.setStyle("-fx-background-color: transparent;");
         btnHotel3.setText("Hotel3");
+        btnHotel3.setText(hotel3.getName());
+        
+        if (hotel3.getName() == null) {
+        	btnHotel3.setText("Hotel not found!");
+        }
+          
         btnHotel3.setUnderline(true);
         btnHotel3.setPadding(new Insets(1.0, 0.0, 0.0, 0.0));
         btnHotel3.setFont(new Font(24.0));
 
-        labelAddress3.setText("Indirizzo");
+        //labelAddress3.setText("Indirizzo");
+        labelAddress3.setText(hotel3.getAddress());
         labelAddress3.setFont(new Font(18.0));
         hBoxHotel3.setPadding(new Insets(5.0));
 

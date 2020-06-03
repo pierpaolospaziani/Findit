@@ -18,7 +18,7 @@ public class HotelDao {
     	try {
     		
 			setHotel(
-					"Tor Vergata",
+					"Tor Vergata2",
 					"Rettore",
 					"hotel",
 					"Roma",
@@ -43,6 +43,7 @@ public class HotelDao {
     		hotel = searchHotel("Roma", 1);
     		hotel = searchHotel("Roma", 2);
     		hotel = searchHotel("Roma", 3);
+    		
 		} catch (Exception e) {
 	        System.out.println("# DB error! #");
 	        System.out.println(e);

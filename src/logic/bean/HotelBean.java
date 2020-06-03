@@ -5,14 +5,16 @@ import java.time.LocalDate;
 public class HotelBean {
 
 	private String city;
-	
+	/*
+	 * NON DOVREBBERO PIU
+	 * 
 	private int checkInDay;
 	private int checkInMonth;
 	private int checkInYear;
 	private int checkOutDay;
 	private int checkOutMonth;
 	private int checkOutYear;
-	
+	*/
 	private int days;
 	private LocalDate localDateIn;
 	private LocalDate localDateOut;
@@ -47,7 +49,7 @@ public class HotelBean {
 	public void setCity(String city) {
 		this.city = city;
 	}
-	
+	/*
 	public int getCheckInDay() {
 		return checkInDay;
 	}
@@ -95,7 +97,7 @@ public class HotelBean {
 	public void setCheckOutYear(int checkOutYear) {
 		this.checkOutYear = checkOutYear;
 	}
-	
+	*/
 	public int getNumPeople() {
 		return numPeople;
 	}
