@@ -17,25 +17,34 @@ import logic.model.Hotel;
 public class Hotel2Scene extends VBox{
 
 	
-    protected final VBox vBoxListHotel;
-    protected final HBox hBoxHotel1;
-    protected final ImageView imageViewHotel1;
-    protected final VBox vBoxInfo1;
-    protected final Button btnHotel1;
-    protected final Label labelAddress1;
-    protected final HBox hBoxHotel2;
-    protected final ImageView imageVieHotel2;
-    protected final VBox vBoxInfo2;
-    protected final Button btnHotel2;
-    protected final Label labelAddress2;
-    protected final HBox hBoxHotel3;
-    protected final ImageView imageViewHotel3;
-    protected final VBox vBoxInfo3;
-    protected final Button btnHotel3;
-    protected final Label labelAddress3;
-    protected final HBox hBoxBtn;
-    protected final Button btnPrecedent;
-    protected final Button btnNext;
+    protected  VBox vBoxListHotel;
+    protected  HBox hBoxHotel1;
+    protected  ImageView imageViewHotel1;
+    protected  VBox vBoxInfo1;
+    protected  Button btnHotel1;
+    protected  Label labelAddress1;
+    protected  Label labelStar1;
+    protected  VBox vBoxPrezzo1;
+    protected  Label labelPrezzo1;
+    protected  HBox hBoxHotel2;
+    protected  ImageView imageVieHotel2;
+    protected  VBox vBoxInfo2;
+    protected  Button btnHotel2;
+    protected  Label labelAddress2;
+    protected  Label labelStar2;
+    protected  VBox vBoxPrezzo2;
+    protected  Label labelPrezzo2;
+    protected  HBox hBoxHotel3;
+    protected  ImageView imageViewHotel3;
+    protected  VBox vBoxInfo3;
+    protected  Button btnHotel3;
+    protected  Label labelAddress3;
+    protected  Label labelStar3;
+    protected  VBox vBoxPrezzo3;
+    protected  Label labelPrezzo3;
+    protected  HBox hBoxBtn;
+    protected  Button btnPrecedent;
+    protected  Button btnNext;
 
     public Hotel2Scene(HotelController controller, HotelBean bean, Hotel hotel1, Hotel hotel2, Hotel hotel3) {
 
@@ -46,16 +55,25 @@ public class Hotel2Scene extends VBox{
         vBoxInfo1 = new VBox();
         btnHotel1 = new Button();
         labelAddress1 = new Label();
+        labelStar1 = new Label();
+        vBoxPrezzo1 = new VBox();
+        labelPrezzo1 = new Label();
         hBoxHotel2 = new HBox();
         imageVieHotel2 = new ImageView();
         vBoxInfo2 = new VBox();
         btnHotel2 = new Button();
         labelAddress2 = new Label();
+        labelStar2 = new Label();
+        vBoxPrezzo2 = new VBox();
+        labelPrezzo2 = new Label();
         hBoxHotel3 = new HBox();
         imageViewHotel3 = new ImageView();
         vBoxInfo3 = new VBox();
         btnHotel3 = new Button();
         labelAddress3 = new Label();
+        labelStar3 = new Label();
+        vBoxPrezzo3 = new VBox();
+        labelPrezzo3 = new Label();
         hBoxBtn = new HBox();
         btnPrecedent = new Button();
         btnNext = new Button();
@@ -98,6 +116,17 @@ public class Hotel2Scene extends VBox{
         //labelAddress1.setText("Indirizzo");
         labelAddress1.setText(hotel1.getAddress());
         labelAddress1.setFont(new Font(18.0));
+        
+        labelStar1.setText("numero stelle");
+        labelStar1.setFont(new Font(18.0));
+
+        vBoxPrezzo1.setAlignment(javafx.geometry.Pos.TOP_CENTER);
+        vBoxPrezzo1.setPrefHeight(136.0);
+        vBoxPrezzo1.setPrefWidth(213.0);
+
+        labelPrezzo1.setText("prezzo �");
+        labelPrezzo1.setFont(new Font(18.0));
+        vBoxPrezzo1.setPadding(new Insets(20.0, 0.0, 0.0, 0.0));
         hBoxHotel1.setPadding(new Insets(5.0));
 
         hBoxHotel2.setPrefHeight(136.0);
@@ -128,6 +157,17 @@ public class Hotel2Scene extends VBox{
         //labelAddress2.setText("Indirizzo");
         labelAddress2.setText(hotel2.getAddress());
         labelAddress2.setFont(new Font(18.0));
+        
+        labelStar2.setText("numero stelle");
+        labelStar2.setFont(new Font(18.0));
+
+        vBoxPrezzo2.setAlignment(javafx.geometry.Pos.TOP_CENTER);
+        vBoxPrezzo2.setPrefHeight(136.0);
+        vBoxPrezzo2.setPrefWidth(213.0);
+
+        labelPrezzo2.setText("prezzo �");
+        labelPrezzo2.setFont(new Font(18.0));
+        vBoxPrezzo2.setPadding(new Insets(20.0, 0.0, 0.0, 0.0));
         hBoxHotel2.setPadding(new Insets(5.0));
 
         hBoxHotel3.setPrefHeight(136.0);
@@ -158,6 +198,17 @@ public class Hotel2Scene extends VBox{
         //labelAddress3.setText("Indirizzo");
         labelAddress3.setText(hotel3.getAddress());
         labelAddress3.setFont(new Font(18.0));
+        
+        labelStar3.setText("numero stelle");
+        labelStar3.setFont(new Font(18.0));
+
+        vBoxPrezzo3.setAlignment(javafx.geometry.Pos.TOP_CENTER);
+        vBoxPrezzo3.setPrefHeight(136.0);
+        vBoxPrezzo3.setPrefWidth(213.0);
+
+        labelPrezzo3.setText("prezzo �");
+        labelPrezzo3.setFont(new Font(18.0));
+        vBoxPrezzo3.setPadding(new Insets(20.0, 0.0, 0.0, 0.0));
         hBoxHotel3.setPadding(new Insets(5.0));
 
         hBoxBtn.setAlignment(javafx.geometry.Pos.CENTER);
@@ -178,17 +229,26 @@ public class Hotel2Scene extends VBox{
         hBoxHotel1.getChildren().add(imageViewHotel1);
         vBoxInfo1.getChildren().add(btnHotel1);
         vBoxInfo1.getChildren().add(labelAddress1);
+        vBoxInfo1.getChildren().add(labelStar1); 
         hBoxHotel1.getChildren().add(vBoxInfo1);
+        vBoxPrezzo1.getChildren().add(labelPrezzo1); 
+        hBoxHotel1.getChildren().add(vBoxPrezzo1); 
         vBoxListHotel.getChildren().add(hBoxHotel1);
         hBoxHotel2.getChildren().add(imageVieHotel2);
         vBoxInfo2.getChildren().add(btnHotel2);
         vBoxInfo2.getChildren().add(labelAddress2);
+        vBoxInfo2.getChildren().add(labelStar2);
         hBoxHotel2.getChildren().add(vBoxInfo2);
+        vBoxPrezzo2.getChildren().add(labelPrezzo2); 
+        hBoxHotel2.getChildren().add(vBoxPrezzo2);
         vBoxListHotel.getChildren().add(hBoxHotel2);
         hBoxHotel3.getChildren().add(imageViewHotel3);
         vBoxInfo3.getChildren().add(btnHotel3);
         vBoxInfo3.getChildren().add(labelAddress3);
+        vBoxInfo3.getChildren().add(labelAddress3);
         hBoxHotel3.getChildren().add(vBoxInfo3);
+        vBoxPrezzo3.getChildren().add(labelPrezzo3);
+        hBoxHotel3.getChildren().add(vBoxPrezzo3); 
         vBoxListHotel.getChildren().add(hBoxHotel3);
         hBoxBtn.getChildren().add(btnPrecedent);
         hBoxBtn.getChildren().add(btnNext);
