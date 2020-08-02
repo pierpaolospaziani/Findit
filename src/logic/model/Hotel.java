@@ -15,6 +15,7 @@ public class Hotel {
 	
 	private String rooms;
 	private String agenda;
+	private String reviews;
 	
 	public Hotel() {
 
@@ -142,5 +143,13 @@ public class Hotel {
 
 	public void setAgenda(String agenda) {
 		this.agenda = agenda;
+	}
+
+	public String getReviews() {
+		return reviews;
+	}
+
+	public void setReviews(String reviews) {
+		this.reviews = reviews;
 	}	
 }

@@ -1,6 +1,5 @@
 package logic.controller;
 
-import java.nio.Buffer;
 import java.time.LocalDate;
 
 import javafx.scene.layout.AnchorPane;
@@ -30,6 +29,8 @@ public class HotelController {
 	private Reservation reservation3;
 	private AnchorPane pane;
 	
+	private int indice;
+	
 	public HotelController(AnchorPane pane) {
 	
 		this.bean = new HotelBean();
@@ -50,7 +51,7 @@ public class HotelController {
 		pane.getChildren().add(hotelScene);
 	}
 	
-	public void changeScene2(){
+	public void changeScene2(int index){
 		
 		int budget = 1000;
 		
@@ -62,8 +63,9 @@ public class HotelController {
 			budget = 100;
 		}
 		
+		boolean change = true;
 		boolean valid = true;
-		int hotelIndex = 0;
+		int hotelIndex = index;
 		
 		try {
 			
@@ -71,7 +73,13 @@ public class HotelController {
 				
 				hotelIndex++;
 				
-				hotel1 = HotelDao.searchHotel(bean.getCity(), hotelIndex);
+				hotel1 = HotelDao.searchHotel(bean.getCity(),
+						bean.getType(),
+						bean.getParking(),
+						bean.getRestaurant(),
+						bean.getRoomService(),
+						bean.getGym(),
+						hotelIndex);
 				//System.out.println(hotel1.getName());
 				
 				if (hotel1.getName() != null) {
@@ -120,6 +128,8 @@ public class HotelController {
 							} else {
 								//System.out.println("Stanza buona");
 								valid = false;
+								index++;
+								setIndice(index);
 								break;							
 							}
 						}
@@ -129,7 +139,8 @@ public class HotelController {
 					}
 					
 				} else {
-					break;				
+					change = false;
+					break;
 				}	
 			}
 			
@@ -145,7 +156,13 @@ public class HotelController {
 				
 				hotelIndex++;
 				
-				hotel2 = HotelDao.searchHotel(bean.getCity(), hotelIndex);
+				hotel2 = HotelDao.searchHotel(bean.getCity(),
+						bean.getType(),
+						bean.getParking(),
+						bean.getRestaurant(),
+						bean.getRoomService(),
+						bean.getGym(),
+						hotelIndex);
 				//System.out.println(hotel2.getName());
 				
 				if (hotel2.getName() != null) {
@@ -194,6 +211,8 @@ public class HotelController {
 							} else {
 								//System.out.println("Stanza buona");
 								valid = false;
+								index++;
+								setIndice(index);
 								break;							
 							}
 						}
@@ -219,7 +238,13 @@ public class HotelController {
 				
 				hotelIndex++;
 				
-				hotel3 = HotelDao.searchHotel(bean.getCity(), hotelIndex);
+				hotel3 = HotelDao.searchHotel(bean.getCity(),
+						bean.getType(),
+						bean.getParking(),
+						bean.getRestaurant(),
+						bean.getRoomService(),
+						bean.getGym(),
+						hotelIndex);
 				//System.out.println(hotel3.getName());
 				
 				if (hotel3.getName() != null) {
@@ -268,6 +293,8 @@ public class HotelController {
 							} else {
 								//System.out.println("Stanza buona");
 								valid = false;
+								index++;
+								setIndice(index);
 								break;							
 							}
 						}
@@ -285,10 +312,12 @@ public class HotelController {
 			e.printStackTrace();
 		}
 		
-		hotel2Scene = new Hotel2Scene(this,bean,hotel1,hotel2,hotel3);
-		
-		pane.getChildren().clear();
-		pane.getChildren().add(hotel2Scene);
+		if (change == true) {
+			hotel2Scene = new Hotel2Scene(this,bean,hotel1,room1,hotel2,room2,hotel3,room3);
+			
+			pane.getChildren().clear();
+			pane.getChildren().add(hotel2Scene);
+		}
 	}
 
 	public void hotelUpdate(String city, int index) {
@@ -297,5 +326,13 @@ public class HotelController {
 		 * della schermata hotel2 quando clicki 
 		 * per girare pagina
 		 */
+	}
+
+	public int getIndice() {
+		return indice;
+	}
+
+	public void setIndice(int indice) {
+		this.indice = indice;
 	}
 }

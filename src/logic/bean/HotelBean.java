@@ -6,7 +6,7 @@ public class HotelBean {
 
 	private String city;
 	/*
-	 * NON DOVREBBERO PIU
+	 * NON DOVREBBERO SERVIRE PIU
 	 * 
 	private int checkInDay;
 	private int checkInMonth;
@@ -31,6 +31,8 @@ public class HotelBean {
 	private boolean beb = false;
 	private boolean hostel = false;
 	
+	private String type;
+
 	private boolean parking = false;
 	private boolean restaurant = false;
 	private boolean roomService = false;
@@ -169,7 +171,7 @@ public class HotelBean {
 	public void setHostel(boolean hostel) {
 		this.hostel = hostel;
 	}
-
+	
 	public boolean getParking() {
 		return parking;
 	}
@@ -264,5 +266,22 @@ public class HotelBean {
 
 	public void setLocalDateOut(LocalDate localDateOut) {
 		this.localDateOut = localDateOut;
+	}
+	
+	public String getType() {
+		setType();
+		return type;
+	}
+
+	public void setType() {
+		if (isApartment() == true) {
+			type = "apartment";
+		} else if (isBeb() == true) {
+			type = "beb";
+		} else if (isHostel() == true) {
+			type = "hostel";
+		} else if (isHotel() == true) {
+			type = "hotel";
+		}
 	}
 }

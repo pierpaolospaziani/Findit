@@ -40,9 +40,9 @@ public class HotelDao {
 			System.out.println("--- Rooms Table: " + hotel.getRooms());
 			System.out.println("--- Agenda Table: " + hotel.getAgenda());
 			
-    		hotel = searchHotel("Roma", 1);
-    		hotel = searchHotel("Roma", 2);
-    		hotel = searchHotel("Roma", 3);
+    		hotel = searchHotel("Roma","hotel",true,false,false,false,1);
+    		hotel = searchHotel("Roma","hotel",true,false,false,false,2);
+    		hotel = searchHotel("Roma","hotel",true,false,false,false,3);
     		
 		} catch (Exception e) {
 	        System.out.println("# DB error! #");
@@ -65,6 +65,7 @@ public class HotelDao {
     	String gymQuery = "select gym from hotels where name = '" + hotelName + "'";
     	String roomsQuery = "select rooms from hotels where name = '" + hotelName + "'";
     	String agendaQuery = "select agenda from hotels where name = '" + hotelName + "'";
+    	String reviewsQuery = "select reviews from hotels where name = '" + hotelName + "'";
     	
     	Hotel hotel = new Hotel();
     	
@@ -158,9 +159,15 @@ public class HotelDao {
 			
 			ResultSet rs11 = st.executeQuery(agendaQuery);
 			rs11.next();
-			String agenda= rs11.getNString("agenda");
+			String agenda = rs11.getNString("agenda");
 			hotel.setAgenda(agenda);
 			rs11.close();
+			
+			ResultSet rs12 = st.executeQuery(reviewsQuery);
+			rs12.next();
+			String reviews = rs12.getNString("reviews");
+			hotel.setReviews(reviews);
+			rs12.close();
     
     	} finally {
     		
@@ -185,7 +192,8 @@ public class HotelDao {
 			boolean gym) throws Exception{
 
 		String rooms = (nome + "Rooms").replaceAll("\\s+","");
-		String agenda = (nome + "Agenda").replaceAll("\\s+","");		
+		String agenda = (nome + "Agenda").replaceAll("\\s+","");
+		String reviewsTable = (nome + "Reviews").replaceAll("\\s+","");
 
     	String searchQuery = "select name from hotels where name = '" + nome + "'";
     	
@@ -217,7 +225,10 @@ public class HotelDao {
 				
 				String variableRooms = rooms;
 				String variableAgenda = agenda;
+				String variableReviewsTable = reviewsTable;
+				
 				boolean exist = true;
+				
 				int i=0;
 				
 				while (exist == true) {
@@ -225,14 +236,17 @@ public class HotelDao {
 					if (res.next()) {
 						variableRooms = rooms + i;
 						variableAgenda = agenda + i;
+						variableReviewsTable = reviewsTable + i;
 						i++;
 					} else {
 						exist = false;
 						rooms = variableRooms;
 						agenda = variableAgenda;
+						reviewsTable = variableReviewsTable;
 						
 				    	String createRoomsTable = "create table " + rooms + " (id int, price int, beds int)";
-				    	String createAgendaTable = "create table " + agenda + " (id int, date varchar(10), user varchar(20))";						
+				    	String createAgendaTable = "create table " + agenda + " (id int, date varchar(10), user varchar(20))";	
+				    	String createReviewsQuery = "create table " + reviewsTable + " (user varchar(20),review text)";
 				    	String insertQuery = "insert into hotels value ("
 				    			+ "'" + nome + "',"
 				    			+ "'" + owner + "',"
@@ -245,11 +259,13 @@ public class HotelDao {
 				    	    	+ "" + roomService + ","
 				    	    	+ "" + gym + ","
 				    	    	+ "'" + rooms + "',"
-				    			+ "'" + agenda + "')";
+				    			+ "'" + agenda + "',"
+		    					+ "'" + reviewsTable + "')";
 				    	
 						st.executeUpdate(insertQuery);
 						st.executeUpdate(createRoomsTable);
 						st.executeUpdate(createAgendaTable);
+						st.executeUpdate(createReviewsQuery);
 					}
 				}
 				
@@ -268,7 +284,7 @@ public class HotelDao {
     	}
     }
 	
-	public static Hotel searchHotel(String city, int index) throws Exception{
+	public static Hotel searchHotel(String city, String type, Boolean parking, Boolean restaurant, Boolean roomService, Boolean gym, int index) throws Exception{
 
 		String serachQuery = "select * from hotels where city = '" + city + "'";
 		
@@ -290,7 +306,27 @@ public class HotelDao {
 			
 			st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
 	                ResultSet.CONCUR_READ_ONLY);
-		
+
+			if (type != null) {
+				serachQuery = serachQuery + " and type = type";
+			}
+
+			if (parking == true) {
+				serachQuery = serachQuery + " and parking = true";
+			}
+			
+			if (restaurant == true) {
+				serachQuery = serachQuery + " and parrestaurantking = true";
+			}
+			
+			if (roomService == true) {
+				serachQuery = serachQuery + " and roomService = true";
+			}
+			
+			if (gym == true) {
+				serachQuery = serachQuery + " and gym = true";
+			}
+			
 			ResultSet rs = st.executeQuery(serachQuery);
 		
 			rs.next();

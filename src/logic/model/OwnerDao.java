@@ -118,9 +118,11 @@ public class OwnerDao {
 					
 					//CERCA NEL DB TABELLE PER ROOMS E AGENDA CON LO STESSO NOME
 					java.sql.DatabaseMetaData meta = con.getMetaData();
-					
+
 					String variableStructuresTable = structuresTable;
+					
 					boolean exist = true;
+					
 					int i=0;
 					
 					while (exist == true) {
@@ -136,7 +138,7 @@ public class OwnerDao {
 					    	String createStructureQuery = "create table " + structuresTable + " (name varchar(20),type varchar(20))";
 							
 							st.executeUpdate(insertQuery);
-							
+
 							st.executeUpdate(createStructureQuery);
 						}
 					}					

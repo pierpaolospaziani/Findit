@@ -148,10 +148,11 @@ public class RoomDao {
 		
 			rs.next();
 			
-			// CHECK SE NON C'E' L'HOTEL
 			if (!rs.first()) {
 				return room;
 			}
+			
+			rs.close();
 			
 			ResultSet rs1 = st.executeQuery(idQuery);
 			rs1.next();
@@ -164,8 +165,18 @@ public class RoomDao {
 			}
 
 			int roomId = rs1.getInt("id");
-			room.setRoomId(roomId);		
+			room.setRoomId(roomId);
 			rs1.close();
+			
+			room.setBeds(beds);
+			
+	    	String priceQuery = "select price from " + roomsTable + " where id = '" + roomId + "'";
+	    	
+	    	ResultSet rs2 = st.executeQuery(priceQuery);
+			rs2.next();
+			int roomPrice = rs2.getInt("price");
+			room.setPrice(roomPrice);
+			rs2.close();
     
     	} finally {
     		

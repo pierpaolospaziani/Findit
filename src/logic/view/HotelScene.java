@@ -510,7 +510,7 @@ public class HotelScene extends VBox{
 						bean.setStar5(true);
 					}
 					
-					controller.changeScene2();
+					controller.changeScene2(0);
 				}
 			}
 		});

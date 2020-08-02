@@ -74,7 +74,9 @@ public class UserDao {
 	
 	public static boolean setUser(String username, String password) throws Exception{
 
-    	String insertQuery = "insert into users value ('" + username + "','" + password + "')";
+		String reviewsTable = (username + "Reviews").replaceAll("\\s+","");
+
+    	//String insertQuery = "insert into users value ('" + username + "','" + password + "','" + reviewsTable + ")";
     	String searchUserQuery = "select name from users where name = '" + username + "'";
     	String searchOwnerQuery = "select name from owners where name = '" + username + "'";
     	
@@ -105,8 +107,32 @@ public class UserDao {
 				if (!rs2.first()) {
 
 					rs2.close();
+					
+					//CERCA NEL DB TABELLE REVIEWS CON LO STESSO NOME
+					java.sql.DatabaseMetaData meta = con.getMetaData();
+
+					String variableReviewsTable = reviewsTable;
+					
+					boolean exist = true;
+					
+					int i=0;
+					
+					while (exist == true) {
+						ResultSet res = meta.getTables(null, null, variableReviewsTable, null);
+						if (res.next()) {
+							variableReviewsTable = reviewsTable + i;
+							i++;
+						} else {
+							exist = false;
+							reviewsTable = variableReviewsTable;
+
+							String insertQuery = "insert into users value ('" + username + "','" + password + "','" + reviewsTable + "')";
+					    	String createReviewsQuery = "create table " + reviewsTable + " (structure varchar(20),review text)";
 				
-					st.executeUpdate(insertQuery);
+					    	st.executeUpdate(insertQuery);
+							st.executeUpdate(createReviewsQuery);
+						}
+					}
 
 					return true;
 				}
