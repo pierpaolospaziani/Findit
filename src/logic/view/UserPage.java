@@ -23,6 +23,7 @@ public class UserPage extends HBox{
     protected Label reviewsLabel;
     protected Label reviewsNumber;
     protected Button logoutButton;
+    
     protected VBox vBox0;
     protected ScrollPane scrollPane;
     protected VBox vBox1;
@@ -217,6 +218,7 @@ public class UserPage extends HBox{
         imageView9.setPickOnBounds(true);
         imageView9.setPreserveRatio(true);
         imageView9.setImage(new Image(getClass().getResource("account.jpg").toExternalForm()));
+        
         scrollPane.setContent(vBox1);
 
         vBox.getChildren().add(username);
@@ -230,6 +232,7 @@ public class UserPage extends HBox{
         vBox.getChildren().add(hBox1);
         vBox.getChildren().add(logoutButton);
         getChildren().add(vBox);
+        
         vBox1.getChildren().add(paneLabel);
         hBox2.getChildren().add(imageView1);
         hBox2.getChildren().add(imageView2);

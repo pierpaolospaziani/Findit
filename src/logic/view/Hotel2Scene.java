@@ -216,17 +216,25 @@ public class Hotel2Scene extends VBox{
         hBoxBtn.setPrefHeight(63.0);
         hBoxBtn.setPrefWidth(841.0);
         hBoxBtn.setSpacing(10.0);
-
+        
         btnPrecedent.setMnemonicParsing(false);
         btnPrecedent.setText("<");
         btnPrecedent.setFont(new Font(18.0));
+        btnPrecedent.setStyle("-fx-background-color: #1B59D7;");
+        btnPrecedent.setTextFill(javafx.scene.paint.Color.WHITE);
+
+        btnPrecedent.setOnMouseEntered(evt -> btnPrecedent.setUnderline(true));
+        btnPrecedent.setOnMouseExited(evt -> btnPrecedent.setUnderline(false));
 
         btnNext.setMnemonicParsing(false);
         btnNext.setText(">");
         btnNext.setFont(new Font(18.0));
-        setOpaqueInsets(new Insets(0.0));
+        btnNext.setStyle("-fx-background-color: #1B59D7;");
+        btnNext.setTextFill(javafx.scene.paint.Color.WHITE);
 
-        
+        btnNext.setOnMouseEntered(evt -> btnNext.setUnderline(true));
+        btnNext.setOnMouseExited(evt -> btnNext.setUnderline(false));
+
         hBoxHotel1.getChildren().add(imageViewHotel1);
         vBoxInfo1.getChildren().add(btnHotel1);
         vBoxInfo1.getChildren().add(labelAddress1);

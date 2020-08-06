@@ -204,6 +204,9 @@ public class EventsScene extends VBox{
 		eventsSearchButton.setFont(new Font(24.0));
 		setPadding(new Insets(50.0, 0.0, 0.0, 0.0));
 
+		eventsSearchButton.setOnMouseEntered(evt -> eventsSearchButton.setUnderline(true));
+        eventsSearchButton.setOnMouseExited(evt -> eventsSearchButton.setUnderline(false));
+
 		eventsVBox0.getChildren().add(eventsLabel);
 		eventsVBox0.getChildren().add(eventsText);
 		eventsVBox0.getChildren().add(eventsLabel0);

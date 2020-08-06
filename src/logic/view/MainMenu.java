@@ -54,7 +54,11 @@ public class MainMenu extends HBox{
     	buttonFindit.setPrefWidth(215.0);
     	buttonFindit.setMinWidth(215.0);
     	buttonFindit.setText("FindIT");
-    	buttonFindit.setUnderline(true);
+    	//buttonFindit.setUnderline(true);
+    	
+    	buttonFindit.setOnMouseEntered(evt -> buttonFindit.setUnderline(true));
+    	buttonFindit.setOnMouseExited(evt -> buttonFindit.setUnderline(false));
+    	
     	buttonFindit.setFont(new Font(72.0));
         buttonFindit.setPadding(new Insets(0.0, 0.0, 0.0, 0.0));
         HBox.setMargin(buttonFindit, new Insets(25.0, 0.0, 20.0, 0.0));
@@ -74,31 +78,51 @@ public class MainMenu extends HBox{
         buttonHotel.setMnemonicParsing(false);
         buttonHotel.setText("Hotels");
         buttonHotel.setTextFill(javafx.scene.paint.Color.WHITE);
-        buttonHotel.setUnderline(true);
+        //buttonHotel.setUnderline(true);
+    	
+        buttonHotel.setOnMouseEntered(evt -> buttonHotel.setUnderline(true));
+        buttonHotel.setOnMouseExited(evt -> buttonHotel.setUnderline(false));
+    	
         buttonHotel.setFont(new Font(24.0));
         
         buttonRestaurants.setMnemonicParsing(false);
         buttonRestaurants.setText("Restaurants");
         buttonRestaurants.setTextFill(javafx.scene.paint.Color.WHITE);
-        buttonRestaurants.setUnderline(true);
+        //buttonRestaurants.setUnderline(true);
+    	
+        buttonRestaurants.setOnMouseEntered(evt -> buttonRestaurants.setUnderline(true));
+        buttonRestaurants.setOnMouseExited(evt -> buttonRestaurants.setUnderline(false));
+    	
         buttonRestaurants.setFont(new Font(24.0));
 
         buttonEvents.setMnemonicParsing(false);
         buttonEvents.setText("Events");
         buttonEvents.setTextFill(javafx.scene.paint.Color.WHITE);
-        buttonEvents.setUnderline(true);
+        //buttonEvents.setUnderline(true);
+    	
+        buttonEvents.setOnMouseEntered(evt -> buttonEvents.setUnderline(true));
+        buttonEvents.setOnMouseExited(evt -> buttonEvents.setUnderline(false));
+    	
         buttonEvents.setFont(new Font(24.0));
 
         buttonMap.setMnemonicParsing(false);
         buttonMap.setText("Map");
         buttonMap.setTextFill(javafx.scene.paint.Color.WHITE);
-        buttonMap.setUnderline(true);
+        //buttonMap.setUnderline(true);
+    	
+        buttonMap.setOnMouseEntered(evt -> buttonMap.setUnderline(true));
+        buttonMap.setOnMouseExited(evt -> buttonMap.setUnderline(false));
+    	
         buttonMap.setFont(new Font(24.0));
 
         buttonProfile.setMnemonicParsing(false);
         buttonProfile.setText("Profile");
         buttonProfile.setTextFill(javafx.scene.paint.Color.WHITE);
-        buttonProfile.setUnderline(true);
+        //buttonProfile.setUnderline(true);
+    	
+        buttonProfile.setOnMouseEntered(evt -> buttonProfile.setUnderline(true));
+        buttonProfile.setOnMouseExited(evt -> buttonProfile.setUnderline(false));
+    	
         buttonProfile.setFont(new Font(24.0));
         
         buttonFindit.setId("b_selected");

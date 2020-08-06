@@ -7,6 +7,7 @@ import logic.model.Owner;
 import logic.model.User;
 import logic.view.LogWindow;
 import logic.view.ProfileScene;
+import logic.view.UserPage;
 import logic.view.UserScene_2;
 
 public class LoginController {
@@ -104,9 +105,11 @@ public class LoginController {
 	
 	public void loggedScene(String username) {
 		
-		userScene = new UserScene_2(username);
+		userScene = new UserScene_2(this,user);
+		//UserPage userPage = new UserPage(username);
 		
 		pane.getChildren().clear();
 		pane.getChildren().add(userScene);
+		//pane.getChildren().add(userPage);
 	}
 }

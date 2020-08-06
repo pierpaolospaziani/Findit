@@ -276,6 +276,9 @@ public class RestaurantsScene extends VBox{
         restSearchButton.setFont(new Font(24.0));
         setPadding(new Insets(50.0, 0.0, 0.0, 0.0));
 
+        restSearchButton.setOnMouseEntered(evt -> restSearchButton.setUnderline(true));
+        restSearchButton.setOnMouseExited(evt -> restSearchButton.setUnderline(false));
+
         restaurantsBox0.getChildren().add(restLabel);
         restaurantsBox0.getChildren().add(restText);
         restaurantsBox0.getChildren().add(restLabel0);

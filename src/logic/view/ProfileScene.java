@@ -98,6 +98,9 @@ public class ProfileScene extends VBox{
         profileLoginButton.setFont(new Font(24.0));
         VBox.setMargin(profileLoginButton, new Insets(30.0, 0.0, 0.0, 0.0));
 
+        profileLoginButton.setOnMouseEntered(evt -> profileLoginButton.setUnderline(true));
+        profileLoginButton.setOnMouseExited(evt -> profileLoginButton.setUnderline(false));
+
         profileLine.setEndY(180.0);
         profileLine.setStartY(-180.0);
 
@@ -129,6 +132,9 @@ public class ProfileScene extends VBox{
         profileRegisterButton.setFont(new Font(24.0));
         VBox.setMargin(profileRegisterButton, new Insets(30.0, 0.0, 0.0, 0.0));
         HBox.setMargin(profileVBox1, new Insets(20.0, 0.0, 0.0, 0.0));
+
+        profileRegisterButton.setOnMouseEntered(evt -> profileRegisterButton.setUnderline(true));
+        profileRegisterButton.setOnMouseExited(evt -> profileRegisterButton.setUnderline(false));
 
         profileVBox0.getChildren().add(profileLabel);
         profileVBox0.getChildren().add(profileLabel0);

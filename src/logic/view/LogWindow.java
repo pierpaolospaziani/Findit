@@ -212,6 +212,9 @@ public class LogWindow {
         registerButton.setTextFill(javafx.scene.paint.Color.WHITE);
         registerButton.setFont(new Font(24.0));
         VBox.setMargin(registerButton, new Insets(0.0, 0.0, 15.0, 0.0));
+
+        registerButton.setOnMouseEntered(evt -> registerButton.setUnderline(true));
+        registerButton.setOnMouseExited(evt -> registerButton.setUnderline(false));
         
         registerHBox.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
         registerHBox.setPrefHeight(100.0);

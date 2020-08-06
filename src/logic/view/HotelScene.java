@@ -315,11 +315,14 @@ public class HotelScene extends VBox{
         HBox.setMargin(hotelVBox5, new Insets(0.0, -25.0, 0.0, 0.0));
 
         hotelSearchButton.setMnemonicParsing(false);
-        hotelSearchButton.setStyle("-fx-background-color: #1B59D7 #1B59D7;");
+        hotelSearchButton.setStyle("-fx-background-color: #1B59D7;");
         hotelSearchButton.setText("Search");
         hotelSearchButton.setTextFill(javafx.scene.paint.Color.WHITE);
         hotelSearchButton.setFont(new Font(24.0));
         setPadding(new Insets(50.0, 0.0, 0.0, 0.0));
+
+        hotelSearchButton.setOnMouseEntered(evt -> hotelSearchButton.setUnderline(true));
+        hotelSearchButton.setOnMouseExited(evt -> hotelSearchButton.setUnderline(false));
 
         hotelVBox0.getChildren().add(hotelLabel);
         hotelVBox0.getChildren().add(hotelTextField);
