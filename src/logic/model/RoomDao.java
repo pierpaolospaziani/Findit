@@ -8,7 +8,8 @@ import java.sql.Statement;
 
 public class RoomDao {
 	private static String name = "root";
-    private static String pass = "Pier1997";
+    //private static String pass = "Pier1997";
+    private static String pass = "simonelazio98";
     private static String url = "jdbc:mysql://localhost:3306/findit?useTimezone=true&serverTimezone=UTC";
     private static String DRIVER_CLASS_NAME = "com.mysql.cj.jdbc.Driver";
     
