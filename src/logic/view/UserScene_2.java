@@ -1,5 +1,7 @@
 package logic.view;
 
+import java.io.File;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -10,6 +12,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.stage.FileChooser;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import logic.controller.LoginController;
 import logic.model.User;
 
@@ -18,7 +23,7 @@ public class UserScene_2 extends HBox{
     protected VBox vBox;
     protected Label nameLabel;
     protected ImageView userImage;
-    protected Button btnImage;
+    protected Button btnChangeImage;
     protected HBox hBox0;
     protected Label bookedLabel;
     protected Label numBookedLabel;
@@ -37,16 +42,18 @@ public class UserScene_2 extends HBox{
     protected ImageView imageView4;
     protected ImageView imageView5;
     protected ImageView imageView6;
-    protected  HBox hBoxBtn;
-    protected  Button btnPrecedent;
-    protected  Button btnNext;
+    protected HBox hBoxBtn;
+    protected Button btnPrecedent;
+    protected Button btnNext;
+
+    protected static Stage window;
     
     public UserScene_2(LoginController controller, User user) {
     	
     	vBox = new VBox();
         nameLabel = new Label();
         userImage = new ImageView();
-        btnImage = new Button();
+        btnChangeImage = new Button();
         hBox0 = new HBox();
         bookedLabel = new Label();
         numBookedLabel = new Label();
@@ -69,6 +76,13 @@ public class UserScene_2 extends HBox{
         btnPrecedent = new Button();
         btnNext = new Button();
         
+        window = new Stage();
+
+        //Block events to other windows
+        window.initModality(Modality.APPLICATION_MODAL);
+        window.setTitle("Login");
+        window.setMinWidth(250);
+        
         setAlignment(javafx.geometry.Pos.TOP_LEFT);
         setPrefHeight(525.0);
         setPrefWidth(1050.0);
@@ -89,16 +103,16 @@ public class UserScene_2 extends HBox{
         userImage.setImage(new Image(getClass().getResource("account.jpg").toExternalForm()));
         VBox.setMargin(userImage, new Insets(0.0));
 
-        btnImage.setMnemonicParsing(false);
-        btnImage.setStyle("-fx-background-color: transparent;");
-        btnImage.setText("Change your profile image");
+        btnChangeImage.setMnemonicParsing(false);
+        btnChangeImage.setStyle("-fx-background-color: transparent;");
+        btnChangeImage.setText("Change your profile image");
 
-        btnImage.setOnMouseEntered(evt -> btnImage.setUnderline(true));
-        btnImage.setOnMouseExited(evt -> btnImage.setUnderline(false));
+        btnChangeImage.setOnMouseEntered(evt -> btnChangeImage.setUnderline(true));
+        btnChangeImage.setOnMouseExited(evt -> btnChangeImage.setUnderline(false));
         
-        btnImage.setFont(new Font(18.0));
-        btnImage.setPadding(new Insets(1.0, 0.0, 0.0, 0.0));
-        VBox.setMargin(btnImage, new Insets(-10.0, 0.0, 0.0, 0.0));
+        btnChangeImage.setFont(new Font(18.0));
+        btnChangeImage.setPadding(new Insets(1.0, 0.0, 0.0, 0.0));
+        VBox.setMargin(btnChangeImage, new Insets(-10.0, 0.0, 0.0, 0.0));
 
         hBox0.setAlignment(javafx.geometry.Pos.CENTER_RIGHT);
         hBox0.setPrefWidth(200.0);
@@ -215,7 +229,7 @@ public class UserScene_2 extends HBox{
         
         vBox.getChildren().add(nameLabel);
         vBox.getChildren().add(userImage);
-        vBox.getChildren().add(btnImage);
+        vBox.getChildren().add(btnChangeImage);
         hBox0.getChildren().add(bookedLabel);
         hBox0.getChildren().add(numBookedLabel);
         vBox.getChildren().add(hBox0);
@@ -245,6 +259,24 @@ public class UserScene_2 extends HBox{
  				user.setLogged(false);
  				
  				controller.changeScene();
+ 			}
+ 		});
+        
+        btnChangeImage.setOnAction(new EventHandler<ActionEvent>(){
+ 			public void handle(ActionEvent event) {
+ 				
+ 				FileChooser fileChooser = new FileChooser();
+ 				
+ 				window.setTitle("Select Image");
+ 				
+ 				final File file = fileChooser.showOpenDialog(window);
+ 				
+ 	            if (file != null) {
+
+ 	                Image image = new Image(file.toURI().toString());
+ 	                
+ 	                userImage.setImage(image);
+ 	            }
  			}
  		});
     }

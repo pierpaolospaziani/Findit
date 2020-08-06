@@ -103,6 +103,9 @@ public class LogWindow {
         loginButton.setFont(new Font(24.0));
         VBox.setMargin(loginButton, new Insets(0.0, 0.0, 15.0, 0.0));
 
+        loginButton.setOnMouseEntered(evt -> loginButton.setUnderline(true));
+        loginButton.setOnMouseExited(evt -> loginButton.setUnderline(false));
+
         loginScene.getChildren().add(label);
         loginScene.getChildren().add(loginHBox);
         loginScene.getChildren().add(loginHBox0);
