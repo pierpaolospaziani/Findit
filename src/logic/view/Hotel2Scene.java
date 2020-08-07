@@ -11,6 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import logic.bean.HotelBean;
 import logic.controller.HotelController;
 import logic.model.Hotel;
 import logic.model.Room;
@@ -50,11 +51,11 @@ public class Hotel2Scene extends VBox{
     protected  HBox hBoxNumbPage;
     protected  Text txtNumberPage;
     
-    protected Separator separatorHotel1;
-    protected Separator separatorHotel2;
-    protected Separator separatorHotel3;
-    protected Separator separatorBtnBack;
-    protected Separator separatorBtnFrecce;
+    protected  Separator separatorHotel1;
+    protected  Separator separatorHotel2;
+    protected  Separator separatorHotel3;
+    protected  Separator separatorBtnBack;
+    protected  Separator separatorBtnFrecce;
     
    
     
@@ -132,9 +133,11 @@ public class Hotel2Scene extends VBox{
         btnHotel1.setStyle("-fx-background-color: transparent;");
         btnHotel1.setText(hotel1.getName());
         
-        btnHotel1.setUnderline(true);
         btnHotel1.setPadding(new Insets(1.0, 0.0, 0.0, 0.0));
         btnHotel1.setFont(new Font(24.0));
+        
+        btnHotel1.setOnMouseEntered(evt -> btnHotel1.setUnderline(true));
+        btnHotel1.setOnMouseExited(evt -> btnHotel1.setUnderline(false));
 
         labelAddress1.setText(hotel1.getAddress());
         labelAddress1.setFont(new Font(18.0));
@@ -179,9 +182,11 @@ public class Hotel2Scene extends VBox{
         btnHotel2.setText("Hotel2");
         btnHotel2.setText(hotel2.getName());
                 
-        btnHotel2.setUnderline(true);
         btnHotel2.setPadding(new Insets(1.0, 0.0, 0.0, 0.0));
         btnHotel2.setFont(new Font(24.0));
+        
+        btnHotel2.setOnMouseEntered(evt -> btnHotel2.setUnderline(true));
+        btnHotel2.setOnMouseExited(evt -> btnHotel2.setUnderline(false));
 
         labelAddress2.setText(hotel2.getAddress());
         labelAddress2.setFont(new Font(18.0));
@@ -225,9 +230,11 @@ public class Hotel2Scene extends VBox{
         btnHotel3.setStyle("-fx-background-color: transparent;");
         btnHotel3.setText(hotel3.getName());
           
-        btnHotel3.setUnderline(true);
         btnHotel3.setPadding(new Insets(1.0, 0.0, 0.0, 0.0));
         btnHotel3.setFont(new Font(24.0));
+        
+        btnHotel3.setOnMouseEntered(evt -> btnHotel3.setUnderline(true));
+        btnHotel3.setOnMouseExited(evt -> btnHotel3.setUnderline(false));
         
         labelAddress3.setText(hotel3.getAddress());
         labelAddress3.setFont(new Font(18.0));
@@ -267,9 +274,9 @@ public class Hotel2Scene extends VBox{
         btnBack.setText("<<back");
         btnBack.setTextFill(javafx.scene.paint.Color.WHITE);
         btnBack.setFont(new Font(24.0));
-
+        
         btnBack.setOnMouseEntered(evt -> btnBack.setUnderline(true));
-        btnBack.setOnMouseExited(evt -> btnBack.setUnderline(false));
+    	btnBack.setOnMouseExited(evt -> btnBack.setUnderline(false));
         
         separatorBtnFrecce.setOpacity(0.0);
         separatorBtnFrecce.setOrientation(javafx.geometry.Orientation.VERTICAL);
@@ -283,7 +290,7 @@ public class Hotel2Scene extends VBox{
         btnPrecedent.setText("<");
         btnPrecedent.setTextFill(javafx.scene.paint.Color.WHITE);
         btnPrecedent.setFont(new Font(24.0));
-
+        
         btnPrecedent.setOnMouseEntered(evt -> btnPrecedent.setUnderline(true));
         btnPrecedent.setOnMouseExited(evt -> btnPrecedent.setUnderline(false));
 
@@ -293,8 +300,8 @@ public class Hotel2Scene extends VBox{
         btnNext.setStyle("-fx-background-color: #1B59D7;");
         btnNext.setText(">");
         btnNext.setTextFill(javafx.scene.paint.Color.WHITE);
-        btnNext.setFont(new Font(24.0));;
-
+        btnNext.setFont(new Font(24.0));
+        
         btnNext.setOnMouseEntered(evt -> btnNext.setUnderline(true));
         btnNext.setOnMouseExited(evt -> btnNext.setUnderline(false));
         

@@ -7,6 +7,7 @@ import logic.model.Owner;
 import logic.model.User;
 import logic.view.LogWindow;
 import logic.view.ProfileScene;
+import logic.view.UserPage;
 import logic.view.UserScene_2;
 
 public class LoginController {

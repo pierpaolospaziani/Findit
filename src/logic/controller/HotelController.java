@@ -4,14 +4,15 @@ import java.time.LocalDate;
 
 import javafx.scene.layout.AnchorPane;
 import logic.bean.HotelBean;
-import logic.dao.HotelDao;
-import logic.dao.ReservationDao;
-import logic.dao.RoomDao;
 import logic.model.Hotel;
+import logic.dao.HotelDao;
 import logic.model.Reservation;
+import logic.dao.ReservationDao;
 import logic.model.Room;
+import logic.dao.RoomDao;
 import logic.view.Hotel2Scene;
 import logic.view.HotelScene;
+
 
 public class HotelController {
 	
@@ -46,9 +47,10 @@ public class HotelController {
 	public void changeScene(){
 		
 		hotelScene = new HotelScene(this,bean);
-		
+	
 		pane.getChildren().clear();
 		pane.getChildren().add(hotelScene);
+		
 	}
 	
 	public void changeScene2(int index){
@@ -319,6 +321,7 @@ public class HotelController {
 			pane.getChildren().add(hotel2Scene);
 		}
 	}
+
 
 	public int getIndice() {
 		return indice;

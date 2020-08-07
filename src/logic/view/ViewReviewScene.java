@@ -118,9 +118,11 @@ public class ViewReviewScene extends VBox {
         btnNameUser1.setPrefWidth(240.0);
         btnNameUser1.setStyle("-fx-background-color: transparent;");
         btnNameUser1.setText("Nome Utente 1");
-        btnNameUser1.setUnderline(true);
         btnNameUser1.setPadding(new Insets(1.0, 0.0, 0.0, 0.0));
         btnNameUser1.setFont(new Font(24.0));
+        
+        btnNameUser1.setOnMouseEntered(evt -> btnNameUser1.setUnderline(true));
+        btnNameUser1.setOnMouseExited(evt -> btnNameUser1.setUnderline(false));
 
         labelNumberStar1.setPrefWidth(230.0);
         labelNumberStar1.setText("stelle recensione");
@@ -156,9 +158,11 @@ public class ViewReviewScene extends VBox {
         btnNameUser2.setPrefWidth(240.0);
         btnNameUser2.setStyle("-fx-background-color: transparent;");
         btnNameUser2.setText("Nome Utente2");
-        btnNameUser2.setUnderline(true);
         btnNameUser2.setPadding(new Insets(1.0, 0.0, 0.0, 0.0));
         btnNameUser2.setFont(new Font(24.0));
+        
+        btnNameUser2.setOnMouseEntered(evt -> btnNameUser2.setUnderline(true));
+        btnNameUser2.setOnMouseExited(evt -> btnNameUser2.setUnderline(false));
 
         labelNumberStar2.setPrefWidth(230.0);
         labelNumberStar2.setText("stelle recensione");
@@ -196,9 +200,11 @@ public class ViewReviewScene extends VBox {
         btnNameUser3.setPrefWidth(240.0);
         btnNameUser3.setStyle("-fx-background-color: transparent;");
         btnNameUser3.setText("Nome Utente3");
-        btnNameUser3.setUnderline(true);
         btnNameUser3.setPadding(new Insets(1.0, 0.0, 0.0, 0.0));
         btnNameUser3.setFont(new Font(24.0));
+        
+        btnNameUser3.setOnMouseEntered(evt -> btnNameUser3.setUnderline(true));
+        btnNameUser3.setOnMouseExited(evt -> btnNameUser3.setUnderline(false));
 
         labelNumberStar3.setPrefHeight(27.0);
         labelNumberStar3.setPrefWidth(230.0);
@@ -235,6 +241,9 @@ public class ViewReviewScene extends VBox {
         btnBack.setText("<<back");
         btnBack.setTextFill(javafx.scene.paint.Color.WHITE);
         btnBack.setFont(new Font(24.0));
+        
+        btnBack.setOnMouseEntered(evt -> btnBack.setUnderline(true));
+    	btnBack.setOnMouseExited(evt -> btnBack.setUnderline(false));
 
         separator.setOpacity(0.0);
         separator.setOrientation(javafx.geometry.Orientation.VERTICAL);
@@ -248,6 +257,9 @@ public class ViewReviewScene extends VBox {
         btnPreview.setText("<");
         btnPreview.setTextFill(javafx.scene.paint.Color.WHITE);
         btnPreview.setFont(new Font(24.0));
+        
+        btnPreview.setOnMouseEntered(evt -> btnPreview.setUnderline(true));
+        btnPreview.setOnMouseExited(evt -> btnPreview.setUnderline(false));
 
         btnNext.setMnemonicParsing(false);
         btnNext.setPrefHeight(51.0);
@@ -256,6 +268,10 @@ public class ViewReviewScene extends VBox {
         btnNext.setText(">");
         btnNext.setTextFill(javafx.scene.paint.Color.WHITE);
         btnNext.setFont(new Font(24.0));
+        
+        btnNext.setOnMouseEntered(evt -> btnNext.setUnderline(true));
+        btnNext.setOnMouseExited(evt -> btnNext.setUnderline(false));
+
 
         hBoxNumbPage.setAlignment(javafx.geometry.Pos.TOP_CENTER);
         hBoxNumbPage.setPrefHeight(17.0);

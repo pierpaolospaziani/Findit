@@ -432,12 +432,20 @@ public class HotelRegistrationScene extends VBox {
         btnUndo.setPrefWidth(119.0);
         btnUndo.setText("Undo");
         btnUndo.setFont(new Font(24.0));
+        
+        btnUndo.setOnMouseEntered(evt -> btnUndo.setUnderline(true));
+        btnUndo.setOnMouseExited(evt -> btnUndo.setUnderline(false));
+
 
         btnRegister.setMnemonicParsing(false);
         btnRegister.setStyle("-fx-background-color: #1B59D7;");
         btnRegister.setText("Register");
         btnRegister.setTextFill(javafx.scene.paint.Color.WHITE);
         btnRegister.setFont(new Font(24.0));
+        
+        btnRegister.setOnMouseEntered(evt -> btnRegister.setUnderline(true));
+        btnRegister.setOnMouseExited(evt -> btnRegister.setUnderline(false));
+
         setOpaqueInsets(new Insets(0.0));
 
         hBox0.getChildren().add(text);

@@ -1,5 +1,6 @@
 package logic.model;
 
+
 public class Restaurant {
 
 	private String name;
@@ -8,7 +9,6 @@ public class Restaurant {
 	private String city;
 	private String address;
 	private int rating;
-	
 	private int budget;
 	private boolean pizza;
 	private boolean sushi;
@@ -59,6 +59,7 @@ public class Restaurant {
 	public void setRating(int rating) {
 		this.rating = rating;
 	}
+
 	public int getBudget() {
 		return budget;
 	}
