@@ -57,23 +57,27 @@ public class HotelController {
 		
 		int budget = 1000;
 		
+		if (bean.isBudget1()){
+			budget = 100;
+		}
+		if (bean.isBudget2()){
+			budget = 150;
+		}
 		if (bean.isBudget3()){
 			budget = 200;
-		} else if (bean.isBudget2()){
-			budget = 150;
-		} else if (bean.isBudget1()){
-			budget = 100;
+		}
+		if (bean.isBudget4()){
+			budget = 1000;
 		}
 		
 		boolean change = true;
 		boolean valid = true;
-		int hotelIndex = index;
 		
 		try {
 			
 			while (valid) {
 				
-				hotelIndex++;
+				index++;
 				
 				hotel1 = HotelDao.searchHotel(bean.getCity(),
 						bean.getType(),
@@ -81,7 +85,7 @@ public class HotelController {
 						bean.getRestaurant(),
 						bean.getRoomService(),
 						bean.getGym(),
-						hotelIndex);
+						index);
 				//System.out.println(hotel1.getName());
 				
 				if (hotel1.getName() != null) {
@@ -130,7 +134,6 @@ public class HotelController {
 							} else {
 								//System.out.println("Stanza buona");
 								valid = false;
-								index++;
 								setIndice(index);
 								break;							
 							}
@@ -141,7 +144,10 @@ public class HotelController {
 					}
 					
 				} else {
-					change = false;
+					
+					if (index != 1) {
+						change = false;
+					}
 					break;
 				}	
 			}
@@ -156,7 +162,7 @@ public class HotelController {
 			
 			while (valid) {
 				
-				hotelIndex++;
+				index++;
 				
 				hotel2 = HotelDao.searchHotel(bean.getCity(),
 						bean.getType(),
@@ -164,7 +170,7 @@ public class HotelController {
 						bean.getRestaurant(),
 						bean.getRoomService(),
 						bean.getGym(),
-						hotelIndex);
+						index);
 				//System.out.println(hotel2.getName());
 				
 				if (hotel2.getName() != null) {
@@ -213,7 +219,6 @@ public class HotelController {
 							} else {
 								//System.out.println("Stanza buona");
 								valid = false;
-								index++;
 								setIndice(index);
 								break;							
 							}
@@ -238,7 +243,7 @@ public class HotelController {
 			
 			while (valid) {
 				
-				hotelIndex++;
+				index++;
 				
 				hotel3 = HotelDao.searchHotel(bean.getCity(),
 						bean.getType(),
@@ -246,7 +251,7 @@ public class HotelController {
 						bean.getRestaurant(),
 						bean.getRoomService(),
 						bean.getGym(),
-						hotelIndex);
+						index);
 				//System.out.println(hotel3.getName());
 				
 				if (hotel3.getName() != null) {
@@ -295,7 +300,6 @@ public class HotelController {
 							} else {
 								//System.out.println("Stanza buona");
 								valid = false;
-								index++;
 								setIndice(index);
 								break;							
 							}

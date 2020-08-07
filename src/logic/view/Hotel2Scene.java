@@ -11,7 +11,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import logic.bean.HotelBean;
 import logic.controller.HotelController;
 import logic.model.Hotel;
 import logic.model.Room;
@@ -407,7 +406,7 @@ public class Hotel2Scene extends VBox{
  			public void handle(ActionEvent event) {
  			
  				int indice = controller.getIndice();
- 			
+ 				//System.out.println(indice);
  				controller.changeScene2(indice);
  				
  			}

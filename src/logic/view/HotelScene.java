@@ -459,60 +459,95 @@ public class HotelScene extends VBox{
 					
 					if (check50_100.isSelected()) {
 						bean.setBudget1(true);
+					} else {
+						bean.setBudget1(false);
 					}
 					if (check100_150.isSelected()) {
 						bean.setBudget2(true);
+					} else {
+						bean.setBudget2(false);
 					}
 					if (check150_200.isSelected()) {
 						bean.setBudget3(true);
+					} else {
+						bean.setBudget3(false);
 					}
 					if (check200.isSelected()) {
 						bean.setBudget4(true);
+					} else {
+						bean.setBudget4(false);
 					}
 
 					if (checkApartaments.isSelected()) {
 						bean.setApartment(true);
+					} else {
+						bean.setApartment(false);
 					}
 					if (checkHotels.isSelected()) {
 						bean.setHotel(true);
+					} else {
+						bean.setHotel(false);
 					}
 					if (checkBeB.isSelected()) {
 						bean.setBeb(true);
+					} else {
+						bean.setBeb(false);
 					}
 					if (checkHostels.isSelected()) {
 						bean.setHostel(true);
+					} else {
+						bean.setHostel(false);
 					}
 					
 
 					if (checkParking.isSelected()) {
 						bean.setParking(true);
+					} else {
+						bean.setParking(false);
 					}
 					if (checkRestaurant.isSelected()) {
 						bean.setRestaurant(true);
+					} else {
+						bean.setRestaurant(false);
 					}
 					if (checkRoomService.isSelected()) {
 						bean.setRoomService(true);
+					} else {
+						bean.setRoomService(false);
 					}
 					if (checkFitnessCenter.isSelected()) {
 						bean.setGym(true);
+					} else {
+						bean.setGym(false);
 					}
 					
 					if (check1Star.isSelected()) {
 						bean.setStar1(true);
+					} else {
+						bean.setStar1(false);
 					}
 					if (check2Star.isSelected()) {
 						bean.setStar2(true);
+					} else {
+						bean.setStar2(false);
 					}
 					if (check3Star.isSelected()) {
 						bean.setStar3(true);
+					} else {
+						bean.setStar3(false);
 					}
 					if (check4Star.isSelected()) {
 						bean.setStar4(true);
+					} else {
+						bean.setStar4(false);
 					}
 					if (check5Star.isSelected()) {
 						bean.setStar5(true);
+					} else {
+						bean.setStar5(false);
 					}
 					
+					bean.setType();
 					controller.changeScene2(0);
 				}
 			}

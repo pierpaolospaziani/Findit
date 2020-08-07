@@ -10,8 +10,7 @@ import logic.model.Hotel;
 
 public class HotelDao {
 	private static String name = "root";
-	//private static String pass = "Pier1997";
-	private static String pass = "simonelazio98";
+    private static String pass = "Pier1997";
     private static String url = "jdbc:mysql://localhost:3306/findit?useTimezone=true&serverTimezone=UTC";
     private static String DRIVER_CLASS_NAME = "com.mysql.cj.jdbc.Driver";
     
@@ -43,9 +42,16 @@ public class HotelDao {
 			System.out.println("--- Rooms Table: " + hotel.getRooms());
 			System.out.println("--- Agenda Table: " + hotel.getAgenda());
 			
-    		hotel = searchHotel("Roma","hotel",true,false,false,false,1);
-    		hotel = searchHotel("Roma","hotel",true,false,false,false,2);
-    		hotel = searchHotel("Roma","hotel",true,false,false,false,3);
+    		hotel = searchHotel("Roma",null,false,false,false,false,1);
+    		System.out.println("--- " + hotel.getName());
+    		hotel = searchHotel("Roma",null,false,false,false,false,2);
+    		System.out.println("--- " + hotel.getName());
+    		hotel = searchHotel("Roma",null,false,false,false,false,3);
+    		System.out.println("--- " + hotel.getName());
+    		hotel = searchHotel("Roma",null,false,false,false,false,4);
+    		System.out.println("--- " + hotel.getName());
+    		hotel = searchHotel("Roma",null,false,false,false,false,5);
+    		System.out.println("--- " + hotel.getName());
     		
 		} catch (Exception e) {
 	        System.out.println("# DB error! #");
@@ -311,23 +317,28 @@ public class HotelDao {
 	                ResultSet.CONCUR_READ_ONLY);
 
 			if (type != null) {
-				serachQuery = serachQuery + " and type = type";
+				serachQuery = serachQuery + " and type = '" + type + "'";
+				nameQuery = nameQuery + " and type = '" + type + "'";
 			}
 
 			if (parking == true) {
-				serachQuery = serachQuery + " and parking = true";
+				serachQuery = serachQuery + " and parking = '" + true + "'";
+				nameQuery = nameQuery + " and parking = '" + true + "'";
 			}
 			
 			if (restaurant == true) {
-				serachQuery = serachQuery + " and parrestaurantking = true";
+				serachQuery = serachQuery + " and restaurant = '" + true + "'";
+				nameQuery = nameQuery + " and restaurant = '" + true + "'";
 			}
 			
 			if (roomService == true) {
-				serachQuery = serachQuery + " and roomService = true";
+				serachQuery = serachQuery + " and roomService = '" + true + "'";
+				nameQuery = nameQuery + " and roomService = '" + true + "'";
 			}
 			
 			if (gym == true) {
-				serachQuery = serachQuery + " and gym = true";
+				serachQuery = serachQuery + " and gym = '" + true + "'";
+				nameQuery = nameQuery + " and gym = '" + true + "'";
 			}
 			
 			ResultSet rs = st.executeQuery(serachQuery);

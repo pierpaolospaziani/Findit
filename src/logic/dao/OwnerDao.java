@@ -5,12 +5,12 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
 import logic.model.Owner;
 
 public class OwnerDao {
 	private static String name = "root";
-    //private static String pass = "Pier1997";
-    private static String pass = "simonelazio98";
+    private static String pass = "Pier1997";
     private static String url = "jdbc:mysql://localhost:3306/findit?useTimezone=true&serverTimezone=UTC";
     private static String DRIVER_CLASS_NAME = "com.mysql.cj.jdbc.Driver";
     

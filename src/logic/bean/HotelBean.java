@@ -269,7 +269,6 @@ public class HotelBean {
 	}
 	
 	public String getType() {
-		setType();
 		return type;
 	}
 
@@ -282,6 +281,8 @@ public class HotelBean {
 			type = "hostel";
 		} else if (isHotel() == true) {
 			type = "hotel";
+		} else {
+			type = null;
 		}
 	}
 }
