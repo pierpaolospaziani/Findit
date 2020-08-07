@@ -11,7 +11,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import logic.bean.HotelBean;
 import logic.controller.HotelController;
 import logic.model.Hotel;
 import logic.model.Room;
@@ -59,7 +58,7 @@ public class Hotel2Scene extends VBox{
     
    
     
-	public Hotel2Scene(HotelController controller, HotelBean bean, Hotel hotel1, Room room1, Hotel hotel2, Room room2, Hotel hotel3, Room room3) {
+	public Hotel2Scene(HotelController controller, Hotel hotel1, Room room1, Hotel hotel2, Room room2, Hotel hotel3, Room room3) {
 
 		
     	vBoxListHotel = new VBox();
@@ -268,6 +267,9 @@ public class Hotel2Scene extends VBox{
         btnBack.setText("<<back");
         btnBack.setTextFill(javafx.scene.paint.Color.WHITE);
         btnBack.setFont(new Font(24.0));
+
+        btnBack.setOnMouseEntered(evt -> btnBack.setUnderline(true));
+        btnBack.setOnMouseExited(evt -> btnBack.setUnderline(false));
         
         separatorBtnFrecce.setOpacity(0.0);
         separatorBtnFrecce.setOrientation(javafx.geometry.Orientation.VERTICAL);
@@ -282,6 +284,9 @@ public class Hotel2Scene extends VBox{
         btnPrecedent.setTextFill(javafx.scene.paint.Color.WHITE);
         btnPrecedent.setFont(new Font(24.0));
 
+        btnPrecedent.setOnMouseEntered(evt -> btnPrecedent.setUnderline(true));
+        btnPrecedent.setOnMouseExited(evt -> btnPrecedent.setUnderline(false));
+
         btnNext.setMnemonicParsing(false);
         btnNext.setPrefHeight(51.0);
         btnNext.setPrefWidth(51.0);
@@ -289,6 +294,9 @@ public class Hotel2Scene extends VBox{
         btnNext.setText(">");
         btnNext.setTextFill(javafx.scene.paint.Color.WHITE);
         btnNext.setFont(new Font(24.0));;
+
+        btnNext.setOnMouseEntered(evt -> btnNext.setUnderline(true));
+        btnNext.setOnMouseExited(evt -> btnNext.setUnderline(false));
         
         hBoxNumbPage.setAlignment(javafx.geometry.Pos.TOP_CENTER);
         hBoxNumbPage.setPrefHeight(17.0);

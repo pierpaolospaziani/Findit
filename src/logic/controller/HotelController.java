@@ -4,12 +4,12 @@ import java.time.LocalDate;
 
 import javafx.scene.layout.AnchorPane;
 import logic.bean.HotelBean;
+import logic.dao.HotelDao;
+import logic.dao.ReservationDao;
+import logic.dao.RoomDao;
 import logic.model.Hotel;
-import logic.model.HotelDao;
 import logic.model.Reservation;
-import logic.model.ReservationDao;
 import logic.model.Room;
-import logic.model.RoomDao;
 import logic.view.Hotel2Scene;
 import logic.view.HotelScene;
 
@@ -313,19 +313,11 @@ public class HotelController {
 		}
 		
 		if (change == true) {
-			hotel2Scene = new Hotel2Scene(this,bean,hotel1,room1,hotel2,room2,hotel3,room3);
+			hotel2Scene = new Hotel2Scene(this,hotel1,room1,hotel2,room2,hotel3,room3);
 			
 			pane.getChildren().clear();
 			pane.getChildren().add(hotel2Scene);
 		}
-	}
-
-	public void hotelUpdate(String city, int index) {
-		/*
-		 * qua farei la parte di aggiornamento 
-		 * della schermata hotel2 quando clicki 
-		 * per girare pagina
-		 */
 	}
 
 	public int getIndice() {

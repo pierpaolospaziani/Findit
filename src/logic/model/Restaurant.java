@@ -1,7 +1,5 @@
 package logic.model;
 
-import java.util.Vector;
-
 public class Restaurant {
 
 	private String name;
@@ -10,8 +8,6 @@ public class Restaurant {
 	private String city;
 	private String address;
 	private int rating;
-	private Vector<Table> vTable;
-	private Agenda agenda;
 	
 	private int budget;
 	private boolean pizza;
@@ -24,32 +20,6 @@ public class Restaurant {
 	private boolean gourmet;
 	
 	public Restaurant() {
-		
-	}
-	
-	public Restaurant(String name) {
-		// chiamata al DAO per popolare l'istanza con dati su DB 
-	}
-	
-	public Restaurant(String name, String type, String city, String address, int rating, int budget, boolean pizza, boolean sushi, boolean hamburgher, boolean pasta, boolean meat, boolean vegan, boolean fish, boolean gourmet) {
-		// costruzione NUOVA istanza che poi dovrò salvare su DB 
-		this.name = name;
-		this.type = type;
-		//this.ownner ..
-		this.city = city;
-		this.address = address;
-		this.rating = rating;
-		// this.vTable = ...
-		this.agenda = new Agenda(this.name);
-		this.budget = budget;
-		this.pizza = pizza;
-		this.pasta = pasta;
-		this.meat = meat;
-		this.vegan = vegan;
-		this.fish = fish;
-		this.gourmet = gourmet;
-		
-		//salvataggio su DB
 		
 	}
 	
@@ -88,18 +58,6 @@ public class Restaurant {
 	}
 	public void setRating(int rating) {
 		this.rating = rating;
-	}
-	public Vector<Table> getvTable() {
-		return vTable;
-	}
-	public void setvTable(Vector<Table> vTable) {
-		this.vTable = vTable;
-	}
-	public Agenda getAgenda() {
-		return agenda;
-	}
-	public void setAgenda(Agenda agenda) {
-		this.agenda = agenda;
 	}
 	public int getBudget() {
 		return budget;

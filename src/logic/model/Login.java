@@ -1,5 +1,8 @@
 package logic.model;
 
+import logic.dao.OwnerDao;
+import logic.dao.UserDao;
+
 public class Login {
 	
 	private User userLoggato;

@@ -20,35 +20,6 @@ public class Hotel {
 	public Hotel() {
 
 	}
-	
-	public Hotel(String name) {
-		//costruttore che uso per popolare istanza con dati su DB(gli passo il nome e trmaite quelo ricerca su DB)
-		
-		/* chiamata al DAO per verificare se esiste
-		 se esiste vado a popolare gli attributi con i dati su DB e creao la mia istanza
-		 altrimenti non creo l'istanza */
-		
-		//this.name = name;
-		//this.agenda = new Agenda(this.name);
-	}
-	
-	public Hotel(String name, String owner, String type ,String city ,String address, int rating, Agenda agenda, boolean parking, boolean restaurant, boolean roomService, boolean gym) {
-		// costruttore che uso quando creo una NUOVA istanza(per la prima volta)
-		this.name = name;
-		this.type = type;
-		this.city = city;
-		this.owner = owner;
-		this.address = address;
-		this.rating = rating;
-		//this.agenda = new Agenda(this.name);
-		this.parking = parking;
-		this.restaurant = restaurant;
-		this.roomService = roomService;
-		this.gym = gym;
-		//this.vRoom ...
-		
-		//poi dovrò salvarla su Db
-	}
 		
 	public String getName() {
 		return name;
