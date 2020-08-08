@@ -11,6 +11,8 @@ import logic.dao.ReservationDao;
 import logic.model.Room;
 import logic.dao.RoomDao;
 import logic.view.Hotel2Scene;
+import logic.view.Hotel3Scene;
+import logic.view.HotelConfirmScene;
 import logic.view.HotelScene;
 
 
@@ -18,6 +20,8 @@ public class HotelController {
 	
 	private HotelScene hotelScene;
 	private Hotel2Scene hotel2Scene;
+	private Hotel3Scene hotel3Scene;
+	private HotelConfirmScene HotelConfirmScene;
 	private HotelBean bean;
 	private Hotel hotel1;
 	private Room room1;
@@ -325,8 +329,7 @@ public class HotelController {
 			pane.getChildren().add(hotel2Scene);
 		}
 	}
-
-
+	
 	public int getIndice() {
 		return indice;
 	}
@@ -334,4 +337,67 @@ public class HotelController {
 	public void setIndice(int indice) {
 		this.indice = indice;
 	}
+
+	public void viewHotel1() {
+		
+		 if (hotel1.getName() == null) {
+			 return;
+		 }
+		
+		hotel3Scene = new Hotel3Scene(this, hotel1, room1);
+		pane.getChildren().clear();
+		pane.getChildren().add(hotel3Scene);
+		
+	}
+	
+	public void viewHotel2() {
+		
+		 if (hotel2.getName() == null) {
+			 return;
+		 }
+		
+		hotel3Scene = new Hotel3Scene(this, hotel2, room2);
+		pane.getChildren().clear();
+		pane.getChildren().add(hotel3Scene);
+		
+	}
+	
+	public void viewHotel3() {
+		
+		 if (hotel3.getName() == null) {
+			 return;
+		 }
+		
+		hotel3Scene = new Hotel3Scene(this, hotel3, room3);
+		pane.getChildren().clear();
+		pane.getChildren().add(hotel3Scene);
+		
+	}
+	
+	public void returnBackList() {
+		
+		pane.getChildren().clear();
+		pane.getChildren().add(hotel2Scene);
+	
+	}
+	
+	public void viewReview() {
+		// metodo che mi cerca e visualizze le review
+	}
+	
+	public void goToBook() {
+		
+		HotelConfirmScene = new HotelConfirmScene(this, bean);
+		
+		pane.getChildren().clear();
+		pane.getChildren().add(HotelConfirmScene);
+	}
+	
+	public void returnBackHotelPage() {
+		
+		pane.getChildren().clear();
+		pane.getChildren().add(hotel3Scene);
+	
+	}
+
 }

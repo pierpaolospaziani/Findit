@@ -1,5 +1,7 @@
 package logic.view;
 
+import java.time.format.DateTimeFormatter;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -36,7 +38,7 @@ public class HotelConfirmScene extends VBox{
 	    protected Button btnConfirm;
 
 	    public HotelConfirmScene(HotelController controller, HotelBean bean) {
-
+	   
 	     
 	        vBox = new VBox();
 	        hBoxNameHotel = new HBox();
@@ -107,12 +109,12 @@ public class HotelConfirmScene extends VBox{
 
 	        labelCheckIn.setPrefHeight(35.0);
 	        labelCheckIn.setPrefWidth(183.0);
-	        labelCheckIn.setText("GG/MM/AA");
+	        labelCheckIn.setText(bean.getLocalDateIn().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 	        labelCheckIn.setFont(new Font(24.0));
 
 	        labelCheckOut.setPrefHeight(35.0);
 	        labelCheckOut.setPrefWidth(126.0);
-	        labelCheckOut.setText("GG/MM/AA");
+	        labelCheckOut.setText(bean.getLocalDateOut().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 	        labelCheckOut.setFont(new Font(24.0));
 
 	        hBoxGuests.setAlignment(javafx.geometry.Pos.CENTER);
@@ -126,7 +128,7 @@ public class HotelConfirmScene extends VBox{
 
 	        txtNumberGuests.setStrokeType(javafx.scene.shape.StrokeType.OUTSIDE);
 	        txtNumberGuests.setStrokeWidth(0.0);
-	        txtNumberGuests.setText("24");
+	        txtNumberGuests.setText(String.valueOf(bean.getNumPeople()));
 	        txtNumberGuests.setWrappingWidth(38.2708740234375);
 	        txtNumberGuests.setFont(new Font(24.0));
 
@@ -188,7 +190,7 @@ public class HotelConfirmScene extends VBox{
 	        btnUndo.setOnAction(new EventHandler<ActionEvent>(){
 	 			public void handle(ActionEvent event) {
 	 				
-	 				
+	 				controller.returnBackHotelPage();
 	 			}
 	 		});
 	        

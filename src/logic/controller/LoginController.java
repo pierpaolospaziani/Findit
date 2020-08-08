@@ -9,6 +9,7 @@ import logic.view.LogWindow;
 import logic.view.ProfileScene;
 import logic.view.UserScene_2;
 
+
 public class LoginController {
 
 	private ProfileScene profileScene;
@@ -95,6 +96,7 @@ public class LoginController {
 	public void openLogWindow() {
 		window = new LogWindow();
 		window.Log(this,bean);
+		
 	}
 	
 	public boolean openRegisterWindow() {

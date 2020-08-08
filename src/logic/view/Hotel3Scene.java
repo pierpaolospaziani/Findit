@@ -9,6 +9,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import logic.controller.HotelController;
+import logic.model.Hotel;
+import logic.model.Room;
 
 
 public class Hotel3Scene extends VBox{
@@ -25,10 +28,10 @@ public class Hotel3Scene extends VBox{
     protected VBox vBoxDescription;
     protected Text textDescription;
     protected HBox hBoxBtn;
-    protected Button btnUndo;
+    protected Button btnBack;
     protected Button btnBook;
 
-    public Hotel3Scene() {
+    public Hotel3Scene(HotelController controller, Hotel hotel, Room room) {
 
         
         vBox = new VBox();
@@ -43,7 +46,7 @@ public class Hotel3Scene extends VBox{
         vBoxDescription = new VBox();
         textDescription = new Text();
         hBoxBtn = new HBox();
-        btnUndo = new Button();
+        btnBack = new Button();
         btnBook = new Button();
 
         setAlignment(javafx.geometry.Pos.TOP_CENTER);
@@ -73,20 +76,21 @@ public class Hotel3Scene extends VBox{
 
         textName.setStrokeType(javafx.scene.shape.StrokeType.OUTSIDE);
         textName.setStrokeWidth(0.0);
-        textName.setText("Nome Hotel");
-        textName.setWrappingWidth(140.705078125);
+        textName.setText(hotel.getName());
+        textName.setWrappingWidth(342);
         textName.setFont(new Font(24.0));
 
         textAddress.setStrokeType(javafx.scene.shape.StrokeType.OUTSIDE);
         textAddress.setStrokeWidth(0.0);
-        textAddress.setText("indirizzo");
-        textAddress.setWrappingWidth(140.705078125);
+        textAddress.setText(hotel.getAddress());
+        textAddress.setWrappingWidth(342);
         textAddress.setFont(new Font(24.0));
 
         textNStars.setStrokeType(javafx.scene.shape.StrokeType.OUTSIDE);
         textNStars.setStrokeWidth(0.0);
-        textNStars.setText("Numero stars");
+        textNStars.setText(String.valueOf(hotel.getRating())+" stars");
         textNStars.setFont(new Font(24.0));
+        textNStars.setWrappingWidth(342);
 
         vBoxReview.setAlignment(javafx.geometry.Pos.CENTER);
         vBoxReview.setPrefHeight(162.0);
@@ -99,7 +103,7 @@ public class Hotel3Scene extends VBox{
         btnReview.setFont(new Font(24.0));
 
         vBoxDescription.setAlignment(javafx.geometry.Pos.TOP_CENTER);
-        vBoxDescription.setPrefHeight(250.0);
+        vBoxDescription.setMinHeight(300.0);
         vBoxDescription.setPrefWidth(841.0);
 
         textDescription.setStrokeType(javafx.scene.shape.StrokeType.OUTSIDE);
@@ -113,9 +117,9 @@ public class Hotel3Scene extends VBox{
         hBoxBtn.setPrefWidth(841.0);
         hBoxBtn.setSpacing(30.0);
 
-        btnUndo.setMnemonicParsing(false);
-        btnUndo.setText("Undo");
-        btnUndo.setFont(new Font(24.0));
+        btnBack.setMnemonicParsing(false);
+        btnBack.setText("Back");
+        btnBack.setFont(new Font(24.0));
 
         btnBook.setMnemonicParsing(false);
         btnBook.setStyle("-fx-background-color: #1B59D7;");
@@ -135,7 +139,7 @@ public class Hotel3Scene extends VBox{
         vBox.getChildren().add(hBoxHotelName);
         vBoxDescription.getChildren().add(textDescription);
         vBox.getChildren().add(vBoxDescription);
-        hBoxBtn.getChildren().add(btnUndo);
+        hBoxBtn.getChildren().add(btnBack);
         hBoxBtn.getChildren().add(btnBook);
         vBox.getChildren().add(hBoxBtn);
         getChildren().add(vBox);
@@ -148,17 +152,17 @@ public class Hotel3Scene extends VBox{
  			}
  		});
         
-        btnUndo.setOnAction(new EventHandler<ActionEvent>(){
+        btnBack.setOnAction(new EventHandler<ActionEvent>(){
  			public void handle(ActionEvent event) {
  				
- 				
+ 				controller.returnBackList();
  			}
  		});
         
         btnBook.setOnAction(new EventHandler<ActionEvent>(){
  			public void handle(ActionEvent event) {
  				
- 				
+ 				controller.goToBook();
  			}
  		});
         

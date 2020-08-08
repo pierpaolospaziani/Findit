@@ -354,6 +354,7 @@ public class Hotel2Scene extends VBox{
         btnHotel1.setOnAction(new EventHandler<ActionEvent>(){
  			public void handle(ActionEvent event) {
  				
+ 				controller.viewHotel1();
  				
  			}
  		});
@@ -361,14 +362,14 @@ public class Hotel2Scene extends VBox{
         btnHotel2.setOnAction(new EventHandler<ActionEvent>(){
  			public void handle(ActionEvent event) {
  				
- 				
+ 				controller.viewHotel2();
  			}
  		});
         
         btnHotel3.setOnAction(new EventHandler<ActionEvent>(){
  			public void handle(ActionEvent event) {
  				
- 				
+ 				controller.viewHotel3();
  			}
  		});
         
