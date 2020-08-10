@@ -62,7 +62,7 @@ public class LogWindow {
         loginScene.setAlignment(javafx.geometry.Pos.TOP_CENTER);
         loginScene.setPrefWidth(500.0);
         loginScene.setPrefHeight(274.0);
-        loginScene.setSpacing(30.0);
+        loginScene.setSpacing(25.0);
 
         loginHBox.setAlignment(javafx.geometry.Pos.CENTER);
         loginHBox.setSpacing(30.0);

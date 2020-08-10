@@ -7,12 +7,15 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Separator;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import logic.bean.HotelBean;
 import logic.controller.HotelController;
+import logic.model.Hotel;
+import logic.model.Room;
 
 
 public class HotelConfirmScene extends VBox{
@@ -36,8 +39,11 @@ public class HotelConfirmScene extends VBox{
 	    protected HBox hBoxBtn;
 	    protected Button btnUndo;
 	    protected Button btnConfirm;
-
-	    public HotelConfirmScene(HotelController controller, HotelBean bean) {
+	    protected Separator separator;
+	    protected Separator separator1;
+	    
+	    
+	    public HotelConfirmScene(HotelController controller, HotelBean bean, Hotel hotel, Room room) {
 	   
 	     
 	        vBox = new VBox();
@@ -59,6 +65,8 @@ public class HotelConfirmScene extends VBox{
 	        hBoxBtn = new HBox();
 	        btnUndo = new Button();
 	        btnConfirm = new Button();
+	        separator = new Separator();
+	        separator1 = new Separator();
 
 	        setAlignment(javafx.geometry.Pos.TOP_CENTER);
 	        setPrefHeight(525.0);
@@ -71,11 +79,19 @@ public class HotelConfirmScene extends VBox{
 	        vBox.setLayoutY(24.0);
 	        vBox.setPrefHeight(477.0);
 	        vBox.setPrefWidth(841.0);
-	        vBox.setSpacing(20.0);
+	        vBox.setSpacing(30.0);
+	        
+	        separator.setOpacity(0.0);
+	        separator.setOrientation(javafx.geometry.Orientation.VERTICAL);
+	        separator.setMinHeight(15.0);
+	        separator.setPrefWidth(270.0);
+	 
 
 	        hBoxNameHotel.setAlignment(javafx.geometry.Pos.TOP_CENTER);
 	        hBoxNameHotel.setPrefHeight(67.0);
 	        hBoxNameHotel.setPrefWidth(841.0);
+	       
+	        
 
 	        text.setStrokeType(javafx.scene.shape.StrokeType.OUTSIDE);
 	        text.setStrokeWidth(0.0);
@@ -86,7 +102,7 @@ public class HotelConfirmScene extends VBox{
 
 	        txtNameHotel.setStrokeType(javafx.scene.shape.StrokeType.OUTSIDE);
 	        txtNameHotel.setStrokeWidth(0.0);
-	        txtNameHotel.setText("' Nome Hotel '");
+	        txtNameHotel.setText("' "+ hotel.getName() + "'");
 	        txtNameHotel.setWrappingWidth(358.71221923828125);
 	        txtNameHotel.setFont(new Font(24.0));
 
@@ -138,18 +154,23 @@ public class HotelConfirmScene extends VBox{
 
 	        labelTotalP.setPrefHeight(35.0);
 	        labelTotalP.setPrefWidth(151.0);
-	        labelTotalP.setText("Total price:");
+	        labelTotalP.setText("Total price:  ");
 	        labelTotalP.setFont(new Font(24.0));
 
 	        labelPrice.setPrefHeight(35.0);
 	        labelPrice.setPrefWidth(104.0);
-	        labelPrice.setText("3245�");
+	        labelPrice.setText(String.valueOf(room.getPrice()*(Integer.valueOf(bean.getLocalDateOut().format(DateTimeFormatter.ofPattern("dd")))-Integer.valueOf(bean.getLocalDateIn().format(DateTimeFormatter.ofPattern("dd"))))) + " €");
 	        labelPrice.setFont(new Font(24.0));
 
 	        hBoxBtn.setAlignment(javafx.geometry.Pos.BOTTOM_CENTER);
 	        hBoxBtn.setPrefHeight(86.0);
 	        hBoxBtn.setPrefWidth(841.0);
 	        hBoxBtn.setSpacing(30.0);
+	        
+	        separator1.setOpacity(0.0);
+	        separator1.setOrientation(javafx.geometry.Orientation.VERTICAL);
+	        separator1.setMinHeight(45.0);
+	        separator1.setPrefWidth(270.0);
 
 	        btnUndo.setMaxWidth(117.0);
 	        btnUndo.setMnemonicParsing(false);
@@ -157,15 +178,22 @@ public class HotelConfirmScene extends VBox{
 	        btnUndo.setPrefWidth(117.0);
 	        btnUndo.setText("Undo");
 	        btnUndo.setFont(new Font(24.0));
+	        
+	        btnUndo.setOnMouseEntered(evt -> btnUndo.setUnderline(true));
+	        btnUndo.setOnMouseExited(evt -> btnUndo.setUnderline(false));
 
 	        btnConfirm.setMnemonicParsing(false);
 	        btnConfirm.setStyle("-fx-background-color: #1B59D7;");
 	        btnConfirm.setText("Confirm");
 	        btnConfirm.setTextFill(javafx.scene.paint.Color.WHITE);
 	        btnConfirm.setFont(new Font(24.0));
+	        
+	        btnConfirm.setOnMouseEntered(evt -> btnConfirm.setUnderline(true));
+	        btnConfirm.setOnMouseExited(evt -> btnConfirm.setUnderline(false));
+	        
 	        setOpaqueInsets(new Insets(0.0));
 
-	        
+	        vBox.getChildren().add(separator);
 	        hBoxNameHotel.getChildren().add(text);
 	        hBoxNameHotel.getChildren().add(txtNameHotel);
 	        vBox.getChildren().add(hBoxNameHotel);
@@ -183,6 +211,7 @@ public class HotelConfirmScene extends VBox{
 	        vBox.getChildren().add(hBoxPrice);
 	        hBoxBtn.getChildren().add(btnUndo);
 	        hBoxBtn.getChildren().add(btnConfirm);
+	        vBox.getChildren().add(separator1);
 	        vBox.getChildren().add(hBoxBtn);
 	        getChildren().add(vBox);
 	        

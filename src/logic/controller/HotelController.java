@@ -385,9 +385,9 @@ public class HotelController {
 		// metodo che mi cerca e visualizze le review
 	}
 	
-	public void goToBook() {
+	public void goToBook(Hotel hotel, Room room) {
 		
-		HotelConfirmScene = new HotelConfirmScene(this, bean);
+		HotelConfirmScene = new HotelConfirmScene(this, bean, hotel, room);
 		
 		pane.getChildren().clear();
 		pane.getChildren().add(HotelConfirmScene);

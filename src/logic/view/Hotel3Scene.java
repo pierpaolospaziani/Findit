@@ -59,10 +59,13 @@ public class Hotel3Scene extends VBox{
         vBox.setLayoutY(24.0);
         vBox.setPrefHeight(477.0);
         vBox.setPrefWidth(841.0);
+        
 
         hBoxHotelName.setPrefHeight(138.0);
         hBoxHotelName.setPrefWidth(841.0);
         hBoxHotelName.setSpacing(30.0);
+        
+        
 
         imageViewHotel.setFitHeight(162.0);
         imageViewHotel.setFitWidth(200.0);
@@ -103,7 +106,7 @@ public class Hotel3Scene extends VBox{
         btnReview.setFont(new Font(24.0));
 
         vBoxDescription.setAlignment(javafx.geometry.Pos.TOP_CENTER);
-        vBoxDescription.setMinHeight(300.0);
+        vBoxDescription.setMinHeight(280.0);
         vBoxDescription.setPrefWidth(841.0);
 
         textDescription.setStrokeType(javafx.scene.shape.StrokeType.OUTSIDE);
@@ -120,12 +123,19 @@ public class Hotel3Scene extends VBox{
         btnBack.setMnemonicParsing(false);
         btnBack.setText("Back");
         btnBack.setFont(new Font(24.0));
+        btnBack.setMinWidth(86.0);
+        
+        btnBack.setOnMouseEntered(evt -> btnBack.setUnderline(true));
+    	btnBack.setOnMouseExited(evt -> btnBack.setUnderline(false));
 
         btnBook.setMnemonicParsing(false);
         btnBook.setStyle("-fx-background-color: #1B59D7;");
         btnBook.setText("Book");
         btnBook.setTextFill(javafx.scene.paint.Color.WHITE);
         btnBook.setFont(new Font(24.0));
+
+        btnBook.setOnMouseEntered(evt -> btnBook.setUnderline(true));
+        btnBook.setOnMouseExited(evt -> btnBook.setUnderline(false));
         setOpaqueInsets(new Insets(0.0));
 
      
@@ -162,7 +172,7 @@ public class Hotel3Scene extends VBox{
         btnBook.setOnAction(new EventHandler<ActionEvent>(){
  			public void handle(ActionEvent event) {
  				
- 				controller.goToBook();
+ 				controller.goToBook(hotel, room);
  			}
  		});
         

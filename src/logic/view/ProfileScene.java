@@ -91,7 +91,7 @@ public class ProfileScene extends VBox{
         profileLabel3.setFont(new Font(36.0));
 
         profileLoginButton.setMnemonicParsing(false);
-        profileLoginButton.setPrefWidth(115.0);
+        profileLoginButton.setPrefWidth(120.0);
         profileLoginButton.setStyle("-fx-background-color: #1B59D7;");
         profileLoginButton.setText("Login");
         profileLoginButton.setTextFill(javafx.scene.paint.Color.WHITE);
@@ -125,7 +125,7 @@ public class ProfileScene extends VBox{
         profileLabel8.setFont(new Font(36.0));
 
         profileRegisterButton.setMnemonicParsing(false);
-        profileRegisterButton.setPrefWidth(115.0);
+        profileRegisterButton.setPrefWidth(120.0);
         profileRegisterButton.setStyle("-fx-background-color: #1B59D7;");
         profileRegisterButton.setText("Register");
         profileRegisterButton.setTextFill(javafx.scene.paint.Color.WHITE);
