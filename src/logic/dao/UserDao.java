@@ -1,16 +1,26 @@
 package logic.dao;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.imageio.ImageIO;
+
+import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.image.Image;
 import logic.model.User;
 
 public class UserDao {
 	private static String name = "root";
-    private static String pass = "simonelazio98";
+    private static String pass = "Pier1997";
     private static String url = "jdbc:mysql://localhost:3306/findit?useTimezone=true&serverTimezone=UTC";
     private static String DRIVER_CLASS_NAME = "com.mysql.cj.jdbc.Driver";
     
@@ -18,6 +28,7 @@ public class UserDao {
     	
     	String nameUserQuery = "select name from users where name = '" + username + "'";
     	String psswUserQuery = "select pssw from users where name = '" + username + "'";
+    	String imageUserQuery = "select photo from users where name = '" + username + "'";
     	
     	User user = new User();
     	
@@ -61,6 +72,30 @@ public class UserDao {
 			user.setPassword(pssw);
 		
 			rs1.close();
+			
+			ResultSet rs2 = st.executeQuery(imageUserQuery);
+			
+			rs2.next();
+			
+			Blob blob = rs2.getBlob("photo");
+			
+			if (blob.length() > 4) {
+
+				byte[] imageByte = blob.getBytes(1, (int) blob.length());
+				
+				InputStream binaryStream = new ByteArrayInputStream(imageByte);
+				
+				BufferedImage bf = ImageIO.read(binaryStream);
+				
+				Image  img = SwingFXUtils.toFXImage(bf, null);
+				
+				user.setImage(img);
+				
+			} else {
+				user.setImage(null);
+			}
+		
+			rs2.close();
     		
 			user.setLogged(true);
     
@@ -77,8 +112,6 @@ public class UserDao {
 	public static boolean setUser(String username, String password) throws Exception{
 
 		String reviewsTable = (username + "Reviews").replaceAll("\\s+","");
-
-    	//String insertQuery = "insert into users value ('" + username + "','" + password + "','" + reviewsTable + ")";
     	String searchUserQuery = "select name from users where name = '" + username + "'";
     	String searchOwnerQuery = "select name from owners where name = '" + username + "'";
     	
@@ -128,7 +161,7 @@ public class UserDao {
 							exist = false;
 							reviewsTable = variableReviewsTable;
 
-							String insertQuery = "insert into users value ('" + username + "','" + password + "','" + reviewsTable + "')";
+							String insertQuery = "insert into users value ('" + username + "','" + password + "','" + reviewsTable + "','" + null + "')";
 					    	String createReviewsQuery = "create table " + reviewsTable + " (structure varchar(20),review text)";
 				
 					    	st.executeUpdate(insertQuery);
@@ -151,4 +184,36 @@ public class UserDao {
     	}
 		return false;
     }
+	
+	public static void setImage(String username, FileInputStream image) throws Exception{
+		
+    	String insertQuery = "UPDATE users SET photo = ? WHERE name = '" + username + "'";
+		
+		Connection con = null;
+		
+    	try {
+    		Class.forName(DRIVER_CLASS_NAME);
+    		try{
+				con = DriverManager.getConnection(url,name,pass);
+			} catch(SQLException e){
+		        System.out.println("Couldn't connect: exit.");
+		        System.exit(1);
+		        }
+			
+    		con.setAutoCommit(false);
+    		
+    		PreparedStatement ps = con.prepareStatement(insertQuery);
+    		
+    		ps.setBinaryStream(1, image);
+    		
+    		ps.executeUpdate();
+    		
+    		con.commit();
+    		
+    	} finally {
+    		
+    		con.close();
+    		
+    	}
+	}
 }

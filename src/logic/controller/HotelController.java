@@ -85,7 +85,6 @@ public class HotelController {
 						bean.getRoomService(),
 						bean.getGym(),
 						index);
-				//System.out.println(hotel1.getName());
 				
 				if (hotel1.getName() != null) {
 					

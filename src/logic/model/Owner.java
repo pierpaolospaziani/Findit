@@ -1,10 +1,13 @@
 package logic.model;
 
+import javafx.scene.image.Image;
+
 public class Owner {
 
 	private String username;
 	private String password;
 	private String structures;
+	private Image image;
 	private boolean isLogged = false;
 
 	public Owner() {
@@ -49,5 +52,13 @@ public class Owner {
 
 	public void setStructures(String structures) {
 		this.structures = structures;
+	}
+
+	public Image getImage() {
+		return image;
+	}
+
+	public void setImage(Image image) {
+		this.image = image;
 	}	 
 }

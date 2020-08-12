@@ -86,10 +86,10 @@ public class LoginController {
 				pane.getChildren().clear();
 				pane.getChildren().add(profileScene);
 			} else {
-				this.loggedScene(owner.getUsername());
+				this.loggedScene();
 			}
 		} else {
-			this.loggedScene(user.getUsername());
+			this.loggedScene();
 		}
 	}
 	
@@ -104,9 +104,13 @@ public class LoginController {
 		return window.Register(this,bean);
 	}
 	
-	public void loggedScene(String username) {
+	public void loggedScene() {
 		
-		userScene = new UserScene_2(this,user);
+		if (user.getLogged()) {
+			userScene = new UserScene_2(this,user);
+		} else {
+			userScene = new UserScene_2(this,owner);
+		}
 		//UserPage userPage = new UserPage(username);
 		
 		pane.getChildren().clear();

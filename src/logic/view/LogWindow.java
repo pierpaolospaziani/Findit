@@ -140,7 +140,7 @@ public class LogWindow {
 		        	
 			        if (bean.getResult()) {
 						window.close();
-						controller.loggedScene(username);
+						controller.loggedScene();
 					} else {
 						label.setText("Error, try again or Register your profile!");
 				        label.setStyle("-fx-text-fill: #ff0000;");

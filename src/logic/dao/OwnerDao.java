@@ -1,16 +1,26 @@
 package logic.dao;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.imageio.ImageIO;
+
+import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.image.Image;
 import logic.model.Owner;
 
 public class OwnerDao {
 	private static String name = "root";
-    private static String pass = "simonelazio98";
+    private static String pass = "Pier1997";
     private static String url = "jdbc:mysql://localhost:3306/findit?useTimezone=true&serverTimezone=UTC";
     private static String DRIVER_CLASS_NAME = "com.mysql.cj.jdbc.Driver";
     
@@ -19,6 +29,7 @@ public class OwnerDao {
     	String nameOwnerQuery = "select name from owners where name = '" + username + "'";
     	String psswOwnerQuery = "select pssw from owners where name = '" + username + "'";
     	String structuresOwnerQuery = "select structures from owners where name = '" + username + "'";
+    	String imageUserQuery = "select photo from owners where name = '" + username + "'";
     	
     	Owner owner = new Owner();
     	
@@ -71,6 +82,29 @@ public class OwnerDao {
 			owner.setStructures(structures);
 		
 			rs2.close();
+			
+			ResultSet rs3 = st.executeQuery(imageUserQuery);
+			
+			rs3.next();
+			
+			Blob blob = rs3.getBlob("photo");
+			
+			if (blob.length() > 4) {
+				
+				byte[] imageByte = blob.getBytes(1, (int) blob.length());
+				
+				InputStream binaryStream = new ByteArrayInputStream(imageByte);
+				
+				BufferedImage bf = ImageIO.read(binaryStream);
+				
+				Image  img = SwingFXUtils.toFXImage(bf, null);
+				
+				owner.setImage(img);
+			} else {
+				owner.setImage(null);
+			}
+		
+			rs3.close();
     		
 			owner.setLogged(true);
     
@@ -136,7 +170,7 @@ public class OwnerDao {
 							exist = false;
 							structuresTable = variableStructuresTable;
 
-					    	String insertQuery = "insert into owners value ('" + username + "','" + password + "','" + structuresTable + "')";
+					    	String insertQuery = "insert into owners value ('" + username + "','" + password + "','" + structuresTable + "','" + null + "')";
 					    	String createStructureQuery = "create table " + structuresTable + " (name varchar(20),type varchar(20))";
 							
 							st.executeUpdate(insertQuery);
@@ -157,4 +191,36 @@ public class OwnerDao {
     	}
 		return false;
     }
+	
+	public static void setImage(String username, FileInputStream image) throws Exception{
+		
+    	String insertQuery = "UPDATE owners SET photo = ? WHERE name = '" + username + "'";
+		
+		Connection con = null;
+		
+    	try {
+    		Class.forName(DRIVER_CLASS_NAME);
+    		try{
+				con = DriverManager.getConnection(url,name,pass);
+			} catch(SQLException e){
+		        System.out.println("Couldn't connect: exit.");
+		        System.exit(1);
+		        }
+			
+    		con.setAutoCommit(false);
+    		
+    		PreparedStatement ps = con.prepareStatement(insertQuery);
+    		
+    		ps.setBinaryStream(1, image);
+    		
+    		ps.executeUpdate();
+    		
+    		con.commit();
+    		
+    	} finally {
+    		
+    		con.close();
+    		
+    	}
+	}
 }

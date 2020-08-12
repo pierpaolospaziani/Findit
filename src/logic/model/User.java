@@ -1,9 +1,12 @@
 package logic.model;
 
+import javafx.scene.image.Image;
+
 public class User {
 	
 	private String username;
 	private String password;
+	private Image image;
 	private boolean isLogged = false;
 
 	public User() {
@@ -39,6 +42,14 @@ public class User {
 
 	public void setLogged(boolean isLogged) {
 		this.isLogged = isLogged;
+	}
+
+	public Image getImage() {
+		return image;
+	}
+
+	public void setImage(Image profileImage) {
+		this.image = profileImage;
 	}
 	
 	 
