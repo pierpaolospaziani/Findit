@@ -7,8 +7,8 @@ addons:
         packages:
             - ant 
     sonarcloud:
-        organization: simonesinceri
-        token: bb3f97210481d5fc7392d6312f08bffd64a359dd
+        organization: pierpaolospaziani
+        token: 9a64c9e5a073bb8fb642c1072ba81953b5d7b26d
 script:
     - ant build
     - sonar-scanner
