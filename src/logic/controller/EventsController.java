@@ -10,7 +10,16 @@ public class EventsController {
 	private EventBean bean;
 	private AnchorPane pane;
 	
-	public EventsController(AnchorPane pane) {
+	private static EventsController istance = null;
+	
+	public static EventsController getIstance(AnchorPane pane) {
+		if (istance == null) {
+			istance = new EventsController(pane);
+		}
+		return istance;
+	}
+
+	private EventsController(AnchorPane pane) {
 		
 		this.bean = new EventBean();
 		this.pane = pane;

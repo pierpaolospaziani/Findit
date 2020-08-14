@@ -367,6 +367,9 @@ public class HotelScene extends VBox{
         hotelHBox.getChildren().add(hotelVBox1);
         getChildren().add(hotelHBox);
         getChildren().add(hotelSearchButton);
+
+		controller.setPage(0);
+		controller.setIndice(0);
         
         check200.setOnAction(new EventHandler<ActionEvent>(){
 			public void handle(ActionEvent event) {
@@ -548,6 +551,7 @@ public class HotelScene extends VBox{
 					}
 					
 					bean.setType();
+					controller.setStep(2);
 					controller.changeScene2(0);
 				}
 			}

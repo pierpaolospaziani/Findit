@@ -10,7 +10,16 @@ public class RestaurantsController{
 	private AnchorPane pane;
 	private RestaurantsBean bean;
 	
-	public RestaurantsController(AnchorPane pane) {
+	private static RestaurantsController istance = null;
+	
+	public static RestaurantsController getIstance(AnchorPane pane) {
+		if (istance == null) {
+			istance = new RestaurantsController(pane);
+		}
+		return istance;
+	}
+
+	private RestaurantsController(AnchorPane pane) {
 		
 		this.pane = pane;
 		this.bean = new RestaurantsBean();

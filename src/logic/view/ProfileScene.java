@@ -30,8 +30,6 @@ public class ProfileScene extends VBox{
     protected Label profileLabel7;
     protected Label profileLabel8;
     protected Button profileRegisterButton;
-
-    protected UserPage userScene;
     
     protected static User user;
     protected boolean isLogged = false;
@@ -56,7 +54,7 @@ public class ProfileScene extends VBox{
         profileLabel8 = new Label();
         profileRegisterButton = new Button();
         
-        user = new User();
+        user = User.getIstance();
         
         setAlignment(javafx.geometry.Pos.TOP_CENTER);
         setPrefHeight(525.0);
@@ -157,7 +155,7 @@ public class ProfileScene extends VBox{
 			public void handle(ActionEvent event) {
 
 				controller.openLogWindow();
-
+				/*
 				if (user.getUsername() == null) {
 					isLogged = false;
 				} else if (!(user.getUsername().equals(""))) {
@@ -168,7 +166,7 @@ public class ProfileScene extends VBox{
 		        	getChildren().clear();
 		            userScene = new UserPage(user.getUsername());
 		        	getChildren().add(userScene);
-		        }
+		        }*/
 			}
 		});
         
@@ -177,18 +175,17 @@ public class ProfileScene extends VBox{
 				
 				if (controller.openRegisterWindow()) {
 					controller.openLogWindow();
-
+					/*
 					if (user.getUsername() == null) {
 						isLogged = false;
 					} else if (!(user.getUsername().equals(""))) {
 						isLogged = true;
 					}
 			        if (isLogged == true) {
-			        	//b_profile.setText(user.getUsername());
 			        	getChildren().clear();
 			            userScene = new UserPage(user.getUsername());
 			        	getChildren().add(userScene);
-			        }
+			        }*/
 				}
 			}
 		});

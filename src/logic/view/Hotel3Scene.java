@@ -4,6 +4,8 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
+import javafx.scene.control.Separator;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -30,6 +32,8 @@ public class Hotel3Scene extends VBox{
     protected HBox hBoxBtn;
     protected Button btnBack;
     protected Button btnBook;
+    protected Separator separatorBtnBack;
+    protected Separator separatorBtnFrecce;
 
     public Hotel3Scene(HotelController controller, Hotel hotel, Room room) {
 
@@ -48,29 +52,37 @@ public class Hotel3Scene extends VBox{
         hBoxBtn = new HBox();
         btnBack = new Button();
         btnBook = new Button();
+        
+        separatorBtnBack = new Separator();
+        separatorBtnFrecce = new Separator();
 
         setAlignment(javafx.geometry.Pos.TOP_CENTER);
         setPrefHeight(525.0);
         setPrefWidth(1050.0);
         setSpacing(30.0);
-
      
         vBox.setLayoutX(104.5);
         vBox.setLayoutY(24.0);
         vBox.setPrefHeight(477.0);
         vBox.setPrefWidth(841.0);
-        
 
         hBoxHotelName.setPrefHeight(138.0);
         hBoxHotelName.setPrefWidth(841.0);
         hBoxHotelName.setSpacing(30.0);
-        
-        
+        hBoxHotelName.setPadding(new Insets(0.0, 0.0, 0.0, 100.0));
 
         imageViewHotel.setFitHeight(162.0);
         imageViewHotel.setFitWidth(200.0);
         imageViewHotel.setPickOnBounds(true);
         imageViewHotel.setPreserveRatio(true);
+        
+        Image photo = hotel.getImage();
+        
+        if (photo == null) {
+        	imageViewHotel.setImage(new Image(getClass().getResource("strucutre.jpg").toExternalForm()));
+        } else {
+        	imageViewHotel.setImage(photo);
+        }
 
         vBoxHotelInfo.setAlignment(javafx.geometry.Pos.CENTER);
         vBoxHotelInfo.setPrefHeight(150.0);
@@ -100,13 +112,19 @@ public class Hotel3Scene extends VBox{
         vBoxReview.setPrefWidth(239.0);
 
         btnReview.setMnemonicParsing(false);
-        btnReview.setStyle("-fx-background-color: transparent;");
+        //btnReview.setStyle("-fx-background-color: transparent;");
+        btnReview.setStyle("-fx-background-color: #1B59D7;");
         btnReview.setText("View Reviews");
-        btnReview.setUnderline(true);
+        btnReview.setTextFill(javafx.scene.paint.Color.WHITE);
+        //btnReview.setUnderline(true);
         btnReview.setFont(new Font(24.0));
+        btnReview.setMinWidth(86.0);
+        
+        btnReview.setOnMouseEntered(evt -> btnReview.setUnderline(true));
+        btnReview.setOnMouseExited(evt -> btnReview.setUnderline(false));
 
         vBoxDescription.setAlignment(javafx.geometry.Pos.TOP_CENTER);
-        vBoxDescription.setMinHeight(280.0);
+        vBoxDescription.setMinHeight(276.0);
         vBoxDescription.setPrefWidth(841.0);
 
         textDescription.setStrokeType(javafx.scene.shape.StrokeType.OUTSIDE);
@@ -115,18 +133,31 @@ public class Hotel3Scene extends VBox{
         textDescription.setFont(new Font(24.0));
         vBoxDescription.setPadding(new Insets(30.0, 0.0, 0.0, 0.0));
 
-        hBoxBtn.setAlignment(javafx.geometry.Pos.CENTER);
+        hBoxBtn.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
         hBoxBtn.setPrefHeight(75.0);
         hBoxBtn.setPrefWidth(841.0);
         hBoxBtn.setSpacing(30.0);
-
+        
+        separatorBtnBack.setOpacity(0.0);
+        separatorBtnBack.setOrientation(javafx.geometry.Orientation.VERTICAL);
+        separatorBtnBack.setPrefHeight(57.0);
+        separatorBtnBack.setPrefWidth(30.0);
+        
         btnBack.setMnemonicParsing(false);
-        btnBack.setText("Back");
+        btnBack.setPrefHeight(39.0);
+        btnBack.setPrefWidth(118.0);
+        btnBack.setStyle("-fx-background-color: #1B59D7;");
+        btnBack.setText("<< back");
+        btnBack.setTextFill(javafx.scene.paint.Color.WHITE);
         btnBack.setFont(new Font(24.0));
-        btnBack.setMinWidth(86.0);
         
         btnBack.setOnMouseEntered(evt -> btnBack.setUnderline(true));
     	btnBack.setOnMouseExited(evt -> btnBack.setUnderline(false));
+        
+        separatorBtnFrecce.setOpacity(0.0);
+        separatorBtnFrecce.setOrientation(javafx.geometry.Orientation.VERTICAL);
+        separatorBtnFrecce.setPrefHeight(57.0);
+        separatorBtnFrecce.setPrefWidth(250.0);
 
         btnBook.setMnemonicParsing(false);
         btnBook.setStyle("-fx-background-color: #1B59D7;");
@@ -149,7 +180,9 @@ public class Hotel3Scene extends VBox{
         vBox.getChildren().add(hBoxHotelName);
         vBoxDescription.getChildren().add(textDescription);
         vBox.getChildren().add(vBoxDescription);
+        hBoxBtn.getChildren().add(separatorBtnBack);
         hBoxBtn.getChildren().add(btnBack);
+        hBoxBtn.getChildren().add(separatorBtnFrecce);
         hBoxBtn.getChildren().add(btnBook);
         vBox.getChildren().add(hBoxBtn);
         getChildren().add(vBox);
@@ -164,14 +197,13 @@ public class Hotel3Scene extends VBox{
         
         btnBack.setOnAction(new EventHandler<ActionEvent>(){
  			public void handle(ActionEvent event) {
- 				
+ 				controller.setStep(2);
  				controller.returnBackList();
  			}
  		});
         
         btnBook.setOnAction(new EventHandler<ActionEvent>(){
  			public void handle(ActionEvent event) {
- 				
  				controller.goToBook(hotel, room);
  			}
  		});

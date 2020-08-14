@@ -30,7 +30,7 @@ public class UserDao {
     	String psswUserQuery = "select pssw from users where name = '" + username + "'";
     	String imageUserQuery = "select photo from users where name = '" + username + "'";
     	
-    	User user = new User();
+    	User user = User.getIstance();
     	
     	Connection con = null;
 		Statement st = null;

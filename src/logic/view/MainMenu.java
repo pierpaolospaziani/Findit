@@ -153,7 +153,7 @@ public class MainMenu extends HBox{
 		        buttonEvents.setId("b_menu");
 		        buttonMap.setId("b_menu");
 		        buttonProfile.setId("b_menu");
-		        
+
 				hotelController.changeScene();
 			}
 		});

@@ -7,13 +7,13 @@ import logic.model.Owner;
 import logic.model.User;
 import logic.view.LogWindow;
 import logic.view.ProfileScene;
-import logic.view.UserScene_2;
+import logic.view.User2Scene;
 
 
 public class LoginController {
 
 	private ProfileScene profileScene;
-	private UserScene_2 userScene;
+	private User2Scene userScene;
 	private LogWindow window;
 	private AnchorPane pane;
 	private Login login;
@@ -21,10 +21,19 @@ public class LoginController {
 	private User user;
 	private Owner owner;
 	
-	public LoginController(AnchorPane pane) {
+	private static LoginController istance = null;
+	
+	public static LoginController getIstance(AnchorPane pane) {
+		if (istance == null) {
+			istance = new LoginController(pane);
+		}
+		return istance;
+	}
+
+	private LoginController(AnchorPane pane) {
 		this.login = new Login();
 		this.bean = new LoginBean();
-		this.user = new User();
+		this.user = User.getIstance();
 		this.owner = new Owner();
 		this.pane = pane;
 	}
@@ -77,7 +86,6 @@ public class LoginController {
 	}
 	
 	public void changeScene() {
-		
 		if (!user.getLogged()) {
 			if (!owner.getLogged()) {
 				
@@ -107,14 +115,12 @@ public class LoginController {
 	public void loggedScene() {
 		
 		if (user.getLogged()) {
-			userScene = new UserScene_2(this,user);
+			userScene = new User2Scene(this,user);
 		} else {
-			userScene = new UserScene_2(this,owner);
+			userScene = new User2Scene(this,owner);
 		}
-		//UserPage userPage = new UserPage(username);
 		
 		pane.getChildren().clear();
 		pane.getChildren().add(userScene);
-		//pane.getChildren().add(userPage);
 	}
 }

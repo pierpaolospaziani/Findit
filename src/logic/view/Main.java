@@ -26,12 +26,12 @@ public class Main extends Application{
     	pane = new AnchorPane();
     	scenePane = new AnchorPane();
     	
-		HomeController homeController = new HomeController();
-		HotelController hotelController = new HotelController(scenePane);
-		RestaurantsController restaurantsController = new RestaurantsController(scenePane);
-		EventsController eventsController = new EventsController(scenePane);
+		HomeController homeController = HomeController.getIstance();
+		HotelController hotelController = HotelController.getIstance(scenePane);
+		RestaurantsController restaurantsController = RestaurantsController.getIstance(scenePane);
+		EventsController eventsController = EventsController.getIstance(scenePane);
     	MapController mapController = new MapController();
-		LoginController loginController = new LoginController(scenePane);
+		LoginController loginController = LoginController.getIstance(scenePane);
     	
     	baseScene = new MainMenu(scenePane,homeController,hotelController,restaurantsController,eventsController,mapController,loginController);
 

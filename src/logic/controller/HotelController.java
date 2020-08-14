@@ -9,6 +9,7 @@ import logic.dao.HotelDao;
 import logic.model.Reservation;
 import logic.dao.ReservationDao;
 import logic.model.Room;
+import logic.model.User;
 import logic.dao.RoomDao;
 import logic.view.Hotel2Scene;
 import logic.view.Hotel3Scene;
@@ -29,9 +30,22 @@ public class HotelController {
 	private Room room3;
 	private AnchorPane pane;
 	
+	private int step = 1;
+	private int page = 0;
+	private int hotelSelected;
+	
 	private int indice;
 	
-	public HotelController(AnchorPane pane) {
+	private static HotelController istance = null;
+	
+	public static HotelController getIstance(AnchorPane pane) {
+		if (istance == null) {
+			istance = new HotelController(pane);
+		}
+		return istance;
+	}
+
+	private HotelController(AnchorPane pane) {
 	
 		this.bean = new HotelBean();
 		this.hotel1 = new Hotel();
@@ -45,11 +59,30 @@ public class HotelController {
 	
 	public void changeScene(){
 		
-		HotelScene hotelScene = new HotelScene(this,bean);
-	
-		pane.getChildren().clear();
-		pane.getChildren().add(hotelScene);
-		
+		if (step == 1) {
+			
+			HotelScene hotelScene = new HotelScene(this,bean);
+			
+			pane.getChildren().clear();
+			pane.getChildren().add(hotelScene);
+			
+		} else if (step == 2) {
+			
+			setPage(page-1);
+
+			if ((indice%3) == 0) {
+					indice = indice - 3;
+					changeScene2(indice);
+				} else if ((indice%3) == 1) {
+	 				indice = indice - 1;
+	 				changeScene2(indice);
+				} else {
+					indice = indice - 2;
+					changeScene2(indice);
+				}
+		} else if (step == 3) {
+			viewHotel(hotelSelected);
+		}
 	}
 	
 	public void changeScene2(int index){
@@ -132,6 +165,13 @@ public class HotelController {
 							} else {
 								//System.out.println("Stanza buona");
 								valid = false;
+								
+								if (indice < index) {
+									setPage(page+1);
+								} else {
+									setPage(page-1);
+								}
+								
 								setIndice(index);
 								break;							
 							}
@@ -331,41 +371,39 @@ public class HotelController {
 	public void setIndice(int indice) {
 		this.indice = indice;
 	}
-
-	public void viewHotel1() {
-		
-		 if (hotel1.getName() == null) {
-			 return;
-		 }
-		
-		hotel3Scene = new Hotel3Scene(this, hotel1, room1);
-		pane.getChildren().clear();
-		pane.getChildren().add(hotel3Scene);
-		
-	}
 	
-	public void viewHotel2() {
+	public void viewHotel(int i) {
 		
-		 if (hotel2.getName() == null) {
-			 return;
-		 }
-		
-		hotel3Scene = new Hotel3Scene(this, hotel2, room2);
-		pane.getChildren().clear();
-		pane.getChildren().add(hotel3Scene);
-		
-	}
-	
-	public void viewHotel3() {
-		
-		 if (hotel3.getName() == null) {
-			 return;
-		 }
-		
-		hotel3Scene = new Hotel3Scene(this, hotel3, room3);
-		pane.getChildren().clear();
-		pane.getChildren().add(hotel3Scene);
-		
+		if (i == 1) {
+			
+			if (hotel1.getName() == null) {
+				return;
+			}
+			
+			hotel3Scene = new Hotel3Scene(this, hotel1, room1);
+			pane.getChildren().clear();
+			pane.getChildren().add(hotel3Scene);
+			
+		} else if (i == 2) {
+			
+			if (hotel2.getName() == null) {
+				return;
+			}
+			
+			hotel3Scene = new Hotel3Scene(this, hotel2, room2);
+			pane.getChildren().clear();
+			pane.getChildren().add(hotel3Scene);
+			
+		} else {
+			
+			if (hotel3.getName() == null) {
+				return;
+			}
+			
+			hotel3Scene = new Hotel3Scene(this, hotel3, room3);
+			pane.getChildren().clear();
+			pane.getChildren().add(hotel3Scene);
+		}
 	}
 	
 	public void returnBackList() {
@@ -391,7 +429,66 @@ public class HotelController {
 		
 		pane.getChildren().clear();
 		pane.getChildren().add(hotel3Scene);
-	
 	}
 
+	public int getStep() {
+		return step;
+	}
+
+	public void setStep(int step) {
+		this.step = step;
+	}
+
+	public int getHotelSelected() {
+		return hotelSelected;
+	}
+
+	public void setHotelSelected(int hotelSelected) {
+		this.hotelSelected = hotelSelected;
+	}
+
+	public void setReservation(Hotel hotel, Room room) {
+		
+		User user = User.getIstance();
+		LoginController loginController = LoginController.getIstance(pane);
+		
+		if (user.getLogged()){
+			
+			LocalDate day = bean.getLocalDateIn();
+			day = day.plusDays(-1);
+			
+			int dayIndex = 0;
+			
+			while (dayIndex<=bean.getDays()) {
+				
+				day = day.plusDays(1);
+				
+				int date = (day.getYear()*10000) + (day.getMonth().getValue()*100) + (day.getDayOfMonth());
+				
+				try {
+					ReservationDao.setReservation(hotel.getAgenda(), room.getRoomId(), date, user.getUsername());
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+				dayIndex++;
+				
+			}
+			
+			loginController.changeScene();
+			
+		} else {
+			
+			loginController.openLogWindow();
+			
+		}
+	}
+
+	public int getPage() {
+		return page;
+	}
+
+	public void setPage(int page) {
+		this.page = page;
+	}
 }

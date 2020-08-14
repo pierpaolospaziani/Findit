@@ -89,7 +89,7 @@ public class ReservationDao {
 		return reservation;
     }
 	
-    public static boolean setReservation(String reservationTable, int id, int date, String user) throws Exception{		
+    public static void setReservation(String reservationTable, int id, int date, String user) throws Exception{		
 
     	String searchQuery = "select id from " + reservationTable + " where id = '" + id + "' and date = '" + date + "'";
         
@@ -117,13 +117,6 @@ public class ReservationDao {
 				String insertQuery = "insert into " + reservationTable + " value ('" + id + "','" + date + "','" + user + "')";
 				    	
 				st.executeUpdate(insertQuery);
-				
-				return true;
-				
-			} else {
-				
-				return false;
-				
 			}
 			
     	} finally {
@@ -137,7 +130,6 @@ public class ReservationDao {
     public static Reservation searchReservation(String reservationTable, int id, int date) throws Exception{
 
     	String searchQuery = "select * from " + reservationTable + " where id = '" + id + "' and date = '" + date + "'";
-    	String idQuery = "select id from " + reservationTable + " where id = '" + id + "' and date = '" + date + "'";
     	
     	Reservation reservation = new Reservation();
     	
@@ -155,7 +147,7 @@ public class ReservationDao {
 			
 			st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
 	                ResultSet.CONCUR_READ_ONLY);
-		
+			
 			ResultSet rs = st.executeQuery(searchQuery);
 		
 			rs.next();
@@ -164,12 +156,7 @@ public class ReservationDao {
 			if (!rs.first()) {
 				return reservation;
 			}
-			
-			ResultSet rs1 = st.executeQuery(idQuery);
-			rs1.next();
-			int reservationId = rs1.getInt("id");
-			reservation.setReservationId(reservationId);		
-			rs1.close();
+			reservation.setReservationId(id);
 			
     	} finally {
     		

@@ -8,8 +8,17 @@ public class User {
 	private String password;
 	private Image image;
 	private boolean isLogged = false;
+	
+	private static User istance = null;
+	
+	public static User getIstance() {
+		if (istance == null) {
+			istance = new User();
+		}
+		return istance;
+	}
 
-	public User() {
+	private User() {
 		this.username = "";
 		this.password ="";
 

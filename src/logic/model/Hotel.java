@@ -1,5 +1,8 @@
 package logic.model;
 
+import javafx.scene.image.Image;
+import javafx.scene.text.Text;
+
 public class Hotel {
 	
 	private String name;
@@ -16,6 +19,10 @@ public class Hotel {
 	private String rooms;
 	private String agenda;
 	private String reviews;
+	
+	private Image image;
+	
+	private Text description;
 	
 	public Hotel() {
 
@@ -122,5 +129,21 @@ public class Hotel {
 
 	public void setReviews(String reviews) {
 		this.reviews = reviews;
+	}
+
+	public Image getImage() {
+		return image;
+	}
+
+	public void setImage(Image image) {
+		this.image = image;
+	}
+
+	public Text getDescription() {
+		return description;
+	}
+
+	public void setDescription(Text description) {
+		this.description = description;
 	}	
 }

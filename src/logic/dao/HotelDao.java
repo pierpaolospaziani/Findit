@@ -75,6 +75,8 @@ public class HotelDao {
     	String roomsQuery = "select rooms from hotels where name = '" + hotelName + "'";
     	String agendaQuery = "select agenda from hotels where name = '" + hotelName + "'";
     	String reviewsQuery = "select reviews from hotels where name = '" + hotelName + "'";
+    	//String imageQuery = "select photo from hotels where name = '" + hotelName + "'";
+    	//String descriptionQuery = "select description from hotels where name = '" + hotelName + "'";
     	
     	Hotel hotel = new Hotel();
     	
@@ -177,7 +179,28 @@ public class HotelDao {
 			String reviews = rs12.getNString("reviews");
 			hotel.setReviews(reviews);
 			rs12.close();
-    
+			/*
+			ResultSet rs13 = st.executeQuery(imageQuery);
+			rs13.next();
+			Blob blob = rs13.getBlob("photo");
+			if (blob.length() > 4) {
+				System.out.println("provaaaaaa");
+				byte[] imageByte = blob.getBytes(1, (int) blob.length());
+				InputStream binaryStream = new ByteArrayInputStream(imageByte);
+				BufferedImage bf = ImageIO.read(binaryStream);
+				Image  img = SwingFXUtils.toFXImage(bf, null);
+				hotel.setImage(img);
+			} else {
+				hotel.setImage(null);
+			}
+			rs13.close();
+			
+			ResultSet rs14 = st.executeQuery(descriptionQuery);
+			rs14.next();
+			String description = rs14.getString("description");
+			hotel.setDescription(description);
+			rs14.close();
+			*/
     	} finally {
     		
     		st.close();
@@ -269,7 +292,9 @@ public class HotelDao {
 				    	    	+ "" + gym + ","
 				    	    	+ "'" + rooms + "',"
 				    			+ "'" + agenda + "',"
-		    					+ "'" + reviewsTable + "')";
+		    					+ "'" + reviewsTable + "',"
+		    					+ "'" + null + "',"
+		    					+ "'" + null + "')";
 				    	
 						st.executeUpdate(insertQuery);
 						st.executeUpdate(createRoomsTable);

@@ -9,7 +9,7 @@ public class Login {
 	private Owner ownerLoggato;
 	
 	public Login() {
-		userLoggato = new User();
+		userLoggato = User.getIstance();
 		ownerLoggato = new Owner();
 	}
 	

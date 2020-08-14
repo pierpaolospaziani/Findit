@@ -7,10 +7,10 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import logic.controller.HotelController;
 import logic.model.Hotel;
 import logic.model.Room;
@@ -47,16 +47,13 @@ public class Hotel2Scene extends VBox{
     protected  Button btnBack;
     protected  Button btnPrecedent;
     protected  Button btnNext;
-    protected  HBox hBoxNumbPage;
-    protected  Text txtNumberPage;
+    protected  Label txtNumberPage;
     
     protected  Separator separatorHotel1;
     protected  Separator separatorHotel2;
     protected  Separator separatorHotel3;
     protected  Separator separatorBtnBack;
     protected  Separator separatorBtnFrecce;
-    
-   
     
 	public Hotel2Scene(HotelController controller, Hotel hotel1, Room room1, Hotel hotel2, Room room2, Hotel hotel3, Room room3) {
 
@@ -90,8 +87,7 @@ public class Hotel2Scene extends VBox{
         btnBack = new Button();
         btnPrecedent = new Button();
         btnNext = new Button();
-        hBoxNumbPage = new HBox();
-        txtNumberPage = new Text();
+        txtNumberPage = new Label();
         
         separatorHotel1 = new Separator();
         separatorHotel2 = new Separator();
@@ -118,15 +114,24 @@ public class Hotel2Scene extends VBox{
         separatorHotel1.setOrientation(javafx.geometry.Orientation.VERTICAL);
         separatorHotel1.setPrefHeight(57.0);
         separatorHotel1.setPrefWidth(50.0);
-      
 
         imageViewHotel1.setFitHeight(136.0);
         imageViewHotel1.setFitWidth(171.0);
         imageViewHotel1.setPickOnBounds(true);
         imageViewHotel1.setPreserveRatio(true);
+        
+        Image photo = hotel1.getImage();
+        
+        if (photo == null) {
+        	imageViewHotel1.setImage(new Image(getClass().getResource("strucutre.jpg").toExternalForm()));
+        } else {
+        	imageViewHotel1.setImage(photo);
+        }
 
         vBoxInfo1.setPrefHeight(136.0);
         vBoxInfo1.setPrefWidth(427.0);
+        vBoxInfo1.setPadding(new Insets(0.0,0.0,0.0,50.0));
+        vBoxInfo1.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
 
         btnHotel1.setMnemonicParsing(false);
         btnHotel1.setStyle("-fx-background-color: transparent;");
@@ -134,9 +139,6 @@ public class Hotel2Scene extends VBox{
         
         btnHotel1.setPadding(new Insets(1.0, 0.0, 0.0, 0.0));
         btnHotel1.setFont(new Font(24.0));
-        
-        btnHotel1.setOnMouseEntered(evt -> btnHotel1.setUnderline(true));
-        btnHotel1.setOnMouseExited(evt -> btnHotel1.setUnderline(false));
 
         labelAddress1.setText(hotel1.getAddress());
         labelAddress1.setFont(new Font(18.0));
@@ -144,7 +146,7 @@ public class Hotel2Scene extends VBox{
         labelStar1.setText(String.valueOf(hotel1.getRating()) + " Stars");
         labelStar1.setFont(new Font(18.0));
 
-        vBoxPrezzo1.setAlignment(javafx.geometry.Pos.TOP_CENTER);
+        vBoxPrezzo1.setAlignment(javafx.geometry.Pos.CENTER);
         vBoxPrezzo1.setPrefHeight(136.0);
         vBoxPrezzo1.setPrefWidth(213.0);
 
@@ -157,6 +159,9 @@ public class Hotel2Scene extends VBox{
         	btnHotel1.setText("Hotel not found!");
         	labelStar1.setText("");
         	labelPrezzo1.setText("");
+        } else {
+            btnHotel1.setOnMouseEntered(evt -> btnHotel1.setUnderline(true));
+            btnHotel1.setOnMouseExited(evt -> btnHotel1.setUnderline(false));
         }
 
         hBoxHotel2.setPrefHeight(136.0);
@@ -172,9 +177,19 @@ public class Hotel2Scene extends VBox{
         imageViewHotel2.setFitWidth(171.0);
         imageViewHotel2.setPickOnBounds(true);
         imageViewHotel2.setPreserveRatio(true);
+        
+        photo = hotel2.getImage();
+        
+        if (photo == null) {
+        	imageViewHotel2.setImage(new Image(getClass().getResource("strucutre.jpg").toExternalForm()));
+        } else {
+        	imageViewHotel2.setImage(photo);
+        }
 
         vBoxInfo2.setPrefHeight(200.0);
         vBoxInfo2.setPrefWidth(427.0);
+        vBoxInfo2.setPadding(new Insets(0.0,0.0,0.0,50.0));
+        vBoxInfo2.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
 
         btnHotel2.setMnemonicParsing(false);
         btnHotel2.setStyle("-fx-background-color: transparent;");
@@ -183,9 +198,6 @@ public class Hotel2Scene extends VBox{
                 
         btnHotel2.setPadding(new Insets(1.0, 0.0, 0.0, 0.0));
         btnHotel2.setFont(new Font(24.0));
-        
-        btnHotel2.setOnMouseEntered(evt -> btnHotel2.setUnderline(true));
-        btnHotel2.setOnMouseExited(evt -> btnHotel2.setUnderline(false));
 
         labelAddress2.setText(hotel2.getAddress());
         labelAddress2.setFont(new Font(18.0));
@@ -193,7 +205,7 @@ public class Hotel2Scene extends VBox{
         labelStar2.setText(String.valueOf(hotel2.getRating()) + " Stars");
         labelStar2.setFont(new Font(18.0));
 
-        vBoxPrezzo2.setAlignment(javafx.geometry.Pos.TOP_CENTER);
+        vBoxPrezzo2.setAlignment(javafx.geometry.Pos.CENTER);
         vBoxPrezzo2.setPrefHeight(136.0);
         vBoxPrezzo2.setPrefWidth(213.0);
 
@@ -206,6 +218,9 @@ public class Hotel2Scene extends VBox{
         	btnHotel2.setText("Hotel not found!");
         	labelStar2.setText("");
         	labelPrezzo2.setText("");
+        } else {
+            btnHotel2.setOnMouseEntered(evt -> btnHotel2.setUnderline(true));
+            btnHotel2.setOnMouseExited(evt -> btnHotel2.setUnderline(false));
         }
 
         hBoxHotel3.setPrefHeight(136.0);
@@ -221,9 +236,19 @@ public class Hotel2Scene extends VBox{
         imageViewHotel3.setFitWidth(171.0);
         imageViewHotel3.setPickOnBounds(true);
         imageViewHotel3.setPreserveRatio(true);
+        
+        photo = hotel3.getImage();
+        
+        if (photo == null) {
+        	imageViewHotel3.setImage(new Image(getClass().getResource("strucutre.jpg").toExternalForm()));
+        } else {
+        	imageViewHotel3.setImage(photo);
+        }
 
         vBoxInfo3.setPrefHeight(200.0);
         vBoxInfo3.setPrefWidth(427.0);
+        vBoxInfo3.setPadding(new Insets(0.0,0.0,0.0,50.0));
+        vBoxInfo3.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
 
         btnHotel3.setMnemonicParsing(false);
         btnHotel3.setStyle("-fx-background-color: transparent;");
@@ -232,16 +257,13 @@ public class Hotel2Scene extends VBox{
         btnHotel3.setPadding(new Insets(1.0, 0.0, 0.0, 0.0));
         btnHotel3.setFont(new Font(24.0));
         
-        btnHotel3.setOnMouseEntered(evt -> btnHotel3.setUnderline(true));
-        btnHotel3.setOnMouseExited(evt -> btnHotel3.setUnderline(false));
-        
         labelAddress3.setText(hotel3.getAddress());
         labelAddress3.setFont(new Font(18.0));
         
         labelStar3.setText(String.valueOf(hotel3.getRating()) + " Stars");
         labelStar3.setFont(new Font(18.0));
 
-        vBoxPrezzo3.setAlignment(javafx.geometry.Pos.TOP_CENTER);
+        vBoxPrezzo3.setAlignment(javafx.geometry.Pos.CENTER);
         vBoxPrezzo3.setPrefHeight(136.0);
         vBoxPrezzo3.setPrefWidth(213.0);
 
@@ -254,6 +276,9 @@ public class Hotel2Scene extends VBox{
         	btnHotel3.setText("Hotel not found!");
         	labelStar3.setText("");
         	labelPrezzo3.setText("");
+        } else {
+            btnHotel3.setOnMouseEntered(evt -> btnHotel3.setUnderline(true));
+            btnHotel3.setOnMouseExited(evt -> btnHotel3.setUnderline(false));
         }
 
         hBoxBtn.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
@@ -270,7 +295,7 @@ public class Hotel2Scene extends VBox{
         btnBack.setPrefHeight(39.0);
         btnBack.setPrefWidth(118.0);
         btnBack.setStyle("-fx-background-color: #1B59D7;");
-        btnBack.setText("<<back");
+        btnBack.setText("<< back");
         btnBack.setTextFill(javafx.scene.paint.Color.WHITE);
         btnBack.setFont(new Font(24.0));
         
@@ -303,16 +328,14 @@ public class Hotel2Scene extends VBox{
         
         btnNext.setOnMouseEntered(evt -> btnNext.setUnderline(true));
         btnNext.setOnMouseExited(evt -> btnNext.setUnderline(false));
-        
-        hBoxNumbPage.setAlignment(javafx.geometry.Pos.TOP_CENTER);
-        hBoxNumbPage.setPrefHeight(17.0);
-        hBoxNumbPage.setPrefWidth(850.0);
 
-        txtNumberPage.setStrokeType(javafx.scene.shape.StrokeType.OUTSIDE);
-        txtNumberPage.setStrokeWidth(0.0);
-        txtNumberPage.setText("1");
         txtNumberPage.setFont(new Font(18.0));
-        setOpaqueInsets(new Insets(0.0));
+        txtNumberPage.setAlignment(javafx.geometry.Pos.CENTER);
+        txtNumberPage.setMinWidth(15.0);
+        
+        int page = controller.getPage();
+
+        txtNumberPage.setText(String.valueOf(page));
 
         hBoxHotel1.getChildren().add(separatorHotel1);
         hBoxHotel1.getChildren().add(imageViewHotel1);
@@ -345,37 +368,38 @@ public class Hotel2Scene extends VBox{
         hBoxBtn.getChildren().add(btnBack);
         hBoxBtn.getChildren().add(separatorBtnFrecce);
         hBoxBtn.getChildren().add(btnPrecedent);
+        hBoxBtn.getChildren().add(txtNumberPage);
         hBoxBtn.getChildren().add(btnNext);
         vBoxListHotel.getChildren().add(hBoxBtn);
-        hBoxNumbPage.getChildren().add(txtNumberPage);
-        vBoxListHotel.getChildren().add(hBoxNumbPage);
         getChildren().add(vBoxListHotel);
         
         btnHotel1.setOnAction(new EventHandler<ActionEvent>(){
  			public void handle(ActionEvent event) {
- 				
- 				controller.viewHotel1();
- 				
+ 				controller.setStep(3);
+ 				controller.setHotelSelected(1);
+ 				controller.viewHotel(1);
  			}
  		});
         
         btnHotel2.setOnAction(new EventHandler<ActionEvent>(){
  			public void handle(ActionEvent event) {
- 				
- 				controller.viewHotel2();
+ 				controller.setStep(3);
+ 				controller.setHotelSelected(2);
+ 				controller.viewHotel(2);
  			}
  		});
         
         btnHotel3.setOnAction(new EventHandler<ActionEvent>(){
  			public void handle(ActionEvent event) {
- 				
- 				controller.viewHotel3();
+ 				controller.setStep(3);
+ 				controller.setHotelSelected(3);
+ 				controller.viewHotel(3);
  			}
  		});
         
         btnBack.setOnAction(new EventHandler<ActionEvent>(){
  			public void handle(ActionEvent event) {
- 				
+ 				controller.setStep(1);
  				controller.changeScene();
  			}
  		});
@@ -384,11 +408,10 @@ public class Hotel2Scene extends VBox{
  			public void handle(ActionEvent event) {
  				
  				int indice = controller.getIndice();
- 			
  				
  				if (indice > 3) {
  					if ((indice%3) == 0) {
- 	 					indice = indice - 3;
+ 	 					indice = indice - 6;
  	 					controller.changeScene2(indice);
  					} else if ((indice%3) == 1) {
  	 	 				indice = indice - 4;
@@ -397,19 +420,14 @@ public class Hotel2Scene extends VBox{
  	 					indice = indice - 5;
  	 	 				controller.changeScene2(indice);
  	 				}
- 				}		
- 					
- 				
+ 				}
  			}
  		});
         
         btnNext.setOnAction(new EventHandler<ActionEvent>(){
  			public void handle(ActionEvent event) {
- 			
  				int indice = controller.getIndice();
- 				//System.out.println(indice);
  				controller.changeScene2(indice);
- 				
  			}
  		});
 

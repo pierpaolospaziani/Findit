@@ -42,9 +42,7 @@ public class HotelConfirmScene extends VBox{
 	    protected Separator separator;
 	    protected Separator separator1;
 	    
-	    
 	    public HotelConfirmScene(HotelController controller, HotelBean bean, Hotel hotel, Room room) {
-	   
 	     
 	        vBox = new VBox();
 	        hBoxNameHotel = new HBox();
@@ -73,25 +71,21 @@ public class HotelConfirmScene extends VBox{
 	        setPrefWidth(1050.0);
 	        setSpacing(30.0);
 
-
 	        vBox.setAlignment(javafx.geometry.Pos.TOP_CENTER);
 	        vBox.setLayoutX(104.5);
 	        vBox.setLayoutY(24.0);
 	        vBox.setPrefHeight(477.0);
-	        vBox.setPrefWidth(841.0);
+	        vBox.setMinWidth(1000.0);
 	        vBox.setSpacing(30.0);
 	        
 	        separator.setOpacity(0.0);
 	        separator.setOrientation(javafx.geometry.Orientation.VERTICAL);
 	        separator.setMinHeight(15.0);
 	        separator.setPrefWidth(270.0);
-	 
 
 	        hBoxNameHotel.setAlignment(javafx.geometry.Pos.TOP_CENTER);
 	        hBoxNameHotel.setPrefHeight(67.0);
 	        hBoxNameHotel.setPrefWidth(841.0);
-	       
-	        
 
 	        text.setStrokeType(javafx.scene.shape.StrokeType.OUTSIDE);
 	        text.setStrokeWidth(0.0);
@@ -102,7 +96,7 @@ public class HotelConfirmScene extends VBox{
 
 	        txtNameHotel.setStrokeType(javafx.scene.shape.StrokeType.OUTSIDE);
 	        txtNameHotel.setStrokeWidth(0.0);
-	        txtNameHotel.setText("' "+ hotel.getName() + "'");
+	        txtNameHotel.setText("' " + hotel.getName() + " '");
 	        txtNameHotel.setWrappingWidth(358.71221923828125);
 	        txtNameHotel.setFont(new Font(24.0));
 
@@ -120,7 +114,7 @@ public class HotelConfirmScene extends VBox{
 	        hBoxDate.setAlignment(javafx.geometry.Pos.CENTER);
 	        hBoxDate.setMinHeight(45.0);
 	        hBoxDate.setPrefHeight(45.0);
-	        hBoxDate.setPrefWidth(462.0);
+	        hBoxDate.setMinWidth(1000.0);
 	        hBoxDate.setSpacing(30.0);
 
 	        labelCheckIn.setPrefHeight(35.0);
@@ -129,7 +123,7 @@ public class HotelConfirmScene extends VBox{
 	        labelCheckIn.setFont(new Font(24.0));
 
 	        labelCheckOut.setPrefHeight(35.0);
-	        labelCheckOut.setPrefWidth(126.0);
+	        labelCheckOut.setPrefWidth(USE_COMPUTED_SIZE);
 	        labelCheckOut.setText(bean.getLocalDateOut().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 	        labelCheckOut.setFont(new Font(24.0));
 
@@ -159,7 +153,7 @@ public class HotelConfirmScene extends VBox{
 
 	        labelPrice.setPrefHeight(35.0);
 	        labelPrice.setPrefWidth(104.0);
-	        labelPrice.setText(String.valueOf(room.getPrice()*(Integer.valueOf(bean.getLocalDateOut().format(DateTimeFormatter.ofPattern("dd")))-Integer.valueOf(bean.getLocalDateIn().format(DateTimeFormatter.ofPattern("dd"))))) + " €");
+	        labelPrice.setText(String.valueOf(room.getPrice()*bean.getDays()) + " €");
 	        labelPrice.setFont(new Font(24.0));
 
 	        hBoxBtn.setAlignment(javafx.geometry.Pos.BOTTOM_CENTER);
@@ -169,15 +163,15 @@ public class HotelConfirmScene extends VBox{
 	        
 	        separator1.setOpacity(0.0);
 	        separator1.setOrientation(javafx.geometry.Orientation.VERTICAL);
-	        separator1.setMinHeight(45.0);
+	        separator1.setMinHeight(52.0);
 	        separator1.setPrefWidth(270.0);
 
-	        btnUndo.setMaxWidth(117.0);
 	        btnUndo.setMnemonicParsing(false);
-	        btnUndo.setPrefHeight(51.0);
-	        btnUndo.setPrefWidth(117.0);
+	        btnUndo.setStyle("-fx-background-color: #1B59D7;");
 	        btnUndo.setText("Undo");
+	        btnUndo.setTextFill(javafx.scene.paint.Color.WHITE);
 	        btnUndo.setFont(new Font(24.0));
+	        btnUndo.setPrefWidth(115.0);
 	        
 	        btnUndo.setOnMouseEntered(evt -> btnUndo.setUnderline(true));
 	        btnUndo.setOnMouseExited(evt -> btnUndo.setUnderline(false));
@@ -215,7 +209,6 @@ public class HotelConfirmScene extends VBox{
 	        vBox.getChildren().add(hBoxBtn);
 	        getChildren().add(vBox);
 	        
-	        
 	        btnUndo.setOnAction(new EventHandler<ActionEvent>(){
 	 			public void handle(ActionEvent event) {
 	 				
@@ -226,9 +219,7 @@ public class HotelConfirmScene extends VBox{
 	        btnConfirm.setOnAction(new EventHandler<ActionEvent>(){
 	 			public void handle(ActionEvent event) {
 	 				
-	 				//dopo la conferma si potrbbe aprire una piccola dialog che dice 
-	 				// prenotazione effettuata e ritornare alla home-page oppure aprire resoconto 
-	 				// della prenotazione con un bottone per tornare alla home
+	 				controller.setReservation(hotel,room);
 	 			}
 	 		});
 	        
