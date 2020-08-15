@@ -6,6 +6,7 @@ public class User {
 	
 	private String username;
 	private String password;
+	private String reviewsTable;
 	private Image image;
 	private boolean isLogged = false;
 	
@@ -59,6 +60,14 @@ public class User {
 
 	public void setImage(Image profileImage) {
 		this.image = profileImage;
+	}
+
+	public String getReviewsTable() {
+		return reviewsTable;
+	}
+
+	public void setReviewsTable(String reviewsTable) {
+		this.reviewsTable = reviewsTable;
 	}
 	
 	 

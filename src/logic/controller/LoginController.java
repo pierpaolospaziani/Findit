@@ -21,6 +21,12 @@ public class LoginController {
 	private User user;
 	private Owner owner;
 	
+	private boolean booking = false;
+	
+	public void setBooking(boolean booking) {
+		this.booking = booking;
+	}
+
 	private static LoginController istance = null;
 	
 	public static LoginController getIstance(AnchorPane pane) {
@@ -114,13 +120,20 @@ public class LoginController {
 	
 	public void loggedScene() {
 		
-		if (user.getLogged()) {
-			userScene = new User2Scene(this,user);
+		if (booking) {
+			
+			setBooking(false);
+			
 		} else {
-			userScene = new User2Scene(this,owner);
+
+			if (user.getLogged()) {
+				userScene = new User2Scene(this,user);
+			} else {
+				userScene = new User2Scene(this,owner);
+			}
+			
+			pane.getChildren().clear();
+			pane.getChildren().add(userScene);
 		}
-		
-		pane.getChildren().clear();
-		pane.getChildren().add(userScene);
 	}
 }

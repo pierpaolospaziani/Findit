@@ -40,7 +40,8 @@ public class HotelConfirmScene extends VBox{
 	    protected Button btnUndo;
 	    protected Button btnConfirm;
 	    protected Separator separator;
-	    protected Separator separator1;
+	    
+	    protected Label confirmLabel;
 	    
 	    public HotelConfirmScene(HotelController controller, HotelBean bean, Hotel hotel, Room room) {
 	     
@@ -64,7 +65,8 @@ public class HotelConfirmScene extends VBox{
 	        btnUndo = new Button();
 	        btnConfirm = new Button();
 	        separator = new Separator();
-	        separator1 = new Separator();
+	        
+	        confirmLabel = new Label();
 
 	        setAlignment(javafx.geometry.Pos.TOP_CENTER);
 	        setPrefHeight(525.0);
@@ -160,11 +162,6 @@ public class HotelConfirmScene extends VBox{
 	        hBoxBtn.setPrefHeight(86.0);
 	        hBoxBtn.setPrefWidth(841.0);
 	        hBoxBtn.setSpacing(30.0);
-	        
-	        separator1.setOpacity(0.0);
-	        separator1.setOrientation(javafx.geometry.Orientation.VERTICAL);
-	        separator1.setMinHeight(52.0);
-	        separator1.setPrefWidth(270.0);
 
 	        btnUndo.setMnemonicParsing(false);
 	        btnUndo.setStyle("-fx-background-color: #1B59D7;");
@@ -187,6 +184,13 @@ public class HotelConfirmScene extends VBox{
 	        
 	        setOpaqueInsets(new Insets(0.0));
 
+	        confirmLabel.setAlignment(javafx.geometry.Pos.CENTER);
+	        confirmLabel.setMinHeight(52.0);
+	        confirmLabel.setPrefWidth(1000.0);
+	        confirmLabel.setText("");
+	        confirmLabel.setStyle("-fx-text-fill: green;");
+	        confirmLabel.setFont(new Font(24.0));
+
 	        vBox.getChildren().add(separator);
 	        hBoxNameHotel.getChildren().add(text);
 	        hBoxNameHotel.getChildren().add(txtNameHotel);
@@ -203,23 +207,36 @@ public class HotelConfirmScene extends VBox{
 	        hBoxPrice.getChildren().add(labelTotalP);
 	        hBoxPrice.getChildren().add(labelPrice);
 	        vBox.getChildren().add(hBoxPrice);
+	        
+	        vBox.getChildren().add(confirmLabel);
+	        
 	        hBoxBtn.getChildren().add(btnUndo);
 	        hBoxBtn.getChildren().add(btnConfirm);
-	        vBox.getChildren().add(separator1);
 	        vBox.getChildren().add(hBoxBtn);
 	        getChildren().add(vBox);
 	        
 	        btnUndo.setOnAction(new EventHandler<ActionEvent>(){
 	 			public void handle(ActionEvent event) {
 	 				
-	 				controller.returnBackHotelPage();
+	 				if (btnConfirm.isDisable()) {
+	 					controller.changeScene();
+	 				} else {
+	 					controller.returnBackHotelPage();
+	 				}
 	 			}
 	 		});
 	        
 	        btnConfirm.setOnAction(new EventHandler<ActionEvent>(){
 	 			public void handle(ActionEvent event) {
 	 				
-	 				controller.setReservation(hotel,room);
+	 				if (controller.setReservation(hotel,room)) {
+
+		 				confirmLabel.setText("Excellent, your booking has been accepted!");
+		 				
+		 				btnConfirm.setDisable(true);
+	 					controller.setStep(1);
+		 				
+	 				}
 	 			}
 	 		});
 	        

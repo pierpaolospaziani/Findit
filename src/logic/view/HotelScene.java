@@ -423,6 +423,76 @@ public class HotelScene extends VBox{
 	        }
 		});
         
+        check5Star.setOnAction(new EventHandler<ActionEvent>(){
+			public void handle(ActionEvent event) {
+				if (!check5Star.isSelected() && !check4Star.isSelected() && !check3Star.isSelected() && !check2Star.isSelected() && !check1Star.isSelected()) {
+					check5Star.setSelected(false);
+				} else {
+					check5Star.setSelected(true);
+					check4Star.setSelected(false);
+					check3Star.setSelected(false);
+					check2Star.setSelected(false);
+					check1Star.setSelected(false);
+				}
+	        }
+		});
+        
+        check4Star.setOnAction(new EventHandler<ActionEvent>(){
+			public void handle(ActionEvent event) {
+				if (!check4Star.isSelected() && !check3Star.isSelected() && !check2Star.isSelected() && !check1Star.isSelected()) {
+					check4Star.setSelected(false);
+				} else {
+					check5Star.setSelected(true);
+					check4Star.setSelected(true);
+					check3Star.setSelected(false);
+					check2Star.setSelected(false);
+					check1Star.setSelected(false);
+				}			
+	        }
+		});
+        
+        check3Star.setOnAction(new EventHandler<ActionEvent>(){
+			public void handle(ActionEvent event) {
+				if (!check3Star.isSelected() && !check2Star.isSelected() && !check1Star.isSelected()) {
+					check3Star.setSelected(false);
+				} else {
+					check5Star.setSelected(true);
+					check4Star.setSelected(true);
+					check3Star.setSelected(true);
+					check2Star.setSelected(false);
+					check1Star.setSelected(false);
+				}			
+	        }
+		});
+        
+        check2Star.setOnAction(new EventHandler<ActionEvent>(){
+			public void handle(ActionEvent event) {
+				if (!check2Star.isSelected() && !check1Star.isSelected()) {
+					check2Star.setSelected(false);
+				} else {
+					check5Star.setSelected(true);
+					check4Star.setSelected(true);
+					check3Star.setSelected(true);
+					check2Star.setSelected(true);
+					check1Star.setSelected(false);
+				}			
+	        }
+		});
+        
+        check1Star.setOnAction(new EventHandler<ActionEvent>(){
+			public void handle(ActionEvent event) {
+				if (!check1Star.isSelected()) {
+					check1Star.setSelected(false);
+				} else {
+					check5Star.setSelected(true);
+					check4Star.setSelected(true);
+					check3Star.setSelected(true);
+					check2Star.setSelected(true);
+					check1Star.setSelected(true);
+				}			
+	        }
+		});
+        
         hotelSearchButton.setOnAction(new EventHandler<ActionEvent>(){
 			public void handle(ActionEvent event) {
 				

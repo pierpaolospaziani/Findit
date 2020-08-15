@@ -115,7 +115,7 @@ public class ReservationDao {
 				rs.close();
 
 				String insertQuery = "insert into " + reservationTable + " value ('" + id + "','" + date + "','" + user + "')";
-				    	
+
 				st.executeUpdate(insertQuery);
 			}
 			

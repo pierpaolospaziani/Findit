@@ -28,6 +28,7 @@ public class UserDao {
     	
     	String nameUserQuery = "select name from users where name = '" + username + "'";
     	String psswUserQuery = "select pssw from users where name = '" + username + "'";
+    	String reviewsTableUserQuery = "select reviews from users where name = '" + username + "'";
     	String imageUserQuery = "select photo from users where name = '" + username + "'";
     	
     	User user = User.getIstance();
@@ -72,6 +73,16 @@ public class UserDao {
 			user.setPassword(pssw);
 		
 			rs1.close();
+			
+			ResultSet rs3 = st.executeQuery(reviewsTableUserQuery);
+		
+			rs3.next();
+		
+			String reviewsTable = rs3.getNString("reviews");
+			
+			user.setReviewsTable(reviewsTable);
+		
+			rs3.close();
 			
 			ResultSet rs2 = st.executeQuery(imageUserQuery);
 			
@@ -162,7 +173,7 @@ public class UserDao {
 							reviewsTable = variableReviewsTable;
 
 							String insertQuery = "insert into users value ('" + username + "','" + password + "','" + reviewsTable + "','" + null + "')";
-					    	String createReviewsQuery = "create table " + reviewsTable + " (structure varchar(20),review text)";
+					    	String createReviewsQuery = "create table " + reviewsTable + " (structure varchar(20),review text,dateIn int,dateOut int)";
 				
 					    	st.executeUpdate(insertQuery);
 							st.executeUpdate(createReviewsQuery);
@@ -216,4 +227,33 @@ public class UserDao {
     		
     	}
 	}
+	
+	public static void setReviewLine(String userReviewsTable, String hotelName, int dateIn, int dateOut) throws Exception{		
+		
+		String insertQuery = "insert into " + userReviewsTable + " value ('" + hotelName + "','" + null + "','" + dateIn + "','" + dateOut + "')";
+		
+    	Connection con = null;
+		Statement st = null;
+		
+    	try {
+    		Class.forName(DRIVER_CLASS_NAME);
+    		try{
+				con = DriverManager.getConnection(url,name,pass);
+			} catch(SQLException e){
+		        System.out.println("Couldn't connect: exit.");
+		        System.exit(1);
+		        }
+    		
+			st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+	                ResultSet.CONCUR_READ_ONLY);
+		
+			st.executeUpdate(insertQuery);
+			
+    	} finally {
+    		
+    		st.close();
+    		con.close();
+    		
+    	}
+    }
 }

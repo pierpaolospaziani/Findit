@@ -318,7 +318,7 @@ public class HotelDao {
     	}
     }
 	
-	public static Hotel searchHotel(String city, String type, Boolean parking, Boolean restaurant, Boolean roomService, Boolean gym, int index) throws Exception{
+	public static Hotel searchHotel(String city, String type, Boolean parking, Boolean restaurant, Boolean roomService, Boolean gym, int stars, int index) throws Exception{
 
 		String serachQuery = "select * from hotels where city = '" + city + "'";
 		
@@ -364,6 +364,11 @@ public class HotelDao {
 			if (gym == true) {
 				serachQuery = serachQuery + " and gym = '" + true + "'";
 				nameQuery = nameQuery + " and gym = '" + true + "'";
+			}
+			
+			if (stars != 0) {
+				serachQuery = serachQuery + " and rating >= '" + stars + "'";
+				nameQuery = nameQuery + " and rating >= '" + stars + "'";
 			}
 			
 			ResultSet rs = st.executeQuery(serachQuery);
