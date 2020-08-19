@@ -42,8 +42,6 @@ public class ViewReviewScene extends VBox {
     protected Separator separator1;
     protected Button btnPreview;
     protected Button btnNext;
-    protected HBox hBoxNumbPage;
-    protected Text txtNumberPage;
     
     protected Separator separatorUser1;
     protected Separator separatorUser2;
@@ -80,8 +78,6 @@ public class ViewReviewScene extends VBox {
         separator1 = new Separator();
         btnPreview = new Button();
         btnNext = new Button();
-        hBoxNumbPage = new HBox();
-        txtNumberPage = new Text();
         
         separatorUser1 = new Separator();
         separatorUser2 = new Separator();
@@ -97,10 +93,8 @@ public class ViewReviewScene extends VBox {
         vBox.setLayoutY(2.0);
         vBox.setPrefHeight(525.0);
         vBox.setPrefWidth(850.0);
-        
-        
 
-        hBoxReview1.setPrefHeight(140.0);
+        hBoxReview1.setPrefHeight(144.0);
         hBoxReview1.setPrefWidth(200.0);
         hBoxReview1.setSpacing(10.0);
         
@@ -140,7 +134,7 @@ public class ViewReviewScene extends VBox {
         txtReview1.setFont(new Font(18.0));
         hBoxReview1.setPadding(new Insets(5.0));
 
-        hBoxReview2.setPrefHeight(140.0);
+        hBoxReview2.setPrefHeight(144.0);
         hBoxReview2.setPrefWidth(200.0);
         hBoxReview2.setSpacing(10.0);
         
@@ -181,7 +175,7 @@ public class ViewReviewScene extends VBox {
         txtReview2.setFont(new Font(18.0));
         hBoxReview2.setPadding(new Insets(5.0));
 
-        hBoxReview3.setPrefHeight(140.0);
+        hBoxReview3.setPrefHeight(144.0);
         hBoxReview3.setPrefWidth(200.0);
         hBoxReview3.setSpacing(10.0);
         
@@ -238,7 +232,7 @@ public class ViewReviewScene extends VBox {
         btnBack.setPrefHeight(39.0);
         btnBack.setPrefWidth(118.0);
         btnBack.setStyle("-fx-background-color: #1B59D7;");
-        btnBack.setText("<<back");
+        btnBack.setText("<< back");
         btnBack.setTextFill(javafx.scene.paint.Color.WHITE);
         btnBack.setFont(new Font(24.0));
         
@@ -272,18 +266,6 @@ public class ViewReviewScene extends VBox {
         btnNext.setOnMouseEntered(evt -> btnNext.setUnderline(true));
         btnNext.setOnMouseExited(evt -> btnNext.setUnderline(false));
 
-
-        hBoxNumbPage.setAlignment(javafx.geometry.Pos.TOP_CENTER);
-        hBoxNumbPage.setPrefHeight(17.0);
-        hBoxNumbPage.setPrefWidth(850.0);
-
-        txtNumberPage.setStrokeType(javafx.scene.shape.StrokeType.OUTSIDE);
-        txtNumberPage.setStrokeWidth(0.0);
-        txtNumberPage.setText("1");
-        txtNumberPage.setFont(new Font(18.0));
-        vBox.setPadding(new Insets(10.0, 0.0, 0.0, 0.0));
-        setOpaqueInsets(new Insets(0.0));
-
         vBox0.getChildren().add(btnNameUser1);
         vBox0.getChildren().add(labelNumberStar1);
         hBoxReview1.getChildren().add(separatorUser1);
@@ -314,13 +296,7 @@ public class ViewReviewScene extends VBox {
         hBoxBtn.getChildren().add(btnPreview);
         hBoxBtn.getChildren().add(btnNext);
         vBox.getChildren().add(hBoxBtn);
-        hBoxNumbPage.getChildren().add(txtNumberPage);
-        vBox.getChildren().add(hBoxNumbPage);
         getChildren().add(vBox);
-        
-        
-        
-        // handler button !!!
         
         btnNameUser1.setOnAction(new EventHandler<ActionEvent>(){
  			public void handle(ActionEvent event) {

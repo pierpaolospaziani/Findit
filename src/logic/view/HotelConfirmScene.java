@@ -168,7 +168,7 @@ public class HotelConfirmScene extends VBox{
 	        btnUndo.setText("Undo");
 	        btnUndo.setTextFill(javafx.scene.paint.Color.WHITE);
 	        btnUndo.setFont(new Font(24.0));
-	        btnUndo.setPrefWidth(115.0);
+	        btnUndo.setMinWidth(115.0);
 	        
 	        btnUndo.setOnMouseEntered(evt -> btnUndo.setUnderline(true));
 	        btnUndo.setOnMouseExited(evt -> btnUndo.setUnderline(false));

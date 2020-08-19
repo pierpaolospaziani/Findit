@@ -1,10 +1,18 @@
 package logic.controller;
 
 import javafx.scene.layout.AnchorPane;
+import logic.bean.HotelBean;
 import logic.bean.LoginBean;
+import logic.dao.ExperienceDao;
+import logic.dao.HotelDao;
+import logic.dao.OwnerDao;
+import logic.dao.StructureDao;
+import logic.model.Experience;
 import logic.model.Login;
 import logic.model.Owner;
+import logic.model.Structure;
 import logic.model.User;
+import logic.view.HotelRegistrationScene;
 import logic.view.LogWindow;
 import logic.view.ProfileScene;
 import logic.view.User2Scene;
@@ -20,6 +28,9 @@ public class LoginController {
 	private LoginBean bean;
 	private User user;
 	private Owner owner;
+
+	private int page = 0;
+	private int indice;
 	
 	private boolean booking = false;
 	
@@ -125,15 +136,192 @@ public class LoginController {
 			setBooking(false);
 			
 		} else {
+			
+			setIndice(0);
+			setPage(0);
 
 			if (user.getLogged()) {
-				userScene = new User2Scene(this,user);
+				
+				changeExperiences(0,0);
+				
 			} else {
-				userScene = new User2Scene(this,owner);
+
+				changeExperiences(0,1);
 			}
 			
 			pane.getChildren().clear();
 			pane.getChildren().add(userScene);
 		}
+	}
+	
+	public void changeExperiences(int index, int tipo) {
+		
+        try {
+	        	boolean newPage = false;
+	        	
+	        	if (index == 0) {
+	        		newPage = true;
+	        	}
+	        
+	        	String table;
+	        
+	        	if (tipo == 0) {
+	        		
+	        		table = user.getReviewsTable();
+	        	
+	        		index++;
+					
+					Experience experience1 = ExperienceDao.getExperience(table, index);
+					
+					if (experience1.getName() != null) {
+						
+						if (indice < index) {
+							setPage(page+1);
+						} else {
+							setPage(page-1);
+						}
+						
+						setIndice(index);
+						
+						newPage = true;
+					}
+					
+					if (newPage) {
+						
+						index++;
+						Experience experience2 = ExperienceDao.getExperience(table, index);
+						if (experience2.getName() != null) {
+							setIndice(index);
+						}
+						index++;
+						Experience experience3 = ExperienceDao.getExperience(table, index);
+						if (experience3.getName() != null) {
+							setIndice(index);
+						}
+						index++;
+						Experience experience4 = ExperienceDao.getExperience(table, index);
+						if (experience4.getName() != null) {
+							setIndice(index);
+						}
+						index++;
+						Experience experience5 = ExperienceDao.getExperience(table, index);
+						if (experience5.getName() != null) {
+							setIndice(index);
+						}
+						index++;
+						Experience experience6 = ExperienceDao.getExperience(table, index);
+						if (experience6.getName() != null) {
+							setIndice(index);
+						}
+						
+						int booked = ExperienceDao.getBooked(table);
+						int review = ExperienceDao.getReview(table);
+						
+						userScene = new User2Scene(this,user,experience1,experience2,experience3,experience4,experience5,experience6,booked,review);
+
+						pane.getChildren().clear();
+						pane.getChildren().add(userScene);
+					}
+	        	
+	        	} else {
+	        		
+	        		table = owner.getStructures();
+	        		
+	        		index++;
+					
+					Structure structure1 = StructureDao.getStructure(table, index);
+					
+					if (structure1.getName() != null) {
+						
+						if (indice < index) {
+							setPage(page+1);
+						} else {
+							setPage(page-1);
+						}
+						
+						setIndice(index);
+						
+						newPage = true;
+					}
+					
+					if (newPage) {
+						
+						index++;
+						Structure structure2 = StructureDao.getStructure(table, index);
+						if (structure2.getName() != null) {
+							setIndice(index);
+						}
+						index++;
+						Structure structure3 = StructureDao.getStructure(table, index);
+						if (structure3.getName() != null) {
+							setIndice(index);
+						}
+						index++;
+						Structure structure4 = StructureDao.getStructure(table, index);
+						if (structure4.getName() != null) {
+							setIndice(index);
+						}
+						index++;
+						Structure structure5 = StructureDao.getStructure(table, index);
+						if (structure5.getName() != null) {
+							setIndice(index);
+						}
+						index++;
+						Structure structure6 = StructureDao.getStructure(table, index);
+						if (structure6.getName() != null) {
+							setIndice(index);
+						}
+						
+						int structures = StructureDao.getStructures(table);
+						
+						userScene = new User2Scene(this,owner,structure1,structure2,structure3,structure4,structure5,structure6,structures);
+
+						pane.getChildren().clear();
+						pane.getChildren().add(userScene);
+					}
+				}
+				
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+	}
+	
+	public void setStructure(String name) {
+		
+		HotelBean bean = new HotelBean();
+		
+		HotelRegistrationScene registerScene = new HotelRegistrationScene(this,name,bean);
+
+		pane.getChildren().clear();
+		pane.getChildren().add(registerScene);
+		
+	}
+	
+	public void registerStructure(String ownerName, HotelBean bean) {
+		
+		try {
+			HotelDao.setHotel(bean.getName(), ownerName, bean.getType(), bean.getCity(), bean.getAddress(), 0, bean.getParking(), bean.getRestaurant(), bean.getRoomService(), bean.getGym());
+			OwnerDao.setStructure(ownerName, bean.getName());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+
+	public int getPage() {
+		return page;
+	}
+
+	public void setPage(int page) {
+		this.page = page;
+	}
+
+	public int getIndice() {
+		return indice;
+	}
+
+	public void setIndice(int indice) {
+		this.indice = indice;
 	}
 }

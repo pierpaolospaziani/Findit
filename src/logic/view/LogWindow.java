@@ -96,7 +96,7 @@ public class LogWindow {
         passwordTextField.setFont(new Font(24.0));
 
         loginButton.setMnemonicParsing(false);
-        loginButton.setPrefWidth(115.0);
+        loginButton.setMinWidth(120.0);
         loginButton.setStyle("-fx-background-color: #1B59D7;");
         loginButton.setText("Login");
         loginButton.setTextFill(javafx.scene.paint.Color.WHITE);
@@ -209,7 +209,7 @@ public class LogWindow {
         passwordTextField.setFont(new Font(24.0));
 
         registerButton.setMnemonicParsing(false);
-        registerButton.setPrefWidth(115.0);
+        registerButton.setMinWidth(120.0);
         registerButton.setStyle("-fx-background-color: #1B59D7 #1B59D7;");
         registerButton.setText("Register");
         registerButton.setTextFill(javafx.scene.paint.Color.WHITE);

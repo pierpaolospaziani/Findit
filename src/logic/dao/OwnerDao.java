@@ -223,4 +223,35 @@ public class OwnerDao {
     		
     	}
 	}
+	
+	public static void setStructure(String username, String structure) throws Exception{
+		
+		String table = (username + "Structures").replaceAll("\\s+","");
+		
+		Connection con = null;
+		Statement st = null;
+		
+    	try {
+    		Class.forName(DRIVER_CLASS_NAME);
+    		try{
+				con = DriverManager.getConnection(url,name,pass);
+			} catch(SQLException e){
+		        System.out.println("Couldn't connect: exit.");
+		        System.exit(1);
+		        }
+
+    		st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+	                ResultSet.CONCUR_READ_ONLY);
+    		
+        	String insertQuery = "insert into " + table + " value ('" + structure + "','hotel')";
+		
+			st.executeUpdate(insertQuery);
+			
+    	} finally {
+    		
+    		st.close();
+    		con.close();
+    		
+    	}
+	}
 }

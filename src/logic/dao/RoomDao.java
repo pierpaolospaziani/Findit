@@ -126,8 +126,8 @@ public class RoomDao {
     
     public static Room searchRoom(String roomsTable, int beds, int price, int index) throws Exception{
 
-    	String searchQuery = "select * from " + roomsTable + " where beds = '" + beds + "' and price <= '" + price + "' order by price";
-    	String idQuery = "select id from " + roomsTable + " where beds = '" + beds + "' and price <= '" + price + "' order by price";
+    	String searchQuery = "select * from " + roomsTable + " where beds >= '" + beds + "' and price <= '" + price + "' order by price";
+    	String idQuery = "select id from " + roomsTable + " where beds >= '" + beds + "' and price <= '" + price + "' order by price";
     	
     	Room room = new Room();
     	

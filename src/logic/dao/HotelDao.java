@@ -293,7 +293,6 @@ public class HotelDao {
 				    	    	+ "'" + rooms + "',"
 				    			+ "'" + agenda + "',"
 		    					+ "'" + reviewsTable + "',"
-		    					+ "'" + null + "',"
 		    					+ "'" + null + "')";
 				    	
 						st.executeUpdate(insertQuery);

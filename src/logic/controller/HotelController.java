@@ -16,6 +16,7 @@ import logic.view.Hotel2Scene;
 import logic.view.Hotel3Scene;
 import logic.view.HotelConfirmScene;
 import logic.view.HotelScene;
+import logic.view.ViewReviewScene;
 
 
 public class HotelController {
@@ -88,7 +89,7 @@ public class HotelController {
 	
 	public void changeScene2(int index){
 		
-int budget = 1000;
+		int budget = 1000;
 		
 		if (bean.isBudget1()){
 			budget = 100;
@@ -374,7 +375,7 @@ int budget = 1000;
 			e.printStackTrace();
 		}
 		
-		if (change == true) {
+		if (change == true || indice == 0) {
 			hotel2Scene = new Hotel2Scene(this,hotel1,room1,hotel2,room2,hotel3,room3);
 			
 			pane.getChildren().clear();
@@ -429,10 +430,6 @@ int budget = 1000;
 		pane.getChildren().clear();
 		pane.getChildren().add(hotel2Scene);
 	
-	}
-	
-	public void viewReview() {
-		// metodo che mi cerca e visualizze le review
 	}
 	
 	public void goToBook(Hotel hotel, Room room) {
@@ -514,6 +511,15 @@ int budget = 1000;
 		}
 		
 		return false;
+	}
+	
+	public void viewReviews() {
+		
+		ViewReviewScene viewReviewScene = new ViewReviewScene();
+
+		pane.getChildren().clear();
+		pane.getChildren().add(viewReviewScene);
+		
 	}
 
 	public int getPage() {

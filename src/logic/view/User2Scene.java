@@ -18,7 +18,9 @@ import javafx.stage.Stage;
 import logic.controller.LoginController;
 import logic.dao.OwnerDao;
 import logic.dao.UserDao;
+import logic.model.Experience;
 import logic.model.Owner;
+import logic.model.Structure;
 import logic.model.User;
 
 public class User2Scene extends HBox{
@@ -39,19 +41,35 @@ public class User2Scene extends HBox{
     protected Label experienceLable;
     protected HBox hBox2;
     protected ImageView imageView1;
+    protected Button expName1;
     protected ImageView imageView2;
+    protected Button expName2;
     protected ImageView imageView3;
+    protected Button expName3;
     protected HBox hBox3;
     protected ImageView imageView4;
+    protected Button expName4;
     protected ImageView imageView5;
+    protected Button expName5;
     protected ImageView imageView6;
+    protected Button expName6;
     protected HBox hBoxBtn;
     protected Button btnPrecedent;
     protected Button btnNext;
+    protected Label txtNumberPage;
+
+    protected VBox vBox1;
+    protected VBox vBox2;
+    protected VBox vBox3;
+    protected VBox vBox4;
+    protected VBox vBox5;
+    protected VBox vBox6;
+    
+    protected Button buttonAddStructure;
 
     protected static Stage window;
     
-    public User2Scene(LoginController controller, User user) {
+    public User2Scene(LoginController controller, User user, Experience experience1, Experience experience2, Experience experience3, Experience experience4, Experience experience5, Experience experience6, int booked, int review) {
     	
     	vBox = new VBox();
         nameLabel = new Label();
@@ -78,6 +96,21 @@ public class User2Scene extends HBox{
         hBoxBtn = new HBox();
         btnPrecedent = new Button();
         btnNext = new Button();
+        txtNumberPage = new Label();
+
+        expName1 = new Button();
+        expName2 = new Button();
+        expName3 = new Button();
+        expName4 = new Button();
+        expName5 = new Button();
+        expName6 = new Button();
+
+        vBox1 = new VBox();
+        vBox2 = new VBox();
+        vBox3 = new VBox();
+        vBox4 = new VBox();
+        vBox5 = new VBox();
+        vBox6 = new VBox();
         
         window = new Stage();
 
@@ -132,8 +165,10 @@ public class User2Scene extends HBox{
         bookedLabel.setText("Booked:");
         bookedLabel.setFont(new Font(36.0));
 
-        numBookedLabel.setText("000");
+        numBookedLabel.setText(String.valueOf(booked));
         numBookedLabel.setFont(new Font(36.0));
+        numBookedLabel.setAlignment(javafx.geometry.Pos.CENTER);
+        numBookedLabel.setMinWidth(66.0);
         HBox.setMargin(numBookedLabel, new Insets(0.0, 55.0, 0.0, 0.0));
         VBox.setMargin(hBox0, new Insets(20.0, 0.0, 0.0, 0.0));
 
@@ -144,8 +179,10 @@ public class User2Scene extends HBox{
         reviewsLabel.setText("Reviews:");
         reviewsLabel.setFont(new Font(36.0));
 
-        numReviewsLabel.setText("000");
+        numReviewsLabel.setText(String.valueOf(review));
         numReviewsLabel.setFont(new Font(36.0));
+        numReviewsLabel.setAlignment(javafx.geometry.Pos.CENTER);
+        numReviewsLabel.setMinWidth(66.0);
         HBox.setMargin(numReviewsLabel, new Insets(0.0, 55.0, 0.0, 0.0));
         VBox.setMargin(hBox1, new Insets(10.0, 0.0, 0.0, 0.0));
 
@@ -171,49 +208,93 @@ public class User2Scene extends HBox{
 
         hBox2.setAlignment(javafx.geometry.Pos.CENTER);
         hBox2.setPrefHeight(200.0);
-        hBox2.setPrefWidth(682.0);
-        hBox2.setSpacing(20.0);
+        hBox2.setMinWidth(690.0);
+        hBox2.setMaxWidth(690.0);
+        hBox2.setSpacing(50.0);
         
-        imageView1.setFitHeight(180.0);
-        imageView1.setFitWidth(180.0);
+        imageView1.setFitHeight(150.0);
+        imageView1.setFitWidth(150.0);
         imageView1.setPickOnBounds(true);
         imageView1.setPreserveRatio(true);
-        imageView1.setImage(new Image(getClass().getResource("account.jpg").toExternalForm()));
+        
+        photo = experience1.getImage();
+        
+        if (photo == null) {
+        	imageView1.setImage(new Image(getClass().getResource("strucutre.jpg").toExternalForm()));
+        } else {
+        	imageView1.setImage(photo);
+        }
 
-        imageView2.setFitHeight(180.0);
-        imageView2.setFitWidth(180.0);
+        imageView2.setFitHeight(150.0);
+        imageView2.setFitWidth(150.0);
         imageView2.setPickOnBounds(true);
         imageView2.setPreserveRatio(true);
-        imageView2.setImage(new Image(getClass().getResource("account.jpg").toExternalForm()));
+        
+        photo = experience2.getImage();
+        
+        if (photo == null) {
+        	imageView2.setImage(new Image(getClass().getResource("strucutre.jpg").toExternalForm()));
+        } else {
+        	imageView2.setImage(photo);
+        }
 
-        imageView3.setFitHeight(180.0);
-        imageView3.setFitWidth(180.0);
+        imageView3.setFitHeight(150.0);
+        imageView3.setFitWidth(150.0);
         imageView3.setPickOnBounds(true);
         imageView3.setPreserveRatio(true);
-        imageView3.setImage(new Image(getClass().getResource("account.jpg").toExternalForm()));
+        
+        photo = experience3.getImage();
+        
+        if (photo == null) {
+        	imageView3.setImage(new Image(getClass().getResource("strucutre.jpg").toExternalForm()));
+        } else {
+        	imageView3.setImage(photo);
+        }
         
         hBox3.setAlignment(javafx.geometry.Pos.CENTER);
         hBox3.setPrefHeight(200.0);
-        hBox3.setPrefWidth(682.0);
-        hBox3.setSpacing(20.0);
+        hBox3.setMaxWidth(690.0);
+        hBox3.setMinWidth(690.0);
+        hBox3.setSpacing(50.0);
 
-        imageView4.setFitHeight(180.0);
-        imageView4.setFitWidth(180.0);
+        imageView4.setFitHeight(150.0);
+        imageView4.setFitWidth(150.0);
         imageView4.setPickOnBounds(true);
         imageView4.setPreserveRatio(true);
-        imageView4.setImage(new Image(getClass().getResource("account.jpg").toExternalForm()));
+        
+        photo = experience4.getImage();
+        
+        if (photo == null) {
+        	imageView4.setImage(new Image(getClass().getResource("strucutre.jpg").toExternalForm()));
+        } else {
+        	imageView4.setImage(photo);
+        }
 
-        imageView5.setFitHeight(180.0);
-        imageView5.setFitWidth(180.0);
+        imageView5.setFitHeight(150.0);
+        imageView5.setFitWidth(150.0);
         imageView5.setPickOnBounds(true);
         imageView5.setPreserveRatio(true);
-        imageView5.setImage(new Image(getClass().getResource("account.jpg").toExternalForm()));
+        
+        photo = experience5.getImage();
+        
+        if (photo == null) {
+        	imageView5.setImage(new Image(getClass().getResource("strucutre.jpg").toExternalForm()));
+        } else {
+        	imageView5.setImage(photo);
+        }
 
-        imageView6.setFitHeight(180.0);
-        imageView6.setFitWidth(180.0);
+        imageView6.setFitHeight(150.0);
+        imageView6.setFitWidth(150.0);
         imageView6.setPickOnBounds(true);
         imageView6.setPreserveRatio(true);
-        imageView6.setImage(new Image(getClass().getResource("account.jpg").toExternalForm()));
+        
+        photo = experience6.getImage();
+        
+        if (photo == null) {
+        	imageView6.setImage(new Image(getClass().getResource("strucutre.jpg").toExternalForm()));
+        } else {
+        	imageView6.setImage(photo);
+        }
 
         hBoxBtn.setAlignment(javafx.geometry.Pos.CENTER);
         hBoxBtn.setPrefHeight(63.0);
@@ -222,7 +303,7 @@ public class User2Scene extends HBox{
         
         btnPrecedent.setMnemonicParsing(false);
         btnPrecedent.setText("<");
-        btnPrecedent.setFont(new Font(18.0));
+        btnPrecedent.setFont(new Font(24.0));
         btnPrecedent.setStyle("-fx-background-color: #1B59D7;");
         btnPrecedent.setTextFill(javafx.scene.paint.Color.WHITE);
 
@@ -231,12 +312,116 @@ public class User2Scene extends HBox{
 
         btnNext.setMnemonicParsing(false);
         btnNext.setText(">");
-        btnNext.setFont(new Font(18.0));
+        btnNext.setFont(new Font(24.0));
         btnNext.setStyle("-fx-background-color: #1B59D7;");
         btnNext.setTextFill(javafx.scene.paint.Color.WHITE);
 
         btnNext.setOnMouseEntered(evt -> btnNext.setUnderline(true));
         btnNext.setOnMouseExited(evt -> btnNext.setUnderline(false));
+
+        txtNumberPage.setFont(new Font(18.0));
+        txtNumberPage.setAlignment(javafx.geometry.Pos.CENTER);
+        txtNumberPage.setMinWidth(15.0);
+        
+        int page = controller.getPage();
+
+        txtNumberPage.setText(String.valueOf(page));
+        
+        expName1.setFont(new Font(24.0));
+        expName1.setPrefHeight(50.0);
+        String name = experience1.getName();
+        if (name == null) {
+        	expName1.setText("----------1");
+        } else {
+        	expName1.setText(name);
+        }
+        
+        expName2.setFont(new Font(24.0));
+        expName2.setPrefHeight(50.0);
+        name = experience2.getName();
+        if (name == null) {
+        	expName2.setText("----------2");
+        } else {
+        	expName2.setText(name);
+        }
+        expName3.setFont(new Font(24.0));
+        expName3.setPrefHeight(50.0);
+        name = experience3.getName();
+        if (name == null) {
+        	expName3.setText("----------3");
+        } else {
+        	expName3.setText(name);
+        }
+        expName4.setFont(new Font(24.0));
+        expName4.setPrefHeight(50.0);
+        name = experience4.getName();
+        if (name == null) {
+        	expName4.setText("----------4");
+        } else {
+        	expName4.setText(name);
+        }
+        
+        expName5.setFont(new Font(24.0));
+        expName5.setPrefHeight(50.0);
+        name = experience5.getName();
+        if (name == null) {
+        	expName5.setText("----------5");
+        } else {
+        	expName5.setText(name);
+        }
+        
+        expName6.setFont(new Font(24.0));
+        expName6.setPrefHeight(50.0);
+        name = experience6.getName();
+        if (name == null) {
+        	expName6.setText("----------6");
+        } else {
+        	expName6.setText(name);
+        }
+
+        expName1.setOnMouseEntered(evt -> expName1.setUnderline(true));
+        expName1.setOnMouseExited(evt -> expName1.setUnderline(false));
+
+        expName2.setOnMouseEntered(evt -> expName2.setUnderline(true));
+        expName2.setOnMouseExited(evt -> expName2.setUnderline(false));
+
+        expName3.setOnMouseEntered(evt -> expName3.setUnderline(true));
+        expName3.setOnMouseExited(evt -> expName3.setUnderline(false));
+
+        expName4.setOnMouseEntered(evt -> expName4.setUnderline(true));
+        expName4.setOnMouseExited(evt -> expName4.setUnderline(false));
+
+        expName5.setOnMouseEntered(evt -> expName5.setUnderline(true));
+        expName5.setOnMouseExited(evt -> expName5.setUnderline(false));
+
+        expName6.setOnMouseEntered(evt -> expName6.setUnderline(true));
+        expName6.setOnMouseExited(evt -> expName6.setUnderline(false));
+
+        expName1.setStyle("-fx-background-color: transparent;");
+        expName2.setStyle("-fx-background-color: transparent;");
+        expName3.setStyle("-fx-background-color: transparent;");
+        expName4.setStyle("-fx-background-color: transparent;");
+        expName5.setStyle("-fx-background-color: transparent;");
+        expName6.setStyle("-fx-background-color: transparent;");
+
+        vBox1.setAlignment(javafx.geometry.Pos.CENTER);
+        vBox1.setSpacing(5.0);
+        vBox1.setPrefWidth(230.0);
+        vBox2.setAlignment(javafx.geometry.Pos.CENTER);
+        vBox2.setSpacing(5.0);
+        vBox2.setPrefWidth(230.0);
+        vBox3.setAlignment(javafx.geometry.Pos.CENTER);
+        vBox3.setSpacing(5.0);
+        vBox3.setPrefWidth(230.0);
+        vBox4.setAlignment(javafx.geometry.Pos.CENTER);
+        vBox4.setSpacing(5.0);
+        vBox4.setPrefWidth(230.0);
+        vBox5.setAlignment(javafx.geometry.Pos.CENTER);
+        vBox5.setSpacing(5.0);
+        vBox5.setPrefWidth(230.0);
+        vBox6.setAlignment(javafx.geometry.Pos.CENTER);
+        vBox6.setSpacing(5.0);
+        vBox6.setPrefWidth(230.0);
         
         vBox.getChildren().add(nameLabel);
         vBox.getChildren().add(userImage);
@@ -251,23 +436,78 @@ public class User2Scene extends HBox{
         getChildren().add(vBox);
 
         vBox0.getChildren().add(experienceLable);
-        hBox2.getChildren().add(imageView1);
-        hBox2.getChildren().add(imageView2);
-        hBox2.getChildren().add(imageView3);
+        vBox1.getChildren().add(imageView1);
+        vBox1.getChildren().add(expName1);
+        hBox2.getChildren().add(vBox1);
+        vBox2.getChildren().add(imageView2);
+        vBox2.getChildren().add(expName2);
+        hBox2.getChildren().add(vBox2);
+        vBox3.getChildren().add(imageView3);
+        vBox3.getChildren().add(expName3);
+        hBox2.getChildren().add(vBox3);
         vBox0.getChildren().add(hBox2);
-        hBox3.getChildren().add(imageView4);
-        hBox3.getChildren().add(imageView5);
-        hBox3.getChildren().add(imageView6);
+        vBox4.getChildren().add(imageView4);
+        vBox4.getChildren().add(expName4);
+        hBox3.getChildren().add(vBox4);
+        vBox5.getChildren().add(imageView5);
+        vBox5.getChildren().add(expName5);
+        hBox3.getChildren().add(vBox5);
+        vBox6.getChildren().add(imageView6);
+        vBox6.getChildren().add(expName6);
+        hBox3.getChildren().add(vBox6);
         vBox0.getChildren().add(hBox3);
+
         hBoxBtn.getChildren().add(btnPrecedent);
+        hBoxBtn.getChildren().add(txtNumberPage);
         hBoxBtn.getChildren().add(btnNext);
         vBox0.getChildren().add(hBoxBtn);
         getChildren().add(vBox0);
+        
+        btnPrecedent.setOnAction(new EventHandler<ActionEvent>(){
+ 			public void handle(ActionEvent event) {
+ 				
+ 				int indice = controller.getIndice();
+ 				
+ 				if (indice > 6) {
+ 					if ((indice%6) == 0) {
+ 	 					indice = indice - 12;
+ 	 					controller.changeExperiences(indice,0);
+ 					} else if ((indice%6) == 1) {
+ 	 	 				indice = indice - 7;
+ 	 					controller.changeExperiences(indice,0);
+ 	 				} else if ((indice%6) == 2){
+ 	 					indice = indice - 8;
+ 	 					controller.changeExperiences(indice,0);
+ 	 				} else if ((indice%6) == 3){
+ 	 					indice = indice - 9;
+ 	 					controller.changeExperiences(indice,0);
+ 	 				} else if ((indice%6) == 4){
+ 	 					indice = indice - 10;
+ 	 					controller.changeExperiences(indice,0);
+ 	 				} else {
+ 	 					indice = indice - 11;
+ 	 					controller.changeExperiences(indice,0);
+ 	 				}
+ 				}
+ 			}
+ 		});
+        
+        btnNext.setOnAction(new EventHandler<ActionEvent>(){
+ 			public void handle(ActionEvent event) {
+ 				
+ 				int indice = controller.getIndice();
+				controller.changeExperiences(indice,0);
+ 				
+ 			}
+ 		});
         
         btnLogout.setOnAction(new EventHandler<ActionEvent>(){
  			public void handle(ActionEvent event) {
  				
  				user.setLogged(false);
+ 				
+ 				controller.setIndice(0);
+ 				controller.setPage(0);
  				
  				controller.changeScene();
  			}
@@ -301,7 +541,7 @@ public class User2Scene extends HBox{
  		});
     }
     
-    public User2Scene(LoginController controller, Owner owner) {
+    public User2Scene(LoginController controller, Owner owner, Structure structure1, Structure structure2, Structure structure3, Structure structure4, Structure structure5, Structure structure6, int structures) {
     	
     	vBox = new VBox();
         nameLabel = new Label();
@@ -310,9 +550,6 @@ public class User2Scene extends HBox{
         hBox0 = new HBox();
         bookedLabel = new Label();
         numBookedLabel = new Label();
-        hBox1 = new HBox();
-        reviewsLabel = new Label();
-        numReviewsLabel = new Label();
         btnLogout = new Button();
 
         vBox0 = new VBox();
@@ -328,6 +565,24 @@ public class User2Scene extends HBox{
         hBoxBtn = new HBox();
         btnPrecedent = new Button();
         btnNext = new Button();
+        txtNumberPage = new Label();
+
+        expName1 = new Button();
+        expName2 = new Button();
+        expName3 = new Button();
+        expName4 = new Button();
+        expName5 = new Button();
+        expName6 = new Button();
+        
+        buttonAddStructure = new Button();
+        hBox1 = new HBox();
+
+        vBox1 = new VBox();
+        vBox2 = new VBox();
+        vBox3 = new VBox();
+        vBox4 = new VBox();
+        vBox5 = new VBox();
+        vBox6 = new VBox();
         
         window = new Stage();
 
@@ -378,26 +633,16 @@ public class User2Scene extends HBox{
         hBox0.setAlignment(javafx.geometry.Pos.CENTER_RIGHT);
         hBox0.setPrefWidth(200.0);
         hBox0.setSpacing(30.0);
-
-        bookedLabel.setText("Booked:");
+        
+        bookedLabel.setText("Structures:");
         bookedLabel.setFont(new Font(36.0));
 
-        numBookedLabel.setText("000");
+        numBookedLabel.setText(String.valueOf(structures));
         numBookedLabel.setFont(new Font(36.0));
+        numBookedLabel.setAlignment(javafx.geometry.Pos.CENTER);
+        numBookedLabel.setMinWidth(66.0);
         HBox.setMargin(numBookedLabel, new Insets(0.0, 55.0, 0.0, 0.0));
         VBox.setMargin(hBox0, new Insets(20.0, 0.0, 0.0, 0.0));
-
-        hBox1.setAlignment(javafx.geometry.Pos.CENTER_RIGHT);
-        hBox1.setPrefWidth(200.0);
-        hBox1.setSpacing(30.0);
-
-        reviewsLabel.setText("Reviews:");
-        reviewsLabel.setFont(new Font(36.0));
-
-        numReviewsLabel.setText("000");
-        numReviewsLabel.setFont(new Font(36.0));
-        HBox.setMargin(numReviewsLabel, new Insets(0.0, 55.0, 0.0, 0.0));
-        VBox.setMargin(hBox1, new Insets(10.0, 0.0, 0.0, 0.0));
 
         btnLogout.setMnemonicParsing(false);
         btnLogout.setStyle("-fx-background-color: transparent;");
@@ -421,49 +666,93 @@ public class User2Scene extends HBox{
 
         hBox2.setAlignment(javafx.geometry.Pos.CENTER);
         hBox2.setPrefHeight(200.0);
-        hBox2.setPrefWidth(682.0);
-        hBox2.setSpacing(20.0);
+        hBox2.setMinWidth(690.0);
+        hBox2.setMaxWidth(690.0);
+        hBox2.setSpacing(50.0);
         
-        imageView1.setFitHeight(180.0);
-        imageView1.setFitWidth(180.0);
+        imageView1.setFitHeight(150.0);
+        imageView1.setFitWidth(150.0);
         imageView1.setPickOnBounds(true);
         imageView1.setPreserveRatio(true);
-        imageView1.setImage(new Image(getClass().getResource("account.jpg").toExternalForm()));
+        
+        //photo = structure1.getImage();
+        
+        if (photo == null) {
+        	imageView1.setImage(new Image(getClass().getResource("strucutre.jpg").toExternalForm()));
+        } else {
+        	imageView1.setImage(photo);
+        }
 
-        imageView2.setFitHeight(180.0);
-        imageView2.setFitWidth(180.0);
+        imageView2.setFitHeight(150.0);
+        imageView2.setFitWidth(150.0);
         imageView2.setPickOnBounds(true);
         imageView2.setPreserveRatio(true);
-        imageView2.setImage(new Image(getClass().getResource("account.jpg").toExternalForm()));
+        
+        //photo = structure2.getImage();
+        
+        if (photo == null) {
+        	imageView2.setImage(new Image(getClass().getResource("strucutre.jpg").toExternalForm()));
+        } else {
+        	imageView2.setImage(photo);
+        }
 
-        imageView3.setFitHeight(180.0);
-        imageView3.setFitWidth(180.0);
+        imageView3.setFitHeight(150.0);
+        imageView3.setFitWidth(150.0);
         imageView3.setPickOnBounds(true);
         imageView3.setPreserveRatio(true);
-        imageView3.setImage(new Image(getClass().getResource("account.jpg").toExternalForm()));
+        
+        //photo = structure3.getImage();
+        
+        if (photo == null) {
+        	imageView3.setImage(new Image(getClass().getResource("strucutre.jpg").toExternalForm()));
+        } else {
+        	imageView3.setImage(photo);
+        }
         
         hBox3.setAlignment(javafx.geometry.Pos.CENTER);
         hBox3.setPrefHeight(200.0);
-        hBox3.setPrefWidth(682.0);
-        hBox3.setSpacing(20.0);
+        hBox3.setMaxWidth(690.0);
+        hBox3.setMinWidth(690.0);
+        hBox3.setSpacing(50.0);
 
-        imageView4.setFitHeight(180.0);
-        imageView4.setFitWidth(180.0);
+        imageView4.setFitHeight(150.0);
+        imageView4.setFitWidth(150.0);
         imageView4.setPickOnBounds(true);
         imageView4.setPreserveRatio(true);
-        imageView4.setImage(new Image(getClass().getResource("account.jpg").toExternalForm()));
+        
+        //photo = structure4.getImage();
+        
+        if (photo == null) {
+        	imageView4.setImage(new Image(getClass().getResource("strucutre.jpg").toExternalForm()));
+        } else {
+        	imageView4.setImage(photo);
+        }
 
-        imageView5.setFitHeight(180.0);
-        imageView5.setFitWidth(180.0);
+        imageView5.setFitHeight(150.0);
+        imageView5.setFitWidth(150.0);
         imageView5.setPickOnBounds(true);
         imageView5.setPreserveRatio(true);
-        imageView5.setImage(new Image(getClass().getResource("account.jpg").toExternalForm()));
+        
+        //photo = structure5.getImage();
+        
+        if (photo == null) {
+        	imageView5.setImage(new Image(getClass().getResource("strucutre.jpg").toExternalForm()));
+        } else {
+        	imageView5.setImage(photo);
+        }
 
-        imageView6.setFitHeight(180.0);
-        imageView6.setFitWidth(180.0);
+        imageView6.setFitHeight(150.0);
+        imageView6.setFitWidth(150.0);
         imageView6.setPickOnBounds(true);
         imageView6.setPreserveRatio(true);
-        imageView6.setImage(new Image(getClass().getResource("account.jpg").toExternalForm()));
+        
+        //photo = structure6.getImage();
+        
+        if (photo == null) {
+        	imageView6.setImage(new Image(getClass().getResource("strucutre.jpg").toExternalForm()));
+        } else {
+        	imageView6.setImage(photo);
+        }
 
         hBoxBtn.setAlignment(javafx.geometry.Pos.CENTER);
         hBoxBtn.setPrefHeight(63.0);
@@ -472,7 +761,7 @@ public class User2Scene extends HBox{
         
         btnPrecedent.setMnemonicParsing(false);
         btnPrecedent.setText("<");
-        btnPrecedent.setFont(new Font(18.0));
+        btnPrecedent.setFont(new Font(24.0));
         btnPrecedent.setStyle("-fx-background-color: #1B59D7;");
         btnPrecedent.setTextFill(javafx.scene.paint.Color.WHITE);
 
@@ -481,12 +770,131 @@ public class User2Scene extends HBox{
 
         btnNext.setMnemonicParsing(false);
         btnNext.setText(">");
-        btnNext.setFont(new Font(18.0));
+        btnNext.setFont(new Font(24.0));
         btnNext.setStyle("-fx-background-color: #1B59D7;");
         btnNext.setTextFill(javafx.scene.paint.Color.WHITE);
 
         btnNext.setOnMouseEntered(evt -> btnNext.setUnderline(true));
         btnNext.setOnMouseExited(evt -> btnNext.setUnderline(false));
+
+        txtNumberPage.setFont(new Font(18.0));
+        txtNumberPage.setAlignment(javafx.geometry.Pos.CENTER);
+        txtNumberPage.setMinWidth(15.0);
+        
+        int page = controller.getPage();
+
+        txtNumberPage.setText(String.valueOf(page));
+        
+        expName1.setFont(new Font(24.0));
+        expName1.setPrefHeight(50.0);
+        String name = structure1.getName();
+        if (name == null) {
+        	expName1.setText("----------1");
+        } else {
+        	expName1.setText(name);
+        }
+        
+        expName2.setFont(new Font(24.0));
+        expName2.setPrefHeight(50.0);
+        name = structure2.getName();
+        if (name == null) {
+        	expName2.setText("----------2");
+        } else {
+        	expName2.setText(name);
+        }
+        expName3.setFont(new Font(24.0));
+        expName3.setPrefHeight(50.0);
+        name = structure3.getName();
+        if (name == null) {
+        	expName3.setText("----------3");
+        } else {
+        	expName3.setText(name);
+        }
+        expName4.setFont(new Font(24.0));
+        expName4.setPrefHeight(50.0);
+        name = structure4.getName();
+        if (name == null) {
+        	expName4.setText("----------4");
+        } else {
+        	expName4.setText(name);
+        }
+        
+        expName5.setFont(new Font(24.0));
+        expName5.setPrefHeight(50.0);
+        name = structure5.getName();
+        if (name == null) {
+        	expName5.setText("----------5");
+        } else {
+        	expName5.setText(name);
+        }
+        
+        expName6.setFont(new Font(24.0));
+        expName6.setPrefHeight(50.0);
+        name = structure6.getName();
+        if (name == null) {
+        	expName6.setText("----------6");
+        } else {
+        	expName6.setText(name);
+        }
+       
+		buttonAddStructure.setMnemonicParsing(false);
+        buttonAddStructure.setText("Add structure");
+        buttonAddStructure.setFont(new Font(24.0));
+        buttonAddStructure.setStyle("-fx-background-color: #1B59D7;");
+        buttonAddStructure.setTextFill(javafx.scene.paint.Color.WHITE);
+
+        buttonAddStructure.setOnMouseEntered(evt -> buttonAddStructure.setUnderline(true));
+        buttonAddStructure.setOnMouseExited(evt -> buttonAddStructure.setUnderline(false));
+
+        hBox1.setAlignment(javafx.geometry.Pos.CENTER);
+        hBox1.setPrefWidth(200.0);
+        hBox1.setSpacing(30.0);
+        
+        VBox.setMargin(hBox1, new Insets(10.0, 0.0, 0.0, 0.0));
+
+        expName1.setOnMouseEntered(evt -> expName1.setUnderline(true));
+        expName1.setOnMouseExited(evt -> expName1.setUnderline(false));
+
+        expName2.setOnMouseEntered(evt -> expName2.setUnderline(true));
+        expName2.setOnMouseExited(evt -> expName2.setUnderline(false));
+
+        expName3.setOnMouseEntered(evt -> expName3.setUnderline(true));
+        expName3.setOnMouseExited(evt -> expName3.setUnderline(false));
+
+        expName4.setOnMouseEntered(evt -> expName4.setUnderline(true));
+        expName4.setOnMouseExited(evt -> expName4.setUnderline(false));
+
+        expName5.setOnMouseEntered(evt -> expName5.setUnderline(true));
+        expName5.setOnMouseExited(evt -> expName5.setUnderline(false));
+
+        expName6.setOnMouseEntered(evt -> expName6.setUnderline(true));
+        expName6.setOnMouseExited(evt -> expName6.setUnderline(false));
+
+        expName1.setStyle("-fx-background-color: transparent;");
+        expName2.setStyle("-fx-background-color: transparent;");
+        expName3.setStyle("-fx-background-color: transparent;");
+        expName4.setStyle("-fx-background-color: transparent;");
+        expName5.setStyle("-fx-background-color: transparent;");
+        expName6.setStyle("-fx-background-color: transparent;");
+
+        vBox1.setAlignment(javafx.geometry.Pos.CENTER);
+        vBox1.setSpacing(5.0);
+        vBox1.setPrefWidth(230.0);
+        vBox2.setAlignment(javafx.geometry.Pos.CENTER);
+        vBox2.setSpacing(5.0);
+        vBox2.setPrefWidth(230.0);
+        vBox3.setAlignment(javafx.geometry.Pos.CENTER);
+        vBox3.setSpacing(5.0);
+        vBox3.setPrefWidth(230.0);
+        vBox4.setAlignment(javafx.geometry.Pos.CENTER);
+        vBox4.setSpacing(5.0);
+        vBox4.setPrefWidth(230.0);
+        vBox5.setAlignment(javafx.geometry.Pos.CENTER);
+        vBox5.setSpacing(5.0);
+        vBox5.setPrefWidth(230.0);
+        vBox6.setAlignment(javafx.geometry.Pos.CENTER);
+        vBox6.setSpacing(5.0);
+        vBox6.setPrefWidth(230.0);
         
         vBox.getChildren().add(nameLabel);
         vBox.getChildren().add(userImage);
@@ -494,30 +902,90 @@ public class User2Scene extends HBox{
         hBox0.getChildren().add(bookedLabel);
         hBox0.getChildren().add(numBookedLabel);
         vBox.getChildren().add(hBox0);
-        hBox1.getChildren().add(reviewsLabel);
-        hBox1.getChildren().add(numReviewsLabel);
+        hBox1.getChildren().add(buttonAddStructure);
         vBox.getChildren().add(hBox1);
         vBox.getChildren().add(btnLogout);
         getChildren().add(vBox);
 
         vBox0.getChildren().add(experienceLable);
-        hBox2.getChildren().add(imageView1);
-        hBox2.getChildren().add(imageView2);
-        hBox2.getChildren().add(imageView3);
+        vBox1.getChildren().add(imageView1);
+        vBox1.getChildren().add(expName1);
+        hBox2.getChildren().add(vBox1);
+        vBox2.getChildren().add(imageView2);
+        vBox2.getChildren().add(expName2);
+        hBox2.getChildren().add(vBox2);
+        vBox3.getChildren().add(imageView3);
+        vBox3.getChildren().add(expName3);
+        hBox2.getChildren().add(vBox3);
         vBox0.getChildren().add(hBox2);
-        hBox3.getChildren().add(imageView4);
-        hBox3.getChildren().add(imageView5);
-        hBox3.getChildren().add(imageView6);
+        vBox4.getChildren().add(imageView4);
+        vBox4.getChildren().add(expName4);
+        hBox3.getChildren().add(vBox4);
+        vBox5.getChildren().add(imageView5);
+        vBox5.getChildren().add(expName5);
+        hBox3.getChildren().add(vBox5);
+        vBox6.getChildren().add(imageView6);
+        vBox6.getChildren().add(expName6);
+        hBox3.getChildren().add(vBox6);
         vBox0.getChildren().add(hBox3);
+
         hBoxBtn.getChildren().add(btnPrecedent);
+        hBoxBtn.getChildren().add(txtNumberPage);
         hBoxBtn.getChildren().add(btnNext);
         vBox0.getChildren().add(hBoxBtn);
         getChildren().add(vBox0);
+        
+        buttonAddStructure.setOnAction(new EventHandler<ActionEvent>(){
+ 			public void handle(ActionEvent event) {
+ 				controller.setStructure(owner.getUsername());
+ 			}
+ 		});
+        
+        btnPrecedent.setOnAction(new EventHandler<ActionEvent>(){
+ 			public void handle(ActionEvent event) {
+ 				
+ 				int indice = controller.getIndice();
+ 				
+ 				if (indice > 6) {
+ 					if ((indice%6) == 0) {
+ 	 					indice = indice - 12;
+ 	 					controller.changeExperiences(indice,1);
+ 					} else if ((indice%6) == 1) {
+ 	 	 				indice = indice - 7;
+ 	 					controller.changeExperiences(indice,1);
+ 	 				} else if ((indice%6) == 2){
+ 	 					indice = indice - 8;
+ 	 					controller.changeExperiences(indice,1);
+ 	 				} else if ((indice%6) == 3){
+ 	 					indice = indice - 9;
+ 	 					controller.changeExperiences(indice,1);
+ 	 				} else if ((indice%6) == 4){
+ 	 					indice = indice - 10;
+ 	 					controller.changeExperiences(indice,1);
+ 	 				} else {
+ 	 					indice = indice - 11;
+ 	 					controller.changeExperiences(indice,1);
+ 	 				}
+ 				}
+ 			}
+ 		});
+        
+        btnNext.setOnAction(new EventHandler<ActionEvent>(){
+ 			public void handle(ActionEvent event) {
+ 				
+ 				int indice = controller.getIndice();
+				controller.changeExperiences(indice,1);
+ 				
+ 			}
+ 		});
         
         btnLogout.setOnAction(new EventHandler<ActionEvent>(){
  			public void handle(ActionEvent event) {
  				
  				owner.setLogged(false);
+ 				
+ 				controller.setIndice(0);
+ 				controller.setPage(0);
  				
  				controller.changeScene();
  			}

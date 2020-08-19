@@ -157,6 +157,7 @@ public class ReservationDao {
 				return reservation;
 			}
 			reservation.setReservationId(id);
+			rs.close();
 			
     	} finally {
     		

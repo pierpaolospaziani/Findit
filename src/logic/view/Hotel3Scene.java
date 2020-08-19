@@ -145,7 +145,7 @@ public class Hotel3Scene extends VBox{
         
         btnBack.setMnemonicParsing(false);
         btnBack.setPrefHeight(39.0);
-        btnBack.setPrefWidth(118.0);
+        btnBack.setMinWidth(118.0);
         btnBack.setStyle("-fx-background-color: #1B59D7;");
         btnBack.setText("<< back");
         btnBack.setTextFill(javafx.scene.paint.Color.WHITE);
@@ -161,6 +161,7 @@ public class Hotel3Scene extends VBox{
 
         btnBook.setMnemonicParsing(false);
         btnBook.setStyle("-fx-background-color: #1B59D7;");
+        btnBook.setPrefHeight(39.0);
         btnBook.setText("Book");
         btnBook.setTextFill(javafx.scene.paint.Color.WHITE);
         btnBook.setFont(new Font(24.0));
@@ -191,7 +192,7 @@ public class Hotel3Scene extends VBox{
         btnReview.setOnAction(new EventHandler<ActionEvent>(){
  			public void handle(ActionEvent event) {
  				
- 				
+ 				controller.viewReviews();
  			}
  		});
         

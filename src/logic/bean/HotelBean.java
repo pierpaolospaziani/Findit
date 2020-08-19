@@ -3,7 +3,9 @@ package logic.bean;
 import java.time.LocalDate;
 
 public class HotelBean {
-
+	
+	private String name;
+	private String address;
 	private String city;
 	/*
 	 * NON DOVREBBERO SERVIRE PIU
@@ -269,6 +271,7 @@ public class HotelBean {
 	}
 	
 	public String getType() {
+		setType();
 		return type;
 	}
 
@@ -284,5 +287,21 @@ public class HotelBean {
 		} else {
 			type = null;
 		}
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 }
