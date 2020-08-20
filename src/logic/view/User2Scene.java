@@ -538,6 +538,49 @@ public class User2Scene extends HBox{
  	            }
  			}
  		});
+        
+        expName1.setOnAction(new EventHandler<ActionEvent>(){
+ 			public void handle(ActionEvent event) {
+ 				
+ 				new WriteReviewWindow();
+ 				
+ 			}
+ 		});
+        
+        expName2.setOnAction(new EventHandler<ActionEvent>(){
+ 			public void handle(ActionEvent event) {
+
+ 				new WriteReviewWindow();
+ 			}
+ 		});
+        
+        expName3.setOnAction(new EventHandler<ActionEvent>(){
+ 			public void handle(ActionEvent event) {
+
+ 				new WriteReviewWindow();
+ 			}
+ 		});
+        
+        expName4.setOnAction(new EventHandler<ActionEvent>(){
+ 			public void handle(ActionEvent event) {
+
+ 				new WriteReviewWindow();
+ 			}
+ 		});
+        
+        expName5.setOnAction(new EventHandler<ActionEvent>(){
+ 			public void handle(ActionEvent event) {
+
+ 				new WriteReviewWindow();
+ 			}
+ 		});
+        
+        expName6.setOnAction(new EventHandler<ActionEvent>(){
+ 			public void handle(ActionEvent event) {
+
+ 				new WriteReviewWindow();
+ 			}
+ 		});
     }
     
     public User2Scene(LoginController controller, Owner owner, Structure structure1, Structure structure2, Structure structure3, Structure structure4, Structure structure5, Structure structure6, int structures) {

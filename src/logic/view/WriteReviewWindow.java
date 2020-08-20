@@ -27,8 +27,6 @@ public class WriteReviewWindow {
     protected ChoiceBox<Integer> choiceBoxVote;
     protected Button btnSubmit;
     protected Stage window;
-    
-  
 
     public WriteReviewWindow() {
 
@@ -65,6 +63,7 @@ public class WriteReviewWindow {
         textAreaReview.setFont(new Font(18.0));
         textAreaReview.setWrapText(true);
         textAreaReview.setMaxWidth(452.0);
+        
         hBox.setAlignment(javafx.geometry.Pos.CENTER_RIGHT);
         hBox.setPrefHeight(86.0);
         hBox.setPrefWidth(500.0);
