@@ -170,7 +170,13 @@ public class RoomDao {
 			room.setRoomId(roomId);
 			rs1.close();
 			
-			room.setBeds(beds);
+	    	String bedQuery = "select beds from " + roomsTable + " where id = '" + roomId + "'";
+	    	
+	    	ResultSet rs3 = st.executeQuery(bedQuery);
+			rs3.next();
+			int bed = rs3.getInt("beds");
+			room.setBeds(bed);
+			rs3.close();
 			
 	    	String priceQuery = "select price from " + roomsTable + " where id = '" + roomId + "'";
 	    	
@@ -188,5 +194,39 @@ public class RoomDao {
     	}
     	
 		return room;
+    }
+    
+    public static int getRoomsNumber(String roomsTable) throws Exception {
+    	
+    	String numQuery = "select count(*) from " + roomsTable;
+		
+		Connection con = null;
+		Statement st = null;
+		
+    	try {
+    		Class.forName(DRIVER_CLASS_NAME);
+    		try{
+				con = DriverManager.getConnection(url,name,pass);
+			} catch(SQLException e){
+		        System.out.println("Couldn't connect: exit.");
+		        System.exit(1);
+		        }
+			
+			st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+	                ResultSet.CONCUR_READ_ONLY);
+				    	
+			ResultSet rs = st.executeQuery(numQuery);
+			rs.next();
+			int i = rs.getInt("count(*)");
+			rs.close();
+			
+			return i;
+			
+    	} finally {
+    		
+    		st.close();
+    		con.close();
+    		
+    	}
     }
 }

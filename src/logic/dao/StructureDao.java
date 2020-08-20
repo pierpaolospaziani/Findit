@@ -51,7 +51,6 @@ public class StructureDao {
     public static Structure getStructure(String structureTable, int index) throws Exception{
 
 		String nameQuery = "select name from " + structureTable;
-		String typeQuery = "select type from " + structureTable;
 
 
 		Structure structure = new Structure();
@@ -87,12 +86,6 @@ public class StructureDao {
 			String nome = rs.getNString("name");
 			structure.setName(nome);
 			rs.close();
-			
-			ResultSet rs1 = st.executeQuery(typeQuery);
-			rs1.next();
-			String type = rs1.getNString("type");
-			structure.setType(type);
-			rs1.close();
 			
     	} finally {
     		

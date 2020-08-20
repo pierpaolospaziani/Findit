@@ -174,6 +174,7 @@ public class Hotel2Scene extends VBox{
         	btnHotel1.setText("Hotel not found!");
         	labelStar1.setText("");
         	labelPrezzo1.setText("");
+        	bedsHotel1.setText("");
         } else {
             btnHotel1.setOnMouseEntered(evt -> btnHotel1.setUnderline(true));
             btnHotel1.setOnMouseExited(evt -> btnHotel1.setUnderline(false));
@@ -240,6 +241,7 @@ public class Hotel2Scene extends VBox{
         	btnHotel2.setText("Hotel not found!");
         	labelStar2.setText("");
         	labelPrezzo2.setText("");
+        	bedsHotel2.setText("");
         } else {
             btnHotel2.setOnMouseEntered(evt -> btnHotel2.setUnderline(true));
             btnHotel2.setOnMouseExited(evt -> btnHotel2.setUnderline(false));
@@ -305,6 +307,7 @@ public class Hotel2Scene extends VBox{
         	btnHotel3.setText("Hotel not found!");
         	labelStar3.setText("");
         	labelPrezzo3.setText("");
+        	bedsHotel3.setText("");
         } else {
             btnHotel3.setOnMouseEntered(evt -> btnHotel3.setUnderline(true));
             btnHotel3.setOnMouseExited(evt -> btnHotel3.setUnderline(false));

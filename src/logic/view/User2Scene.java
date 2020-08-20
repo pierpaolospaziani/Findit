@@ -116,7 +116,6 @@ public class User2Scene extends HBox{
 
         //Block events to other windows
         window.initModality(Modality.APPLICATION_MODAL);
-        window.setTitle("Login");
         window.setMinWidth(250);
         
         setAlignment(javafx.geometry.Pos.TOP_LEFT);
@@ -588,7 +587,6 @@ public class User2Scene extends HBox{
 
         //Block events to other windows
         window.initModality(Modality.APPLICATION_MODAL);
-        window.setTitle("Login");
         window.setMinWidth(250);
         
         setAlignment(javafx.geometry.Pos.TOP_LEFT);
@@ -993,6 +991,7 @@ public class User2Scene extends HBox{
         
         btnChangeImage.setOnAction(new EventHandler<ActionEvent>(){
  			public void handle(ActionEvent event) {
+ 				
  				FileChooser fileChooser = new FileChooser();
  				
  				window.setTitle("Select Image");
@@ -1014,6 +1013,49 @@ public class User2Scene extends HBox{
  	                
  	                userImage.setImage(image);
  	            }
+ 			}
+ 		});
+        
+        expName1.setOnAction(new EventHandler<ActionEvent>(){
+ 			public void handle(ActionEvent event) {
+ 				
+ 				controller.openStructureWindow(structure1.getName());
+ 				
+ 			}
+ 		});
+        
+        expName2.setOnAction(new EventHandler<ActionEvent>(){
+ 			public void handle(ActionEvent event) {
+
+ 				controller.openStructureWindow(structure2.getName());
+ 			}
+ 		});
+        
+        expName3.setOnAction(new EventHandler<ActionEvent>(){
+ 			public void handle(ActionEvent event) {
+
+ 				controller.openStructureWindow(structure3.getName());
+ 			}
+ 		});
+        
+        expName4.setOnAction(new EventHandler<ActionEvent>(){
+ 			public void handle(ActionEvent event) {
+
+ 				controller.openStructureWindow(structure4.getName());
+ 			}
+ 		});
+        
+        expName5.setOnAction(new EventHandler<ActionEvent>(){
+ 			public void handle(ActionEvent event) {
+
+ 				controller.openStructureWindow(structure5.getName());
+ 			}
+ 		});
+        
+        expName6.setOnAction(new EventHandler<ActionEvent>(){
+ 			public void handle(ActionEvent event) {
+
+ 				controller.openStructureWindow(structure6.getName());
  			}
  		});
     }

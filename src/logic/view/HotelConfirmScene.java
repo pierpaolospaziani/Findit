@@ -236,6 +236,12 @@ public class HotelConfirmScene extends VBox{
 		 				btnConfirm.setDisable(true);
 	 					controller.setStep(1);
 		 				
+	 				} else {
+
+		 		        confirmLabel.setStyle("-fx-text-fill: red;");
+		 				confirmLabel.setText("Log as User to book!");
+		 				
+		 				btnConfirm.setDisable(true);
 	 				}
 	 			}
 	 		});

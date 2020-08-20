@@ -1,20 +1,25 @@
 package logic.controller;
 
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import logic.bean.HotelBean;
 import logic.bean.LoginBean;
 import logic.dao.ExperienceDao;
 import logic.dao.HotelDao;
 import logic.dao.OwnerDao;
+import logic.dao.RoomDao;
 import logic.dao.StructureDao;
 import logic.model.Experience;
+import logic.model.Hotel;
 import logic.model.Login;
 import logic.model.Owner;
 import logic.model.Structure;
 import logic.model.User;
+import logic.view.AddRoomScene;
 import logic.view.HotelRegistrationScene;
 import logic.view.LogWindow;
 import logic.view.ProfileScene;
+import logic.view.StructureScene;
 import logic.view.User2Scene;
 
 
@@ -121,7 +126,6 @@ public class LoginController {
 	public void openLogWindow() {
 		window = new LogWindow();
 		window.Log(this,bean);
-		
 	}
 	
 	public boolean openRegisterWindow() {
@@ -307,7 +311,39 @@ public class LoginController {
 		}
 	}
 	
+	public void openStructureWindow(String structure) {
+		
+		try {
+			
+			Hotel hotel = HotelDao.getHotel(structure);
+			new StructureScene(this,hotel);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
+	public void addRoomScene(Stage window, String roomsTable, String structure) {
+		
+		new AddRoomScene(window,this,roomsTable,structure);
+		
+	}
+	
+	public boolean addRoom(String roomsTable, int id, int beds, int price) {
+		
+		Boolean setted = null;
+		try {
+			setted = RoomDao.setRoom(roomsTable, id, beds, price);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		if (setted) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 	public int getPage() {
 		return page;

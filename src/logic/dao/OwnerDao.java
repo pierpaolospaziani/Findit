@@ -171,7 +171,7 @@ public class OwnerDao {
 							structuresTable = variableStructuresTable;
 
 					    	String insertQuery = "insert into owners value ('" + username + "','" + password + "','" + structuresTable + "','" + null + "')";
-					    	String createStructureQuery = "create table " + structuresTable + " (name varchar(20),type varchar(20))";
+					    	String createStructureQuery = "create table " + structuresTable + " (name varchar(20))";
 							
 							st.executeUpdate(insertQuery);
 
@@ -243,7 +243,7 @@ public class OwnerDao {
     		st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
 	                ResultSet.CONCUR_READ_ONLY);
     		
-        	String insertQuery = "insert into " + table + " value ('" + structure + "','hotel')";
+        	String insertQuery = "insert into " + table + " value ('" + structure + "')";
 		
 			st.executeUpdate(insertQuery);
 			
