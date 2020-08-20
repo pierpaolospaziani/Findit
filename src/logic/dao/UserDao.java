@@ -19,8 +19,8 @@ import javafx.scene.image.Image;
 import logic.model.User;
 
 public class UserDao {
-	private static String name = "root";
-    private static String pass = "Pier1997";
+	private static String name = "progettoFindit";
+    private static String pass = "passwfindit2020";
     private static String url = "jdbc:mysql://localhost:3306/findit?useTimezone=true&serverTimezone=UTC";
     private static String DRIVER_CLASS_NAME = "com.mysql.cj.jdbc.Driver";
     

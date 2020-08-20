@@ -9,8 +9,8 @@ import java.sql.Statement;
 import logic.model.Room;
 
 public class RoomDao {
-	private static String name = "root";
-    private static String pass = "Pier1997";
+	private static String name = "progettoFindit";
+    private static String pass = "passwfindit2020";
     private static String url = "jdbc:mysql://localhost:3306/findit?useTimezone=true&serverTimezone=UTC";
     private static String DRIVER_CLASS_NAME = "com.mysql.cj.jdbc.Driver";
     
