@@ -10,7 +10,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import logic.controller.LoginController;
+import logic.controller.ProfileController;
 import logic.dao.RoomDao;
 import logic.model.Hotel;
 
@@ -21,24 +21,23 @@ public class StructureScene {
     protected static VBox vBox2;
     protected static Stage window;
     protected Label label1;
-    protected Label label2;
     protected Button btnAddRoom;
     protected Button btnViewReviews;
     protected Button btnOpenAgenda;
     
     protected Button btnAddDescription;
 
-    public StructureScene(LoginController controller, Hotel hotel) {
+    public StructureScene(ProfileController profileController, Hotel hotel) {
 
 		hBox = new HBox();
 		vBox1 = new VBox();
 		vBox2 = new VBox();
         window = new Stage();
         label1 = new Label();
-        label2 = new Label();
         btnAddRoom = new Button();
         btnViewReviews = new Button();
         btnOpenAgenda = new Button();
+        btnAddDescription = new Button();
 
         //Block events to other windows
         window.initModality(Modality.APPLICATION_MODAL);
@@ -93,11 +92,21 @@ public class StructureScene {
 
         btnOpenAgenda.setOnMouseEntered(evt -> btnOpenAgenda.setUnderline(true));
         btnOpenAgenda.setOnMouseExited(evt -> btnOpenAgenda.setUnderline(false));
+        
+        btnAddDescription.setMnemonicParsing(false);
+        btnAddDescription.setText("Add Description");
+        btnAddDescription.setFont(new Font(24.0));
+        btnAddDescription.setStyle("-fx-background-color: #1B59D7;");
+        btnAddDescription.setTextFill(javafx.scene.paint.Color.WHITE);
+
+        btnAddDescription.setOnMouseEntered(evt -> btnAddDescription.setUnderline(true));
+        btnAddDescription.setOnMouseExited(evt -> btnAddDescription.setUnderline(false));
 
         vBox1.getChildren().add(label1);
         vBox1.getChildren().add(btnAddRoom);
         vBox2.getChildren().add(btnViewReviews);
         vBox2.getChildren().add(btnOpenAgenda);
+        vBox2.getChildren().add(btnAddDescription);
         hBox.getChildren().add(vBox1);
         hBox.getChildren().add(vBox2);
 
@@ -108,11 +117,19 @@ public class StructureScene {
         btnAddRoom.setOnAction(new EventHandler<ActionEvent>(){
  			public void handle(ActionEvent event) {
  				
- 				controller.addRoomScene(window,hotel.getRooms(),hotel.getName());
+ 				profileController.addRoomScene(window,hotel.getRooms(),hotel.getName());
  				
  			}
  		});
         
-        window.showAndWait();
+        btnAddDescription.setOnAction(new EventHandler<ActionEvent>(){
+ 			public void handle(ActionEvent event) {
+ 				
+ 				profileController.addDescriptionScene(window,hotel.getName());
+ 				
+ 			}
+ 		});
+        
+        window.show();
     }
 }

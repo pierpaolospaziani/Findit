@@ -9,7 +9,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
-import logic.controller.LoginController;
+import logic.controller.ProfileController;
 import logic.model.User;
 
 public class ProfileScene extends VBox{
@@ -35,7 +35,7 @@ public class ProfileScene extends VBox{
     protected boolean isLogged = false;
     
     // manca il bottone come argomento per il cambio nome
-    public ProfileScene(LoginController controller) {
+    public ProfileScene(ProfileController controller) {
 
     	profileHBox = new HBox();
         profileVBox0 = new VBox();

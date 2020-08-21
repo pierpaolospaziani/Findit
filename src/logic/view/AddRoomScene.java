@@ -11,7 +11,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import logic.controller.LoginController;
+import logic.controller.ProfileController;
 
 public class AddRoomScene {
 	
@@ -27,7 +27,7 @@ public class AddRoomScene {
     protected TextField tf3;
     protected Button button;
 
-	public AddRoomScene(Stage window, LoginController controller, String roomsTable, String structure) {
+	public AddRoomScene(Stage window, ProfileController controller, String roomsTable, String structure) {
 		
 		vBox = new VBox();
         hBox1 = new HBox();

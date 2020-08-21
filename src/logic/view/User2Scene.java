@@ -15,7 +15,7 @@ import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import logic.controller.LoginController;
+import logic.controller.ProfileController;
 import logic.dao.OwnerDao;
 import logic.dao.UserDao;
 import logic.model.Experience;
@@ -69,7 +69,7 @@ public class User2Scene extends HBox{
 
     protected static Stage window;
     
-    public User2Scene(LoginController controller, User user, Experience experience1, Experience experience2, Experience experience3, Experience experience4, Experience experience5, Experience experience6, int booked, int review) {
+    public User2Scene(ProfileController controller, User user, Experience experience1, Experience experience2, Experience experience3, Experience experience4, Experience experience5, Experience experience6, int booked, int review) {
     	
     	vBox = new VBox();
         nameLabel = new Label();
@@ -583,7 +583,7 @@ public class User2Scene extends HBox{
  		});
     }
     
-    public User2Scene(LoginController controller, Owner owner, Structure structure1, Structure structure2, Structure structure3, Structure structure4, Structure structure5, Structure structure6, int structures) {
+    public User2Scene(ProfileController controller, Owner owner, Structure structure1, Structure structure2, Structure structure3, Structure structure4, Structure structure5, Structure structure6, int structures) {
     	
     	vBox = new VBox();
         nameLabel = new Label();
@@ -701,7 +701,7 @@ public class User2Scene extends HBox{
         vBox0.setPrefWidth(700.0);
         vBox0.setAlignment(javafx.geometry.Pos.TOP_CENTER);
         
-        experienceLable.setText("Here are your experiences!");
+        experienceLable.setText("Here are your structures!");
         experienceLable.setFont(new Font(36.0));
         VBox.setMargin(experienceLable, new Insets(20.0, 0.0, 0.0, 0.0));
 

@@ -4,6 +4,8 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Separator;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -28,7 +30,8 @@ public class Hotel3Scene extends VBox{
     protected VBox vBoxReview;
     protected Button btnReview;
     protected VBox vBoxDescription;
-    protected Text textDescription;
+    protected Label textDescription;
+    protected ScrollPane scrollPane;
     protected HBox hBoxBtn;
     protected Button btnBack;
     protected Button btnBook;
@@ -48,7 +51,8 @@ public class Hotel3Scene extends VBox{
         vBoxReview = new VBox();
         btnReview = new Button();
         vBoxDescription = new VBox();
-        textDescription = new Text();
+        textDescription = new Label();
+        scrollPane = new ScrollPane();
         hBoxBtn = new HBox();
         btnBack = new Button();
         btnBook = new Button();
@@ -126,12 +130,21 @@ public class Hotel3Scene extends VBox{
         vBoxDescription.setAlignment(javafx.geometry.Pos.TOP_CENTER);
         vBoxDescription.setMinHeight(276.0);
         vBoxDescription.setPrefWidth(841.0);
+        vBoxDescription.setPadding(new Insets(15.0, 0.0, 15.0, 0.0));
 
-        textDescription.setStrokeType(javafx.scene.shape.StrokeType.OUTSIDE);
-        textDescription.setStrokeWidth(0.0);
-        textDescription.setText("Breve descrizione dell'hotel");
+        textDescription.setText(hotel.getDescription());
+        textDescription.setAlignment(javafx.geometry.Pos.TOP_CENTER);
+        textDescription.setWrapText(true);
         textDescription.setFont(new Font(24.0));
-        vBoxDescription.setPadding(new Insets(30.0, 0.0, 0.0, 0.0));
+        textDescription.setMaxWidth(700.0);
+        textDescription.setMinHeight(244.0);
+        textDescription.setStyle("-fx-background-color: white;");
+        
+        scrollPane.setContent(textDescription);
+        scrollPane.setMaxWidth(700.0);
+        scrollPane.setPrefHeight(275.0);
+        scrollPane.setFitToWidth(true);
+        scrollPane.setStyle("-fx-background-color: white;");
 
         hBoxBtn.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
         hBoxBtn.setPrefHeight(75.0);
@@ -179,7 +192,7 @@ public class Hotel3Scene extends VBox{
         vBoxReview.getChildren().add(btnReview);
         hBoxHotelName.getChildren().add(vBoxReview);
         vBox.getChildren().add(hBoxHotelName);
-        vBoxDescription.getChildren().add(textDescription);
+        vBoxDescription.getChildren().add(scrollPane);
         vBox.getChildren().add(vBoxDescription);
         hBoxBtn.getChildren().add(separatorBtnBack);
         hBoxBtn.getChildren().add(btnBack);

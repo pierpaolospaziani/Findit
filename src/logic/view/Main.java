@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 import logic.controller.EventsController;
 import logic.controller.HomeController;
 import logic.controller.HotelController;
-import logic.controller.LoginController;
+import logic.controller.ProfileController;
 import logic.controller.MapController;
 import logic.controller.RestaurantsController;
 
@@ -31,7 +31,7 @@ public class Main extends Application{
 		RestaurantsController restaurantsController = RestaurantsController.getIstance(scenePane);
 		EventsController eventsController = EventsController.getIstance(scenePane);
     	MapController mapController = new MapController();
-		LoginController loginController = LoginController.getIstance(scenePane);
+		ProfileController loginController = ProfileController.getIstance(scenePane);
     	
     	baseScene = new MainMenu(scenePane,homeController,hotelController,restaurantsController,eventsController,mapController,loginController);
 

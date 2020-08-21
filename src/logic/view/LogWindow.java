@@ -16,7 +16,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import logic.bean.LoginBean;
-import logic.controller.LoginController;
+import logic.controller.ProfileController;
 
 public class LogWindow {
     
@@ -40,7 +40,7 @@ public class LogWindow {
     
     static boolean isRegistred = false;
 
-	public void Log(LoginController controller, LoginBean bean) {
+	public void Log(ProfileController controller, LoginBean bean) {
 		
 		loginScene = new VBox();
         loginHBox = new HBox();
@@ -81,8 +81,10 @@ public class LogWindow {
         
         if (isRegistred == true) {
             label.setText("Registration completed, proceed with Login!");
+            label.setStyle("-fx-text-fill: green;");
         } else {
             label.setText("Insert Username and Password");
+            label.setStyle("-fx-text-fill: black;");
         }
         label.setFont(new Font(24.0));
         VBox.setMargin(label, new Insets(15.0, 0.0, 0.0, 0.0));
@@ -152,7 +154,7 @@ public class LogWindow {
         window.showAndWait();
 	}
 	
-	public boolean Register(LoginController controller, LoginBean bean) {
+	public boolean Register(ProfileController controller, LoginBean bean) {
 		
 		loginScene = new VBox();
         loginHBox = new HBox();

@@ -10,7 +10,7 @@ public class Login {
 	
 	public Login() {
 		userLoggato = User.getIstance();
-		ownerLoggato = new Owner();
+		ownerLoggato = Owner.getIstance();
 	}
 	
 	//ritorna un boolean: true se la registrazione è avvenuta	

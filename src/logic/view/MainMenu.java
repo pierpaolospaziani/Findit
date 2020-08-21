@@ -10,7 +10,7 @@ import javafx.scene.text.Font;
 import logic.controller.EventsController;
 import logic.controller.HomeController;
 import logic.controller.HotelController;
-import logic.controller.LoginController;
+import logic.controller.ProfileController;
 import logic.controller.MapController;
 import logic.controller.RestaurantsController;
 
@@ -37,7 +37,7 @@ public class MainMenu extends HBox{
 			RestaurantsController restaurantsController,
 			EventsController eventsController,
 			MapController mapController,
-			LoginController profileController){
+			ProfileController profileController){
 		
 		buttonFindit = new Button();
         baseHBox = new HBox();

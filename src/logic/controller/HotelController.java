@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import javafx.scene.layout.AnchorPane;
 import logic.bean.HotelBean;
 import logic.model.Hotel;
+import logic.model.Owner;
 import logic.dao.HotelDao;
 import logic.model.Reservation;
 import logic.dao.ReservationDao;
@@ -463,9 +464,14 @@ public class HotelController {
 	}
 
 	public boolean setReservation(Hotel hotel, Room room) {
-		
+
 		User user = User.getIstance();
-		LoginController loginController = LoginController.getIstance(pane);
+		Owner owner = Owner.getIstance();
+		ProfileController loginController = ProfileController.getIstance(pane);
+		
+		if (owner.getLogged()) {
+			return false;
+		}
 		
 		if (!user.getLogged()){
 			

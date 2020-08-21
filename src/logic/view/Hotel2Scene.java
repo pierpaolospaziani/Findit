@@ -60,7 +60,6 @@ public class Hotel2Scene extends VBox{
     protected  Label bedsHotel3;
     
 	public Hotel2Scene(HotelController controller, Hotel hotel1, Room room1, Hotel hotel2, Room room2, Hotel hotel3, Room room3) {
-
 		
     	vBoxListHotel = new VBox();
         hBoxHotel1 = new HBox();

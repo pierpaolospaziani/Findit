@@ -31,7 +31,7 @@ public class OwnerDao {
     	String structuresOwnerQuery = "select structures from owners where name = '" + username + "'";
     	String imageUserQuery = "select photo from owners where name = '" + username + "'";
     	
-    	Owner owner = new Owner();
+    	Owner owner = Owner.getIstance();
     	
     	Connection con = null;
 		Statement st = null;

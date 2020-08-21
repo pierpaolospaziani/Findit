@@ -12,7 +12,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import logic.bean.HotelBean;
-import logic.controller.LoginController;
+import logic.controller.ProfileController;
 
 public class HotelRegistrationScene extends VBox {
 
@@ -46,7 +46,7 @@ public class HotelRegistrationScene extends VBox {
     protected Button btnRegister;
 	
 	
-    public HotelRegistrationScene(LoginController controller, String ownerName, HotelBean bean) {
+    public HotelRegistrationScene(ProfileController controller, String ownerName, HotelBean bean) {
     	
     	hBox1 = new HBox();
     	vBox = new VBox();
