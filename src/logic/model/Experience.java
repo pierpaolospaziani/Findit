@@ -1,7 +1,6 @@
 package logic.model;
 
 import javafx.scene.image.Image;
-import javafx.scene.text.Text;
 
 public class Experience {
 
@@ -9,7 +8,8 @@ public class Experience {
 	private int dayIn;
 	private int dayOut;
 	private Image image;
-	private Text review;
+	private String review;
+	private int rating;
 
 	public String getName() {
 		return name;
@@ -43,11 +43,19 @@ public class Experience {
 		this.image = image;
 	}
 	
-	public Text getReview() {
+	public String getReview() {
 		return review;
 	}
 	
-	public void setReview(Text review) {
+	public void setReview(String review) {
 		this.review = review;
+	}
+
+	public int getRating() {
+		return rating;
+	}
+
+	public void setRating(int rating) {
+		this.rating = rating;
 	}
 }

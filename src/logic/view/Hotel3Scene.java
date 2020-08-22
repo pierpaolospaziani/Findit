@@ -107,7 +107,14 @@ public class Hotel3Scene extends VBox{
 
         textNStars.setStrokeType(javafx.scene.shape.StrokeType.OUTSIDE);
         textNStars.setStrokeWidth(0.0);
-        textNStars.setText(String.valueOf(hotel.getRating())+" stars");
+        
+        if (hotel.getRating() == 0) {
+        	textNStars.setText("Still 0 reviews");
+        	btnReview.setDisable(true);
+        } else {
+        	textNStars.setText(String.valueOf(hotel.getRating()) + " stars");
+        }
+        
         textNStars.setFont(new Font(24.0));
         textNStars.setWrappingWidth(342);
 
@@ -205,7 +212,7 @@ public class Hotel3Scene extends VBox{
         btnReview.setOnAction(new EventHandler<ActionEvent>(){
  			public void handle(ActionEvent event) {
  				
- 				controller.viewReviews();
+ 				controller.viewReviews(true,hotel.getReviews(),0);
  			}
  		});
         

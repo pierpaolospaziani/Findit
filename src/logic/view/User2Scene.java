@@ -331,33 +331,49 @@ public class User2Scene extends HBox{
         String name = experience1.getName();
         if (name == null) {
         	expName1.setText("----------1");
+        	expName1.setDisable(true);
         } else {
         	expName1.setText(name);
+        	expName1.setDisable(false);
+            expName1.setOnMouseEntered(evt -> expName1.setUnderline(true));
+            expName1.setOnMouseExited(evt -> expName1.setUnderline(false));
         }
-        
         expName2.setFont(new Font(24.0));
         expName2.setPrefHeight(50.0);
         name = experience2.getName();
         if (name == null) {
         	expName2.setText("----------2");
+        	expName2.setDisable(true);
         } else {
         	expName2.setText(name);
+        	expName2.setDisable(false);
+            expName2.setOnMouseEntered(evt -> expName2.setUnderline(true));
+            expName2.setOnMouseExited(evt -> expName2.setUnderline(false));
         }
         expName3.setFont(new Font(24.0));
         expName3.setPrefHeight(50.0);
         name = experience3.getName();
         if (name == null) {
         	expName3.setText("----------3");
+        	expName3.setDisable(true);
         } else {
         	expName3.setText(name);
+        	expName3.setDisable(false);
+            expName3.setOnMouseEntered(evt -> expName3.setUnderline(true));
+            expName3.setOnMouseExited(evt -> expName3.setUnderline(false));
         }
+        
         expName4.setFont(new Font(24.0));
         expName4.setPrefHeight(50.0);
         name = experience4.getName();
         if (name == null) {
         	expName4.setText("----------4");
+        	expName4.setDisable(true);
         } else {
         	expName4.setText(name);
+        	expName4.setDisable(false);
+            expName4.setOnMouseEntered(evt -> expName4.setUnderline(true));
+            expName4.setOnMouseExited(evt -> expName4.setUnderline(false));
         }
         
         expName5.setFont(new Font(24.0));
@@ -365,8 +381,12 @@ public class User2Scene extends HBox{
         name = experience5.getName();
         if (name == null) {
         	expName5.setText("----------5");
+        	expName5.setDisable(true);
         } else {
         	expName5.setText(name);
+        	expName5.setDisable(false);
+            expName5.setOnMouseEntered(evt -> expName5.setUnderline(true));
+            expName5.setOnMouseExited(evt -> expName5.setUnderline(false));
         }
         
         expName6.setFont(new Font(24.0));
@@ -374,27 +394,13 @@ public class User2Scene extends HBox{
         name = experience6.getName();
         if (name == null) {
         	expName6.setText("----------6");
+        	expName6.setDisable(true);
         } else {
         	expName6.setText(name);
+        	expName6.setDisable(false);
+            expName6.setOnMouseEntered(evt -> expName6.setUnderline(true));
+            expName6.setOnMouseExited(evt -> expName6.setUnderline(false));
         }
-
-        expName1.setOnMouseEntered(evt -> expName1.setUnderline(true));
-        expName1.setOnMouseExited(evt -> expName1.setUnderline(false));
-
-        expName2.setOnMouseEntered(evt -> expName2.setUnderline(true));
-        expName2.setOnMouseExited(evt -> expName2.setUnderline(false));
-
-        expName3.setOnMouseEntered(evt -> expName3.setUnderline(true));
-        expName3.setOnMouseExited(evt -> expName3.setUnderline(false));
-
-        expName4.setOnMouseEntered(evt -> expName4.setUnderline(true));
-        expName4.setOnMouseExited(evt -> expName4.setUnderline(false));
-
-        expName5.setOnMouseEntered(evt -> expName5.setUnderline(true));
-        expName5.setOnMouseExited(evt -> expName5.setUnderline(false));
-
-        expName6.setOnMouseEntered(evt -> expName6.setUnderline(true));
-        expName6.setOnMouseExited(evt -> expName6.setUnderline(false));
 
         expName1.setStyle("-fx-background-color: transparent;");
         expName2.setStyle("-fx-background-color: transparent;");
@@ -541,44 +547,61 @@ public class User2Scene extends HBox{
         
         expName1.setOnAction(new EventHandler<ActionEvent>(){
  			public void handle(ActionEvent event) {
- 				
- 				new WriteReviewWindow();
- 				
+ 				if (experience1.getReview().equals("")) {
+ 					controller.review(true,experience1);
+ 				} else {
+ 					controller.review(false,experience1);
+ 				}
  			}
  		});
         
         expName2.setOnAction(new EventHandler<ActionEvent>(){
  			public void handle(ActionEvent event) {
-
- 				new WriteReviewWindow();
+ 				if (experience2.getReview().equals("")) {
+ 					controller.review(true,experience2);
+ 				} else {
+ 					controller.review(false,experience2);
+ 				}
  			}
  		});
         
         expName3.setOnAction(new EventHandler<ActionEvent>(){
  			public void handle(ActionEvent event) {
-
- 				new WriteReviewWindow();
+ 				if (experience3.getReview().equals("")) {
+ 					controller.review(true,experience3);
+ 				} else {
+ 					controller.review(false,experience3);
+ 				}
  			}
  		});
         
         expName4.setOnAction(new EventHandler<ActionEvent>(){
  			public void handle(ActionEvent event) {
-
- 				new WriteReviewWindow();
+ 				if (experience4.getReview().equals("")) {
+ 					controller.review(true,experience4);
+ 				} else {
+ 					controller.review(false,experience4);
+ 				}
  			}
  		});
         
         expName5.setOnAction(new EventHandler<ActionEvent>(){
  			public void handle(ActionEvent event) {
-
- 				new WriteReviewWindow();
+ 				if (experience5.getReview().equals("")) {
+ 					controller.review(true,experience5);
+ 				} else {
+ 					controller.review(false,experience5);
+ 				}
  			}
  		});
         
         expName6.setOnAction(new EventHandler<ActionEvent>(){
  			public void handle(ActionEvent event) {
-
- 				new WriteReviewWindow();
+ 				if (experience6.getReview().equals("")) {
+ 					controller.review(true,experience6);
+ 				} else {
+ 					controller.review(false,experience6);
+ 				}
  			}
  		});
     }
@@ -824,40 +847,54 @@ public class User2Scene extends HBox{
         
         int page = controller.getPage();
 
-        txtNumberPage.setText(String.valueOf(page));
-        
-        expName1.setFont(new Font(24.0));
+        txtNumberPage.setText(String.valueOf(page));expName1.setFont(new Font(24.0));
         expName1.setPrefHeight(50.0);
         String name = structure1.getName();
         if (name == null) {
         	expName1.setText("----------1");
+        	expName1.setDisable(true);
         } else {
         	expName1.setText(name);
+        	expName1.setDisable(false);
+            expName1.setOnMouseEntered(evt -> expName1.setUnderline(true));
+            expName1.setOnMouseExited(evt -> expName1.setUnderline(false));
         }
-        
         expName2.setFont(new Font(24.0));
         expName2.setPrefHeight(50.0);
         name = structure2.getName();
         if (name == null) {
         	expName2.setText("----------2");
+        	expName2.setDisable(true);
         } else {
         	expName2.setText(name);
+        	expName2.setDisable(false);
+            expName2.setOnMouseEntered(evt -> expName2.setUnderline(true));
+            expName2.setOnMouseExited(evt -> expName2.setUnderline(false));
         }
         expName3.setFont(new Font(24.0));
         expName3.setPrefHeight(50.0);
         name = structure3.getName();
         if (name == null) {
         	expName3.setText("----------3");
+        	expName3.setDisable(true);
         } else {
         	expName3.setText(name);
+        	expName3.setDisable(false);
+            expName3.setOnMouseEntered(evt -> expName3.setUnderline(true));
+            expName3.setOnMouseExited(evt -> expName3.setUnderline(false));
         }
+        
         expName4.setFont(new Font(24.0));
         expName4.setPrefHeight(50.0);
         name = structure4.getName();
         if (name == null) {
         	expName4.setText("----------4");
+        	expName4.setDisable(true);
         } else {
         	expName4.setText(name);
+        	expName4.setDisable(false);
+            expName4.setOnMouseEntered(evt -> expName4.setUnderline(true));
+            expName4.setOnMouseExited(evt -> expName4.setUnderline(false));
         }
         
         expName5.setFont(new Font(24.0));
@@ -865,8 +902,12 @@ public class User2Scene extends HBox{
         name = structure5.getName();
         if (name == null) {
         	expName5.setText("----------5");
+        	expName5.setDisable(true);
         } else {
         	expName5.setText(name);
+        	expName5.setDisable(false);
+            expName5.setOnMouseEntered(evt -> expName5.setUnderline(true));
+            expName5.setOnMouseExited(evt -> expName5.setUnderline(false));
         }
         
         expName6.setFont(new Font(24.0));
@@ -874,8 +915,12 @@ public class User2Scene extends HBox{
         name = structure6.getName();
         if (name == null) {
         	expName6.setText("----------6");
+        	expName6.setDisable(true);
         } else {
         	expName6.setText(name);
+        	expName6.setDisable(false);
+            expName6.setOnMouseEntered(evt -> expName6.setUnderline(true));
+            expName6.setOnMouseExited(evt -> expName6.setUnderline(false));
         }
        
 		buttonAddStructure.setMnemonicParsing(false);
@@ -890,26 +935,6 @@ public class User2Scene extends HBox{
         hBox1.setAlignment(javafx.geometry.Pos.CENTER);
         hBox1.setPrefWidth(200.0);
         hBox1.setSpacing(30.0);
-        
-        VBox.setMargin(hBox1, new Insets(10.0, 0.0, 0.0, 0.0));
-
-        expName1.setOnMouseEntered(evt -> expName1.setUnderline(true));
-        expName1.setOnMouseExited(evt -> expName1.setUnderline(false));
-
-        expName2.setOnMouseEntered(evt -> expName2.setUnderline(true));
-        expName2.setOnMouseExited(evt -> expName2.setUnderline(false));
-
-        expName3.setOnMouseEntered(evt -> expName3.setUnderline(true));
-        expName3.setOnMouseExited(evt -> expName3.setUnderline(false));
-
-        expName4.setOnMouseEntered(evt -> expName4.setUnderline(true));
-        expName4.setOnMouseExited(evt -> expName4.setUnderline(false));
-
-        expName5.setOnMouseEntered(evt -> expName5.setUnderline(true));
-        expName5.setOnMouseExited(evt -> expName5.setUnderline(false));
-
-        expName6.setOnMouseEntered(evt -> expName6.setUnderline(true));
-        expName6.setOnMouseExited(evt -> expName6.setUnderline(false));
 
         expName1.setStyle("-fx-background-color: transparent;");
         expName2.setStyle("-fx-background-color: transparent;");

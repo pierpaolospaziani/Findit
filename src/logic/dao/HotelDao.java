@@ -278,7 +278,7 @@ public class HotelDao {
 						
 				    	String createRoomsTable = "create table " + rooms + " (id int, price int, beds int)";
 				    	String createAgendaTable = "create table " + agenda + " (id int, date varchar(10), user varchar(20))";	
-				    	String createReviewsQuery = "create table " + reviewsTable + " (user varchar(20),review text)";
+				    	String createReviewsQuery = "create table " + reviewsTable + " (user varchar(20),review text, stars int)";
 				    	String insertQuery = "insert into hotels value ("
 				    			+ "'" + nome + "',"
 				    			+ "'" + owner + "',"
@@ -429,6 +429,34 @@ public class HotelDao {
     		con.close();
     		
     	}
+	}
+	
+	public static void setRating(int avg, String structure) throws Exception {
 		
+		String insertQuery = "update hotels set rating = '" + avg + "' where name = '" + structure + "'";
+		
+		Connection con = null;
+		Statement st = null;
+		
+    	try {
+    		Class.forName(DRIVER_CLASS_NAME);
+    		try{
+				con = DriverManager.getConnection(url,name,pass);
+			} catch(SQLException e){
+		        System.out.println("Couldn't connect: exit.");
+		        System.exit(1);
+		        }
+			
+			st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+	                ResultSet.CONCUR_READ_ONLY);
+				    	
+			st.executeUpdate(insertQuery);
+			
+    	} finally {
+    		
+    		st.close();
+    		con.close();
+    		
+    	}
 	}
 }

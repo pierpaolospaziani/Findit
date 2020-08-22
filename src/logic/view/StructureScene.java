@@ -10,6 +10,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import logic.controller.HotelController;
 import logic.controller.ProfileController;
 import logic.dao.RoomDao;
 import logic.model.Hotel;
@@ -27,7 +28,7 @@ public class StructureScene {
     
     protected Button btnAddDescription;
 
-    public StructureScene(ProfileController profileController, Hotel hotel) {
+    public StructureScene(ProfileController profileController, Hotel hotel, HotelController hotelController) {
 
 		hBox = new HBox();
 		vBox1 = new VBox();
@@ -119,6 +120,15 @@ public class StructureScene {
  				
  				profileController.addRoomScene(window,hotel.getRooms(),hotel.getName());
  				
+ 			}
+ 		});
+        
+        btnViewReviews.setOnAction(new EventHandler<ActionEvent>(){
+ 			public void handle(ActionEvent event) {
+ 				
+ 				hotelController.viewReviews(false,hotel.getReviews(), 0);
+ 				
+ 				window.close();
  			}
  		});
         

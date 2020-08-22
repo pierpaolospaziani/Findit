@@ -7,12 +7,14 @@ import logic.bean.LoginBean;
 import logic.dao.ExperienceDao;
 import logic.dao.HotelDao;
 import logic.dao.OwnerDao;
+import logic.dao.ReviewDao;
 import logic.dao.RoomDao;
 import logic.dao.StructureDao;
 import logic.model.Experience;
 import logic.model.Hotel;
 import logic.model.Login;
 import logic.model.Owner;
+import logic.model.Review;
 import logic.model.Structure;
 import logic.model.User;
 import logic.view.AddRoomScene;
@@ -22,6 +24,8 @@ import logic.view.LogWindow;
 import logic.view.ProfileScene;
 import logic.view.StructureScene;
 import logic.view.User2Scene;
+import logic.view.ViewReviewWindow;
+import logic.view.WriteReviewWindow;
 
 
 public class ProfileController {
@@ -220,7 +224,7 @@ public class ProfileController {
 						}
 						
 						int booked = ExperienceDao.getBooked(table);
-						int review = ExperienceDao.getReview(table);
+						int review = ExperienceDao.getReviewsNumber(table);
 						
 						userScene = new User2Scene(this,user,experience1,experience2,experience3,experience4,experience5,experience6,booked,review);
 
@@ -314,10 +318,11 @@ public class ProfileController {
 	
 	public void openStructureWindow(String structure) {
 		
+		HotelController hotelController = HotelController.getIstance(pane);
+		
 		try {
-			
 			Hotel hotel = HotelDao.getHotel(structure);
-			new StructureScene(this,hotel);
+			new StructureScene(this,hotel,hotelController);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -356,6 +361,32 @@ public class ProfileController {
 		
 		try {
 			HotelDao.setDescription(description,structure);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void review(boolean bool,Experience experience) {
+		
+		Review review = new Review();
+		review.setUser(user.getUsername());
+		review.setReview(experience.getReview());
+		review.setVote(experience.getRating());
+		
+		if (bool) {
+			new WriteReviewWindow(this,review,experience.getName(),experience.getDayIn(),experience.getDayOut());
+		} else {
+			new ViewReviewWindow(this,review,experience.getName());
+		}
+	}
+	
+	public void addReview(Review review, String structure, int dayIn, int dayOut) {
+		
+		try {
+			Hotel hotel = HotelDao.getHotel(structure);
+			ExperienceDao.addReview(review, structure, dayIn, dayOut);
+			int avg = ReviewDao.setReview(review.getReview(), review.getVote(), user.getUsername(),hotel.getReviews());
+			HotelDao.setRating(avg, structure);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

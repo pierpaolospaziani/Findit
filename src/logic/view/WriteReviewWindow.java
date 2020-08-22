@@ -11,9 +11,10 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import logic.controller.ProfileController;
+import logic.model.Review;
 
 public class WriteReviewWindow {
 	
@@ -22,21 +23,21 @@ public class WriteReviewWindow {
     protected TextArea textAreaReview;
     protected HBox hBox;
     protected HBox hBox0;
-    protected Text textVote;
-    protected Text txtStars;
+    protected Label textVote;
+    protected Label txtStars;
     protected ChoiceBox<Integer> choiceBoxVote;
     protected Button btnSubmit;
     protected Stage window;
 
-    public WriteReviewWindow() {
+    public WriteReviewWindow(ProfileController controller, Review review, String structure, int in, int out) {
 
     	wReviewScene = new VBox();
         label = new Label();
         textAreaReview = new TextArea();
         hBox = new HBox();
         hBox0 = new HBox();
-        textVote = new Text();
-        txtStars = new Text();
+        textVote = new Label();
+        txtStars = new Label();
         choiceBoxVote = new ChoiceBox<Integer>();
         btnSubmit = new Button();
         
@@ -44,9 +45,8 @@ public class WriteReviewWindow {
 
         //Block events to other windows
         window.initModality(Modality.APPLICATION_MODAL);
-        window.setTitle("Write Review");
+        window.setTitle("Write your review of " + structure);
         window.setMinWidth(250);
-
 
         wReviewScene.setAlignment(javafx.geometry.Pos.TOP_CENTER);
         wReviewScene.setPrefHeight(274.0);
@@ -57,12 +57,14 @@ public class WriteReviewWindow {
         label.setPrefWidth(193.0);
         label.setText("Write your review");
         label.setFont(new Font(24.0));
+		label.setStyle("-fx-text-fill: black");
 
         textAreaReview.setPrefHeight(119.0);
         textAreaReview.setPrefWidth(450.0);
         textAreaReview.setFont(new Font(18.0));
         textAreaReview.setWrapText(true);
         textAreaReview.setMaxWidth(452.0);
+        textAreaReview.setStyle("-fx-background-color: #e2e8ff; -fx-background-radius: 20;");
         
         hBox.setAlignment(javafx.geometry.Pos.CENTER_RIGHT);
         hBox.setPrefHeight(86.0);
@@ -73,21 +75,18 @@ public class WriteReviewWindow {
         hBox0.setPrefWidth(341.0);
         hBox0.setSpacing(10.0);
 
-        textVote.setStrokeType(javafx.scene.shape.StrokeType.OUTSIDE);
-        textVote.setStrokeWidth(0.0);
         textVote.setText("Vote");
         textVote.setFont(new Font(24.0));
 
         choiceBoxVote.setPrefHeight(51.0);
         choiceBoxVote.setPrefWidth(45.0);
+        choiceBoxVote.setValue(0);
         choiceBoxVote.getItems().add(1);
         choiceBoxVote.getItems().add(2);
         choiceBoxVote.getItems().add(3);
         choiceBoxVote.getItems().add(4);
         choiceBoxVote.getItems().add(5);
         
-        txtStars.setStrokeType(javafx.scene.shape.StrokeType.OUTSIDE);
-        txtStars.setStrokeWidth(0.0);
         txtStars.setText("Stars");
         txtStars.setFont(new Font(24.0));
         
@@ -121,14 +120,27 @@ public class WriteReviewWindow {
         btnSubmit.setOnAction(new EventHandler<ActionEvent>(){
 			public void handle(ActionEvent event) {
 				
-		       // prende il valore del choiceobx
-				Integer voto = choiceBoxVote.getValue();
+				int voto = choiceBoxVote.getValue();
 				
+				String reviewText = textAreaReview.getText();
+				
+				if (!reviewText.equals("")) {
+					label.setStyle("-fx-text-fill: black");
+					if (voto == 0) {
+						textVote.setStyle("-fx-text-fill: red");
+						txtStars.setStyle("-fx-text-fill: red");
+					} else {
+						review.setReview(reviewText);
+						review.setVote(voto);
+						controller.addReview(review, structure, in, out);
+						window.close();
+						controller.loggedScene();
+					}
+				} else {
+					label.setStyle("-fx-text-fill: red");
+				}
 			}
 		});
-        
-        
-        
     }
 }
 

@@ -1,47 +1,32 @@
 package logic.model;
 
-import java.sql.Date;
-
 public class Review {
 	
-	private int numStars;
-	private Date dateReview; // l'abbiamo già usata questo date??
-	private String textReview;
-	private String nomeUser;
+	private String user;
+	private String review;
+	private int vote;
 
-	public Review(int numStars, Date dateReview, String textReview, String nomeUser) {
-		this.numStars = numStars;
-		this.dateReview = dateReview;
-		this.textReview = textReview;
-		this.nomeUser = nomeUser;
+	public String getUser() {
+		return user;
 	}
 	
-	public int getNumStars() {
-		return numStars;
-	}
-	public void setNumStars(int numStars) {
-		this.numStars = numStars;
-	}
-	public Date getDateReview() {
-		return dateReview;
-	}
-	public void setDateReview(Date dateReview) {
-		this.dateReview = dateReview;
-	}
-	public String getTextReview() {
-		return textReview;
-	}
-	public void setTextReview(String textReview) {
-		this.textReview = textReview;
-	}
-	public String getNomeUser() {
-		return nomeUser;
-	}
-	public void setNomeUser(String nomeUser) {
-		this.nomeUser = nomeUser;
+	public void setUser(String user) {
+		this.user = user;
 	}
 	
-	//public saveReview()  forse questo va nel DAO
+	public String getReview() {
+		return review;
+	}
 	
+	public void setReview(String review) {
+		this.review = review;
+	}
 	
+	public int getVote() {
+		return vote;
+	}
+	
+	public void setVote(int vote) {
+		this.vote = vote;
+	}
 }

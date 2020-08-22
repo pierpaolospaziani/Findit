@@ -150,10 +150,10 @@ public class Hotel2Scene extends VBox{
         labelAddress1.setText(hotel1.getAddress());
         labelAddress1.setFont(new Font(18.0));
         
-        if (hotel2.getRating() == 0) {
+        if (hotel1.getRating() == 0) {
         	labelStar1.setText("Still 0 Reviews");
         } else {
-            labelStar1.setText(String.valueOf(hotel2.getRating()) + " Stars");
+            labelStar1.setText(String.valueOf(hotel1.getRating()) + " Stars");
         }
         labelStar1.setFont(new Font(18.0));
 
@@ -283,10 +283,10 @@ public class Hotel2Scene extends VBox{
         labelAddress3.setText(hotel3.getAddress());
         labelAddress3.setFont(new Font(18.0));
         
-        if (hotel2.getRating() == 0) {
+        if (hotel3.getRating() == 0) {
         	labelStar3.setText("Still 0 Reviews");
         } else {
-            labelStar3.setText(String.valueOf(hotel2.getRating()) + " Stars");
+            labelStar3.setText(String.valueOf(hotel3.getRating()) + " Stars");
         }
         labelStar3.setFont(new Font(18.0));
 

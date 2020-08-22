@@ -5,37 +5,40 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Separator;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
+import logic.controller.HotelController;
+import logic.controller.ProfileController;
+import logic.model.Review;
 
 public class ViewReviewScene extends VBox {
 
     protected VBox vBox;
+    
     protected HBox hBoxReview1;
-    protected VBox vBox0;
-    protected Button btnNameUser1;
-    protected Label labelNumberStar1;
     protected VBox vBox1;
-    protected TextFlow textFlow;
-    protected Text txtReview1;
+    protected Label btnNameUser1;
+    protected Label labelNumberStar1;
+    protected ScrollPane scrollPane1;
+    protected Label txtReview1;
+    
     protected HBox hBoxReview2;
     protected VBox vBox2;
-    protected Button btnNameUser2;
+    protected Label btnNameUser2;
     protected Label labelNumberStar2;
-    protected VBox vBox3;
-    protected TextFlow textFlow0;
-    protected Text txtReview2;
+    protected ScrollPane scrollPane2;
+    protected Label txtReview2;
+    
     protected HBox hBoxReview3;
-    protected VBox vBox4;
-    protected Button btnNameUser3;
+    protected VBox vBox3;
+    protected Label btnNameUser3;
     protected Label labelNumberStar3;
-    protected VBox vBox5;
-    protected TextFlow textFlow1;
-    protected Text txtReview3;
+    protected ScrollPane scrollPane3;
+    protected Label txtReview3;
+    
     protected HBox hBoxBtn;
     protected Button btnBack;
     protected Separator separator;
@@ -48,36 +51,33 @@ public class ViewReviewScene extends VBox {
     protected Separator separatorUser3;
     
 
-    public ViewReviewScene() {  // bean  e controller
+    public ViewReviewScene(boolean isHotel, HotelController controller, Review review1, Review review2, Review review3, String reviewTable, int indice, ProfileController profileController) {
 
         vBox = new VBox();
         hBoxReview1 = new HBox();
-        vBox0 = new VBox();
-        btnNameUser1 = new Button();
-        labelNumberStar1 = new Label();
         vBox1 = new VBox();
-        textFlow = new TextFlow();
-        txtReview1 = new Text();
+        btnNameUser1 = new Label();
+        labelNumberStar1 = new Label();
+        txtReview1 = new Label();
         hBoxReview2 = new HBox();
         vBox2 = new VBox();
-        btnNameUser2 = new Button();
+        btnNameUser2 = new Label();
         labelNumberStar2 = new Label();
-        vBox3 = new VBox();
-        textFlow0 = new TextFlow();
-        txtReview2 = new Text();
+        txtReview2 = new Label();
         hBoxReview3 = new HBox();
-        vBox4 = new VBox();
-        btnNameUser3 = new Button();
+        vBox3 = new VBox();
+        btnNameUser3 = new Label();
         labelNumberStar3 = new Label();
-        vBox5 = new VBox();
-        textFlow1 = new TextFlow();
-        txtReview3 = new Text();
+        txtReview3 = new Label();
         hBoxBtn = new HBox();
         btnBack = new Button();
         separator = new Separator();
         separator1 = new Separator();
         btnPreview = new Button();
         btnNext = new Button();
+        scrollPane1 = new ScrollPane();
+        scrollPane2 = new ScrollPane();
+        scrollPane3 = new ScrollPane();
         
         separatorUser1 = new Separator();
         separatorUser2 = new Separator();
@@ -87,7 +87,6 @@ public class ViewReviewScene extends VBox {
         setPrefHeight(525.0);
         setPrefWidth(1050.0);
         setSpacing(30.0);
-       
         
         vBox.setLayoutX(126.0);
         vBox.setLayoutY(2.0);
@@ -103,36 +102,44 @@ public class ViewReviewScene extends VBox {
         separatorUser1.setPrefHeight(57.0);
         separatorUser1.setPrefWidth(50.0);
 
-        vBox0.setPrefHeight(136.0);
-        vBox0.setPrefWidth(240.0);
-        vBox0.setSpacing(15.0);
+        vBox1.setPrefHeight(136.0);
+        vBox1.setPrefWidth(240.0);
+        vBox1.setSpacing(15.0);
+        vBox1.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
 
         btnNameUser1.setAlignment(javafx.geometry.Pos.TOP_LEFT);
         btnNameUser1.setMnemonicParsing(false);
         btnNameUser1.setPrefWidth(240.0);
         btnNameUser1.setStyle("-fx-background-color: transparent;");
-        btnNameUser1.setText("Nome Utente 1");
+        btnNameUser1.setText(review1.getUser());
+        
         btnNameUser1.setPadding(new Insets(1.0, 0.0, 0.0, 0.0));
         btnNameUser1.setFont(new Font(24.0));
-        
-        btnNameUser1.setOnMouseEntered(evt -> btnNameUser1.setUnderline(true));
-        btnNameUser1.setOnMouseExited(evt -> btnNameUser1.setUnderline(false));
 
         labelNumberStar1.setPrefWidth(230.0);
-        labelNumberStar1.setText("stelle recensione");
         labelNumberStar1.setFont(new Font(18.0));
+        labelNumberStar1.setText(String.valueOf(review1.getVote()) + " Star/s");
+        
+        scrollPane1.setContent(txtReview1);
+        scrollPane1.setMaxWidth(650.0);
+        scrollPane1.setMaxHeight(135.0);
+        scrollPane1.setFitToWidth(true);
+        scrollPane1.setStyle("-fx-background-color: white;");
 
-        vBox1.setPrefHeight(136.0);
-        vBox1.setPrefWidth(650.0);
-
-        textFlow.setPrefHeight(200.0);
-        textFlow.setPrefWidth(200.0);
-
-        txtReview1.setStrokeType(javafx.scene.shape.StrokeType.OUTSIDE);
-        txtReview1.setStrokeWidth(0.0);
-        txtReview1.setText("testo recensione 1");
         txtReview1.setFont(new Font(18.0));
         hBoxReview1.setPadding(new Insets(5.0));
+        txtReview1.setText(review1.getReview());
+        txtReview1.setPrefWidth(650.0);
+        txtReview1.setMinHeight(132.0);
+        txtReview1.setWrapText(true);
+        txtReview1.setAlignment(javafx.geometry.Pos.TOP_LEFT);
+        txtReview1.setStyle("-fx-background-color: white;");
+        
+        if (review1.getUser() == null) {
+        	btnNameUser1.setText("No review ---");
+        	labelNumberStar1.setText("");
+        	txtReview1.setText("");
+        }
 
         hBoxReview2.setPrefHeight(144.0);
         hBoxReview2.setPrefWidth(200.0);
@@ -146,34 +153,40 @@ public class ViewReviewScene extends VBox {
         vBox2.setPrefHeight(136.0);
         vBox2.setPrefWidth(240.0);
         vBox2.setSpacing(15.0);
+        vBox2.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
 
         btnNameUser2.setAlignment(javafx.geometry.Pos.TOP_LEFT);
         btnNameUser2.setMnemonicParsing(false);
         btnNameUser2.setPrefWidth(240.0);
         btnNameUser2.setStyle("-fx-background-color: transparent;");
-        btnNameUser2.setText("Nome Utente2");
         btnNameUser2.setPadding(new Insets(1.0, 0.0, 0.0, 0.0));
         btnNameUser2.setFont(new Font(24.0));
-        
-        btnNameUser2.setOnMouseEntered(evt -> btnNameUser2.setUnderline(true));
-        btnNameUser2.setOnMouseExited(evt -> btnNameUser2.setUnderline(false));
+        btnNameUser2.setText(review1.getUser());
 
         labelNumberStar2.setPrefWidth(230.0);
-        labelNumberStar2.setText("stelle recensione");
         labelNumberStar2.setFont(new Font(18.0));
+        labelNumberStar2.setText(String.valueOf(review2.getVote()) + " Star/s");
+        
+        scrollPane2.setContent(txtReview2);
+        scrollPane2.setMaxWidth(650.0);
+        scrollPane2.setMaxHeight(135.0);
+        scrollPane2.setFitToWidth(true);
+        scrollPane2.setStyle("-fx-background-color: white;");
 
-        vBox3.setPrefHeight(136.0);
-        vBox3.setPrefWidth(650.0);
-        vBox3.setOpaqueInsets(new Insets(0.0));
-
-        textFlow0.setPrefHeight(200.0);
-        textFlow0.setPrefWidth(200.0);
-
-        txtReview2.setStrokeType(javafx.scene.shape.StrokeType.OUTSIDE);
-        txtReview2.setStrokeWidth(0.0);
-        txtReview2.setText("testo recensione 2");
         txtReview2.setFont(new Font(18.0));
         hBoxReview2.setPadding(new Insets(5.0));
+        txtReview2.setText(review2.getReview());
+        txtReview2.setPrefWidth(650.0);
+        txtReview2.setMinHeight(132.0);
+        txtReview2.setWrapText(true);
+        txtReview2.setAlignment(javafx.geometry.Pos.TOP_LEFT);
+        txtReview2.setStyle("-fx-background-color: white;");
+        
+        if (review2.getUser() == null) {
+        	btnNameUser2.setText("No review ---");
+        	labelNumberStar2.setText("");
+        	txtReview2.setText("");
+        }
 
         hBoxReview3.setPrefHeight(144.0);
         hBoxReview3.setPrefWidth(200.0);
@@ -184,39 +197,45 @@ public class ViewReviewScene extends VBox {
         separatorUser3.setPrefHeight(57.0);
         separatorUser3.setPrefWidth(50.0);
 
-        vBox4.setPrefHeight(136.0);
-        vBox4.setPrefWidth(240.0);
-        vBox4.setSpacing(15.0);
+        vBox3.setPrefHeight(136.0);
+        vBox3.setPrefWidth(240.0);
+        vBox3.setSpacing(15.0);
+        vBox3.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
 
         btnNameUser3.setAlignment(javafx.geometry.Pos.TOP_LEFT);
         btnNameUser3.setMnemonicParsing(false);
         btnNameUser3.setPrefHeight(36.0);
         btnNameUser3.setPrefWidth(240.0);
         btnNameUser3.setStyle("-fx-background-color: transparent;");
-        btnNameUser3.setText("Nome Utente3");
         btnNameUser3.setPadding(new Insets(1.0, 0.0, 0.0, 0.0));
         btnNameUser3.setFont(new Font(24.0));
-        
-        btnNameUser3.setOnMouseEntered(evt -> btnNameUser3.setUnderline(true));
-        btnNameUser3.setOnMouseExited(evt -> btnNameUser3.setUnderline(false));
+        btnNameUser3.setText(review1.getUser());
 
         labelNumberStar3.setPrefHeight(27.0);
         labelNumberStar3.setPrefWidth(230.0);
-        labelNumberStar3.setText("stelle recensione");
         labelNumberStar3.setFont(new Font(18.0));
+        labelNumberStar3.setText(String.valueOf(review3.getVote()) + " Star/s");
+        
+        scrollPane3.setContent(txtReview3);
+        scrollPane3.setMaxWidth(650.0);
+        scrollPane3.setMaxHeight(135.0);
+        scrollPane3.setFitToWidth(true);
+        scrollPane3.setStyle("-fx-background-color: white;");
 
-        vBox5.setPrefHeight(136.0);
-        vBox5.setPrefWidth(650.0);
-
-        textFlow1.setPrefHeight(200.0);
-        textFlow1.setPrefWidth(200.0);
-
-        txtReview3.setStrokeType(javafx.scene.shape.StrokeType.OUTSIDE);
-        txtReview3.setStrokeWidth(0.0);
-        txtReview3.setText("testo recensione 3");
-        txtReview3.setWrappingWidth(615.9999694824219);
         txtReview3.setFont(new Font(18.0));
         hBoxReview3.setPadding(new Insets(5.0));
+        txtReview3.setText(review3.getReview());
+        txtReview3.setPrefWidth(650.0);
+        txtReview3.setMinHeight(132.0);
+        txtReview3.setWrapText(true);
+        txtReview3.setAlignment(javafx.geometry.Pos.TOP_LEFT);
+        txtReview3.setStyle("-fx-background-color: white;");
+        
+        if (review3.getUser() == null) {
+        	btnNameUser3.setText("No review ---");
+        	labelNumberStar3.setText("");
+        	txtReview3.setText("");
+        }
 
         hBoxBtn.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
         hBoxBtn.setPrefHeight(57.0);
@@ -252,6 +271,10 @@ public class ViewReviewScene extends VBox {
         btnPreview.setTextFill(javafx.scene.paint.Color.WHITE);
         btnPreview.setFont(new Font(24.0));
         
+        if (indice < 4) {
+        	btnPreview.setDisable(true);
+        }
+        
         btnPreview.setOnMouseEntered(evt -> btnPreview.setUnderline(true));
         btnPreview.setOnMouseExited(evt -> btnPreview.setUnderline(false));
 
@@ -263,32 +286,30 @@ public class ViewReviewScene extends VBox {
         btnNext.setTextFill(javafx.scene.paint.Color.WHITE);
         btnNext.setFont(new Font(24.0));
         
+        if (review3.getUser() == null) {
+        	btnNext.setDisable(true);
+        }
+        
         btnNext.setOnMouseEntered(evt -> btnNext.setUnderline(true));
         btnNext.setOnMouseExited(evt -> btnNext.setUnderline(false));
 
-        vBox0.getChildren().add(btnNameUser1);
-        vBox0.getChildren().add(labelNumberStar1);
+        vBox1.getChildren().add(btnNameUser1);
+        vBox1.getChildren().add(labelNumberStar1);
         hBoxReview1.getChildren().add(separatorUser1);
-        hBoxReview1.getChildren().add(vBox0);
-        textFlow.getChildren().add(txtReview1);
-        vBox1.getChildren().add(textFlow);
         hBoxReview1.getChildren().add(vBox1);
+        hBoxReview1.getChildren().add(scrollPane1);
         vBox.getChildren().add(hBoxReview1);
         vBox2.getChildren().add(btnNameUser2);
         vBox2.getChildren().add(labelNumberStar2);
         hBoxReview2.getChildren().add(separatorUser2);
         hBoxReview2.getChildren().add(vBox2);
-        textFlow0.getChildren().add(txtReview2);
-        vBox3.getChildren().add(textFlow0);
-        hBoxReview2.getChildren().add(vBox3);
+        hBoxReview2.getChildren().add(scrollPane2);
         vBox.getChildren().add(hBoxReview2);
-        vBox4.getChildren().add(btnNameUser3);
-        vBox4.getChildren().add(labelNumberStar3);
+        vBox3.getChildren().add(btnNameUser3);
+        vBox3.getChildren().add(labelNumberStar3);
         hBoxReview3.getChildren().add(separatorUser3);
-        hBoxReview3.getChildren().add(vBox4);
-        textFlow1.getChildren().add(txtReview3);
-        vBox5.getChildren().add(textFlow1);
-        hBoxReview3.getChildren().add(vBox5);
+        hBoxReview3.getChildren().add(vBox3);
+        hBoxReview3.getChildren().add(scrollPane3);
         vBox.getChildren().add(hBoxReview3);
         hBoxBtn.getChildren().add(separator1);
         hBoxBtn.getChildren().add(btnBack);
@@ -297,47 +318,29 @@ public class ViewReviewScene extends VBox {
         hBoxBtn.getChildren().add(btnNext);
         vBox.getChildren().add(hBoxBtn);
         getChildren().add(vBox);
-        
-        btnNameUser1.setOnAction(new EventHandler<ActionEvent>(){
- 			public void handle(ActionEvent event) {
- 				
- 				
- 			}
- 		});
-        
-        btnNameUser2.setOnAction(new EventHandler<ActionEvent>(){
- 			public void handle(ActionEvent event) {
- 				
- 				
- 			}
- 		});
-        
-        btnNameUser3.setOnAction(new EventHandler<ActionEvent>(){
- 			public void handle(ActionEvent event) {
- 				
- 				
- 			}
- 		});
 
         
         btnBack.setOnAction(new EventHandler<ActionEvent>(){
  			public void handle(ActionEvent event) {
- 				
- 			
+
+ 				if (isHotel) {
+ 	 				controller.changeScene();
+ 				} else {
+ 					profileController.loggedScene();
+ 				}
  			}
  		});
         
         btnPreview.setOnAction(new EventHandler<ActionEvent>(){
  			public void handle(ActionEvent event) {
- 				
- 				
+ 	 				controller.viewReviews(true,reviewTable,indice-6);
  			}
  		});
         
         btnNext.setOnAction(new EventHandler<ActionEvent>(){
  			public void handle(ActionEvent event) {
  				
- 				
+ 				controller.viewReviews(true,reviewTable, indice);
  			}
  		});
         

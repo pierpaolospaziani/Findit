@@ -173,7 +173,7 @@ public class UserDao {
 							reviewsTable = variableReviewsTable;
 
 							String insertQuery = "insert into users value ('" + username + "','" + password + "','" + reviewsTable + "','" + null + "')";
-					    	String createReviewsQuery = "create table " + reviewsTable + " (structure varchar(20),review text,dateIn int,dateOut int)";
+					    	String createReviewsQuery = "create table " + reviewsTable + " (structure varchar(20),review text,stars int,dateIn int,dateOut int)";
 				
 					    	st.executeUpdate(insertQuery);
 							st.executeUpdate(createReviewsQuery);
@@ -227,10 +227,10 @@ public class UserDao {
     		
     	}
 	}
-	
+	/*
 	public static void setReviewLine(String userReviewsTable, String hotelName, int dateIn, int dateOut) throws Exception{		
 		
-		String insertQuery = "insert into " + userReviewsTable + " value ('" + hotelName + "','" + null + "','" + dateIn + "','" + dateOut + "')";
+		String insertQuery = "insert into " + userReviewsTable + " value ('" + hotelName + "','" + null + "','" + 0 + "','" + dateIn + "','" + dateOut + "')";
 		
     	Connection con = null;
 		Statement st = null;
@@ -255,5 +255,5 @@ public class UserDao {
     		con.close();
     		
     	}
-    }
+    }*/
 }

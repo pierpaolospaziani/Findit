@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import logic.model.Experience;
+import logic.model.Review;
+import logic.model.User;
 
 public class ExperienceDao {
 	
@@ -14,45 +16,12 @@ public class ExperienceDao {
     private static String pass = "passwfindit2020";
     private static String url = "jdbc:mysql://localhost:3306/findit?useTimezone=true&serverTimezone=UTC";
     private static String DRIVER_CLASS_NAME = "com.mysql.cj.jdbc.Driver";
-    /*
-    public static void main(String[] args) {
-    	
-    	Experience experience = new Experience();
-    	
-    	try {
-    		
-			setExperience("PierpaoloReviews", "Tor Vergata", 20200818, 20200819);
-			setExperience("PierpaoloReviews", "Tor Vergata1", 20200818, 20200819);
-			setExperience("PierpaoloReviews", "Tor Vergata2", 20200818, 20200819);
-			setExperience("PierpaoloReviews", "Tor Vergata3", 20200818, 20200819);
-			setExperience("PierpaoloReviews", "Tor Vergata4", 20200818, 20200819);
-			setExperience("PierpaoloReviews", "Tor Vergata5", 20200818, 20200819);
-			setExperience("PierpaoloReviews", "Tor Vergata6", 20200818, 20200819);
-			setExperience("PierpaoloReviews", "Tor Vergata7", 20200818, 20200819);
-			setExperience("PierpaoloReviews", "Tor Vergata8", 20200818, 20200819);
-			setExperience("PierpaoloReviews", "Tor Vergata9", 20200818, 20200819);
-			setExperience("PierpaoloReviews", "Tor Vergata10", 20200818, 20200819);
-			setExperience("PierpaoloReviews", "Tor Vergata11", 20200818, 20200819);
-			setExperience("PierpaoloReviews", "Tor Vergata12", 20200818, 20200819);
-			setExperience("PierpaoloReviews", "Tor Vergata13", 20200818, 20200819);
-			setExperience("PierpaoloReviews", "Tor Vergata14", 20200818, 20200819);
-			setExperience("PierpaoloReviews", "Tor Vergata15", 20200818, 20200819);
-			setExperience("PierpaoloReviews", "Tor Vergata16", 20200818, 20200819);
-			setExperience("PierpaoloReviews", "Tor Vergata17", 20200818, 20200819);
-			
-    		experience = getExperience("PierpaoloReviews", 3);
-    		
-    		System.out.println("--- " + experience.getName());
-    		
-		} catch (Exception e) {
-	        System.out.println("# DB error! #");
-	        System.out.println(e);
-		}
-    }*/
     
 	public static Experience getExperience(String reviewTable, int index) throws Exception{
 		
 		String nameQuery = "select structure from " + reviewTable;
+		String reviewQuery = "select review from " + reviewTable;
+		String ratingQuery = "select stars from " + reviewTable;
 		String dayInQuery = "select dateIn from " + reviewTable;
 		String dayOutQuery = "select dateOut from " + reviewTable;
 
@@ -85,21 +54,45 @@ public class ExperienceDao {
 					return experience;
 				}
 			}
-		
+			
 			String nome = rs.getNString("structure");
 			experience.setName(nome);
 			rs.close();
 			
+			ResultSet rs3 = st.executeQuery(reviewQuery);
+			rs3.first();
+			for (int i=1; i<index; i++) {
+				rs3.next();
+			}
+			String review = rs3.getNString("review");
+			experience.setReview(review);
+			rs3.close();
+			
+			ResultSet rs4 = st.executeQuery(ratingQuery);
+			rs4.first();
+			for (int i=1; i<index; i++) {
+				rs4.next();
+			}
+			int rate = rs4.getInt("stars");
+			experience.setRating(rate);
+			rs4.close();
+			
 			ResultSet rs1 = st.executeQuery(dayInQuery);
-			rs1.next();
+			rs1.first();
+			for (int i=1; i<index; i++) {
+				rs1.next();
+			}
 			int dateIn = rs1.getInt("dateIn");
 			experience.setDayIn(dateIn);
 			rs1.close();
 			
 			ResultSet rs2 = st.executeQuery(dayOutQuery);
-			rs2.next();
+			rs2.first();
+			for (int i=1; i<index; i++) {
+				rs2.next();
+			}
 			int dateOut = rs2.getInt("dateOut");
-			experience.setDayIn(dateOut);
+			experience.setDayOut(dateOut);
 			rs2.close();
 			
     	} finally {
@@ -111,7 +104,7 @@ public class ExperienceDao {
 		return experience;
 	}
 	
-	public static void setExperience(String reviewTable, String experienceName, int dayIn, int dayOut) throws Exception{
+	public static void setExperienceRow(String reviewTable, String experienceName, int dayIn, int dayOut) throws Exception{
         
     	Connection con = null;
 		Statement st = null;
@@ -128,7 +121,7 @@ public class ExperienceDao {
 			st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
 	                ResultSet.CONCUR_READ_ONLY);
 			
-			String insertQuery = "insert into " + reviewTable + " value ('" + experienceName + "','" + null + "','" + dayIn + "','" + dayOut + "')";
+			String insertQuery = "insert into " + reviewTable + " value ('" + experienceName + "','','" + 0 + "','" + dayIn + "','" + dayOut + "')";
 				    	
 			st.executeUpdate(insertQuery);
 			
@@ -174,9 +167,9 @@ public class ExperienceDao {
     	}
 	}
 	
-	public static int getReview(String reviewTable) throws Exception {
+	public static int getReviewsNumber(String reviewTable) throws Exception {
 		
-		String numQuery = "select count(*) from " + reviewTable + " where review != 'null'";
+		String numQuery = "select count(*) from " + reviewTable + " where review != ''";
 		
 		Connection con = null;
 		Statement st = null;
@@ -199,6 +192,39 @@ public class ExperienceDao {
 			rs.close();
 			
 			return i;
+			
+    	} finally {
+    		
+    		st.close();
+    		con.close();
+    		
+    	}
+	}
+	
+	public static void addReview(Review review, String structure, int dayIn, int dayOut) throws Exception {
+		
+		String table = User.getIstance().getReviewsTable();
+
+		String insertReviewQuery = "update " + table + " set review = '" + review.getReview() + "' where structure = '" + structure + "' and dateIn = '" + dayIn + "' and dateOut = '" + dayOut + "'";
+		String insertStarsQuery = "update " + table + " set stars = '" + review.getVote() + "' where structure = '" + structure + "' and dateIn = '" + dayIn + "' and dateOut = '" + dayOut + "'";
+
+		Connection con = null;
+		Statement st = null;
+		
+    	try {
+    		Class.forName(DRIVER_CLASS_NAME);
+    		try{
+				con = DriverManager.getConnection(url,name,pass);
+			} catch(SQLException e){
+		        System.out.println("Couldn't connect: exit.");
+		        System.exit(1);
+		        }
+			
+			st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+	                ResultSet.CONCUR_READ_ONLY);
+
+			st.executeUpdate(insertReviewQuery);
+			st.executeUpdate(insertStarsQuery);
 			
     	} finally {
     		

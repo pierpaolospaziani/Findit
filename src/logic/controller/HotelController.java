@@ -6,13 +6,15 @@ import javafx.scene.layout.AnchorPane;
 import logic.bean.HotelBean;
 import logic.model.Hotel;
 import logic.model.Owner;
+import logic.dao.ExperienceDao;
 import logic.dao.HotelDao;
 import logic.model.Reservation;
+import logic.model.Review;
 import logic.dao.ReservationDao;
+import logic.dao.ReviewDao;
 import logic.model.Room;
 import logic.model.User;
 import logic.dao.RoomDao;
-import logic.dao.UserDao;
 import logic.view.Hotel2Scene;
 import logic.view.Hotel3Scene;
 import logic.view.HotelConfirmScene;
@@ -507,7 +509,8 @@ public class HotelController {
 				LocalDate dayOut = bean.getLocalDateOut();
 				int dateOut = (dayOut.getYear()*10000) + (dayOut.getMonth().getValue()*100) + (dayOut.getDayOfMonth());
 				
-				UserDao.setReviewLine(user.getReviewsTable(), hotel.getName(),dateIn,dateOut);
+				//UserDao.setReviewLine(user.getReviewsTable(), hotel.getName(),dateIn,dateOut);
+				ExperienceDao.setExperienceRow(user.getReviewsTable(), hotel.getName(), dateIn, dateOut);
 				
 				return true;
 				
@@ -519,13 +522,32 @@ public class HotelController {
 		return false;
 	}
 	
-	public void viewReviews() {
+	public void viewReviews(boolean isHotel, String reviewTable, int indice) {
+	
+		ProfileController profileController = ProfileController.getIstance(pane);
 		
-		ViewReviewScene viewReviewScene = new ViewReviewScene();
+		Review r1 = null;
+		Review r2 = null;
+		Review r3 = null;
+		
+		try {
+			indice++;
+			r1 = ReviewDao.getReview(reviewTable, indice);
+			indice++;
+			r2 = ReviewDao.getReview(reviewTable, indice);
+			indice++;
+			r3 = ReviewDao.getReview(reviewTable, indice);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		if (r1.getUser() != null) {
 
-		pane.getChildren().clear();
-		pane.getChildren().add(viewReviewScene);
-		
+			ViewReviewScene viewReviewScene = new ViewReviewScene(isHotel,this,r1,r2,r3,reviewTable,indice,profileController);
+
+			pane.getChildren().clear();
+			pane.getChildren().add(viewReviewScene);
+		}
 	}
 
 	public int getPage() {

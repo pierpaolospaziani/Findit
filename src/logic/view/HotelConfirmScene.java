@@ -234,6 +234,7 @@ public class HotelConfirmScene extends VBox{
 		 				confirmLabel.setText("Excellent, your booking has been accepted!");
 		 				
 		 				btnConfirm.setDisable(true);
+		 				btnUndo.setText("Back");
 	 					controller.setStep(1);
 		 				
 	 				} else {
