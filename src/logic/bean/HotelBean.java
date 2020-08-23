@@ -7,16 +7,7 @@ public class HotelBean {
 	private String name;
 	private String address;
 	private String city;
-	/*
-	 * NON DOVREBBERO SERVIRE PIU
-	 * 
-	private int checkInDay;
-	private int checkInMonth;
-	private int checkInYear;
-	private int checkOutDay;
-	private int checkOutMonth;
-	private int checkOutYear;
-	*/
+
 	private int days;
 	private LocalDate localDateIn;
 	private LocalDate localDateOut;
@@ -53,55 +44,7 @@ public class HotelBean {
 	public void setCity(String city) {
 		this.city = city;
 	}
-	/*
-	public int getCheckInDay() {
-		return checkInDay;
-	}
-	
-	public void setCheckInDay(int checkInDay) {
-		this.checkInDay = checkInDay;
-	}
-	
-	public int getCheckInMonth() {
-		return checkInMonth;
-	}
-	
-	public void setCheckInMonth(int checkInMonth) {
-		this.checkInMonth = checkInMonth;
-	}
-	
-	public int getCheckInYear() {
-		return checkInYear;
-	}
-	
-	public void setCheckInYear(int checkInYear) {
-		this.checkInYear = checkInYear;
-	}
-	
-	public int getCheckOutDay() {
-		return checkOutDay;
-	}
-	
-	public void setCheckOutDay(int checkOutDay) {
-		this.checkOutDay = checkOutDay;
-	}
-	
-	public int getCheckOutMonth() {
-		return checkOutMonth;
-	}
-	
-	public void setCheckOutMonth(int checkOutMonth) {
-		this.checkOutMonth = checkOutMonth;
-	}
-	
-	public int getCheckOutYear() {
-		return checkOutYear;
-	}
-	
-	public void setCheckOutYear(int checkOutYear) {
-		this.checkOutYear = checkOutYear;
-	}
-	*/
+
 	public int getNumPeople() {
 		return numPeople;
 	}
@@ -276,13 +219,13 @@ public class HotelBean {
 	}
 
 	public void setType() {
-		if (isApartment() == true) {
+		if (isApartment()) {
 			type = "apartment";
-		} else if (isBeb() == true) {
+		} else if (isBeb()) {
 			type = "beb";
-		} else if (isHostel() == true) {
+		} else if (isHostel()) {
 			type = "hostel";
-		} else if (isHotel() == true) {
+		} else if (isHotel()) {
 			type = "hotel";
 		} else {
 			type = null;

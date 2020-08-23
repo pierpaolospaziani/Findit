@@ -6,7 +6,6 @@ import logic.view.RestaurantsScene;
 
 public class RestaurantsController{
 
-	private RestaurantsScene restaurantsScene;
 	private AnchorPane pane;
 	private RestaurantsBean bean;
 	
@@ -28,17 +27,13 @@ public class RestaurantsController{
 	
 	public void changeScene() {
 		
-		restaurantsScene = new RestaurantsScene(this,bean);
+		RestaurantsScene restaurantsScene = new RestaurantsScene(this,bean);
 		
 		pane.getChildren().clear();
 		pane.getChildren().add(restaurantsScene);
 	}
 	
 	public void changeScene2(){
-		
-		//restaurantScene2 = new RestaurantScene2(this,bean,hotel1,hotel2,hotel3);
-		
 		pane.getChildren().clear();
-		//pane.getChildren().add(restaurantScene2);
 	}
 }

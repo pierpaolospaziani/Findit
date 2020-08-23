@@ -30,7 +30,6 @@ import logic.view.WriteReviewWindow;
 
 public class ProfileController {
 
-	private ProfileScene profileScene;
 	private User2Scene userScene;
 	private LogWindow window;
 	private AnchorPane pane;
@@ -76,11 +75,11 @@ public class ProfileController {
 			bean.setResult(true);
 		} else {
 			this.owner = login.checkOwner(username, password);
+			boolean ownerLogged = false;
 			if (owner.getUsername().equals(username) && owner.getPassword().equals(password)) {
-				bean.setResult(true);
-			} else {			
-				bean.setResult(false);
+				ownerLogged = true;
 			}
+			bean.setResult(ownerLogged);
 		}
 	}
 	
@@ -116,7 +115,7 @@ public class ProfileController {
 		if (!user.getLogged()) {
 			if (!owner.getLogged()) {
 				
-				profileScene = new ProfileScene(this);
+				ProfileScene profileScene = new ProfileScene(this);
 				
 				pane.getChildren().clear();
 				pane.getChildren().add(profileScene);
@@ -297,9 +296,9 @@ public class ProfileController {
 	
 	public void setStructure(String name) {
 		
-		HotelBean bean = new HotelBean();
+		HotelBean hotelBean = new HotelBean();
 		
-		HotelRegistrationScene registerScene = new HotelRegistrationScene(this,name,bean);
+		HotelRegistrationScene registerScene = new HotelRegistrationScene(this,name,hotelBean);
 
 		pane.getChildren().clear();
 		pane.getChildren().add(registerScene);
@@ -337,18 +336,15 @@ public class ProfileController {
 	
 	public boolean addRoom(String roomsTable, int id, int beds, int price) {
 		
-		Boolean setted = null;
+		Boolean setted = false;
+		
 		try {
 			setted = RoomDao.setRoom(roomsTable, id, beds, price);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		if (setted) {
-			return true;
-		} else {
-			return false;
-		}
+		return setted;
 	}
 	
 	public void addDescriptionScene(Stage window, String structure) {

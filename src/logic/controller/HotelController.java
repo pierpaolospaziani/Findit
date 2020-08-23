@@ -111,13 +111,17 @@ public class HotelController {
 		
 		if (bean.getStar5()){
 			stars = 5;
-		}if (bean.getStar4()){
+		}
+		if (bean.getStar4()){
 			stars = 4;
-		}if (bean.getStar3()){
+		}
+		if (bean.getStar3()){
 			stars = 3;
-		}if (bean.getStar2()){
+		}
+		if (bean.getStar2()){
 			stars = 2;
-		}if (bean.getStar1()){
+		}
+		if (bean.getStar1()){
 			stars = 1;
 		}
 
@@ -143,12 +147,9 @@ public class HotelController {
 					
 					int roomIndex = 1;
 					
-					try {
 						while (true) {
 							room1 = RoomDao.searchRoom(hotel1.getRooms(), bean.getNumPeople(), budget, roomIndex);
-							//System.out.println("Proviamo la stanza con ID: " + room1.getRoomId());
 							if (room1.getRoomId() == 0) {
-								//System.out.println("Non c'ho stanze!");
 								break;
 							}
 							
@@ -162,28 +163,23 @@ public class HotelController {
 							while (dayIndex<=bean.getDays()) {
 								
 								day = day.plusDays(1);
-								//System.out.println(day);
 								
 								int date = (day.getYear()*10000) + (day.getMonth().getValue()*100) + (day.getDayOfMonth());
 								
 								Reservation reservation1 = ReservationDao.searchReservation(hotel1.getAgenda(), room1.getRoomId(), date);
 								if (room1.getRoomId() == reservation1.getReservationId()) {
-									//System.out.println("E' prenotata, prova un'altra");
 									validRoom = false;
 									break;
 								
 								} else {
-									//System.out.println("Non è prenotata");
 									dayIndex++;
 									validRoom = true;
 								}
 							}
 							
 							if (validRoom == false) {
-								//System.out.println("Stanza non buona");
 								roomIndex++;
 							} else {
-								//System.out.println("Stanza buona");
 								valid = false;
 								
 								if (indice < index) {
@@ -196,10 +192,6 @@ public class HotelController {
 								break;							
 							}
 						}
-						
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
 					
 				} else {
 					
@@ -209,14 +201,8 @@ public class HotelController {
 					break;
 				}	
 			}
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		
-		valid = true;
-		
-		try {
+			valid = true;
 			
 			while (valid) {
 				
@@ -230,18 +216,14 @@ public class HotelController {
 						bean.getGym(),
 						stars,
 						index);
-				//System.out.println(hotel2.getName());
 				
 				if (hotel2.getName() != null) {
 					
 					int roomIndex = 1;
 					
-					try {
 						while (true) {
 							room2 = RoomDao.searchRoom(hotel2.getRooms(), bean.getNumPeople(), budget, roomIndex);
-							//System.out.println("Proviamo la stanza con ID: " + room2.getRoomId());
 							if (room2.getRoomId() == 0) {
-								//System.out.println("Non c'ho stanze!");
 								break;
 							}
 							
@@ -255,51 +237,36 @@ public class HotelController {
 							while (dayIndex<=bean.getDays()) {
 								
 								day = day.plusDays(1);
-								//System.out.println(day);
 								
 								int date = (day.getYear()*10000) + (day.getMonth().getValue()*100) + (day.getDayOfMonth());
 								
 								Reservation reservation2 = ReservationDao.searchReservation(hotel2.getAgenda(), room2.getRoomId(), date);
 								if (room2.getRoomId() == reservation2.getReservationId()) {
-									//System.out.println("E' prenotata, prova un'altra");
 									validRoom = false;
 									break;
 								
 								} else {
-									//System.out.println("Non è prenotata");
 									dayIndex++;
 									validRoom = true;
 								}
 							}
 							
 							if (validRoom == false) {
-								//System.out.println("Stanza non buona");
 								roomIndex++;
 							} else {
-								//System.out.println("Stanza buona");
 								valid = false;
 								setIndice(index);
 								break;							
 							}
 						}
-						
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
 					
 				} else {
 					break;				
 				}	
 			}
 			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		valid = true;
-		
-		try {
-			
+			valid = true;
+				
 			while (valid) {
 				
 				index++;
@@ -312,18 +279,14 @@ public class HotelController {
 						bean.getGym(),
 						stars,
 						index);
-				//System.out.println(hotel3.getName());
 				
 				if (hotel3.getName() != null) {
 					
 					int roomIndex = 1;
-					
-					try {
+
 						while (true) {
 							room3 = RoomDao.searchRoom(hotel3.getRooms(), bean.getNumPeople(), budget, roomIndex);
-							//System.out.println("Proviamo la stanza con ID: " + room3.getRoomId());
 							if (room3.getRoomId() == 0) {
-								//System.out.println("Non c'ho stanze!");
 								break;
 							}
 							
@@ -337,37 +300,28 @@ public class HotelController {
 							while (dayIndex<=bean.getDays()) {
 								
 								day = day.plusDays(1);
-								//System.out.println(day);
 								
 								int date = (day.getYear()*10000) + (day.getMonth().getValue()*100) + (day.getDayOfMonth());
 								
 								Reservation reservation3 = ReservationDao.searchReservation(hotel3.getAgenda(), room3.getRoomId(), date);
 								if (room3.getRoomId() == reservation3.getReservationId()) {
-									//System.out.println("E' prenotata, prova un'altra");
 									validRoom = false;
 									break;
 								
 								} else {
-									//System.out.println("Non è prenotata");
 									dayIndex++;
 									validRoom = true;
 								}
 							}
 							
 							if (validRoom == false) {
-								//System.out.println("Stanza non buona");
 								roomIndex++;
 							} else {
-								//System.out.println("Stanza buona");
 								valid = false;
 								setIndice(index);
 								break;							
 							}
 						}
-						
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
 					
 				} else {
 					break;				
@@ -378,7 +332,7 @@ public class HotelController {
 			e.printStackTrace();
 		}
 		
-		if (change == true || indice == 0) {
+		if (change || indice == 0) {
 			hotel2Scene = new Hotel2Scene(this,hotel1,room1,hotel2,room2,hotel3,room3);
 			
 			pane.getChildren().clear();
@@ -437,10 +391,10 @@ public class HotelController {
 	
 	public void goToBook(Hotel hotel, Room room) {
 		
-		HotelConfirmScene HotelConfirmScene = new HotelConfirmScene(this, bean, hotel, room);
+		HotelConfirmScene hotelConfirmScene = new HotelConfirmScene(this, bean, hotel, room);
 		
 		pane.getChildren().clear();
-		pane.getChildren().add(HotelConfirmScene);
+		pane.getChildren().add(hotelConfirmScene);
 	}
 	
 	public void returnBackHotelPage() {
@@ -509,7 +463,6 @@ public class HotelController {
 				LocalDate dayOut = bean.getLocalDateOut();
 				int dateOut = (dayOut.getYear()*10000) + (dayOut.getMonth().getValue()*100) + (dayOut.getDayOfMonth());
 				
-				//UserDao.setReviewLine(user.getReviewsTable(), hotel.getName(),dateIn,dateOut);
 				ExperienceDao.setExperienceRow(user.getReviewsTable(), hotel.getName(), dateIn, dateOut);
 				
 				return true;

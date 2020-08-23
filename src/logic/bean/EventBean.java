@@ -8,9 +8,9 @@ public class EventBean {
 	
 	private int people;
 	
-	private int Day;
-	private int Month;
-	private int Year;
+	private int day;
+	private int month;
+	private int year;
 	
 	private int hour;
 	
@@ -44,27 +44,27 @@ public class EventBean {
 	}
 	
 	public int getDay() {
-		return Day;
+		return day;
 	}
 	
 	public void setDay(int day) {
-		Day = day;
+		this.day = day;
 	}
 	
 	public int getMonth() {
-		return Month;
+		return month;
 	}
 	
 	public void setMonth(int month) {
-		Month = month;
+		this.month = month;
 	}
 	
 	public int getYear() {
-		return Year;
+		return year;
 	}
 	
 	public void setYear(int year) {
-		Year = year;
+		this.year = year;
 	}
 	
 	public int getHour() {
