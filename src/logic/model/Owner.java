@@ -4,11 +4,11 @@ import javafx.scene.image.Image;
 
 public class Owner {
 
-	private String username;
-	private String password;
-	private String structures;
-	private Image image;
-	private boolean isLogged = false;
+	private String ownerUsername;
+	private String ownerPassword;
+	private String ownerStructures;
+	private Image ownerImage;
+	private boolean ownerIsLogged = false;
 	
 	private static Owner istance = null;
 	
@@ -20,54 +20,54 @@ public class Owner {
 	}
 
 	private Owner() {
-		this.username = "";
-		this.password = "";
-		this.structures = "";
+		this.ownerUsername = "";
+		this.ownerPassword = "";
+		this.ownerStructures = "";
 	}
 	
 	public Owner(String username, String password, String structure) {
-		this.username = username;
-		this.password = password;
-		this.structures = structure;
+		this.ownerUsername = username;
+		this.ownerPassword = password;
+		this.ownerStructures = structure;
 	}
 	
-	public String getUsername() {
-		return this.username;
+	public String getOwnerUsername() {
+		return this.ownerUsername;
 	}
 	
-	public String getPassword() {
-		return this.password;
+	public String getOwnerPassword() {
+		return this.ownerPassword;
 	}
 	
-	public void setUsername(String username) {
-		this.username = username;
+	public void setOwnerUsername(String username) {
+		this.ownerUsername = username;
 	}
 	
-	public void setPassword(String password) {
-		this.password = password;
+	public void setOwnerPassword(String password) {
+		this.ownerPassword = password;
 	}
 	
-	public boolean getLogged() {
-		return isLogged;
+	public boolean getOwnerLogged() {
+		return ownerIsLogged;
 	}
 
-	public void setLogged(boolean isLogged) {
-		this.isLogged = isLogged;
+	public void setOwnerLogged(boolean isLogged) {
+		this.ownerIsLogged = isLogged;
 	}
 
-	public String getStructures() {
-		return structures;
+	public String getOwnerStructures() {
+		return ownerStructures;
 	}
 
-	public void setStructures(String structures) {
-		this.structures = structures;
+	public void setOwnerStructures(String structures) {
+		this.ownerStructures = structures;
 	}
 
-	public Image getImage() {
-		return image;
+	public Image getOwnerImage() {
+		return ownerImage;
 	}
 
-	public void setImage(Image image) {
-		this.image = image;
+	public void setOwnerImage(Image image) {
+		this.ownerImage = image;
 	}	 
 }

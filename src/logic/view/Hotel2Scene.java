@@ -127,7 +127,7 @@ public class Hotel2Scene extends VBox{
         imageViewHotel1.setPickOnBounds(true);
         imageViewHotel1.setPreserveRatio(true);
         
-        Image photo = hotel1.getImage();
+        Image photo = hotel1.getHotelImage();
         
         if (photo == null) {
         	imageViewHotel1.setImage(new Image(getClass().getResource("strucutre.jpg").toExternalForm()));
@@ -142,18 +142,18 @@ public class Hotel2Scene extends VBox{
 
         btnHotel1.setMnemonicParsing(false);
         btnHotel1.setStyle("-fx-background-color: transparent;");
-        btnHotel1.setText(hotel1.getName());
+        btnHotel1.setText(hotel1.getHotelName());
         
         btnHotel1.setPadding(new Insets(1.0, 0.0, 0.0, 0.0));
         btnHotel1.setFont(new Font(24.0));
 
-        labelAddress1.setText(hotel1.getAddress());
+        labelAddress1.setText(hotel1.getHotelAddress());
         labelAddress1.setFont(new Font(18.0));
         
-        if (hotel1.getRating() == 0) {
+        if (hotel1.getHotelRating() == 0) {
         	labelStar1.setText("Still 0 Reviews");
         } else {
-            labelStar1.setText(String.valueOf(hotel1.getRating()) + " Stars");
+            labelStar1.setText(String.valueOf(hotel1.getHotelRating()) + " Stars");
         }
         labelStar1.setFont(new Font(18.0));
 
@@ -169,7 +169,7 @@ public class Hotel2Scene extends VBox{
         bedsHotel1.setText(String.valueOf(room1.getBeds()) + " Beds");
         bedsHotel1.setFont(new Font(18.0));
         
-        if (hotel1.getName() == null) {
+        if (hotel1.getHotelName() == null) {
         	btnHotel1.setText("Hotel not found!");
         	labelStar1.setText("");
         	labelPrezzo1.setText("");
@@ -193,7 +193,7 @@ public class Hotel2Scene extends VBox{
         imageViewHotel2.setPickOnBounds(true);
         imageViewHotel2.setPreserveRatio(true);
         
-        photo = hotel2.getImage();
+        photo = hotel2.getHotelImage();
         
         if (photo == null) {
         	imageViewHotel2.setImage(new Image(getClass().getResource("strucutre.jpg").toExternalForm()));
@@ -209,18 +209,18 @@ public class Hotel2Scene extends VBox{
         btnHotel2.setMnemonicParsing(false);
         btnHotel2.setStyle("-fx-background-color: transparent;");
         btnHotel2.setText("Hotel2");
-        btnHotel2.setText(hotel2.getName());
+        btnHotel2.setText(hotel2.getHotelName());
                 
         btnHotel2.setPadding(new Insets(1.0, 0.0, 0.0, 0.0));
         btnHotel2.setFont(new Font(24.0));
 
-        labelAddress2.setText(hotel2.getAddress());
+        labelAddress2.setText(hotel2.getHotelAddress());
         labelAddress2.setFont(new Font(18.0));
         
-        if (hotel2.getRating() == 0) {
+        if (hotel2.getHotelRating() == 0) {
         	labelStar2.setText("Still 0 Reviews");
         } else {
-            labelStar2.setText(String.valueOf(hotel2.getRating()) + " Stars");
+            labelStar2.setText(String.valueOf(hotel2.getHotelRating()) + " Stars");
         }
         labelStar2.setFont(new Font(18.0));
 
@@ -236,7 +236,7 @@ public class Hotel2Scene extends VBox{
         bedsHotel2.setText(String.valueOf(room1.getBeds()) + " Beds");
         bedsHotel2.setFont(new Font(18.0));
         
-        if (hotel2.getName() == null) {
+        if (hotel2.getHotelName() == null) {
         	btnHotel2.setText("Hotel not found!");
         	labelStar2.setText("");
         	labelPrezzo2.setText("");
@@ -260,7 +260,7 @@ public class Hotel2Scene extends VBox{
         imageViewHotel3.setPickOnBounds(true);
         imageViewHotel3.setPreserveRatio(true);
         
-        photo = hotel3.getImage();
+        photo = hotel3.getHotelImage();
         
         if (photo == null) {
         	imageViewHotel3.setImage(new Image(getClass().getResource("strucutre.jpg").toExternalForm()));
@@ -275,18 +275,18 @@ public class Hotel2Scene extends VBox{
 
         btnHotel3.setMnemonicParsing(false);
         btnHotel3.setStyle("-fx-background-color: transparent;");
-        btnHotel3.setText(hotel3.getName());
+        btnHotel3.setText(hotel3.getHotelName());
           
         btnHotel3.setPadding(new Insets(1.0, 0.0, 0.0, 0.0));
         btnHotel3.setFont(new Font(24.0));
         
-        labelAddress3.setText(hotel3.getAddress());
+        labelAddress3.setText(hotel3.getHotelAddress());
         labelAddress3.setFont(new Font(18.0));
         
-        if (hotel3.getRating() == 0) {
+        if (hotel3.getHotelRating() == 0) {
         	labelStar3.setText("Still 0 Reviews");
         } else {
-            labelStar3.setText(String.valueOf(hotel3.getRating()) + " Stars");
+            labelStar3.setText(String.valueOf(hotel3.getHotelRating()) + " Stars");
         }
         labelStar3.setFont(new Font(18.0));
 
@@ -302,7 +302,7 @@ public class Hotel2Scene extends VBox{
         bedsHotel3.setText(String.valueOf(room1.getBeds()) + " Beds");
         bedsHotel3.setFont(new Font(18.0));
         
-        if (hotel3.getName() == null) {
+        if (hotel3.getHotelName() == null) {
         	btnHotel3.setText("Hotel not found!");
         	labelStar3.setText("");
         	labelPrezzo3.setText("");

@@ -3,115 +3,115 @@ package logic.model;
 
 public class Restaurant {
 
-	private String name;
-	private String owner; // questo deve essere un riferimento a istanza di classe utente proprietario
-	private String type; // mettiamo qui il tipo o serie di attributi booleani
-	private String city;
-	private String address;
-	private int rating;
-	private int budget;
-	private boolean pizza;
-	private boolean sushi;
-	private boolean hamburgher;
-	private boolean pasta;
-	private boolean meat;
-	private boolean vegan;
-	private boolean fish;
-	private boolean gourmet;
+	private String restaurantName;
+	private String restaurantOwner;
+	private String restaurantType;
+	private String restaurantCity;
+	private String restaurantAddress;
+	private int restaurantRating;
+	private int restaurantBudget;
+	private boolean restaurantPizza;
+	private boolean restaurantSushi;
+	private boolean restaurantHamburgher;
+	private boolean restaurantPasta;
+	private boolean restaurantMeat;
+	private boolean restaurantVegan;
+	private boolean restaurantFish;
+	private boolean restaurantGourmet;
 	
 	public Restaurant() {
 		
 	}
 	
-	public String getName() {
-		return name;
+	public String getRestaurantName() {
+		return restaurantName;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setRestaurantName(String name) {
+		this.restaurantName = name;
 	}
-	public String getOwner() {
-		return owner;
+	public String getRestaurantOwner() {
+		return restaurantOwner;
 	}
-	public void setOwner(String owner) {
-		this.owner = owner;
+	public void setRestaurantOwner(String owner) {
+		this.restaurantOwner = owner;
 	}
-	public String getType() {
-		return type;
+	public String getRestaurantType() {
+		return restaurantType;
 	}
-	public void setType(String type) {
-		this.type = type;
+	public void setRestaurantType(String type) {
+		this.restaurantType = type;
 	}
-	public String getCity() {
-		return city;
+	public String getRestaurantCity() {
+		return restaurantCity;
 	}
-	public void setCity(String city) {
-		this.city = city;
+	public void setRestaurantCity(String city) {
+		this.restaurantCity = city;
 	}
 	public String getAddress() {
-		return address;
+		return restaurantAddress;
 	}
-	public void setAddress(String address) {
-		this.address = address;
+	public void setRestaurantAddress(String address) {
+		this.restaurantAddress = address;
 	}
-	public int getRating() {
-		return rating;
+	public int getRestaurantRating() {
+		return restaurantRating;
 	}
-	public void setRating(int rating) {
-		this.rating = rating;
+	public void setRestaurantRating(int rating) {
+		this.restaurantRating = rating;
 	}
 
-	public int getBudget() {
-		return budget;
+	public int getRestaurantBudget() {
+		return restaurantBudget;
 	}
-	public void setBudget(int budget) {
-		this.budget = budget;
+	public void setRestaurantBudget(int budget) {
+		this.restaurantBudget = budget;
 	}
-	public boolean isPizza() {
-		return pizza;
+	public boolean isRestaurantPizza() {
+		return restaurantPizza;
 	}
-	public void setPizza(boolean pizza) {
-		this.pizza = pizza;
+	public void setRestaurantPizza(boolean pizza) {
+		this.restaurantPizza = pizza;
 	}
-	public boolean isSushi() {
-		return sushi;
+	public boolean isRestaurantSushi() {
+		return restaurantSushi;
 	}
-	public void setSushi(boolean sushi) {
-		this.sushi = sushi;
+	public void setRestaurantSushi(boolean sushi) {
+		this.restaurantSushi = sushi;
 	}
-	public boolean isHamburgher() {
-		return hamburgher;
+	public boolean isRestaurantHamburgher() {
+		return restaurantHamburgher;
 	}
-	public void setHamburgher(boolean hamburgher) {
-		this.hamburgher = hamburgher;
+	public void setRestaurantHamburgher(boolean hamburgher) {
+		this.restaurantHamburgher = hamburgher;
 	}
-	public boolean isPasta() {
-		return pasta;
+	public boolean isRestaurantPasta() {
+		return restaurantPasta;
 	}
-	public void setPasta(boolean pasta) {
-		this.pasta = pasta;
+	public void setRestaurantPasta(boolean pasta) {
+		this.restaurantPasta = pasta;
 	}
-	public boolean isMeat() {
-		return meat;
+	public boolean isRestaurantMeat() {
+		return restaurantMeat;
 	}
-	public void setMeat(boolean meat) {
-		this.meat = meat;
+	public void setRestaurantMeat(boolean meat) {
+		this.restaurantMeat = meat;
 	}
-	public boolean isVegan() {
-		return vegan;
+	public boolean isRestaurantVegan() {
+		return restaurantVegan;
 	}
-	public void setVegan(boolean vegan) {
-		this.vegan = vegan;
+	public void setRestaurantVegan(boolean vegan) {
+		this.restaurantVegan = vegan;
 	}
-	public boolean isFish() {
-		return fish;
+	public boolean isRestaurantFish() {
+		return restaurantFish;
 	}
-	public void setFish(boolean fish) {
-		this.fish = fish;
+	public void setRestaurantFish(boolean fish) {
+		this.restaurantFish = fish;
 	}
-	public boolean isGourmet() {
-		return gourmet;
+	public boolean isRestaurantGourmet() {
+		return restaurantGourmet;
 	}
-	public void setGourmet(boolean gourmet) {
-		this.gourmet = gourmet;
+	public void setRestaurantGourmet(boolean gourmet) {
+		this.restaurantGourmet = gourmet;
 	}
 }

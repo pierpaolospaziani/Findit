@@ -16,10 +16,6 @@ public class ExperienceDao {
     private static String url = "jdbc:mysql://localhost:3306/findit?useTimezone=true&serverTimezone=UTC";
     private static String driverClassName = "com.mysql.cj.jdbc.Driver";
     
-    private ExperienceDao() {
-    	throw new IllegalStateException("Utility class");
-    }
-    
 	public static Experience getExperience(String reviewTable, int index){
 		
 		String nameQuery = "select structure from " + reviewTable;
@@ -38,14 +34,13 @@ public class ExperienceDao {
 			try {
 	    		Class.forName(driverClassName);
 	    		
-				con = DriverManager.getConnection(url,name,pass); System.exit(1);
+				con = DriverManager.getConnection(url,name,pass);
 				
 				st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
 		                ResultSet.CONCUR_READ_ONLY);
 			
 				ResultSet rs = st.executeQuery(nameQuery);
 				
-				// CHECK SE NON C'E'
 				if (!rs.first()) {
 					return experience;
 				}
@@ -207,10 +202,10 @@ public class ExperienceDao {
 	
 	public static void addReview(Review review, String structure, int dayIn, int dayOut){
 		
-		String table = User.getIstance().getReviewsTable();
+		String table = User.getIstance().getUserReviewsTable();
 
-		String insertReviewQuery = "update " + table + " set review = '" + review.getReview() + "' where structure = '" + structure + "' and dateIn = '" + dayIn + "' and dateOut = '" + dayOut + "'";
-		String insertStarsQuery = "update " + table + " set stars = '" + review.getVote() + "' where structure = '" + structure + "' and dateIn = '" + dayIn + "' and dateOut = '" + dayOut + "'";
+		String insertReviewQuery = "update " + table + " set review = '" + review.getReviewText() + "' where structure = '" + structure + "' and dateIn = '" + dayIn + "' and dateOut = '" + dayOut + "'";
+		String insertStarsQuery = "update " + table + " set stars = '" + review.getReviewVote() + "' where structure = '" + structure + "' and dateIn = '" + dayIn + "' and dateOut = '" + dayOut + "'";
 
 		Connection con = null;
 		Statement st = null;

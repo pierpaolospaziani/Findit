@@ -69,14 +69,14 @@ public class ProfileController {
 		String username = bean.getUsername();
 		String password = bean.getPassword();
 		
-		this.user = login.checkUser(username, password);
+		this.user = login.checkUser(username);
 		
-		if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
+		if (user.getUserName().equals(username) && user.getUserPassword().equals(password)) {
 			bean.setResult(true);
 		} else {
-			this.owner = login.checkOwner(username, password);
+			this.owner = login.checkOwner(username);
 			boolean ownerLogged = false;
-			if (owner.getUsername().equals(username) && owner.getPassword().equals(password)) {
+			if (owner.getOwnerUsername().equals(username) && owner.getOwnerPassword().equals(password)) {
 				ownerLogged = true;
 			}
 			bean.setResult(ownerLogged);
@@ -112,8 +112,8 @@ public class ProfileController {
 	}
 	
 	public void changeScene() {
-		if (!user.getLogged()) {
-			if (!owner.getLogged()) {
+		if (!user.getUserLogged()) {
+			if (!owner.getOwnerLogged()) {
 				
 				ProfileScene profileScene = new ProfileScene(this);
 				
@@ -148,7 +148,7 @@ public class ProfileController {
 			setIndice(0);
 			setPage(0);
 
-			if (user.getLogged()) {
+			if (user.getUserLogged()) {
 				
 				changeExperiences(0,0);
 				
@@ -175,7 +175,7 @@ public class ProfileController {
 	        
 	        	if (tipo == 0) {
 	        		
-	        		table = user.getReviewsTable();
+	        		table = user.getUserReviewsTable();
 	        	
 	        		index++;
 					
@@ -233,7 +233,7 @@ public class ProfileController {
 	        	
 	        	} else {
 	        		
-	        		table = owner.getStructures();
+	        		table = owner.getOwnerStructures();
 	        		
 	        		index++;
 					
@@ -365,9 +365,9 @@ public class ProfileController {
 	public void review(boolean bool,Experience experience) {
 		
 		Review review = new Review();
-		review.setUser(user.getUsername());
-		review.setReview(experience.getReview());
-		review.setVote(experience.getRating());
+		review.setReviewUser(user.getUserName());
+		review.setReviewText(experience.getReview());
+		review.setReviewVote(experience.getRating());
 		
 		if (bool) {
 			new WriteReviewWindow(this,review,experience.getName(),experience.getDayIn(),experience.getDayOut());
@@ -381,7 +381,7 @@ public class ProfileController {
 		try {
 			Hotel hotel = HotelDao.getHotel(structure);
 			ExperienceDao.addReview(review, structure, dayIn, dayOut);
-			int avg = ReviewDao.setReview(review.getReview(), review.getVote(), user.getUsername(),hotel.getReviews());
+			int avg = ReviewDao.setReview(review.getReviewText(), review.getReviewVote(), user.getUserName(),hotel.getHotelReviews());
 			HotelDao.setRating(avg, structure);
 		} catch (Exception e) {
 			e.printStackTrace();

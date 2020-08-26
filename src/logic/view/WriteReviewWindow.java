@@ -130,8 +130,8 @@ public class WriteReviewWindow {
 						textVote.setStyle("-fx-text-fill: red");
 						txtStars.setStyle("-fx-text-fill: red");
 					} else {
-						review.setReview(reviewText);
-						review.setVote(voto);
+						review.setReviewText(reviewText);
+						review.setReviewVote(voto);
 						controller.addReview(review, structure, in, out);
 						window.close();
 						controller.loggedScene();

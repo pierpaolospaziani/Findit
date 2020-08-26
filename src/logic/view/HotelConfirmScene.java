@@ -98,7 +98,7 @@ public class HotelConfirmScene extends VBox{
 
 	        txtNameHotel.setStrokeType(javafx.scene.shape.StrokeType.OUTSIDE);
 	        txtNameHotel.setStrokeWidth(0.0);
-	        txtNameHotel.setText("' " + hotel.getName() + " '");
+	        txtNameHotel.setText("' " + hotel.getHotelName() + " '");
 	        txtNameHotel.setWrappingWidth(358.71221923828125);
 	        txtNameHotel.setFont(new Font(24.0));
 

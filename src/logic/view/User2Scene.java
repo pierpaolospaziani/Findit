@@ -127,7 +127,7 @@ public class User2Scene extends HBox{
         vBox.setPrefWidth(350.0);
         vBox.setSpacing(10.0);
 
-        nameLabel.setText(user.getUsername());
+        nameLabel.setText(user.getUserName());
         nameLabel.setFont(new Font(48.0));
         VBox.setMargin(nameLabel, new Insets(30.0, 0.0, 0.0, 0.0));
 
@@ -136,7 +136,7 @@ public class User2Scene extends HBox{
         userImage.setPickOnBounds(true);
         userImage.setPreserveRatio(true);
         
-        Image photo = user.getImage();
+        Image photo = user.getUserImage();
         
         if (photo == null) {
         	userImage.setImage(new Image(getClass().getResource("account.jpg").toExternalForm()));
@@ -509,7 +509,7 @@ public class User2Scene extends HBox{
         btnLogout.setOnAction(new EventHandler<ActionEvent>(){
  			public void handle(ActionEvent event) {
  				
- 				user.setLogged(false);
+ 				user.setUserLogged(false);
  				
  				controller.setIndice(0);
  				controller.setPage(0);
@@ -531,11 +531,11 @@ public class User2Scene extends HBox{
 
  	                Image image = new Image(file.toURI().toString());
  	                
- 	                user.setImage(image);
+ 	                user.setUserImage(image);
  	                
  	                try {
  	                	FileInputStream inputStream = new FileInputStream(file);
-						UserDao.setImage(user.getUsername(), inputStream);
+						UserDao.setImage(user.getUserName(), inputStream);
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
@@ -664,7 +664,7 @@ public class User2Scene extends HBox{
         vBox.setPrefWidth(350.0);
         vBox.setSpacing(10.0);
 
-        nameLabel.setText(owner.getUsername());
+        nameLabel.setText(owner.getOwnerUsername());
         nameLabel.setFont(new Font(48.0));
         VBox.setMargin(nameLabel, new Insets(30.0, 0.0, 0.0, 0.0));
 
@@ -673,7 +673,7 @@ public class User2Scene extends HBox{
         userImage.setPickOnBounds(true);
         userImage.setPreserveRatio(true);
         
-        Image photo = owner.getImage();
+        Image photo = owner.getOwnerImage();
         
         if (photo == null) {
         	userImage.setImage(new Image(getClass().getResource("account.jpg").toExternalForm()));
@@ -1003,7 +1003,7 @@ public class User2Scene extends HBox{
         
         buttonAddStructure.setOnAction(new EventHandler<ActionEvent>(){
  			public void handle(ActionEvent event) {
- 				controller.setStructure(owner.getUsername());
+ 				controller.setStructure(owner.getOwnerUsername());
  			}
  		});
         
@@ -1048,7 +1048,7 @@ public class User2Scene extends HBox{
         btnLogout.setOnAction(new EventHandler<ActionEvent>(){
  			public void handle(ActionEvent event) {
  				
- 				owner.setLogged(false);
+ 				owner.setOwnerLogged(false);
  				
  				controller.setIndice(0);
  				controller.setPage(0);
@@ -1070,11 +1070,11 @@ public class User2Scene extends HBox{
  	            	
  	                Image image = new Image(file.toURI().toString());
  	                
- 	                owner.setImage(image);
+ 	                owner.setOwnerImage(image);
  	                
  	                try {
  	                	FileInputStream inputStream = new FileInputStream(file);
-						OwnerDao.setImage(owner.getUsername(), inputStream);
+						OwnerDao.setImage(owner.getOwnerUsername(), inputStream);
 					} catch (Exception e) {
 						e.printStackTrace();
 					}

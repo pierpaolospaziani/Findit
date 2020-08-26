@@ -40,10 +40,9 @@ public class StructureScene {
         btnOpenAgenda = new Button();
         btnAddDescription = new Button();
 
-        //Block events to other windows
         window.initModality(Modality.APPLICATION_MODAL);
         window.setMinWidth(250);
-        window.setTitle(hotel.getName());
+        window.setTitle(hotel.getHotelName());
 
         hBox.setAlignment(javafx.geometry.Pos.CENTER);
         hBox.setPrefWidth(500.0);
@@ -61,7 +60,7 @@ public class StructureScene {
         vBox2.setSpacing(25.0);
 
         try {
-			label1.setText("Rooms number: " + RoomDao.getRoomsNumber(hotel.getRooms()));
+			label1.setText("Rooms number: " + RoomDao.getRoomsNumber(hotel.getHotelRooms()));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -118,7 +117,7 @@ public class StructureScene {
         btnAddRoom.setOnAction(new EventHandler<ActionEvent>(){
  			public void handle(ActionEvent event) {
  				
- 				profileController.addRoomScene(window,hotel.getRooms(),hotel.getName());
+ 				profileController.addRoomScene(window,hotel.getHotelRooms(),hotel.getHotelName());
  				
  			}
  		});
@@ -126,7 +125,7 @@ public class StructureScene {
         btnViewReviews.setOnAction(new EventHandler<ActionEvent>(){
  			public void handle(ActionEvent event) {
  				
- 				hotelController.viewReviews(false,hotel.getReviews(), 0);
+ 				hotelController.viewReviews(false,hotel.getHotelReviews(), 0);
  				
  				window.close();
  			}
@@ -135,7 +134,7 @@ public class StructureScene {
         btnAddDescription.setOnAction(new EventHandler<ActionEvent>(){
  			public void handle(ActionEvent event) {
  				
- 				profileController.addDescriptionScene(window,hotel.getName());
+ 				profileController.addDescriptionScene(window,hotel.getHotelName());
  				
  			}
  		});

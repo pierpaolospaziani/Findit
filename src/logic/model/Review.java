@@ -2,31 +2,31 @@ package logic.model;
 
 public class Review {
 	
-	private String user;
-	private String review;
-	private int vote;
+	private String reviewUser;
+	private String reviewText;
+	private int reviewVote;
 
-	public String getUser() {
-		return user;
+	public String getReviewUser() {
+		return reviewUser;
 	}
 	
-	public void setUser(String user) {
-		this.user = user;
+	public void setReviewUser(String user) {
+		this.reviewUser = user;
 	}
 	
-	public String getReview() {
-		return review;
+	public String getReviewText() {
+		return reviewText;
 	}
 	
-	public void setReview(String review) {
-		this.review = review;
+	public void setReviewText(String review) {
+		this.reviewText = review;
 	}
 	
-	public int getVote() {
-		return vote;
+	public int getReviewVote() {
+		return reviewVote;
 	}
 	
-	public void setVote(int vote) {
-		this.vote = vote;
+	public void setReviewVote(int vote) {
+		this.reviewVote = vote;
 	}
 }

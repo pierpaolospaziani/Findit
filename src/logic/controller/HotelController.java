@@ -143,12 +143,12 @@ public class HotelController {
 						stars,
 						index);
 				
-				if (hotel1.getName() != null) {
+				if (hotel1.getHotelName() != null) {
 					
 					int roomIndex = 1;
 					
 						while (true) {
-							room1 = RoomDao.searchRoom(hotel1.getRooms(), bean.getNumPeople(), budget, roomIndex);
+							room1 = RoomDao.searchRoom(hotel1.getHotelRooms(), bean.getNumPeople(), budget, roomIndex);
 							if (room1.getRoomId() == 0) {
 								break;
 							}
@@ -166,7 +166,7 @@ public class HotelController {
 								
 								int date = (day.getYear()*10000) + (day.getMonth().getValue()*100) + (day.getDayOfMonth());
 								
-								Reservation reservation1 = ReservationDao.searchReservation(hotel1.getAgenda(), room1.getRoomId(), date);
+								Reservation reservation1 = ReservationDao.searchReservation(hotel1.getHotelAgenda(), room1.getRoomId(), date);
 								if (room1.getRoomId() == reservation1.getReservationId()) {
 									validRoom = false;
 									break;
@@ -217,12 +217,12 @@ public class HotelController {
 						stars,
 						index);
 				
-				if (hotel2.getName() != null) {
+				if (hotel2.getHotelName() != null) {
 					
 					int roomIndex = 1;
 					
 						while (true) {
-							room2 = RoomDao.searchRoom(hotel2.getRooms(), bean.getNumPeople(), budget, roomIndex);
+							room2 = RoomDao.searchRoom(hotel2.getHotelRooms(), bean.getNumPeople(), budget, roomIndex);
 							if (room2.getRoomId() == 0) {
 								break;
 							}
@@ -240,7 +240,7 @@ public class HotelController {
 								
 								int date = (day.getYear()*10000) + (day.getMonth().getValue()*100) + (day.getDayOfMonth());
 								
-								Reservation reservation2 = ReservationDao.searchReservation(hotel2.getAgenda(), room2.getRoomId(), date);
+								Reservation reservation2 = ReservationDao.searchReservation(hotel2.getHotelAgenda(), room2.getRoomId(), date);
 								if (room2.getRoomId() == reservation2.getReservationId()) {
 									validRoom = false;
 									break;
@@ -280,12 +280,12 @@ public class HotelController {
 						stars,
 						index);
 				
-				if (hotel3.getName() != null) {
+				if (hotel3.getHotelName() != null) {
 					
 					int roomIndex = 1;
 
 						while (true) {
-							room3 = RoomDao.searchRoom(hotel3.getRooms(), bean.getNumPeople(), budget, roomIndex);
+							room3 = RoomDao.searchRoom(hotel3.getHotelRooms(), bean.getNumPeople(), budget, roomIndex);
 							if (room3.getRoomId() == 0) {
 								break;
 							}
@@ -303,7 +303,7 @@ public class HotelController {
 								
 								int date = (day.getYear()*10000) + (day.getMonth().getValue()*100) + (day.getDayOfMonth());
 								
-								Reservation reservation3 = ReservationDao.searchReservation(hotel3.getAgenda(), room3.getRoomId(), date);
+								Reservation reservation3 = ReservationDao.searchReservation(hotel3.getHotelAgenda(), room3.getRoomId(), date);
 								if (room3.getRoomId() == reservation3.getReservationId()) {
 									validRoom = false;
 									break;
@@ -352,7 +352,7 @@ public class HotelController {
 		
 		if (i == 1) {
 			
-			if (hotel1.getName() == null) {
+			if (hotel1.getHotelName() == null) {
 				return;
 			}
 			
@@ -362,7 +362,7 @@ public class HotelController {
 			
 		} else if (i == 2) {
 			
-			if (hotel2.getName() == null) {
+			if (hotel2.getHotelName() == null) {
 				return;
 			}
 			
@@ -372,7 +372,7 @@ public class HotelController {
 			
 		} else {
 			
-			if (hotel3.getName() == null) {
+			if (hotel3.getHotelName() == null) {
 				return;
 			}
 			
@@ -425,11 +425,11 @@ public class HotelController {
 		Owner owner = Owner.getIstance();
 		ProfileController loginController = ProfileController.getIstance(pane);
 		
-		if (owner.getLogged()) {
+		if (owner.getOwnerLogged()) {
 			return false;
 		}
 		
-		if (!user.getLogged()){
+		if (!user.getUserLogged()){
 			
 			loginController.setBooking(true);
 			
@@ -437,7 +437,7 @@ public class HotelController {
 			
 		}
 		
-		if (user.getLogged()) {
+		if (user.getUserLogged()) {
 
 			LocalDate day = bean.getLocalDateIn();
 			day = day.plusDays(-1);
@@ -452,7 +452,7 @@ public class HotelController {
 					
 					int date = (day.getYear()*10000) + (day.getMonth().getValue()*100) + (day.getDayOfMonth());
 					
-					ReservationDao.setReservation(hotel.getAgenda(), room.getRoomId(), date, user.getUsername());
+					ReservationDao.setReservation(hotel.getHotelAgenda(), room.getRoomId(), date, user.getUserName());
 					
 					dayIndex++;
 					
@@ -463,7 +463,7 @@ public class HotelController {
 				LocalDate dayOut = bean.getLocalDateOut();
 				int dateOut = (dayOut.getYear()*10000) + (dayOut.getMonth().getValue()*100) + (dayOut.getDayOfMonth());
 				
-				ExperienceDao.setExperienceRow(user.getReviewsTable(), hotel.getName(), dateIn, dateOut);
+				ExperienceDao.setExperienceRow(user.getUserReviewsTable(), hotel.getHotelName(), dateIn, dateOut);
 				
 				return true;
 				
@@ -494,7 +494,7 @@ public class HotelController {
 			e.printStackTrace();
 		}
 		
-		if (r1.getUser() != null) {
+		if (r1.getReviewUser() != null) {
 
 			ViewReviewScene viewReviewScene = new ViewReviewScene(isHotel,this,r1,r2,r3,reviewTable,indice,profileController);
 

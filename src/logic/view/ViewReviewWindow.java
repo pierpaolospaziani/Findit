@@ -39,10 +39,10 @@ public class ViewReviewWindow {
         reviewScene.setSpacing(10.0);
         reviewScene.setStyle("-fx-background-color: white;");
         
-        label.setText("You voted: " + review.getVote() + " star/s");
+        label.setText("You voted: " + review.getReviewVote() + " star/s");
         label.setFont(new Font(24.0));
 
-        text.setText(review.getReview());
+        text.setText(review.getReviewText());
         text.setAlignment(javafx.geometry.Pos.TOP_LEFT);
         text.setWrapText(true);
         text.setFont(new Font(24.0));

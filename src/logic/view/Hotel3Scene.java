@@ -80,7 +80,7 @@ public class Hotel3Scene extends VBox{
         imageViewHotel.setPickOnBounds(true);
         imageViewHotel.setPreserveRatio(true);
         
-        Image photo = hotel.getImage();
+        Image photo = hotel.getHotelImage();
         
         if (photo == null) {
         	imageViewHotel.setImage(new Image(getClass().getResource("strucutre.jpg").toExternalForm()));
@@ -95,24 +95,24 @@ public class Hotel3Scene extends VBox{
 
         textName.setStrokeType(javafx.scene.shape.StrokeType.OUTSIDE);
         textName.setStrokeWidth(0.0);
-        textName.setText(hotel.getName());
+        textName.setText(hotel.getHotelName());
         textName.setWrappingWidth(342);
         textName.setFont(new Font(24.0));
 
         textAddress.setStrokeType(javafx.scene.shape.StrokeType.OUTSIDE);
         textAddress.setStrokeWidth(0.0);
-        textAddress.setText(hotel.getAddress());
+        textAddress.setText(hotel.getHotelAddress());
         textAddress.setWrappingWidth(342);
         textAddress.setFont(new Font(24.0));
 
         textNStars.setStrokeType(javafx.scene.shape.StrokeType.OUTSIDE);
         textNStars.setStrokeWidth(0.0);
         
-        if (hotel.getRating() == 0) {
+        if (hotel.getHotelRating() == 0) {
         	textNStars.setText("Still 0 reviews");
         	btnReview.setDisable(true);
         } else {
-        	textNStars.setText(String.valueOf(hotel.getRating()) + " stars");
+        	textNStars.setText(String.valueOf(hotel.getHotelRating()) + " stars");
         }
         
         textNStars.setFont(new Font(24.0));
@@ -139,7 +139,7 @@ public class Hotel3Scene extends VBox{
         vBoxDescription.setPrefWidth(841.0);
         vBoxDescription.setPadding(new Insets(15.0, 0.0, 15.0, 0.0));
 
-        textDescription.setText(hotel.getDescription());
+        textDescription.setText(hotel.getHotelDescription());
         textDescription.setAlignment(javafx.geometry.Pos.TOP_CENTER);
         textDescription.setWrapText(true);
         textDescription.setFont(new Font(24.0));
@@ -212,7 +212,7 @@ public class Hotel3Scene extends VBox{
         btnReview.setOnAction(new EventHandler<ActionEvent>(){
  			public void handle(ActionEvent event) {
  				
- 				controller.viewReviews(true,hotel.getReviews(),0);
+ 				controller.viewReviews(true,hotel.getHotelReviews(),0);
  			}
  		});
         

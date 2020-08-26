@@ -111,14 +111,14 @@ public class ViewReviewScene extends VBox {
         btnNameUser1.setMnemonicParsing(false);
         btnNameUser1.setPrefWidth(240.0);
         btnNameUser1.setStyle("-fx-background-color: transparent;");
-        btnNameUser1.setText(review1.getUser());
+        btnNameUser1.setText(review1.getReviewUser());
         
         btnNameUser1.setPadding(new Insets(1.0, 0.0, 0.0, 0.0));
         btnNameUser1.setFont(new Font(24.0));
 
         labelNumberStar1.setPrefWidth(230.0);
         labelNumberStar1.setFont(new Font(18.0));
-        labelNumberStar1.setText(String.valueOf(review1.getVote()) + " Star/s");
+        labelNumberStar1.setText(String.valueOf(review1.getReviewVote()) + " Star/s");
         
         scrollPane1.setContent(txtReview1);
         scrollPane1.setMaxWidth(650.0);
@@ -128,14 +128,14 @@ public class ViewReviewScene extends VBox {
 
         txtReview1.setFont(new Font(18.0));
         hBoxReview1.setPadding(new Insets(5.0));
-        txtReview1.setText(review1.getReview());
+        txtReview1.setText(review1.getReviewText());
         txtReview1.setPrefWidth(650.0);
         txtReview1.setMinHeight(132.0);
         txtReview1.setWrapText(true);
         txtReview1.setAlignment(javafx.geometry.Pos.TOP_LEFT);
         txtReview1.setStyle("-fx-background-color: white;");
         
-        if (review1.getUser() == null) {
+        if (review1.getReviewUser() == null) {
         	btnNameUser1.setText("No review ---");
         	labelNumberStar1.setText("");
         	txtReview1.setText("");
@@ -161,11 +161,11 @@ public class ViewReviewScene extends VBox {
         btnNameUser2.setStyle("-fx-background-color: transparent;");
         btnNameUser2.setPadding(new Insets(1.0, 0.0, 0.0, 0.0));
         btnNameUser2.setFont(new Font(24.0));
-        btnNameUser2.setText(review1.getUser());
+        btnNameUser2.setText(review1.getReviewUser());
 
         labelNumberStar2.setPrefWidth(230.0);
         labelNumberStar2.setFont(new Font(18.0));
-        labelNumberStar2.setText(String.valueOf(review2.getVote()) + " Star/s");
+        labelNumberStar2.setText(String.valueOf(review2.getReviewVote()) + " Star/s");
         
         scrollPane2.setContent(txtReview2);
         scrollPane2.setMaxWidth(650.0);
@@ -175,14 +175,14 @@ public class ViewReviewScene extends VBox {
 
         txtReview2.setFont(new Font(18.0));
         hBoxReview2.setPadding(new Insets(5.0));
-        txtReview2.setText(review2.getReview());
+        txtReview2.setText(review2.getReviewText());
         txtReview2.setPrefWidth(650.0);
         txtReview2.setMinHeight(132.0);
         txtReview2.setWrapText(true);
         txtReview2.setAlignment(javafx.geometry.Pos.TOP_LEFT);
         txtReview2.setStyle("-fx-background-color: white;");
         
-        if (review2.getUser() == null) {
+        if (review2.getReviewUser() == null) {
         	btnNameUser2.setText("No review ---");
         	labelNumberStar2.setText("");
         	txtReview2.setText("");
@@ -209,12 +209,12 @@ public class ViewReviewScene extends VBox {
         btnNameUser3.setStyle("-fx-background-color: transparent;");
         btnNameUser3.setPadding(new Insets(1.0, 0.0, 0.0, 0.0));
         btnNameUser3.setFont(new Font(24.0));
-        btnNameUser3.setText(review1.getUser());
+        btnNameUser3.setText(review1.getReviewUser());
 
         labelNumberStar3.setPrefHeight(27.0);
         labelNumberStar3.setPrefWidth(230.0);
         labelNumberStar3.setFont(new Font(18.0));
-        labelNumberStar3.setText(String.valueOf(review3.getVote()) + " Star/s");
+        labelNumberStar3.setText(String.valueOf(review3.getReviewVote()) + " Star/s");
         
         scrollPane3.setContent(txtReview3);
         scrollPane3.setMaxWidth(650.0);
@@ -224,14 +224,14 @@ public class ViewReviewScene extends VBox {
 
         txtReview3.setFont(new Font(18.0));
         hBoxReview3.setPadding(new Insets(5.0));
-        txtReview3.setText(review3.getReview());
+        txtReview3.setText(review3.getReviewText());
         txtReview3.setPrefWidth(650.0);
         txtReview3.setMinHeight(132.0);
         txtReview3.setWrapText(true);
         txtReview3.setAlignment(javafx.geometry.Pos.TOP_LEFT);
         txtReview3.setStyle("-fx-background-color: white;");
         
-        if (review3.getUser() == null) {
+        if (review3.getReviewUser() == null) {
         	btnNameUser3.setText("No review ---");
         	labelNumberStar3.setText("");
         	txtReview3.setText("");
@@ -286,7 +286,7 @@ public class ViewReviewScene extends VBox {
         btnNext.setTextFill(javafx.scene.paint.Color.WHITE);
         btnNext.setFont(new Font(24.0));
         
-        if (review3.getUser() == null) {
+        if (review3.getReviewUser() == null) {
         	btnNext.setDisable(true);
         }
         
@@ -333,14 +333,14 @@ public class ViewReviewScene extends VBox {
         
         btnPreview.setOnAction(new EventHandler<ActionEvent>(){
  			public void handle(ActionEvent event) {
- 	 				controller.viewReviews(true,reviewTable,indice-6);
+ 	 				controller.viewReviews(isHotel,reviewTable,indice-6);
  			}
  		});
         
         btnNext.setOnAction(new EventHandler<ActionEvent>(){
  			public void handle(ActionEvent event) {
  				
- 				controller.viewReviews(true,reviewTable, indice);
+ 				controller.viewReviews(isHotel,reviewTable, indice);
  			}
  		});
         

@@ -4,145 +4,145 @@ import javafx.scene.image.Image;
 
 public class Hotel {
 	
-	private String name;
-	private String owner;
-	private String type;
-	private String city;
-	private String address;
-	private int rating;
-	private boolean parking;
-	private boolean restaurant;
-	private boolean roomService;
-	private boolean gym;
+	private String hotelName;
+	private String hotelOwner;
+	private String hotelType;
+	private String hotelCity;
+	private String hotelAddress;
+	private int hotelRating;
+	private boolean hotelParking;
+	private boolean hotelRestaurant;
+	private boolean hotelRoomService;
+	private boolean hotelGym;
 	
-	private String rooms;
-	private String agenda;
-	private String reviews;
+	private String hotelRooms;
+	private String hotelAgenda;
+	private String hotelReviews;
 	
 	private Image image;
 	
 	private String description;
 	
 	public Hotel() {
-
+	
 	}
 		
-	public String getName() {
-		return name;
+	public String getHotelName() {
+		return hotelName;
 	}
 	
-	public void setName(String name) {
-		this.name = name;
+	public void setHotelName(String name) {
+		this.hotelName = name;
 	}
 	
-	public String getOwner() {
-		return owner;
+	public String getHotelOwner() {
+		return hotelOwner;
 	}
 	
-	public void setOwner(String owner) {
-		this.owner = owner;
+	public void setHotelOwner(String owner) {
+		this.hotelOwner = owner;
 	}
 	
-	public String getType() {
-		return type;
+	public String getHotelType() {
+		return hotelType;
 	}
 	
-	public void setType(String type) {
-		this.type = type;
+	public void setHotelType(String type) {
+		this.hotelType = type;
 	}
 	
-	public String getCity() {
-		return city;
+	public String getHotelCity() {
+		return hotelCity;
 	}
 	
-	public void setCity(String city) {
-		this.city = city;
+	public void setHotelCity(String city) {
+		this.hotelCity = city;
 	}
 	
-	public String getAddress() {
-		return address;
+	public String getHotelAddress() {
+		return hotelAddress;
 	}
 	
-	public void setAddress(String address) {
-		this.address = address;
+	public void setHotelAddress(String address) {
+		this.hotelAddress = address;
 	}
 	
-	public boolean isParking() {
-		return parking;
+	public boolean isHotelParking() {
+		return hotelParking;
 	}
 
-	public void setParking(boolean parking) {
-		this.parking = parking;
+	public void setHotelParking(boolean parking) {
+		this.hotelParking = parking;
 	}
 
-	public boolean isRestaurant() {
-		return restaurant;
+	public boolean isHotelRestaurant() {
+		return hotelRestaurant;
 	}
 
-	public void setRestaurant(boolean restaurant) {
-		this.restaurant = restaurant;
+	public void setHotelRestaurant(boolean restaurant) {
+		this.hotelRestaurant = restaurant;
 	}
 
-	public boolean isRoomService() {
-		return roomService;
+	public boolean isHotelRoomService() {
+		return hotelRoomService;
 	}
 
-	public void setRoomService(boolean roomService) {
-		this.roomService = roomService;
+	public void setHotelRoomService(boolean roomService) {
+		this.hotelRoomService = roomService;
 	}
 
-	public boolean isGym() {
-		return gym;
+	public boolean isHotelGym() {
+		return hotelGym;
 	}
 
-	public void setGym(boolean gym) {
-		this.gym = gym;
+	public void setHotelGym(boolean gym) {
+		this.hotelGym = gym;
 	}
 	
-	public int getRating() {
-		return rating;
+	public int getHotelRating() {
+		return hotelRating;
 	}
-	public void setRating(int rating) {
-		this.rating = rating;
-	}
-
-	public String getRooms() {
-		return rooms;
+	public void setHotelRating(int rating) {
+		this.hotelRating = rating;
 	}
 
-	public void setRooms(String rooms) {
-		this.rooms = rooms;
+	public String getHotelRooms() {
+		return hotelRooms;
 	}
 
-	public String getAgenda() {
-		return agenda;
+	public void setHotelRooms(String rooms) {
+		this.hotelRooms = rooms;
 	}
 
-	public void setAgenda(String agenda) {
-		this.agenda = agenda;
+	public String getHotelAgenda() {
+		return hotelAgenda;
 	}
 
-	public String getReviews() {
-		return reviews;
+	public void setHotelAgenda(String agenda) {
+		this.hotelAgenda = agenda;
 	}
 
-	public void setReviews(String reviews) {
-		this.reviews = reviews;
+	public String getHotelReviews() {
+		return hotelReviews;
 	}
 
-	public Image getImage() {
+	public void setHotelReviews(String reviews) {
+		this.hotelReviews = reviews;
+	}
+
+	public Image getHotelImage() {
 		return image;
 	}
 
-	public void setImage(Image image) {
+	public void setHotelImage(Image image) {
 		this.image = image;
 	}
 
-	public String getDescription() {
+	public String getHotelDescription() {
 		return description;
 	}
 
-	public void setDescription(String description) {
+	public void setHotelDescription(String description) {
 		this.description = description;
 	}	
 }
