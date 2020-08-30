@@ -200,9 +200,9 @@ public class ExperienceDao {
 		return i;
 	}
 	
-	public static void addReview(Review review, String structure, int dayIn, int dayOut){
+	public static void addReview(Review review, String structure, int dayIn, int dayOut, String table){
 		
-		String table = User.getIstance().getUserReviewsTable();
+		//String table = User.getIstance().getUserReviewsTable();
 
 		String insertReviewQuery = "update " + table + " set review = '" + review.getReviewText() + "' where structure = '" + structure + "' and dateIn = '" + dayIn + "' and dateOut = '" + dayOut + "'";
 		String insertStarsQuery = "update " + table + " set stars = '" + review.getReviewVote() + "' where structure = '" + structure + "' and dateIn = '" + dayIn + "' and dateOut = '" + dayOut + "'";

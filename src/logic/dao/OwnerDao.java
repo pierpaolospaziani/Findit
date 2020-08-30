@@ -16,6 +16,7 @@ import javax.imageio.ImageIO;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 import logic.model.Owner;
+import logic.model.OwnerWeb;
 
 public class OwnerDao {
 	private static String name = "progettoFindit";
@@ -23,14 +24,31 @@ public class OwnerDao {
     private static String url = "jdbc:mysql://localhost:3306/findit?useTimezone=true&serverTimezone=UTC";
     private static String driverClassName = "com.mysql.cj.jdbc.Driver";
     
-	public static Owner getOwner(String username){
+    public static Owner getOwner(String username) throws Exception{
+    	
+    	Owner owner = Owner.getIstance();
+    	
+    	OwnerWeb ownerApp = getOwnerWeb(username) ;
+    	
+    	if(ownerApp != null) {
+    		owner.setOwnerUsername(ownerApp.getUsername());
+    		owner.setOwnerPassword(ownerApp.getPassword());
+    		owner.setOwnerImage(ownerApp.getImage());
+    		owner.setOwnerStructures(ownerApp.getStructures());
+    		owner.setOwnerLogged(true);
+    	}
+    	
+    	return owner;
+    }
+    
+    public static OwnerWeb getOwnerWeb(String username){
     	
     	String nameOwnerQuery = "select name from owners where name = '" + username + "'";
     	String psswOwnerQuery = "select pssw from owners where name = '" + username + "'";
     	String structuresOwnerQuery = "select structures from owners where name = '" + username + "'";
     	String imageUserQuery = "select photo from owners where name = '" + username + "'";
     	
-    	Owner owner = Owner.getIstance();
+    	OwnerWeb owner = new OwnerWeb();
     	
     	Connection con = null;
 		Statement st = null;
@@ -53,7 +71,7 @@ public class OwnerDao {
     		
     			String nome = rs.getNString("name");
     			
-    			owner.setOwnerUsername(nome);
+    			owner.setUsername(nome);
     			
     			rs.close();
     			
@@ -63,7 +81,7 @@ public class OwnerDao {
     		
     			String pssw = rs1.getNString("pssw");
 
-    			owner.setOwnerPassword(pssw);
+    			owner.setPassword(pssw);
     		
     			rs1.close();
     			
@@ -73,7 +91,7 @@ public class OwnerDao {
     		
     			String structures = rs2.getNString("structures");
 
-    			owner.setOwnerStructures(structures);
+    			owner.setStructures(structures);
     		
     			rs2.close();
     			
@@ -93,14 +111,14 @@ public class OwnerDao {
     				
     				Image  img = SwingFXUtils.toFXImage(bf, null);
     				
-    				owner.setOwnerImage(img);
+    				owner.setImage(img);
     			} else {
-    				owner.setOwnerImage(null);
+    				owner.setImage(null);
     			}
     		
     			rs3.close();
         		
-    			owner.setOwnerLogged(true);
+    			owner.setLogged(true);
         
         	} finally {
         		

@@ -380,7 +380,7 @@ public class ProfileController {
 		
 		try {
 			Hotel hotel = HotelDao.getHotel(structure);
-			ExperienceDao.addReview(review, structure, dayIn, dayOut);
+			ExperienceDao.addReview(review, structure, dayIn, dayOut, user.getUserReviewsTable());
 			int avg = ReviewDao.setReview(review.getReviewText(), review.getReviewVote(), user.getUserName(),hotel.getHotelReviews());
 			HotelDao.setRating(avg, structure);
 		} catch (Exception e) {
