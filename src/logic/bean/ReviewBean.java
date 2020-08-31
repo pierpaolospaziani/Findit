@@ -1,6 +1,7 @@
 package logic.bean;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import logic.model.Review;
 
@@ -10,10 +11,10 @@ public class ReviewBean {
 	private int index;
 	
 	public ReviewBean() {
-		this.reviewList = new ArrayList<Review>();
+		this.reviewList = new ArrayList<>();
 	}
 
-	public ArrayList<Review> getReviewList() {
+	public List<Review> getReviewList() {
 		return reviewList;
 	}
 

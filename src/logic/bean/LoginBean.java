@@ -2,26 +2,26 @@ package logic.bean;
 
 public class LoginBean {
 	
-	private String username;
-	private String password;
-	private boolean result;
+	private String usernameBean;
+	private String passwordBean;
+	private boolean resultBean;
 	
 	public String getUsername() {
-		return username;
+		return usernameBean;
 	}
 	public void setUsername(String username) {
-		this.username = username;
+		this.usernameBean = username;
 	}
 	public String getPassword() {
-		return password;
+		return passwordBean;
 	}
 	public void setPassword(String password) {
-		this.password = password;
+		this.passwordBean = password;
 	}
 	public boolean getResult() {
-		return result;
+		return resultBean;
 	}
 	public void setResult(boolean result) {
-		this.result = result;
+		this.resultBean = result;
 	}
 }

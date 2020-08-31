@@ -1,7 +1,6 @@
 package logic.model;
 
 import logic.dao.OwnerDao;
-
 import logic.dao.UserDao;
 import logic.dao.UserWebDao;
 
@@ -18,7 +17,6 @@ public class Login {
 		ownerLoggato = Owner.getIstance();
 		ownerLoggatoWeb = new OwnerWeb();
 		userLoggatoWeb = new UserWeb();
-		
 	}
 		
 	public boolean registerUserString(String username, String password ){

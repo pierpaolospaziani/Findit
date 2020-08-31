@@ -81,13 +81,13 @@ public class LoginControllerWeb {
 		String password = bean.getPassword();
 		
 		//this.user = login.checkUserWeb(username, password);
-		 UserWeb user = login.checkUserWeb(username, password);
+		 UserWeb user = login.checkUserWeb(username);
 		
 		if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
 			bean.setResult(true);
 			bean.setUserWebLog(user);
 		} else {
-			 OwnerWeb owner = login.checkOwnerWeb(username, password);
+			 OwnerWeb owner = login.checkOwnerWeb(username);
 			if (owner.getUsername().equals(username) && owner.getPassword().equals(password)) {
 				bean.setResult(true);
 				bean.setOwnerWebLog(owner);
