@@ -7,7 +7,7 @@ import logic.model.Review;
 
 public class ReviewBean {
 	
-	private ArrayList<Review> reviewList;
+	private List<Review> reviewList;
 	private int index;
 	
 	public ReviewBean() {
@@ -18,7 +18,7 @@ public class ReviewBean {
 		return reviewList;
 	}
 
-	public void setReviewList(ArrayList<Review> reviewList) {
+	public void setReviewList(List<Review> reviewList) {
 		this.reviewList = reviewList;
 	}
 

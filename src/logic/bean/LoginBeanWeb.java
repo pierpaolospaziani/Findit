@@ -1,6 +1,7 @@
 package logic.bean;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import logic.model.Experience;
 import logic.model.OwnerWeb;
@@ -15,15 +16,15 @@ public class LoginBeanWeb {
 	
 	private UserWeb userWebLog;
 	private OwnerWeb ownerWebLog;
-	private ArrayList<Experience> expList;
+	private List<Experience> expList;
 	private int booked;
 	private int review;
-	private ArrayList<Structure> structList;
+	private List<Structure> structList;
 	private int structures;
 	
 	public LoginBeanWeb() {
-		this.expList = new ArrayList<Experience>(6);
-		this.structList = new ArrayList<Structure>();
+		this.expList = new ArrayList<>();
+		this.structList = new ArrayList<>();
 	}
 	
 	
@@ -57,16 +58,16 @@ public class LoginBeanWeb {
 	public void setOwnerWebLog(OwnerWeb ownerWebLog) {
 		this.ownerWebLog = ownerWebLog;
 	}
-	public ArrayList<Experience> getExpList() {
+	public List<Experience> getExpList() {
 		return expList;
 	}
-	public void setExpList(ArrayList<Experience> expList) {
+	public void setExpList(List<Experience> expList) {
 		this.expList = expList;
 	}
-	public ArrayList<Structure> getStructList() {
+	public List<Structure> getStructList() {
 		return structList;
 	}
-	public void setStructList(ArrayList<Structure> structList) {
+	public void setStructList(List<Structure> structList) {
 		this.structList = structList;
 	}
 	public int getBooked() {

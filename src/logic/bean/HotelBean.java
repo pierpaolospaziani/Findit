@@ -4,38 +4,38 @@ import java.time.LocalDate;
 
 public class HotelBean {
 	
-	private String name;
-	private String address;
-	private String city;
+	protected String name;
+	protected String address;
+	protected String city;
 
-	private int days;
-	private LocalDate localDateIn;
-	private LocalDate localDateOut;
+	protected int days;
+	protected LocalDate localDateIn;
+	protected LocalDate localDateOut;
 
-	private int numPeople;
+	protected int numPeople;
 	
-	private boolean budget1 = false;
-	private boolean budget2 = false;
-	private boolean budget3 = false;
-	private boolean budget4 = false;
+	protected boolean budget1 = false;
+	protected boolean budget2 = false;
+	protected boolean budget3 = false;
+	protected boolean budget4 = false;
 
-	private boolean apartment = false;
-	private boolean hotel = false;
-	private boolean beb = false;
-	private boolean hostel = false;
+	protected boolean apartment = false;
+	protected boolean hotel = false;
+	protected boolean beb = false;
+	protected boolean hostel = false;
 	
-	private String type;
+	protected String type;
 
-	private boolean parking = false;
-	private boolean restaurant = false;
-	private boolean roomService = false;
-	private boolean gym = false;
+	protected boolean parking = false;
+	protected boolean restaurant = false;
+	protected boolean roomService = false;
+	protected boolean gym = false;
 	
-	private boolean star1 = false;
-	private boolean star2 = false;
-	private boolean star3 = false;
-	private boolean star4 = false;
-	private boolean star5 = false;
+	protected boolean star1 = false;
+	protected boolean star2 = false;
+	protected boolean star3 = false;
+	protected boolean star4 = false;
+	protected boolean star5 = false;
 	
 	public String getCity() {
 		return city;
