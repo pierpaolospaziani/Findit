@@ -3,7 +3,6 @@ package logic.servlet;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import logic.bean.HotelBeanWeb;
 import logic.controller.HotelControllerWeb;
 
@@ -21,41 +19,20 @@ import logic.controller.HotelControllerWeb;
 @WebServlet("/SearchHotel")
 public class SearchHotel extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+ 
     public SearchHotel() {
         super();
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-			
-	}
-		
-	
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			
 		HotelBeanWeb beanSearchHotel = new HotelBeanWeb();
 		final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		String today	= LocalDate.now().format(dtf); 
 		LocalDate oggi = LocalDate.parse(today, dtf);
-		
-		// setta come attributo di sessione booleano per vedere se utente loggato
-		
-		//questi settaggi servono per chiamare metodo del controllore, jsp non riesce a prendere questi parametri
-		
+
 		beanSearchHotel.setCity(request.getParameter("city"));
-		beanSearchHotel.setNumPeople(Integer.valueOf(request.getParameter("numPeople")));  //la conversione mi da l'errore se lascio il camp vuoto
+		beanSearchHotel.setNumPeople(Integer.valueOf(request.getParameter("numPeople"))); 
 		
 		
 		LocalDate dateIn = LocalDate.parse(request.getParameter("datein"), dtf); 
@@ -66,25 +43,17 @@ public class SearchHotel extends HttpServlet {
 		
 		RequestDispatcher view = request.getRequestDispatcher("hotelsView.jsp");
 		
-		if(dateIn.getYear() <= oggi.getYear()) {
-			if(dateIn.getMonthValue() <= oggi.getMonthValue()) {
-				if(dateIn.getDayOfMonth() <= oggi.getDayOfMonth()) {
-					
-					request.setAttribute("dateNotValid", "invalid");
-					view.forward(request, response);
-				}
-			}
+		if((dateIn.getYear() <= oggi.getYear()) && (dateIn.getMonthValue() <= oggi.getMonthValue()) &&(dateIn.getDayOfMonth() <= oggi.getDayOfMonth())) {
+
+			request.setAttribute("dateNotValid", "invalid");
+			view.forward(request, response);
 		}
 		
 		
-		if(dateOut.getYear() <= dateIn.getYear()) {
-			if(dateOut.getMonthValue() <= dateIn.getMonthValue()) {
-				if(dateOut.getDayOfMonth() <= dateIn.getDayOfMonth()) {
-					
-					request.setAttribute("dateNotValid", "invalid");
-					view.forward(request, response);
-				}
-			}
+		if((dateOut.getYear() <= dateIn.getYear()) && (dateOut.getMonthValue() <= dateIn.getMonthValue()) && (dateOut.getDayOfMonth() <= dateIn.getDayOfMonth())) {
+			
+			request.setAttribute("dateNotValid", "invalid");
+			view.forward(request, response);	
 		}
 		
 		
@@ -112,15 +81,11 @@ public class SearchHotel extends HttpServlet {
 		beanSearchHotel.setStar5(request.getParameter("check5star") != null);
 		
 		beanSearchHotel.setType();
-		
-		
-		
+
 		HotelControllerWeb controller = HotelControllerWeb.getIstance();
 		HttpSession session = request.getSession();
-		//chiamata al controllore
-		controller.changeScene2(0, beanSearchHotel);
 		
-		//System.out.println(controller.getHotel1().getName()+ "  ___contr" );
+		controller.changeScene2(0, beanSearchHotel);
 		
 		beanSearchHotel.setHotel1(controller.getHotel1());
 		beanSearchHotel.setHotel2(controller.getHotel2());
@@ -131,19 +96,6 @@ public class SearchHotel extends HttpServlet {
 		beanSearchHotel.setRoom3(controller.getRoom3());
 		
 		session.setAttribute("bean",beanSearchHotel);
-		//request.setAttribute("controller", controller);
-		//eventuale passaggio di parametri nella bean o settati direttamente dentro method controllore
-		
-		//System.out.println(beanSearchHotel.s+"  1");
-		
-		//System.out.println(beanSearchHotel.getHotel1().getName());
-		//System.out.println(beanSearchHotel.getHotel1().getAddress());
-		
-		//oppure session
-		//request.setAttribute(b);
-		//request.setAttribute("b",beanSearchHotel ); // passo la bean
-		//request.getSession().setAttribute("prova", beanSearchHotel);
-		
 		session.setAttribute("step", "1");
 		
 		RequestDispatcher view1 = request.getRequestDispatcher("hotelsView2.jsp");

@@ -19,29 +19,20 @@ import logic.controller.HotelControllerWeb;
 @WebServlet("/ThirdHotelPage")
 public class ThirdHotelPage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+
     public ThirdHotelPage() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
 		HotelControllerWeb controller = HotelControllerWeb.getIstance();
 		controller.setHotelSelected(3);
 		controller.setStep(3);
-		//vediamo dopo come gestire varianìbile step
 		
 		HotelBeanWeb bean = (HotelBeanWeb)session.getAttribute("bean");
 		
-		//bisogna controllare che non sia nullo l'hotel
 		bean.setBookHotel(controller.getHotel3());
 		bean.setBookRoom(controller.getRoom3());
 		
@@ -49,13 +40,6 @@ public class ThirdHotelPage extends HttpServlet {
 		
 		RequestDispatcher view = request.getRequestDispatcher("hotelsView3.jsp");
 		view.forward(request, response);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
 	}
 
 }

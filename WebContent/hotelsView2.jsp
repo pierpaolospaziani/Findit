@@ -149,10 +149,10 @@
 				<div id="box3"  align="left" style="margin-left: 101px;margin-top: 5px;height: 55px">
 						
 					<button class="searchButton" onclick="location.href='hotelsView.jsp'" style="float: left;width: 118px; height: 51px;font-size: 20px"> back </button>
-					<form method="GET" action="prePage">
+					<form method="GET" action="PrePage">
 						<input style="background-color: #1B59D7;margin-left : 238px; color: #ffffff;font-size: 20px; height: 51px;width: 50px; border: none;border-radius: 0px;float: left;" type="submit" value="<">
 					</form>
-					<form method="GET" action="nextPage">
+					<form method="GET" action="NextPage">
 						<input style="background-color: #1B59D7;margin-left : 20px; color: #ffffff;font-size: 20px; height: 51px;width: 50px; border: none;border-radius: 0px;float: left;" type="submit" value=">">
 					</form>	
 						<br><br>

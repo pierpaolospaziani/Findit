@@ -1,7 +1,6 @@
 package logic.servlet;
 
 import java.io.IOException;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,7 +12,6 @@ import logic.dao.RoomDao;
 import logic.dao.HotelDao;
 import logic.model.Hotel;
 import logic.bean.LoginBeanWeb;
-import logic.controller.LoginControllerWeb;
 import logic.model.Structure;
 
 /**
@@ -22,45 +20,31 @@ import logic.model.Structure;
 @WebServlet("/ManageStruct1")
 public class ManageStruct1 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+ 
     public ManageStruct1() {
         super();
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		//LoginControllerWeb controller = LoginControllerWeb.getIstance();
 		HttpSession session = request.getSession();
 		LoginBeanWeb bean = (LoginBeanWeb)session.getAttribute("beanLog");
-		Hotel hotel = new Hotel();
-		int roomsNumb = 0;
-		Structure struct = bean.getStructList().get(0);
+		Hotel hotel1 = new Hotel();
+		int roomsNumb1 = 0;
+		Structure struct1 = bean.getStructList().get(0);
 		
 		try {
-			hotel = HotelDao.getHotel(struct.getName());
-			roomsNumb = RoomDao.getRoomsNumber(hotel.getHotelRooms());
+			hotel1 = HotelDao.getHotel(struct1.getName());
+			roomsNumb1 = RoomDao.getRoomsNumber(hotel1.getHotelRooms());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		session.setAttribute("roomsNumb", roomsNumb);
-		session.setAttribute("struct", hotel);
+		session.setAttribute("roomsNumb", roomsNumb1);
+		session.setAttribute("struct", hotel1);
 		
 		RequestDispatcher view = request.getRequestDispatcher("structPage.jsp");
 		view.forward(request, response);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
 	}
 
 }
