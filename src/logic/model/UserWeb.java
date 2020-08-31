@@ -4,75 +4,60 @@ import javafx.scene.image.Image;
 
 public class UserWeb {
 	
-	private String username;
-	private String password;
-	private String reviewsTable;
-	private Image image;
-	// attributo per vedere se utente loggato
-	private boolean isLogged = false;
-	
-	/*
-	private static UserWeb istance = null;
-	
-	public static UserWeb getIstance() {
-		if (istance == null) {
-			istance = new UserWeb();
-		}
-		return istance;
-	}
+	private String useWebName;
+	private String userWebPassword;
+	private String userWebReviewsTable;
+	private Image uerWebImage;
+	private boolean userWebIsLogged = false;
 
-	*/
-	
-	//private UserWeb() {
 	public UserWeb() {
-		this.username = "";
-		this.password ="";
-
+		this.useWebName = "";
+		this.userWebPassword ="";
 	}
 	
 	public UserWeb(String username, String password) {
-		this.username = username;
-		this.password = password;
+		this.useWebName = username;
+		this.userWebPassword = password;
 	}
 	
 	public String getUsername() {
-		return this.username;
+		return this.useWebName;
 	}
 	
 	public String getPassword() {
-		return this.password;
+		return this.userWebPassword;
 	}
 	
 	public void setUsername(String username) {
-		this.username = username;
+		this.useWebName = username;
 	}
 	
 	public void setPassword(String password) {
-		this.password = password;
+		this.userWebPassword = password;
 	}
 	
 	public boolean getLogged() {
-		return isLogged;
+		return userWebIsLogged;
 	}
 
 	public void setLogged(boolean isLogged) {
-		this.isLogged = isLogged;
+		this.userWebIsLogged = isLogged;
 	}
 
 	public Image getImage() {
-		return image;
+		return uerWebImage;
 	}
 
 	public void setImage(Image profileImage) {
-		this.image = profileImage;
+		this.uerWebImage = profileImage;
 	}
 
 	public String getReviewsTable() {
-		return reviewsTable;
+		return userWebReviewsTable;
 	}
 
 	public void setReviewsTable(String reviewsTable) {
-		this.reviewsTable = reviewsTable;
+		this.userWebReviewsTable = reviewsTable;
 	}
 	
 	 

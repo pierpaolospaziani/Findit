@@ -22,11 +22,8 @@ public class Hotel {
 	private Image image;
 	
 	private String description;
+
 	
-	public Hotel() {
-	
-	}
-		
 	public String getHotelName() {
 		return hotelName;
 	}

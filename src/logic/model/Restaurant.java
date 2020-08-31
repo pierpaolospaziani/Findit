@@ -19,10 +19,6 @@ public class Restaurant {
 	private boolean restaurantFish;
 	private boolean restaurantGourmet;
 	
-	public Restaurant() {
-		
-	}
-	
 	public String getRestaurantName() {
 		return restaurantName;
 	}

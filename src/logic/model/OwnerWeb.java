@@ -5,73 +5,62 @@ import javafx.scene.image.Image;
 
 public class OwnerWeb {
 	
-	private String username;
-	private String password;
-	private String structures;
-	private Image image;
-	private boolean isLogged = false;
-	
-	/*
-	private static Owner istance = null;
-	
-	public static Owner getIstance() {
-		if (istance == null) {
-			istance = new Owner();
-		}
-		return istance;
-	}
-*/
-	//private Owner() {
+	private String ownerWebName;
+	private String ownerWebPassword;
+	private String ownerWebStructures;
+	private Image ownerWebImage;
+	private boolean ownerWebIsLogged = false;
+
 	public OwnerWeb() {
-		this.username = "";
-		this.password = "";
-		this.structures = "";
+		this.ownerWebName = "";
+		this.ownerWebPassword = "";
+		this.ownerWebStructures = "";
 	}
 	
 	public OwnerWeb(String username, String password, String structure) {
-		this.username = username;
-		this.password = password;
-		this.structures = structure;
+		this.ownerWebName = username;
+		this.ownerWebPassword = password;
+		this.ownerWebStructures = structure;
 	}
 	
 	public String getUsername() {
-		return this.username;
+		return this.ownerWebName;
 	}
 	
 	public String getPassword() {
-		return this.password;
+		return this.ownerWebPassword;
 	}
 	
 	public void setUsername(String username) {
-		this.username = username;
+		this.ownerWebName = username;
 	}
 	
 	public void setPassword(String password) {
-		this.password = password;
+		this.ownerWebPassword = password;
 	}
 	
 	public boolean getLogged() {
-		return isLogged;
+		return ownerWebIsLogged;
 	}
 
 	public void setLogged(boolean isLogged) {
-		this.isLogged = isLogged;
+		this.ownerWebIsLogged = isLogged;
 	}
 
 	public String getStructures() {
-		return structures;
+		return ownerWebStructures;
 	}
 
 	public void setStructures(String structures) {
-		this.structures = structures;
+		this.ownerWebStructures = structures;
 	}
 
 	public Image getImage() {
-		return image;
+		return ownerWebImage;
 	}
 
 	public void setImage(Image image) {
-		this.image = image;
+		this.ownerWebImage = image;
 	}
 
 }
