@@ -1,7 +1,6 @@
 package logic.view;
 
 import java.time.LocalDate;
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -45,15 +44,16 @@ public class EventsScene extends VBox{
 	protected CheckBox museumCheck;
 	protected Button eventsSearchButton;
     
-    private boolean Ok = false, peopleOk = false, timeOk = true;
+    private boolean ok = false;
+    private boolean peopleOk = false;
+    private boolean timeOk = true;
     
     private String name;
-    
     private String city;
-    
     private int people;
-    
-    private int year, month, day;
+    private int year;
+    private int month;
+    private int day;
     
     private int hour = 25;
     
@@ -84,6 +84,11 @@ public class EventsScene extends VBox{
 		museumCheck = new CheckBox();
 		eventsSearchButton = new Button();
 		
+		String black = "-fx-text-fill: black";
+        String red = "-fx-text-fill: red";
+        String style = "-fx-background-color: #e2e8ff; -fx-background-radius: 20;";
+        LocalDate today = LocalDate.now();
+		
 		setAlignment(javafx.geometry.Pos.TOP_CENTER);
 		setPrefHeight(525.0);
 		setPrefWidth(1050.0);
@@ -102,7 +107,7 @@ public class EventsScene extends VBox{
 
 		eventsText.setAlignment(javafx.geometry.Pos.CENTER);
 		eventsText.setPromptText("Es. Muse or Joker or Festival name");
-		eventsText.setStyle("-fx-background-color: #e2e8ff; -fx-background-radius: 20;");
+		eventsText.setStyle(style);
 		eventsText.setFont(new Font(24.0));
 		VBox.setMargin(eventsText, new Insets(15.0, 0.0, 0.0, 0.0));
 
@@ -112,7 +117,7 @@ public class EventsScene extends VBox{
 
 		eventsText0.setAlignment(javafx.geometry.Pos.CENTER);
 		eventsText0.setPromptText("Es.  Rome");
-		eventsText0.setStyle("-fx-background-color: #e2e8ff; -fx-background-radius: 20;");
+		eventsText0.setStyle(style);
 		eventsText0.setFont(new Font(24.0));
 		VBox.setMargin(eventsText0, new Insets(15.0, 0.0, 0.0, 0.0));
 
@@ -128,7 +133,7 @@ public class EventsScene extends VBox{
 		eventsText1.setPrefHeight(45.0);
 		eventsText1.setPrefWidth(80.0);
 		eventsText1.setPromptText("Es. 4");
-		eventsText1.setStyle("-fx-background-color: #e2e8ff; -fx-background-radius: 20;");
+		eventsText1.setStyle(style);
 		eventsText1.setFont(new Font(24.0));
 		VBox.setMargin(eventsHBox0, new Insets(35.0, 0.0, 0.0, 0.0));
 		HBox.setMargin(eventsVBox0, new Insets(20.0, 0.0, 0.0, 0.0));
@@ -153,7 +158,6 @@ public class EventsScene extends VBox{
 		eventsDatePicker.setDayCellFactory(picker -> new DateCell() {
 			public void updateItem(LocalDate date, boolean empty) {
 				super.updateItem(date, empty);
-				LocalDate today = LocalDate.now();
 				
 				setDisable(empty || date.compareTo(today) < 0);
 			}
@@ -163,7 +167,7 @@ public class EventsScene extends VBox{
 		eventsText2.setPrefHeight(45.0);
 		eventsText2.setPrefWidth(95.0);
 		eventsText2.setPromptText("0-24");
-		eventsText2.setStyle("-fx-background-color: #e2e8ff; -fx-background-radius: 20;");
+		eventsText2.setStyle(style);
 		eventsText2.setFont(new Font(24.0));
 		VBox.setMargin(eventsHBox1, new Insets(-20.0, 0.0, 0.0, 0.0));
 
@@ -239,28 +243,28 @@ public class EventsScene extends VBox{
 				city = eventsText0.getText();
 				
 				if (name.equals("") && city.equals("")) {
-					Ok = false;
+					ok = false;
 				}
 		        
 				if (!name.equals("")) {
-					eventsLabel.setStyle("-fx-text-fill: black");
+					eventsLabel.setStyle(black);
 		        	bean.setCity(name);
-		        	Ok = true;
-		        } else if (Ok != true){
-		        	eventsLabel.setStyle("-fx-text-fill: red");
+		        	ok = true;
+		        } else if (ok != true){
+		        	eventsLabel.setStyle(red);
 		        } else {
-					eventsLabel.setStyle("-fx-text-fill: black");
+					eventsLabel.setStyle(black);
 		        }
 		        
 				if (!city.equals("")) {
-					eventsLabel0.setStyle("-fx-text-fill: black");
-					eventsLabel.setStyle("-fx-text-fill: black");
+					eventsLabel0.setStyle(black);
+					eventsLabel.setStyle(black);
 		        	bean.setCity(city);
-		        	Ok = true;
-		        } else if (Ok != true){
-		        	eventsLabel0.setStyle("-fx-text-fill: red");
+		        	ok = true;
+		        } else if (ok != true){
+		        	eventsLabel0.setStyle(red);
 		        } else {
-					eventsLabel0.setStyle("-fx-text-fill: black");
+					eventsLabel0.setStyle(black);
 		        }
 				
 				if (!eventsText1.getText().equals("")) {
@@ -268,42 +272,42 @@ public class EventsScene extends VBox{
 						people = Integer.valueOf(eventsText1.getText());
 						
 						if (people > 0) {
-							eventsLabel1.setStyle("-fx-text-fill: black");
+							eventsLabel1.setStyle(black);
 				        	bean.setPeople(people);
 				        	peopleOk = true;
 						} else {
-							eventsLabel1.setStyle("-fx-text-fill: red");
+							eventsLabel1.setStyle(red);
 				        }						
 					} catch (NumberFormatException e) {
-						eventsLabel1.setStyle("-fx-text-fill: red");
+						eventsLabel1.setStyle(red);
 					}					
 		        } else {
-		        	eventsLabel1.setStyle("-fx-text-fill: red");
+		        	eventsLabel1.setStyle(red);
 		        }
 				
-				if (Ok == true && peopleOk == true) {
+				if (ok == true && peopleOk == true) {
 					
 					if (!eventsText2.getText().equals("")) {
 						try {
 							hour = Integer.valueOf(eventsText2.getText());
 							if (hour > 0 && hour < 24) {
-								eventsLabel2.setStyle("-fx-text-fill: black");
+								eventsLabel2.setStyle(black);
 								eventsLabel2.setText("When?");
 					        	bean.setHour(hour);
 					        	timeOk = true;
 							} else {
-								eventsLabel2.setStyle("-fx-text-fill: red");
+								eventsLabel2.setStyle(red);
 								eventsLabel2.setText("Type only Hours!");
 					        	timeOk = false;
 					        }							
 						} catch (NumberFormatException e) {
 							eventsLabel2.setText("Type only Hours!");
-							eventsLabel2.setStyle("-fx-text-fill: red");
+							eventsLabel2.setStyle(red);
 				        	timeOk = false;
 						}
 			        }
 					
-					if (timeOk == true) {
+					if (timeOk) {
 						
 						if (cinemaCheck.isSelected()) {
 							bean.setCinema(true);

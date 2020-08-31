@@ -15,7 +15,7 @@ import logic.controller.ProfileController;
 
 public class AddRoomScene {
 	
-    protected static VBox vBox;
+    protected  VBox vBox;
     protected HBox hBox1;
     protected Label label1;
     protected TextField tf1;
@@ -40,7 +40,11 @@ public class AddRoomScene {
         label3 = new Label();
         tf3 = new TextField();
         button = new Button();
+        String black = "-fx-text-fill: black";
+        String red = "-fx-text-fill: red";
+        String styleTf = "-fx-background-color: #e2e8ff; -fx-background-radius: 20;";
 
+        
         vBox.setAlignment(javafx.geometry.Pos.TOP_CENTER);
         vBox.setPrefWidth(500.0);
         vBox.setPrefHeight(274.0);
@@ -52,13 +56,13 @@ public class AddRoomScene {
 
         label1.setText("Room ID: ");
         label1.setFont(new Font(24.0));
-	    label1.setStyle("-fx-text-fill: black");
+	    label1.setStyle(black);
         HBox.setMargin(label1, new Insets(0.0));
 
         tf1.setAlignment(javafx.geometry.Pos.CENTER);
         tf1.setMinWidth(25.0);
         tf1.setPromptText("Es. 1");
-        tf1.setStyle("-fx-background-color: #e2e8ff; -fx-background-radius: 20;");
+        tf1.setStyle(styleTf);
         tf1.setFont(new Font(24.0));
         
         hBox2.setAlignment(javafx.geometry.Pos.CENTER_RIGHT);
@@ -72,7 +76,7 @@ public class AddRoomScene {
         tf2.setAlignment(javafx.geometry.Pos.CENTER);
         tf2.setMinWidth(25.0);
         tf2.setPromptText("Es. 50");
-        tf2.setStyle("-fx-background-color: #e2e8ff; -fx-background-radius: 20;");
+        tf2.setStyle(styleTf);
         tf2.setFont(new Font(24.0));
         
         hBox3.setAlignment(javafx.geometry.Pos.CENTER_RIGHT);
@@ -86,7 +90,7 @@ public class AddRoomScene {
         tf3.setAlignment(javafx.geometry.Pos.CENTER);
         tf3.setMinWidth(25.0);
         tf3.setPromptText("Es. 4");
-        tf3.setStyle("-fx-background-color: #e2e8ff; -fx-background-radius: 20;");
+        tf3.setStyle(styleTf);
         tf3.setFont(new Font(24.0));
 
         button.setMnemonicParsing(false);
@@ -112,34 +116,36 @@ public class AddRoomScene {
         button.setOnAction(new EventHandler<ActionEvent>(){
  			public void handle(ActionEvent event) {
  				
- 				boolean idOK = false, bedsOk = false, priceOk = false;
+ 				boolean idOK = false;
+ 				boolean bedsOk = false;
+ 				boolean priceOk = false;
  				
  				if (!tf1.getText().equals("")) {
-					label1.setStyle("-fx-text-fill: black");
+					label1.setStyle(black);
 					idOK = true;
 		        } else {
-		        	label1.setStyle("-fx-text-fill: red");
+		        	label1.setStyle(red);
 		        }
  				if (!tf2.getText().equals("")) {
-					label2.setStyle("-fx-text-fill: black");
+					label2.setStyle(black);
 					bedsOk = true;
 		        } else {
-		        	label2.setStyle("-fx-text-fill: red");
+		        	label2.setStyle(red);
 		        }
  				if (!tf3.getText().equals("")) {
-					label3.setStyle("-fx-text-fill: black");
+					label3.setStyle(black);
 					priceOk = true;
 		        } else {
-		        	label3.setStyle("-fx-text-fill: red");
+		        	label3.setStyle(red);
 		        }
  				
- 				if (idOK == true && bedsOk == true && priceOk == true) {
+ 				if (idOK && bedsOk && priceOk) {
  					
  					boolean result = controller.addRoom(roomsTable, Integer.valueOf(tf1.getText()), Integer.valueOf(tf3.getText()), Integer.valueOf(tf2.getText()));
  	 				
  	 				if (!result) {
  	 			        label1.setText("Change ID: ");
- 	 			        label1.setStyle("-fx-text-fill: red");
+ 	 			        label1.setStyle(red);
  	 				} else {
  	 					window.close();
  	 					controller.openStructureWindow(structure);
