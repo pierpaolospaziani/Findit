@@ -47,11 +47,4 @@ public class ManageStruct4 extends HttpServlet {
 		view.forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-	}
-
 }

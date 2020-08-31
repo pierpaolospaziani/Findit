@@ -26,23 +26,23 @@ public class LoginReservation extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		LoginBeanWeb bean = new LoginBeanWeb();
+		LoginBeanWeb beanLog = new LoginBeanWeb();
 		LoginControllerWeb  controller = LoginControllerWeb.getIstance();
 		HttpSession session = request.getSession();
 		
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
+		String usernameLog = request.getParameter("username");
+		String passwordLog = request.getParameter("password");
 		
 		// la bean per dio, tramite bena passo i parametri al controlller
-		bean.setUsername(username);
-		bean.setPassword(password);
+		beanLog.setUsername(usernameLog);
+		beanLog.setPassword(passwordLog);
 		
-		controller.login(bean);
-		session.setAttribute("userLog", bean.getUserWebLog());
+		controller.login(beanLog);
+		session.setAttribute("userLog", beanLog.getUserWebLog());
 		
-		if(bean.getResult() && (bean.getUserWebLog() != null)) {  // nel metodo login viene chiamato login.checkuser che ritorna l'user e lo setta come attr del contr
-			controller.changeExperiences(0,0,bean);
-			session.setAttribute("beanLog",bean);
+		if(beanLog.getResult() && (beanLog.getUserWebLog() != null)) {  // nel metodo login viene chiamato login.checkuser che ritorna l'user e lo setta come attr del contr
+			controller.changeExperiences(0,0,beanLog);
+			session.setAttribute("beanLog",beanLog);
 			session.setAttribute("ownerLog", null);
 			RequestDispatcher view = request.getRequestDispatcher("hotelsConfirm.jsp");
 			view.forward(request, response);

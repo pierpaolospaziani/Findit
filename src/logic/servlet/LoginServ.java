@@ -26,33 +26,33 @@ public class LoginServ extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		LoginBeanWeb bean = new LoginBeanWeb();
+		LoginBeanWeb beanLogin = new LoginBeanWeb();
 		LoginControllerWeb  controller = LoginControllerWeb.getIstance();
 		HttpSession session = request.getSession();
 		
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
+		String usernameLogin = request.getParameter("username");
+		String passwordLogin = request.getParameter("password");
 		
-		bean.setUsername(username);
-		bean.setPassword(password);
+		beanLogin.setUsername(usernameLogin);
+		beanLogin.setPassword(passwordLogin);
 		
-		controller.login(bean);
+		controller.login(beanLogin);
 		
-		if(bean.getResult()) {
-			if(bean.getUserWebLog() != null) {  // potrebbe dare problema sonar null pointer exception
-				UserWeb log =  bean.getUserWebLog();
+		if(beanLogin.getResult()) {
+			if(beanLogin.getUserWebLog() != null) {  // potrebbe dare problema sonar null pointer exception
+				UserWeb log =  beanLogin.getUserWebLog();
 				session.setAttribute("userLog", log);
-				controller.changeExperiences(0,0,bean);
-				session.setAttribute("beanLog",bean);
+				controller.changeExperiences(0,0,beanLogin);
+				session.setAttribute("beanLog",beanLogin);
 			
 				RequestDispatcher view = request.getRequestDispatcher("profilePage2.jsp");
 				view.forward(request, response);
 			}
-			if(bean.getOwnerWebLog() != null) {
-				OwnerWeb ownLog = bean.getOwnerWebLog();
+			if(beanLogin.getOwnerWebLog() != null) {
+				OwnerWeb ownLog = beanLogin.getOwnerWebLog();
 				session.setAttribute("ownerLog", ownLog);
-				controller.changeExperiences(0,1,bean);
-				session.setAttribute("beanLog",bean);
+				controller.changeExperiences(0,1,beanLogin);
+				session.setAttribute("beanLog",beanLogin);
 			
 				RequestDispatcher view1 = request.getRequestDispatcher("ownerPage.jsp");
 				view1.forward(request, response);
