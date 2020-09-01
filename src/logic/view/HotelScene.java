@@ -375,130 +375,15 @@ public class HotelScene extends VBox{
 		controller.setPage(0);
 		controller.setIndice(0);
         
-        check200.setOnAction(new EventHandler<ActionEvent>(){
-			public void handle(ActionEvent event) {
-				if (!check200.isSelected()) {
-					check200.setSelected(false);
-				} else {
-					check50To100.setSelected(true);
-	        		check100To150.setSelected(true);	        	
-		        	check150To200.setSelected(true);
-	        		check200.setSelected(true);
-				}	
-			}
-		});
+		checkBudget();
+		checkStars();
+		datePick(bean);
         
-        check150To200.setOnAction(new EventHandler<ActionEvent>(){
-			public void handle(ActionEvent event) {
-				if (!check150To200.isSelected() && !check200.isSelected()) {
-					check150To200.setSelected(false);
-				} else {
-					check50To100.setSelected(true);
-	        		check100To150.setSelected(true);	        	
-		        	check150To200.setSelected(true);
-	        		check200.setSelected(false);
-				}		
-	        }
-		});
         
-        check100To150.setOnAction(new EventHandler<ActionEvent>(){
-			public void handle(ActionEvent event) {
-				if (!check100To150.isSelected() && !check150To200.isSelected() && !check200.isSelected()) {
-					check100To150.setSelected(false);
-				} else {
-		        	check50To100.setSelected(true);
-		        	check100To150.setSelected(true);	        	
-			        check150To200.setSelected(false);
-		        	check200.setSelected(false);
-				}			
-	        }
-		});
-        
-        check50To100.setOnAction(new EventHandler<ActionEvent>(){
-			public void handle(ActionEvent event) {
-				if (!check50To100.isSelected() && !check100To150.isSelected() && !check150To200.isSelected() && !check200.isSelected()) {
-					check50To100.setSelected(false);
-				} else {
-		        	check50To100.setSelected(true);
-		        	check100To150.setSelected(false);	        	
-			        check150To200.setSelected(false);
-		        	check200.setSelected(false);
-				}
-	        }
-		});
-        
-        check5Star.setOnAction(new EventHandler<ActionEvent>(){
-			public void handle(ActionEvent event) {
-				if (!check5Star.isSelected() && !check4Star.isSelected() && !check3Star.isSelected() && !check2Star.isSelected() && !check1Star.isSelected()) {
-					check5Star.setSelected(false);
-				} else {
-					check5Star.setSelected(true);
-					check4Star.setSelected(false);
-					check3Star.setSelected(false);
-					check2Star.setSelected(false);
-					check1Star.setSelected(false);
-				}
-	        }
-		});
-        
-        check4Star.setOnAction(new EventHandler<ActionEvent>(){
-			public void handle(ActionEvent event) {
-				if (!check4Star.isSelected() && !check3Star.isSelected() && !check2Star.isSelected() && !check1Star.isSelected()) {
-					check4Star.setSelected(false);
-				} else {
-					check5Star.setSelected(true);
-					check4Star.setSelected(true);
-					check3Star.setSelected(false);
-					check2Star.setSelected(false);
-					check1Star.setSelected(false);
-				}			
-	        }
-		});
-        
-        check3Star.setOnAction(new EventHandler<ActionEvent>(){
-			public void handle(ActionEvent event) {
-				if (!check3Star.isSelected() && !check2Star.isSelected() && !check1Star.isSelected()) {
-					check3Star.setSelected(false);
-				} else {
-					check5Star.setSelected(true);
-					check4Star.setSelected(true);
-					check3Star.setSelected(true);
-					check2Star.setSelected(false);
-					check1Star.setSelected(false);
-				}			
-	        }
-		});
-        
-        check2Star.setOnAction(new EventHandler<ActionEvent>(){
-			public void handle(ActionEvent event) {
-				if (!check2Star.isSelected() && !check1Star.isSelected()) {
-					check2Star.setSelected(false);
-				} else {
-					check5Star.setSelected(true);
-					check4Star.setSelected(true);
-					check3Star.setSelected(true);
-					check2Star.setSelected(true);
-					check1Star.setSelected(false);
-				}			
-	        }
-		});
-        
-        check1Star.setOnAction(new EventHandler<ActionEvent>(){
-			public void handle(ActionEvent event) {
-				if (!check1Star.isSelected()) {
-					check1Star.setSelected(false);
-				} else {
-					check5Star.setSelected(true);
-					check4Star.setSelected(true);
-					check3Star.setSelected(true);
-					check2Star.setSelected(true);
-					check1Star.setSelected(true);
-				}			
-	        }
-		});
         
         hotelSearchButton.setOnAction(new EventHandler<ActionEvent>(){
-			public void handle(ActionEvent event) {
+        	@Override
+        	public void handle(ActionEvent event) {
 				
 		        city = hotelTextField.getText();
 		        
@@ -562,8 +447,152 @@ public class HotelScene extends VBox{
 			}
 		});
         
-        hotelCheckIn.setOnAction(new EventHandler<ActionEvent>(){
+       
+    }
+    
+    
+    private void checkBudget() {
+       
+    	check200.setOnAction(new EventHandler<ActionEvent>(){
+        	@Override
 			public void handle(ActionEvent event) {
+				if (!check200.isSelected()) {
+					check200.setSelected(false);
+				} else {
+					check50To100.setSelected(true);
+	        		check100To150.setSelected(true);	        	
+		        	check150To200.setSelected(true);
+	        		check200.setSelected(true);
+				}	
+			}
+		});
+        
+        check150To200.setOnAction(new EventHandler<ActionEvent>(){
+        	@Override
+        	public void handle(ActionEvent event) {
+				if (!check150To200.isSelected() && !check200.isSelected()) {
+					check150To200.setSelected(false);
+				} else {
+					check50To100.setSelected(true);
+	        		check100To150.setSelected(true);	        	
+		        	check150To200.setSelected(true);
+	        		check200.setSelected(false);
+				}		
+	        }
+		});
+        
+        check100To150.setOnAction(new EventHandler<ActionEvent>(){
+        	@Override
+        	public void handle(ActionEvent event) {
+				if (!check100To150.isSelected() && !check150To200.isSelected() && !check200.isSelected()) {
+					check100To150.setSelected(false);
+				} else {
+		        	check50To100.setSelected(true);
+		        	check100To150.setSelected(true);	        	
+			        check150To200.setSelected(false);
+		        	check200.setSelected(false);
+				}			
+	        }
+		});
+        
+        check50To100.setOnAction(new EventHandler<ActionEvent>(){
+        	@Override
+        	public void handle(ActionEvent event) {
+				if (!check50To100.isSelected() && !check100To150.isSelected() && !check150To200.isSelected() && !check200.isSelected()) {
+					check50To100.setSelected(false);
+				} else {
+		        	check50To100.setSelected(true);
+		        	check100To150.setSelected(false);	        	
+			        check150To200.setSelected(false);
+		        	check200.setSelected(false);
+				}
+	        }
+		});
+    }
+    
+    private void checkStars() {
+    	
+    	check5Star.setOnAction(new EventHandler<ActionEvent>(){
+        	@Override
+        	public void handle(ActionEvent event) {
+				if (!check5Star.isSelected() && !check4Star.isSelected() && !check3Star.isSelected() && !check2Star.isSelected() && !check1Star.isSelected()) {
+					check5Star.setSelected(false);
+				} else {
+					check5Star.setSelected(true);
+					check4Star.setSelected(false);
+					check3Star.setSelected(false);
+					check2Star.setSelected(false);
+					check1Star.setSelected(false);
+				}
+	        }
+		});
+        
+        check4Star.setOnAction(new EventHandler<ActionEvent>(){
+        	@Override
+        	public void handle(ActionEvent event) {
+				if (!check4Star.isSelected() && !check3Star.isSelected() && !check2Star.isSelected() && !check1Star.isSelected()) {
+					check4Star.setSelected(false);
+				} else {
+					check5Star.setSelected(true);
+					check4Star.setSelected(true);
+					check3Star.setSelected(false);
+					check2Star.setSelected(false);
+					check1Star.setSelected(false);
+				}			
+	        }
+		});
+        
+        check3Star.setOnAction(new EventHandler<ActionEvent>(){
+        	@Override
+        	public void handle(ActionEvent event) {
+				if (!check3Star.isSelected() && !check2Star.isSelected() && !check1Star.isSelected()) {
+					check3Star.setSelected(false);
+				} else {
+					check5Star.setSelected(true);
+					check4Star.setSelected(true);
+					check3Star.setSelected(true);
+					check2Star.setSelected(false);
+					check1Star.setSelected(false);
+				}			
+	        }
+		});
+        
+        check2Star.setOnAction(new EventHandler<ActionEvent>(){
+        	@Override
+        	public void handle(ActionEvent event) {
+				if (!check2Star.isSelected() && !check1Star.isSelected()) {
+					check2Star.setSelected(false);
+				} else {
+					check5Star.setSelected(true);
+					check4Star.setSelected(true);
+					check3Star.setSelected(true);
+					check2Star.setSelected(true);
+					check1Star.setSelected(false);
+				}			
+	        }
+		});
+        
+        check1Star.setOnAction(new EventHandler<ActionEvent>(){
+        	@Override
+        	public void handle(ActionEvent event) {
+				if (!check1Star.isSelected()) {
+					check1Star.setSelected(false);
+				} else {
+					check5Star.setSelected(true);
+					check4Star.setSelected(true);
+					check3Star.setSelected(true);
+					check2Star.setSelected(true);
+					check1Star.setSelected(true);
+				}			
+	        }
+		});
+    }
+    
+    private void datePick(HotelBean bean) {
+
+hotelCheckIn.setOnAction(new EventHandler<ActionEvent>(){
+        	@Override
+        	public void handle(ActionEvent event) {
 				LocalDate ld = hotelCheckIn.getValue();
 			
 				bean.setLocalDateIn(ld);
@@ -582,7 +611,8 @@ public class HotelScene extends VBox{
 		});
         
         hotelCheckOut.setOnAction(new EventHandler<ActionEvent>(){
-			public void handle(ActionEvent event) {
+        	@Override
+        	public void handle(ActionEvent event) {
 				
 				LocalDate ld = hotelCheckOut.getValue();
 				
