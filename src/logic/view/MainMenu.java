@@ -130,7 +130,8 @@ public class MainMenu extends HBox{
         buttonProfile.setId(menu);
         
         buttonFindit.setOnAction(new EventHandler<ActionEvent>(){
-			public void handle(ActionEvent event) {
+        	@Override
+        	public void handle(ActionEvent event) {
 				buttonFindit.setId(selected);
 		        buttonHotel.setId(menu);
 		        buttonRestaurants.setId(menu);
@@ -143,7 +144,8 @@ public class MainMenu extends HBox{
 		});
         
         buttonHotel.setOnAction(new EventHandler<ActionEvent>(){
-			public void handle(ActionEvent event) {
+        	@Override
+        	public void handle(ActionEvent event) {
 				buttonFindit.setId(menu);
 		        buttonHotel.setId(selected);
 		        buttonRestaurants.setId(menu);
@@ -156,7 +158,8 @@ public class MainMenu extends HBox{
 		});
         
         buttonRestaurants.setOnAction(new EventHandler<ActionEvent>(){
-			public void handle(ActionEvent event) {
+        	@Override
+        	public void handle(ActionEvent event) {
 				buttonFindit.setId(menu);
 		        buttonHotel.setId(menu);
 		        buttonRestaurants.setId(selected);
@@ -169,7 +172,8 @@ public class MainMenu extends HBox{
 		});
         
         buttonEvents.setOnAction(new EventHandler<ActionEvent>(){
-			public void handle(ActionEvent event) {
+        	@Override
+        	public void handle(ActionEvent event) {
 				buttonFindit.setId(menu);
 		        buttonHotel.setId(menu);
 		        buttonRestaurants.setId(menu);
@@ -182,7 +186,8 @@ public class MainMenu extends HBox{
 		});
         
         buttonMap.setOnAction(new EventHandler<ActionEvent>(){
-			public void handle(ActionEvent event) {
+        	@Override
+        	public void handle(ActionEvent event) {
 				buttonFindit.setId(menu);
 		        buttonHotel.setId(menu);
 		        buttonRestaurants.setId(menu);
@@ -195,7 +200,8 @@ public class MainMenu extends HBox{
 		});
         
         buttonProfile.setOnAction(new EventHandler<ActionEvent>(){
-			public void handle(ActionEvent event) {
+        	@Override
+        	public void handle(ActionEvent event) {
 				buttonFindit.setId(menu);
 		        buttonHotel.setId(menu);
 		        buttonRestaurants.setId(menu);

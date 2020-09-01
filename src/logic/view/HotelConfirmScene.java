@@ -216,7 +216,8 @@ public class HotelConfirmScene extends VBox{
 	        getChildren().add(vBox);
 	        
 	        btnUndo.setOnAction(new EventHandler<ActionEvent>(){
-	 			public void handle(ActionEvent event) {
+	        	@Override
+	        	public void handle(ActionEvent event) {
 	 				
 	 				if (btnConfirm.isDisable()) {
 	 					controller.changeScene();
@@ -227,7 +228,8 @@ public class HotelConfirmScene extends VBox{
 	 		});
 	        
 	        btnConfirm.setOnAction(new EventHandler<ActionEvent>(){
-	 			public void handle(ActionEvent event) {
+	        	@Override
+	        	public void handle(ActionEvent event) {
 	 				
 	 				if (controller.setReservation(hotel,room)) {
 

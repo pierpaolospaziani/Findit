@@ -26,7 +26,7 @@ public class Login {
 		try {
 			result = UserDao.setUser(username, password);
 		} catch (Exception e) {
-			System.err.print("Error register user in login class");
+			e.printStackTrace();
 		} 
 		return result;			
 	}
@@ -38,7 +38,7 @@ public class Login {
 		try {
 			result = OwnerDao.setOwner(username, password);
 		} catch (Exception e) {
-			System.err.print("Error register owner in login class");
+			e.printStackTrace();
 		} 
 		return result;			
 	}
@@ -48,7 +48,7 @@ public class Login {
 		try {
 			userLoggato = UserDao.getUser(username);
 		} catch (Exception e) {
-			System.err.print("Error check user in login class");
+			e.printStackTrace();
 		}
 		 return userLoggato;
 	}
@@ -58,7 +58,7 @@ public class Login {
 		try {
 			ownerLoggato = OwnerDao.getOwner(username);
 		} catch (Exception e) {
-			System.err.print("Error check owner in login class");
+			e.printStackTrace();
 		}
 		 return ownerLoggato;
 	}
@@ -67,7 +67,7 @@ public class Login {
 		try {
 			ownerLoggatoWeb = OwnerDao.getOwnerWeb(username);
 		} catch (Exception e) {
-			System.err.print("Error check ownerWeb in login class");
+			e.printStackTrace();
 		}
 		 return ownerLoggatoWeb;
 	}
@@ -77,7 +77,7 @@ public class Login {
 		try {
 			userLoggatoWeb = UserWebDao.getUserWeb(username);
 		} catch (Exception e) {
-			System.err.print("Error check userWeb in login class");
+			e.printStackTrace();
 			
 		}
 		 return userLoggatoWeb;

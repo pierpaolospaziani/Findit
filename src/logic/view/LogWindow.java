@@ -53,32 +53,6 @@ public class LogWindow {
         passwordLabel = new Label();
         passwordTextField = new PasswordField();
         loginButton = new Button();
-       
-        /*
-		window = new Stage();
-		
-
-
-        //Block events to other windows
-        window.initModality(Modality.APPLICATION_MODAL);
-        window.setTitle("Login");
-        window.setMinWidth(250);
-
-        loginScene.setAlignment(javafx.geometry.Pos.TOP_CENTER);
-        loginScene.setPrefWidth(500.0);
-        loginScene.setPrefHeight(274.0);
-        loginScene.setSpacing(25.0);
-
-        loginHBox.setAlignment(javafx.geometry.Pos.CENTER);
-        loginHBox.setSpacing(30.0);
-
-        usernameLabel.setText("Username:");
-        usernameLabel.setFont(new Font(24.0));
-
-        usernameTextField.setAlignment(javafx.geometry.Pos.CENTER);
-        usernameTextField.setPromptText("Username");
-        usernameTextField.setStyle("-fx-background-color: #e2e8ff; -fx-background-radius: 20;");
-        usernameTextField.setFont(new Font(24.0)); */
         
         inizialize();
         
@@ -130,38 +104,46 @@ public class LogWindow {
         window.setScene(scene);
         window.setResizable(false);
         
-        loginButton.setOnAction(new EventHandler<ActionEvent>(){
-			public void handle(ActionEvent event) {
-				
-		        username = usernameTextField.getText();
-		        password = passwordTextField.getText();
-		        
-		        if (username.equals("")) {
-					label.setText("Insert Username!");
-			        label.setStyle(labelStyle);  
-		        } else if (password.equals("")){
-					label.setText("Insert Password!");
-			        label.setStyle(labelStyle);
-		        } else {
-		        	
-		        	bean.setUsername(usernameTextField.getText());
-		        	bean.setPassword(passwordTextField.getText());
-			        
-			        controller.login();
-		        	
-			        if (bean.getResult()) {
-						window.close();
-						controller.loggedScene();
-					} else {
-						label.setText("Error, try again or Register your profile!");
-				        label.setStyle(labelStyle);
-					}
-		        }
-			}
-		});
+       loginBtn(controller, bean);
         
         window.showAndWait();
 	}
+	
+	
+	private void loginBtn(ProfileController controller, LoginBean bean) {
+		
+		 loginButton.setOnAction(new EventHandler<ActionEvent>(){
+	        	@Override
+	        	public void handle(ActionEvent event) {
+					
+			        username = usernameTextField.getText();
+			        password = passwordTextField.getText();
+			        
+			        if (username.equals("")) {
+						label.setText("Insert Username!");
+				        label.setStyle(labelStyle);  
+			        } else if (password.equals("")){
+						label.setText("Insert Password!");
+				        label.setStyle(labelStyle);
+			        } else {
+			        	
+			        	bean.setUsername(usernameTextField.getText());
+			        	bean.setPassword(passwordTextField.getText());
+				        
+				        controller.login();
+			        	
+				        if (bean.getResult()) {
+							window.close();
+							controller.loggedScene();
+						} else {
+							label.setText("Error, try again or Register your profile!");
+					        label.setStyle(labelStyle);
+						}
+			        }
+				}
+			});
+	}
+	
 	
 	public boolean register(ProfileController controller, LoginBean bean) {
 		
@@ -181,27 +163,6 @@ public class LogWindow {
         final ToggleGroup group = new ToggleGroup();
         
 		window = new Stage();
-
-        //Block events to other windows
-       /* window.initModality(Modality.APPLICATION_MODAL);
-        window.setTitle("Registration");
-        window.setMinWidth(250);
-
-        loginScene.setAlignment(javafx.geometry.Pos.TOP_CENTER);
-        loginScene.setPrefWidth(500.0);
-        loginScene.setPrefHeight(275.0);
-        loginScene.setSpacing(30.0);
-
-        loginHBox.setAlignment(javafx.geometry.Pos.CENTER);
-        loginHBox.setSpacing(30.0);
-
-        usernameLabel.setText("Username:");
-        usernameLabel.setFont(new Font(24.0));
-
-        usernameTextField.setAlignment(javafx.geometry.Pos.CENTER);
-        usernameTextField.setPromptText("Username");
-        usernameTextField.setStyle("-fx-background-color: #e2e8ff; -fx-background-radius: 20;");
-        usernameTextField.setFont(new Font(24.0)); */
 		
 		inizialize();
 		
@@ -270,7 +231,8 @@ public class LogWindow {
         window.setResizable(false);
         
         registerButton.setOnAction(new EventHandler<ActionEvent>(){
-			public void handle(ActionEvent event) {
+        	@Override
+        	public void handle(ActionEvent event) {
 				
 		        username = usernameTextField.getText();
 		        password = passwordTextField.getText();
@@ -286,31 +248,37 @@ public class LogWindow {
 			        label.setStyle(labelStyle);
 		        } else {
 			        
-		        	bean.setUsername(usernameTextField.getText());
-		        	bean.setPassword(passwordTextField.getText());
-		        	
-		        	if (registerAsUser.isSelected()) {
-		        		if (controller.registerUser()) {
-							window.close();
-							isRegistred = true;
-			        	} else {
-							label.setText("This Username is already been used!");
-					        label.setStyle(labelStyle);
-						}
-		        	} else {
-		        		if (controller.registerOwner()) {
-							window.close();
-							isRegistred = true;
-			        	} else {
-							label.setText("This Username is already been used!");
-					        label.setStyle(labelStyle);
-						}
-		        	}		        	
+		        	 reg(bean, controller);	
 		        }
 			}
 		});
         window.showAndWait();
         return isRegistred;
+	}
+	
+	
+	private void reg(LoginBean bean, ProfileController controller) {
+		
+		bean.setUsername(usernameTextField.getText());
+    	bean.setPassword(passwordTextField.getText());
+    	
+    	if (registerAsUser.isSelected()) {
+    		if (controller.registerUser()) {
+				window.close();
+				isRegistred = true;
+        	} else {
+				label.setText("This Username is already been used!");
+		        label.setStyle(labelStyle);
+			}
+    	} else {
+    		if (controller.registerOwner()) {
+				window.close();
+				isRegistred = true;
+        	} else {
+				label.setText("This Username is already been used!");
+		        label.setStyle(labelStyle);
+			}
+    	}		      
 	}
 	
 	private void inizialize() {

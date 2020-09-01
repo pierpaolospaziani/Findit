@@ -471,7 +471,8 @@ public class User2Scene extends HBox{
         getChildren().add(vBox0);
         
         btnPrecedent.setOnAction(new EventHandler<ActionEvent>(){
- 			public void handle(ActionEvent event) {
+        	@Override
+        	public void handle(ActionEvent event) {
  				
  				int indice = controller.getIndice();
  				
@@ -500,7 +501,8 @@ public class User2Scene extends HBox{
  		});
         
         btnNext.setOnAction(new EventHandler<ActionEvent>(){
- 			public void handle(ActionEvent event) {
+        	@Override
+        	public void handle(ActionEvent event) {
  				
  				int indice = controller.getIndice();
 				controller.changeExperiences(indice,0);
@@ -509,7 +511,8 @@ public class User2Scene extends HBox{
  		});
         
         btnLogout.setOnAction(new EventHandler<ActionEvent>(){
- 			public void handle(ActionEvent event) {
+        	@Override
+        	public void handle(ActionEvent event) {
  				
  				user.setUserLogged(false);
  				
@@ -521,7 +524,8 @@ public class User2Scene extends HBox{
  		});
         
         btnChangeImage.setOnAction(new EventHandler<ActionEvent>(){
- 			public void handle(ActionEvent event) {
+        	@Override
+        	public void handle(ActionEvent event) {
  				
  				FileChooser fileChooser = new FileChooser();
  				
@@ -548,7 +552,8 @@ public class User2Scene extends HBox{
  		});
         
         expName1.setOnAction(new EventHandler<ActionEvent>(){
- 			public void handle(ActionEvent event) {
+        	@Override
+        	public void handle(ActionEvent event) {
  				if (experience1.getReview().equals("")) {
  					controller.review(true,experience1);
  				} else {
@@ -558,7 +563,8 @@ public class User2Scene extends HBox{
  		});
         
         expName2.setOnAction(new EventHandler<ActionEvent>(){
- 			public void handle(ActionEvent event) {
+        	@Override
+        	public void handle(ActionEvent event) {
  				if (experience2.getReview().equals("")) {
  					controller.review(true,experience2);
  				} else {
@@ -568,7 +574,8 @@ public class User2Scene extends HBox{
  		});
         
         expName3.setOnAction(new EventHandler<ActionEvent>(){
- 			public void handle(ActionEvent event) {
+        	@Override
+        	public void handle(ActionEvent event) {
  				if (experience3.getReview().equals("")) {
  					controller.review(true,experience3);
  				} else {
@@ -578,7 +585,8 @@ public class User2Scene extends HBox{
  		});
         
         expName4.setOnAction(new EventHandler<ActionEvent>(){
- 			public void handle(ActionEvent event) {
+        	@Override
+        	public void handle(ActionEvent event) {
  				if (experience4.getReview().equals("")) {
  					controller.review(true,experience4);
  				} else {
@@ -588,7 +596,8 @@ public class User2Scene extends HBox{
  		});
         
         expName5.setOnAction(new EventHandler<ActionEvent>(){
- 			public void handle(ActionEvent event) {
+        	@Override
+        	public void handle(ActionEvent event) {
  				if (experience5.getReview().equals("")) {
  					controller.review(true,experience5);
  				} else {
@@ -598,7 +607,8 @@ public class User2Scene extends HBox{
  		});
         
         expName6.setOnAction(new EventHandler<ActionEvent>(){
- 			public void handle(ActionEvent event) {
+        	@Override
+        	public void handle(ActionEvent event) {
  				if (experience6.getReview().equals("")) {
  					controller.review(true,experience6);
  				} else {
@@ -1004,13 +1014,15 @@ public class User2Scene extends HBox{
         getChildren().add(vBox0);
         
         buttonAddStructure.setOnAction(new EventHandler<ActionEvent>(){
- 			public void handle(ActionEvent event) {
+        	@Override
+        	public void handle(ActionEvent event) {
  				controller.setStructure(owner.getOwnerUsername());
  			}
  		});
         
         btnPrecedent.setOnAction(new EventHandler<ActionEvent>(){
- 			public void handle(ActionEvent event) {
+        	@Override
+        	public void handle(ActionEvent event) {
  				
  				int indice = controller.getIndice();
  				
@@ -1039,7 +1051,8 @@ public class User2Scene extends HBox{
  		});
         
         btnNext.setOnAction(new EventHandler<ActionEvent>(){
- 			public void handle(ActionEvent event) {
+        	@Override
+        	public void handle(ActionEvent event) {
  				
  				int indice = controller.getIndice();
 				controller.changeExperiences(indice,1);
@@ -1048,7 +1061,8 @@ public class User2Scene extends HBox{
  		});
         
         btnLogout.setOnAction(new EventHandler<ActionEvent>(){
- 			public void handle(ActionEvent event) {
+        	@Override
+        	public void handle(ActionEvent event) {
  				
  				owner.setOwnerLogged(false);
  				
@@ -1060,7 +1074,8 @@ public class User2Scene extends HBox{
  		});
         
         btnChangeImage.setOnAction(new EventHandler<ActionEvent>(){
- 			public void handle(ActionEvent event) {
+        	@Override
+        	public void handle(ActionEvent event) {
  				
  				FileChooser fileChooser = new FileChooser();
  				
@@ -1087,7 +1102,8 @@ public class User2Scene extends HBox{
  		});
         
         expName1.setOnAction(new EventHandler<ActionEvent>(){
- 			public void handle(ActionEvent event) {
+        	@Override
+        	public void handle(ActionEvent event) {
  				
  				controller.openStructureWindow(structure1.getName());
  				
@@ -1095,35 +1111,40 @@ public class User2Scene extends HBox{
  		});
         
         expName2.setOnAction(new EventHandler<ActionEvent>(){
- 			public void handle(ActionEvent event) {
+        	@Override
+        	public void handle(ActionEvent event) {
 
  				controller.openStructureWindow(structure2.getName());
  			}
  		});
         
         expName3.setOnAction(new EventHandler<ActionEvent>(){
- 			public void handle(ActionEvent event) {
+        	@Override
+        	public void handle(ActionEvent event) {
 
  				controller.openStructureWindow(structure3.getName());
  			}
  		});
         
         expName4.setOnAction(new EventHandler<ActionEvent>(){
- 			public void handle(ActionEvent event) {
+        	@Override
+        	public void handle(ActionEvent event) {
 
  				controller.openStructureWindow(structure4.getName());
  			}
  		});
         
         expName5.setOnAction(new EventHandler<ActionEvent>(){
- 			public void handle(ActionEvent event) {
+        	@Override
+        	public void handle(ActionEvent event) {
 
  				controller.openStructureWindow(structure5.getName());
  			}
  		});
         
         expName6.setOnAction(new EventHandler<ActionEvent>(){
- 			public void handle(ActionEvent event) {
+        	@Override
+        	public void handle(ActionEvent event) {
 
  				controller.openStructureWindow(structure6.getName());
  			}

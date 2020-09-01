@@ -118,7 +118,8 @@ public class StructureScene {
         window.setResizable(false);
         
         btnAddRoom.setOnAction(new EventHandler<ActionEvent>(){
- 			public void handle(ActionEvent event) {
+        	@Override
+        	public void handle(ActionEvent event) {
  				
  				profileController.addRoomScene(window,hotel.getHotelRooms(),hotel.getHotelName());
  				
@@ -126,7 +127,8 @@ public class StructureScene {
  		});
         
         btnViewReviews.setOnAction(new EventHandler<ActionEvent>(){
- 			public void handle(ActionEvent event) {
+        	@Override
+        	public void handle(ActionEvent event) {
  				
  				hotelController.viewReviews(false,hotel.getHotelReviews(), 0);
  				
@@ -135,7 +137,8 @@ public class StructureScene {
  		});
         
         btnAddDescription.setOnAction(new EventHandler<ActionEvent>(){
- 			public void handle(ActionEvent event) {
+        	@Override
+        	public void handle(ActionEvent event) {
  				
  				profileController.addDescriptionScene(window,hotel.getHotelName());
  				

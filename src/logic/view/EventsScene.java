@@ -57,6 +57,9 @@ public class EventsScene extends VBox{
     
     private int hour = 25;
     
+	String black = "-fx-text-fill: black";
+    String red = "-fx-text-fill: red";
+    
 	public EventsScene(EventsController controller, EventBean bean){
 	
 		eventsHBox = new HBox();
@@ -84,8 +87,6 @@ public class EventsScene extends VBox{
 		museumCheck = new CheckBox();
 		eventsSearchButton = new Button();
 		
-		String black = "-fx-text-fill: black";
-        String red = "-fx-text-fill: red";
         String style = "-fx-background-color: #e2e8ff; -fx-background-radius: 20;";
         LocalDate today = LocalDate.now();
 		
@@ -237,90 +238,22 @@ public class EventsScene extends VBox{
 		getChildren().add(eventsSearchButton);
 		
 		eventsSearchButton.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
 			public void handle(ActionEvent event) {
 				
-				name = eventsText.getText();
-				city = eventsText0.getText();
-				
-				if (name.equals("") && city.equals("")) {
-					ok = false;
-				}
-		        
-				if (!name.equals("")) {
-					eventsLabel.setStyle(black);
-		        	bean.setCity(name);
-		        	ok = true;
-		        } else if (!ok){
-		        	eventsLabel.setStyle(red);
-		        } else {
-					eventsLabel.setStyle(black);
-		        }
-		        
-				if (!city.equals("")) {
-					eventsLabel0.setStyle(black);
-					eventsLabel.setStyle(black);
-		        	bean.setCity(city);
-		        	ok = true;
-		        } else if (!ok){
-		        	eventsLabel0.setStyle(red);
-		        } else {
-					eventsLabel0.setStyle(black);
-		        }
-				
-				if (!eventsText1.getText().equals("")) {
-					try {
-						people = Integer.valueOf(eventsText1.getText());
-						
-						if (people > 0) {
-							eventsLabel1.setStyle(black);
-				        	bean.setPeople(people);
-				        	peopleOk = true;
-						} else {
-							eventsLabel1.setStyle(red);
-				        }						
-					} catch (NumberFormatException e) {
-						eventsLabel1.setStyle(red);
-					}					
-		        } else {
-		        	eventsLabel1.setStyle(red);
-		        }
-				
+				getInfo1(bean);
+				getPeople(bean);
+
 				if (ok && peopleOk) {
 					
-					if (!eventsText2.getText().equals("")) {
-						try {
-							hour = Integer.valueOf(eventsText2.getText());
-							if (hour > 0 && hour < 24) {
-								eventsLabel2.setStyle(black);
-								eventsLabel2.setText("When?");
-					        	bean.setHour(hour);
-					        	timeOk = true;
-							} else {
-								eventsLabel2.setStyle(red);
-								eventsLabel2.setText("Type only Hours!");
-					        	timeOk = false;
-					        }							
-						} catch (NumberFormatException e) {
-							eventsLabel2.setText("Type only Hours!");
-							eventsLabel2.setStyle(red);
-				        	timeOk = false;
-						}
-			        }
+					getHour(bean);
 					
 					if (timeOk) {
-						
-						if (cinemaCheck.isSelected()) {
-							bean.setCinema(true);
-						}
-						if (theatreCheck.isSelected()) {
-							bean.setTheatre(true);
-						}
-						if (museumCheck.isSelected()) {
-							bean.setMuseum(true);
-						}
-						if (concertCheck.isSelected()) {
-							bean.setConcert(true);
-						}
+		
+						bean.setCinema(cinemaCheck.isSelected());
+						bean.setTheatre(theatreCheck.isSelected());
+						bean.setMuseum(museumCheck.isSelected());						
+						bean.setConcert(concertCheck.isSelected());
 						
 						controller.changeScene2();
 					}
@@ -330,6 +263,7 @@ public class EventsScene extends VBox{
 		});
 		
 		eventsDatePicker.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
 			public void handle(ActionEvent event) {
 				
 				LocalDate ld = eventsDatePicker.getValue();
@@ -343,5 +277,82 @@ public class EventsScene extends VBox{
 				bean.setDay(day);
 			}
 		});
+	}
+	
+	private void getInfo1(EventBean bean) {
+		
+	
+		
+        name = eventsText.getText();
+		city = eventsText0.getText();
+		
+		if (name.equals("") && city.equals("")) {
+			ok = false;
+		}
+        
+		if (!name.equals("")) {
+			eventsLabel.setStyle(black);
+        	bean.setCity(name);
+        	ok = true;
+        } else if (!ok){
+        	eventsLabel.setStyle(red);
+        } else {
+			eventsLabel.setStyle(black);
+        }
+        
+		if (!city.equals("")) {
+			eventsLabel0.setStyle(black);
+			eventsLabel.setStyle(black);
+        	bean.setCity(city);
+        	ok = true;
+        } else if (!ok){
+        	eventsLabel0.setStyle(red);
+        } else {
+			eventsLabel0.setStyle(black);
+        }
+	}
+	
+	private void getPeople(EventBean bean) {
+		
+		if (!eventsText1.getText().equals("")) {
+			try {
+				people = Integer.valueOf(eventsText1.getText());
+				
+				if (people > 0) {
+					eventsLabel1.setStyle(black);
+		        	bean.setPeople(people);
+		        	peopleOk = true;
+				} else {
+					eventsLabel1.setStyle(red);
+		        }						
+			} catch (NumberFormatException e) {
+				eventsLabel1.setStyle(red);
+			}					
+        } else {
+        	eventsLabel1.setStyle(red);
+        }
+	}
+	
+	private void getHour(EventBean bean) {
+		
+		if (!eventsText2.getText().equals("")) {
+			try {
+				hour = Integer.valueOf(eventsText2.getText());
+				if (hour > 0 && hour < 24) {
+					eventsLabel2.setStyle(black);
+					eventsLabel2.setText("When?");
+		        	bean.setHour(hour);
+		        	timeOk = true;
+				} else {
+					eventsLabel2.setStyle(red);
+					eventsLabel2.setText("Type only Hours!");
+		        	timeOk = false;
+		        }							
+			} catch (NumberFormatException e) {
+				eventsLabel2.setText("Type only Hours!");
+				eventsLabel2.setStyle(red);
+	        	timeOk = false;
+			}
+        }
 	}
 }

@@ -120,7 +120,6 @@ public class HotelScene extends VBox{
         hotelSearchButton = new Button();
         
         LocalDate today = LocalDate.now();
-        String red = "-fx-text-fill: red";
         
         setAlignment(javafx.geometry.Pos.TOP_CENTER);
         setPrefHeight(525.0);
@@ -376,7 +375,8 @@ public class HotelScene extends VBox{
 		controller.setIndice(0);
         
 		checkBudget();
-		checkStars();
+		checkStars1();
+		checkStars2();
 		datePick(bean);
         
         
@@ -385,39 +385,9 @@ public class HotelScene extends VBox{
         	@Override
         	public void handle(ActionEvent event) {
 				
-		        city = hotelTextField.getText();
-		        
-				if (!city.equals("")) {
-					hotelLabel.setStyle("-fx-text-fill: black");
-		        	bean.setCity(city);
-		        	cityOk = true;
-		        } else {
-		        	hotelLabel.setStyle(red);
-		        }
+        		getInfoBook(bean);
 				
-				if (!hotelTextField0.getText().equals("")) {
-					try {
-						people = Integer.valueOf(hotelTextField0.getText());
-					} catch (NumberFormatException e) {
-						hotelLabel2.setStyle(red);
-					}
-					if (people > 0) {
-						hotelLabel2.setStyle("-fx-text-fill: black");
-			        	bean.setNumPeople(people);
-			        	peopleOk = true;
-					} else {
-						hotelLabel2.setStyle(red);
-			        }
-		        } else {
-		        	hotelLabel2.setStyle(red);
-		        }
-				
-				if (!dateOk) {
-					hotelLabel0.setStyle(red);
-					hotelLabel1.setStyle(red);
-				}
-				
-				if (cityOk && dateOk && peopleOk) {
+        		if (cityOk && dateOk && peopleOk) {
 								
 					bean.setBudget1(check50To100.isSelected());				
 					bean.setBudget2(check100To150.isSelected());			
@@ -448,6 +418,42 @@ public class HotelScene extends VBox{
 		});
         
        
+    }
+    
+    private void getInfoBook(HotelBean bean) {
+    	  
+    	city = hotelTextField.getText();
+    	String red = "-fx-text-fill: red"; 
+    	 
+			if (!city.equals("")) {
+				hotelLabel.setStyle("-fx-text-fill: black");
+	        	bean.setCity(city);
+	        	cityOk = true;
+	        } else {
+	        	hotelLabel.setStyle(red);
+	        }
+			
+			if (!hotelTextField0.getText().equals("")) {
+				try {
+					people = Integer.valueOf(hotelTextField0.getText());
+				} catch (NumberFormatException e) {
+					hotelLabel2.setStyle(red);
+				}
+				if (people > 0) {
+					hotelLabel2.setStyle("-fx-text-fill: black");
+		        	bean.setNumPeople(people);
+		        	peopleOk = true;
+				} else {
+					hotelLabel2.setStyle(red);
+		        }
+	        } else {
+	        	hotelLabel2.setStyle(red);
+	        }
+			
+			if (!dateOk) {
+				hotelLabel0.setStyle(red);
+				hotelLabel1.setStyle(red);
+			}
     }
     
     
@@ -510,7 +516,7 @@ public class HotelScene extends VBox{
 		});
     }
     
-    private void checkStars() {
+    private void checkStars1() {
     	
     	check5Star.setOnAction(new EventHandler<ActionEvent>(){
         	@Override
@@ -542,7 +548,12 @@ public class HotelScene extends VBox{
 	        }
 		});
         
-        check3Star.setOnAction(new EventHandler<ActionEvent>(){
+        
+    }
+    
+    private void checkStars2() {
+    	
+    	check3Star.setOnAction(new EventHandler<ActionEvent>(){
         	@Override
         	public void handle(ActionEvent event) {
 				if (!check3Star.isSelected() && !check2Star.isSelected() && !check1Star.isSelected()) {
@@ -590,7 +601,7 @@ public class HotelScene extends VBox{
     
     private void datePick(HotelBean bean) {
 
-hotelCheckIn.setOnAction(new EventHandler<ActionEvent>(){
+    	hotelCheckIn.setOnAction(new EventHandler<ActionEvent>(){
         	@Override
         	public void handle(ActionEvent event) {
 				LocalDate ld = hotelCheckIn.getValue();

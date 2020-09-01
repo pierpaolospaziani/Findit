@@ -150,14 +150,16 @@ public class ProfileScene extends VBox{
         getChildren().add(profileHBox);
         
         profileLoginButton.setOnAction(new EventHandler<ActionEvent>(){
-			public void handle(ActionEvent event) {
+        	@Override
+        	public void handle(ActionEvent event) {
 
 				controller.openLogWindow();
 			}
 		});
         
         profileRegisterButton.setOnAction(new EventHandler<ActionEvent>(){
-			public void handle(ActionEvent event) {
+        	@Override
+        	public void handle(ActionEvent event) {
 				
 				if (controller.openRegisterWindow()) {
 					controller.openLogWindow();

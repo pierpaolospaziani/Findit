@@ -475,20 +475,6 @@ public class RestaurantRegistrationScene extends VBox {
         vBoxPrincipale.getChildren().add(hBoxBtn);
         getChildren().add(vBoxPrincipale);
         
-       
-        btnUndo.setOnAction(new EventHandler<ActionEvent>(){
- 			public void handle(ActionEvent event) {
- 				
- 				
- 			}
- 		});
-        
-        btnRegister.setOnAction(new EventHandler<ActionEvent>(){
- 			public void handle(ActionEvent event) {
- 				
- 				
- 			}
- 		});
 
 	
     }

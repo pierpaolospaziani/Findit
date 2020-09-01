@@ -114,32 +114,16 @@ public class AddRoomScene {
         vBox.getChildren().add(button);
         
         button.setOnAction(new EventHandler<ActionEvent>(){
- 			public void handle(ActionEvent event) {
+ 			@Override
+        	public void handle(ActionEvent event) {
  				
- 				boolean idOK = false;
+ 				boolean idOk = false;
  				boolean bedsOk = false;
  				boolean priceOk = false;
  				
- 				if (!tf1.getText().equals("")) {
-					label1.setStyle(black);
-					idOK = true;
-		        } else {
-		        	label1.setStyle(red);
-		        }
- 				if (!tf2.getText().equals("")) {
-					label2.setStyle(black);
-					bedsOk = true;
-		        } else {
-		        	label2.setStyle(red);
-		        }
- 				if (!tf3.getText().equals("")) {
-					label3.setStyle(black);
-					priceOk = true;
-		        } else {
-		        	label3.setStyle(red);
-		        }
+ 				setBool(idOk, bedsOk, priceOk); 
  				
- 				if (idOK && bedsOk && priceOk) {
+ 				if (idOk && bedsOk && priceOk) {
  					
  					boolean result = controller.addRoom(roomsTable, Integer.valueOf(tf1.getText()), Integer.valueOf(tf3.getText()), Integer.valueOf(tf2.getText()));
  	 				
@@ -156,5 +140,31 @@ public class AddRoomScene {
         
         Scene scene = new Scene(vBox,500,274);
         window.setScene(scene);
+	}
+	
+	private void setBool(boolean idOk , boolean bedsOk, boolean priceOk ) {
+		
+		String red = "-fx-text-fill: red";
+		String black = "-fx-text-fill: black";
+		
+		
+		if (!tf1.getText().equals("")) {
+			label1.setStyle(black);
+			idOk = true;
+        } else {
+        	label1.setStyle(red);
+        }
+			if (!tf2.getText().equals("")) {
+			label2.setStyle(black);
+			bedsOk = true;
+        } else {
+        	label2.setStyle(red);
+        }
+			if (!tf3.getText().equals("")) {
+			label3.setStyle(black);
+			priceOk = true;
+        } else {
+        	label3.setStyle(red);
+        }
 	}
 }

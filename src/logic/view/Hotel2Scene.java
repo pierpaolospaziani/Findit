@@ -134,14 +134,12 @@ public class Hotel2Scene extends VBox{
         imageViewHotel1.setFitWidth(171.0);
         imageViewHotel1.setPickOnBounds(true);
         imageViewHotel1.setPreserveRatio(true);
+        imageViewHotel1.setImage(new Image(getClass().getResource(structImage).toExternalForm()));
         
         Image photo = hotel1.getHotelImage();
-        
-        if (photo == null) {
-        	imageViewHotel1.setImage(new Image(getClass().getResource(structImage).toExternalForm()));
-        } else {
+        if (photo != null) {
         	imageViewHotel1.setImage(photo);
-        }
+        } 
 
         vBoxInfo1.setPrefHeight(136.0);
         vBoxInfo1.setPrefWidth(427.0);
@@ -200,12 +198,11 @@ public class Hotel2Scene extends VBox{
         imageViewHotel2.setFitWidth(171.0);
         imageViewHotel2.setPickOnBounds(true);
         imageViewHotel2.setPreserveRatio(true);
-        
+        imageViewHotel2.setImage(new Image(getClass().getResource(structImage).toExternalForm()));
+       
         photo = hotel2.getHotelImage();
         
-        if (photo == null) {
-        	imageViewHotel2.setImage(new Image(getClass().getResource(structImage).toExternalForm()));
-        } else {
+        if (photo != null) {
         	imageViewHotel2.setImage(photo);
         }
 
@@ -267,13 +264,11 @@ public class Hotel2Scene extends VBox{
         imageViewHotel3.setFitWidth(171.0);
         imageViewHotel3.setPickOnBounds(true);
         imageViewHotel3.setPreserveRatio(true);
-        
+        imageViewHotel3.setImage(new Image(getClass().getResource(structImage).toExternalForm()));
+       
         photo = hotel3.getHotelImage();
-        
-        if (photo == null) {
-        	imageViewHotel3.setImage(new Image(getClass().getResource(structImage).toExternalForm()));
-        } else {
-        	imageViewHotel3.setImage(photo);
+         if (photo != null) {
+        	 imageViewHotel3.setImage(photo);
         }
 
         vBoxInfo3.setPrefHeight(200.0);
@@ -415,64 +410,78 @@ public class Hotel2Scene extends VBox{
         vBoxListHotel.getChildren().add(hBoxBtnH2);
         getChildren().add(vBoxListHotel);
         
-        btnHotel1.setOnAction(new EventHandler<ActionEvent>(){
- 			public void handle(ActionEvent event) {
- 				controller.setStep(3);
- 				controller.setHotelSelected(1);
- 				controller.viewHotel(1);
- 			}
- 		});
+        manageBtn(controller);
         
-        btnHotel2.setOnAction(new EventHandler<ActionEvent>(){
- 			public void handle(ActionEvent event) {
- 				controller.setStep(3);
- 				controller.setHotelSelected(2);
- 				controller.viewHotel(2);
- 			}
- 		});
-        
-        btnHotel3.setOnAction(new EventHandler<ActionEvent>(){
- 			public void handle(ActionEvent event) {
- 				controller.setStep(3);
- 				controller.setHotelSelected(3);
- 				controller.viewHotel(3);
- 			}
- 		});
-        
-        btnBackH2.setOnAction(new EventHandler<ActionEvent>(){
- 			public void handle(ActionEvent event) {
- 				controller.setStep(1);
- 				controller.changeScene();
- 			}
- 		});
-        
-        btnPrecedent.setOnAction(new EventHandler<ActionEvent>(){
- 			public void handle(ActionEvent event) {
- 				
- 				int indice = controller.getIndice();
- 				
- 				if (indice > 3) {
- 					if ((indice%3) == 0) {
- 	 					indice = indice - 6;
- 	 					controller.changeScene2(indice);
- 					} else if ((indice%3) == 1) {
- 	 	 				indice = indice - 4;
- 	 	 				controller.changeScene2(indice);
- 	 				} else {
- 	 					indice = indice - 5;
- 	 	 				controller.changeScene2(indice);
- 	 				}
- 				}
- 			}
- 		});
-        
-        btnNext.setOnAction(new EventHandler<ActionEvent>(){
- 			public void handle(ActionEvent event) {
- 				int indice = controller.getIndice();
- 				controller.changeScene2(indice);
- 			}
- 		});
-
     }
+	
+	
+	private void manageBtn(HotelController controller) {
+		
+		  btnHotel1.setOnAction(new EventHandler<ActionEvent>(){
+	        	@Override
+	        	public void handle(ActionEvent event) {
+	 				controller.setStep(3);
+	 				controller.setHotelSelected(1);
+	 				controller.viewHotel(1);
+	 			}
+	 		});
+	        
+	        btnHotel2.setOnAction(new EventHandler<ActionEvent>(){
+	        	@Override
+	        	public void handle(ActionEvent event) {
+	 				controller.setStep(3);
+	 				controller.setHotelSelected(2);
+	 				controller.viewHotel(2);
+	 			}
+	 		});
+	        
+	        btnHotel3.setOnAction(new EventHandler<ActionEvent>(){
+	        	@Override
+	        	public void handle(ActionEvent event) {
+	 				controller.setStep(3);
+	 				controller.setHotelSelected(3);
+	 				controller.viewHotel(3);
+	 			}
+	 		});
+	        
+	        btnBackH2.setOnAction(new EventHandler<ActionEvent>(){
+	        	@Override
+	        	public void handle(ActionEvent event) {
+	 				controller.setStep(1);
+	 				controller.changeScene();
+	 			}
+	 		});
+	        
+	        btnPrecedent.setOnAction(new EventHandler<ActionEvent>(){
+	        	@Override
+	        	public void handle(ActionEvent event) {
+	 				
+	 				int indice = controller.getIndice();
+	 				
+	 				if (indice > 3) {
+	 					if ((indice%3) == 0) {
+	 	 					indice = indice - 6;
+	 	 					controller.changeScene2(indice);
+	 					} else if ((indice%3) == 1) {
+	 	 	 				indice = indice - 4;
+	 	 	 				controller.changeScene2(indice);
+	 	 				} else {
+	 	 					indice = indice - 5;
+	 	 	 				controller.changeScene2(indice);
+	 	 				}
+	 				}
+	 			}
+	 		});
+	        
+	        btnNext.setOnAction(new EventHandler<ActionEvent>(){
+	 			@Override
+	        	public void handle(ActionEvent event) {
+	 				int indice = controller.getIndice();
+	 				controller.changeScene2(indice);
+	 			}
+	 		});
+	}
+	
+	
 }
 

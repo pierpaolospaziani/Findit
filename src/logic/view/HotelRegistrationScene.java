@@ -77,8 +77,7 @@ public class HotelRegistrationScene extends VBox {
         btnRegister = new Button();
         
         String style = "-fx-background-color: #e2e8ff; -fx-background-radius: 20;";
-        String black = "-fx-text-fill: black";
-        String red = "-fx-text-fill: red";
+       
         
         setAlignment(javafx.geometry.Pos.TOP_CENTER);
         setPrefHeight(525.0);
@@ -239,51 +238,10 @@ public class HotelRegistrationScene extends VBox {
         getChildren().add(hBox1);
         getChildren().add(hBoxBtn);
 
-        checkBoxapartaments.setOnAction(new EventHandler<ActionEvent>(){
-			public void handle(ActionEvent event) {
-				if (!checkBoxapartaments.isSelected()) {
-					checkBoxapartaments.setSelected(false);
-				}
-				checkBoxBeB.setSelected(false);
-				checkBoxHostels.setSelected(false);
-				checkBoxHotels.setSelected(false);		
-	        }
-		});
-        
-        checkBoxBeB.setOnAction(new EventHandler<ActionEvent>(){
-			public void handle(ActionEvent event) {
-				if (!checkBoxBeB.isSelected()) {
-					checkBoxBeB.setSelected(false);
-				}
-				checkBoxapartaments.setSelected(false);
-				checkBoxHostels.setSelected(false);
-				checkBoxHotels.setSelected(false);		
-	        }
-		});
-
-        checkBoxHotels.setOnAction(new EventHandler<ActionEvent>(){
-			public void handle(ActionEvent event) {
-				if (!checkBoxHotels.isSelected()) {
-					checkBoxHotels.setSelected(false);
-				}
-				checkBoxHostels.setSelected(false);
-				checkBoxapartaments.setSelected(false);
-				checkBoxBeB.setSelected(false);	
-	        }
-		});
-        
-        checkBoxHostels.setOnAction(new EventHandler<ActionEvent>(){
-			public void handle(ActionEvent event) {
-				if (!checkBoxHostels.isSelected()) {
-					checkBoxHostels.setSelected(false);
-				}
-				checkBoxBeB.setSelected(false);
-				checkBoxapartaments.setSelected(false);
-				checkBoxHotels.setSelected(false);		
-	        }
-		});
+        checkBoxType();
 		
 		btnRegister.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
 			public void handle(ActionEvent event) {
 				
 				boolean nameOk = false;
@@ -291,63 +249,20 @@ public class HotelRegistrationScene extends VBox {
 				boolean addressOk = false;
 				boolean typeOk = false;
 				
-				String name = hotelTextField.getText();
-		        
-				if (!name.equals("")) {
-					hotelLabel.setStyle(black);
-		        	bean.setName(name);
-		        	nameOk = true;
-		        } else {
-		        	hotelLabel.setStyle(red);
-		        }
-				
-				String city = hotelTextField1.getText();
-				
-				if (!city.equals("")) {
-					hotelLabel0.setStyle(black);
-		        	bean.setCity(city);
-		        	cityOk = true;
-		        } else {
-		        	hotelLabel0.setStyle(red);
-		        }
-				
-				String address = hotelTextField2.getText();
-				
-				if (!address.equals("")) {
-					hotelLabel1.setStyle(black);
-		        	bean.setAddress(address);
-		        	addressOk = true;
-		        } else {
-		        	hotelLabel1.setStyle(red);
-		        }
-				
-				if (checkBoxapartaments.isSelected() ||
-						checkBoxBeB.isSelected() ||
-						checkBoxHostels.isSelected() ||
-						checkBoxHotels.isSelected()) {
-		        	label0.setStyle(black);
-					typeOk = true;
-				} else {
-		        	label0.setStyle(red);
-				}
+				getParamReg(nameOk, cityOk, addressOk, bean);
+			
 				
 				if (nameOk && cityOk && addressOk && typeOk) {
 			        
 					
-					bean.setGym(checkBoxFitnessCenter.isSelected());
-				
-					bean.setParking(checkBoxParking.isSelected());
-					
-					bean.setRestaurant(checkBoxRestaurant.isSelected());
-				
+					bean.setGym(checkBoxFitnessCenter.isSelected());				
+					bean.setParking(checkBoxParking.isSelected());					
+					bean.setRestaurant(checkBoxRestaurant.isSelected());				
 					bean.setRoomService(checkBoxRoomService.isSelected());
 				
-					bean.setApartment(checkBoxapartaments.isSelected());
-				
-					bean.setBeb(checkBoxBeB.isSelected());
-				
-					bean.setHostel(checkBoxHostels.isSelected());
-				
+					bean.setApartment(checkBoxapartaments.isSelected());				
+					bean.setBeb(checkBoxBeB.isSelected());				
+					bean.setHostel(checkBoxHostels.isSelected());	
 					bean.setHotel(checkBoxHotels.isSelected());
 					
 					
@@ -361,9 +276,99 @@ public class HotelRegistrationScene extends VBox {
 		});
         
 		btnUndo.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
 			public void handle(ActionEvent event) {
 				controller.loggedScene();
 	        }
 		});
+    }
+    
+    private void getParamReg(boolean nameOk, boolean cityOk, boolean addressOk, HotelBean bean) {
+    	
+    	String black = "-fx-text-fill: black";
+        String red = "-fx-text-fill: red";
+    	String name = hotelTextField.getText();
+        
+		if (!name.equals("")) {
+			hotelLabel.setStyle(black);
+        	bean.setName(name);
+        	nameOk = true;
+        } else {
+        	hotelLabel.setStyle(red);
+        }
+		
+		String city = hotelTextField1.getText();
+		
+		if (!city.equals("")) {
+			hotelLabel0.setStyle(black);
+        	bean.setCity(city);
+        	cityOk = true;
+        } else {
+        	hotelLabel0.setStyle(red);
+        }
+		
+		String address = hotelTextField2.getText();
+		
+		if (!address.equals("")) {
+			hotelLabel1.setStyle(black);
+        	bean.setAddress(address);
+        	addressOk = true;
+        } else {
+        	hotelLabel1.setStyle(red);
+        }
+		
+    }
+    
+    private void checkBoxType() {
+    	
+        checkBoxapartaments.setOnAction(new EventHandler<ActionEvent>(){
+        	@Override
+        	public void handle(ActionEvent event) {
+				if (!checkBoxapartaments.isSelected()) {
+					checkBoxapartaments.setSelected(false);
+				}
+				checkBoxBeB.setSelected(false);
+				checkBoxHostels.setSelected(false);
+				checkBoxHotels.setSelected(false);		
+	        }
+		});
+        
+        checkBoxBeB.setOnAction(new EventHandler<ActionEvent>(){
+        	@Override
+        	public void handle(ActionEvent event) {
+				if (!checkBoxBeB.isSelected()) {
+					checkBoxBeB.setSelected(false);
+				}
+				checkBoxapartaments.setSelected(false);
+				checkBoxHostels.setSelected(false);
+				checkBoxHotels.setSelected(false);		
+	        }
+		});
+
+        checkBoxHotels.setOnAction(new EventHandler<ActionEvent>(){
+        	@Override
+        	public void handle(ActionEvent event) {
+				if (!checkBoxHotels.isSelected()) {
+					checkBoxHotels.setSelected(false);
+				}
+				checkBoxHostels.setSelected(false);
+				checkBoxapartaments.setSelected(false);
+				checkBoxBeB.setSelected(false);	
+	        }
+		});
+        
+        checkBoxHostels.setOnAction(new EventHandler<ActionEvent>(){
+        	@Override
+        	public void handle(ActionEvent event) {
+				if (!checkBoxHostels.isSelected()) {
+					checkBoxHostels.setSelected(false);
+				}
+				checkBoxBeB.setSelected(false);
+				checkBoxapartaments.setSelected(false);
+				checkBoxHotels.setSelected(false);		
+	        }
+		});
+        
+
     }
 }

@@ -64,7 +64,7 @@ public class RestaurantsScene extends VBox{
     
     protected Button restSearchButton;
     
-    private boolean Ok = false;
+    private boolean okField = false;
     private boolean  peopleOk = false;
     
     private String name;
@@ -72,6 +72,9 @@ public class RestaurantsScene extends VBox{
     private String city;
     
     private int people;
+   
+    String black = "-fx-text-fill: black";
+    String red = "-fx-text-fill: red";
     
     public RestaurantsScene(RestaurantsController controller, RestaurantsBean bean){
     	
@@ -117,8 +120,7 @@ public class RestaurantsScene extends VBox{
         restSearchButton = new Button();
         
         String style = "-fx-background-color: #e2e8ff; -fx-background-radius: 20;";
-        String black = "-fx-text-fill: black";
-        String red = "-fx-text-fill: red";
+       
  
         setAlignment(javafx.geometry.Pos.TOP_CENTER);
         setPrefHeight(525.0);
@@ -324,35 +326,11 @@ public class RestaurantsScene extends VBox{
         getChildren().add(restSearchButton);
         
         restSearchButton.setOnAction(new EventHandler<ActionEvent>(){
-			public void handle(ActionEvent event) {
+        	@Override
+        	public void handle(ActionEvent event) {
 				
-				name = restText.getText();
-				city = restText0.getText();
 				
-				if (name.equals("") && city.equals("")) {
-					Ok = false;
-				}
-		        
-				if (!name.equals("")) {
-					restLabel.setStyle(black);
-		        	bean.setCity(city);
-		        	Ok = true;
-		        } else if (Ok != true){
-		        	restLabel.setStyle(red);
-		        } else {
-		        	restLabel.setStyle(black);
-		        }
-					        
-				if (!city.equals("")) {
-					restLabel0.setStyle(black);
-		        	restLabel.setStyle(black);
-		        	bean.setCity(city);
-		        	Ok = true;
-		        } else if (!Ok){
-		        	restLabel0.setStyle(red);
-		        } else {
-		        	restLabel0.setStyle(black);
-		        }
+        		getInfo(bean);
 				
 				if (!restText1.getText().equals("")) {
 					try {
@@ -371,7 +349,7 @@ public class RestaurantsScene extends VBox{
 		        	restLabel1.setStyle(red);
 		        }
 				
-				if (Ok && peopleOk) {
+				if (okField && peopleOk) {
 								
 					bean.setBudget1(cB50To100.isSelected());
 					bean.setBudget2(cB100To150.isSelected());		
@@ -399,5 +377,36 @@ public class RestaurantsScene extends VBox{
 				
 			}
 		});
+    }
+    
+    private void getInfo(RestaurantsBean bean) {
+    	
+    	name = restText.getText();
+		city = restText0.getText();
+		
+		if (name.equals("") && city.equals("")) {
+			okField = false;
+		}
+        
+		if (!name.equals("")) {
+			restLabel.setStyle(black);
+        	bean.setCity(city);
+        	okField = true;
+        } else if (okField != true){
+        	restLabel.setStyle(red);
+        } else {
+        	restLabel.setStyle(black);
+        }
+			        
+		if (!city.equals("")) {
+			restLabel0.setStyle(black);
+        	restLabel.setStyle(black);
+        	bean.setCity(city);
+        	okField = true;
+        } else if (!okField){
+        	restLabel0.setStyle(red);
+        } else {
+        	restLabel0.setStyle(black);
+        }
     }
 }

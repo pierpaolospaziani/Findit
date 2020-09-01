@@ -120,7 +120,8 @@ public class WriteReviewWindow {
         window.show();
         
         btnSubmit.setOnAction(new EventHandler<ActionEvent>(){
-			public void handle(ActionEvent event) {
+        	@Override
+        	public void handle(ActionEvent event) {
 				
 				int voto = choiceBoxVote.getValue();
 				

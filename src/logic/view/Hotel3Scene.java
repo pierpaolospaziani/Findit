@@ -210,21 +210,24 @@ public class Hotel3Scene extends VBox{
         
         
         btnReview.setOnAction(new EventHandler<ActionEvent>(){
- 			public void handle(ActionEvent event) {
+ 			@Override
+        	public void handle(ActionEvent event) {
  				
  				controller.viewReviews(true,hotel.getHotelReviews(),0);
  			}
  		});
         
         btnBack.setOnAction(new EventHandler<ActionEvent>(){
- 			public void handle(ActionEvent event) {
+        	@Override
+        	public void handle(ActionEvent event) {
  				controller.setStep(2);
  				controller.returnBackList();
  			}
  		});
         
         btnBook.setOnAction(new EventHandler<ActionEvent>(){
- 			public void handle(ActionEvent event) {
+        	@Override
+        	public void handle(ActionEvent event) {
  				controller.goToBook(hotel, room);
  			}
  		});

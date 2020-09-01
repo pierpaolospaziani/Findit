@@ -328,7 +328,8 @@ public class ViewReviewScene extends VBox {
 
         
         btnBack.setOnAction(new EventHandler<ActionEvent>(){
- 			public void handle(ActionEvent event) {
+        	@Override
+        	public void handle(ActionEvent event) {
 
  				if (isHotel) {
  	 				controller.changeScene();
@@ -339,13 +340,15 @@ public class ViewReviewScene extends VBox {
  		});
         
         btnPreview.setOnAction(new EventHandler<ActionEvent>(){
- 			public void handle(ActionEvent event) {
+        	@Override
+        	public void handle(ActionEvent event) {
  	 				controller.viewReviews(isHotel,reviewTable,indice-6);
  			}
  		});
         
         btnNext.setOnAction(new EventHandler<ActionEvent>(){
- 			public void handle(ActionEvent event) {
+        	@Override
+        	public void handle(ActionEvent event) {
  				
  				controller.viewReviews(isHotel,reviewTable, indice);
  			}
