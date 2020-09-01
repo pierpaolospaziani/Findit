@@ -14,6 +14,7 @@ import logic.controller.HotelController;
 import logic.controller.ProfileController;
 import logic.model.Review;
 
+
 public class ViewReviewScene extends VBox {
 
     protected VBox vBox;

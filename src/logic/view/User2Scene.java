@@ -67,7 +67,7 @@ public class User2Scene extends HBox{
     
     protected Button buttonAddStructure;
 
-    protected static Stage window;
+    protected Stage window;
     
     public User2Scene(ProfileController controller, User user, Experience experience1, Experience experience2, Experience experience3, Experience experience4, Experience experience5, Experience experience6, int booked, int review) {
     	
@@ -113,7 +113,9 @@ public class User2Scene extends HBox{
         vBox6 = new VBox();
         
         window = new Stage();
-
+        
+        String transparent = "-fx-background-color: transparent;";
+        
         //Block events to other windows
         window.initModality(Modality.APPLICATION_MODAL);
         window.setMinWidth(250);
@@ -147,7 +149,7 @@ public class User2Scene extends HBox{
         VBox.setMargin(userImage, new Insets(0.0));
 
         btnChangeImage.setMnemonicParsing(false);
-        btnChangeImage.setStyle("-fx-background-color: transparent;");
+        btnChangeImage.setStyle(transparent);
         btnChangeImage.setText("Change your profile image");
 
         btnChangeImage.setOnMouseEntered(evt -> btnChangeImage.setUnderline(true));
@@ -186,7 +188,7 @@ public class User2Scene extends HBox{
         VBox.setMargin(hBox1, new Insets(10.0, 0.0, 0.0, 0.0));
 
         btnLogout.setMnemonicParsing(false);
-        btnLogout.setStyle("-fx-background-color: transparent;");
+        btnLogout.setStyle(transparent);
         btnLogout.setText("Logout");
         
         btnLogout.setOnMouseEntered(evt -> btnLogout.setUnderline(true));
@@ -402,12 +404,12 @@ public class User2Scene extends HBox{
             expName6.setOnMouseExited(evt -> expName6.setUnderline(false));
         }
 
-        expName1.setStyle("-fx-background-color: transparent;");
-        expName2.setStyle("-fx-background-color: transparent;");
-        expName3.setStyle("-fx-background-color: transparent;");
-        expName4.setStyle("-fx-background-color: transparent;");
-        expName5.setStyle("-fx-background-color: transparent;");
-        expName6.setStyle("-fx-background-color: transparent;");
+        expName1.setStyle(transparent);
+        expName2.setStyle(transparent);
+        expName3.setStyle(transparent);
+        expName4.setStyle(transparent);
+        expName5.setStyle(transparent);
+        expName6.setStyle(transparent);
 
         vBox1.setAlignment(javafx.geometry.Pos.CENTER);
         vBox1.setSpacing(5.0);

@@ -32,10 +32,10 @@ public class RestaurantsScene extends VBox{
     protected VBox vBox;
     protected Label label;
     
-    protected CheckBox €;
-    protected CheckBox €€;
-    protected CheckBox €€€;
-    protected CheckBox €€€€;
+    protected CheckBox cB50To100;
+    protected CheckBox cB100To150;
+    protected CheckBox cB150To200;
+    protected CheckBox cB200;
     
     protected VBox vBox0;
     protected Label label0;
@@ -64,7 +64,8 @@ public class RestaurantsScene extends VBox{
     
     protected Button restSearchButton;
     
-    private boolean Ok = false, peopleOk = false;
+    private boolean Ok = false;
+    private boolean  peopleOk = false;
     
     private String name;
     
@@ -89,10 +90,10 @@ public class RestaurantsScene extends VBox{
         hBox = new HBox();
         vBox = new VBox();
         label = new Label();
-        € = new CheckBox();
-        €€ = new CheckBox();
-        €€€ = new CheckBox();
-        €€€€ = new CheckBox();
+        cB50To100 = new CheckBox();
+        cB100To150 = new CheckBox();
+        cB150To200 = new CheckBox();
+        cB200 = new CheckBox();
         vBox0 = new VBox();
         label0 = new Label();
         star1 = new CheckBox();
@@ -115,6 +116,10 @@ public class RestaurantsScene extends VBox{
         gourmetCheck = new CheckBox();
         restSearchButton = new Button();
         
+        String style = "-fx-background-color: #e2e8ff; -fx-background-radius: 20;";
+        String black = "-fx-text-fill: black";
+        String red = "-fx-text-fill: red";
+ 
         setAlignment(javafx.geometry.Pos.TOP_CENTER);
         setPrefHeight(525.0);
         setPrefWidth(1050.0);
@@ -133,7 +138,7 @@ public class RestaurantsScene extends VBox{
 
         restText.setAlignment(javafx.geometry.Pos.CENTER);
         restText.setPromptText("Type restaurant name");
-        restText.setStyle("-fx-background-color: #e2e8ff; -fx-background-radius: 20;");
+        restText.setStyle(style);
         restText.setFont(new Font(24.0));
         VBox.setMargin(restText, new Insets(15.0, 0.0, 0.0, 0.0));
 
@@ -143,7 +148,7 @@ public class RestaurantsScene extends VBox{
 
         restText0.setAlignment(javafx.geometry.Pos.CENTER);
         restText0.setPromptText("Es.  Rome");
-        restText0.setStyle("-fx-background-color: #e2e8ff; -fx-background-radius: 20;");
+        restText0.setStyle(style);
         restText0.setFont(new Font(24.0));
         VBox.setMargin(restText0, new Insets(15.0, 0.0, 0.0, 0.0));
 
@@ -159,7 +164,7 @@ public class RestaurantsScene extends VBox{
         restText1.setPrefHeight(45.0);
         restText1.setPrefWidth(80.0);
         restText1.setPromptText("Es. 4");
-        restText1.setStyle("-fx-background-color: #e2e8ff; -fx-background-radius: 20;");
+        restText1.setStyle(style);
         restText1.setFont(new Font(24.0));
         VBox.setMargin(restHBox1, new Insets(35.0, 0.0, 0.0, 0.0));
         HBox.setMargin(restaurantsBox0, new Insets(20.0, 0.0, 0.0, 0.0));
@@ -182,21 +187,21 @@ public class RestaurantsScene extends VBox{
         label.setFont(new Font(24.0));
         VBox.setMargin(label, new Insets(0.0));
 
-        €.setMnemonicParsing(false);
-        €.setText("€ - €€");
-        €.setFont(new Font(18.0));
+        cB50To100.setMnemonicParsing(false);
+        cB50To100.setText("€ - €€");
+        cB50To100.setFont(new Font(18.0));
 
-        €€.setMnemonicParsing(false);
-        €€.setText("€€ - €€€");
-        €€.setFont(new Font(18.0));
+        cB100To150.setMnemonicParsing(false);
+        cB100To150.setText("€€ - €€€");
+        cB100To150.setFont(new Font(18.0));
 
-        €€€.setMnemonicParsing(false);
-        €€€.setText("€€€ - €€€€");
-        €€€.setFont(new Font(18.0));
+        cB150To200.setMnemonicParsing(false);
+        cB150To200.setText("€€€ - €€€€");
+        cB150To200.setFont(new Font(18.0));
 
-        €€€€.setMnemonicParsing(false);
-        €€€€.setText("€€€€");
-        €€€€.setFont(new Font(18.0));
+        cB200.setMnemonicParsing(false);
+        cB200.setText("€€€€");
+        cB200.setFont(new Font(18.0));
 
         vBox0.setPrefHeight(396.0);
         vBox0.setSpacing(2.0);
@@ -289,10 +294,10 @@ public class RestaurantsScene extends VBox{
         restHBox0.getChildren().add(restaurantsBox0);
         restHBox0.getChildren().add(restLine);
         vBox.getChildren().add(label);
-        vBox.getChildren().add(€);
-        vBox.getChildren().add(€€);
-        vBox.getChildren().add(€€€);
-        vBox.getChildren().add(€€€€);
+        vBox.getChildren().add(cB50To100);
+        vBox.getChildren().add(cB100To150);
+        vBox.getChildren().add(cB150To200);
+        vBox.getChildren().add(cB200);
         hBox.getChildren().add(vBox);
         vBox0.getChildren().add(label0);
         vBox0.getChildren().add(star1);
@@ -329,101 +334,69 @@ public class RestaurantsScene extends VBox{
 				}
 		        
 				if (!name.equals("")) {
-					restLabel.setStyle("-fx-text-fill: black");
+					restLabel.setStyle(black);
 		        	bean.setCity(city);
 		        	Ok = true;
 		        } else if (Ok != true){
-		        	restLabel.setStyle("-fx-text-fill: red");
+		        	restLabel.setStyle(red);
 		        } else {
-		        	restLabel.setStyle("-fx-text-fill: black");
+		        	restLabel.setStyle(black);
 		        }
 					        
 				if (!city.equals("")) {
-					restLabel0.setStyle("-fx-text-fill: black");
-		        	restLabel.setStyle("-fx-text-fill: black");
+					restLabel0.setStyle(black);
+		        	restLabel.setStyle(black);
 		        	bean.setCity(city);
 		        	Ok = true;
-		        } else if (Ok != true){
-		        	restLabel0.setStyle("-fx-text-fill: red");
+		        } else if (!Ok){
+		        	restLabel0.setStyle(red);
 		        } else {
-		        	restLabel0.setStyle("-fx-text-fill: black");
+		        	restLabel0.setStyle(black);
 		        }
 				
 				if (!restText1.getText().equals("")) {
 					try {
 						people = Integer.valueOf(restText1.getText());
 					} catch (NumberFormatException e) {
-						restLabel1.setStyle("-fx-text-fill: red");
+						restLabel1.setStyle(red);
 					}
 					if (people > 0) {
-						restLabel1.setStyle("-fx-text-fill: black");
+						restLabel1.setStyle(black);
 			        	bean.setNumPeople(people);
 			        	peopleOk = true;
 					} else {
-						restLabel1.setStyle("-fx-text-fill: red");
+						restLabel1.setStyle(red);
 			        }
 		        } else {
-		        	restLabel1.setStyle("-fx-text-fill: red");
+		        	restLabel1.setStyle(red);
 		        }
 				
-				if (Ok == true&& peopleOk == true) {
+				if (Ok && peopleOk) {
+								
+					bean.setBudget1(cB50To100.isSelected());
+					bean.setBudget2(cB100To150.isSelected());		
+					bean.setBudget3(cB150To200.isSelected());
+					bean.setBudget4(cB200.isSelected());		
 					
-					if (€.isSelected()) {
-						bean.setBudget1(true);
-					}
-					if (€€.isSelected()) {
-						bean.setBudget2(true);
-					}
-					if (€€€.isSelected()) {
-						bean.setBudget3(true);
-					}
-					if (€€€€.isSelected()) {
-						bean.setBudget4(true);
-					}
+					bean.setStar1(star1.isSelected());	
+					bean.setStar2(star2.isSelected());		
+					bean.setStar3(star3.isSelected());
+					bean.setStar4(star4.isSelected());		
+					bean.setStar5(star5.isSelected());
+	
+					bean.setPizza(pizzaCheck.isSelected());		
+					bean.setSushi(sushiCheck.isSelected());
+					bean.setHamburger(hamburgerCheck.isSelected());
+					bean.setPasta(pastaCheck.isSelected());
+					bean.setMeat(meatCheck.isSelected());			
+					bean.setFish(fishCheck.isSelected());	
+					bean.setVegan(veganCheck.isSelected());
+					bean.setGourmet(gourmetCheck.isSelected());
 					
-					if (star1.isSelected()) {
-						bean.setStar1(true);
-					}
-					if (star2.isSelected()) {
-						bean.setStar2(true);
-					}
-					if (star3.isSelected()) {
-						bean.setStar3(true);
-					}
-					if (star4.isSelected()) {
-						bean.setStar4(true);
-					}
-					if (star5.isSelected()) {
-						bean.setStar5(true);
-					}
-					
-					if (pizzaCheck.isSelected()) {
-						bean.setPizza(true);
-					}
-					if (sushiCheck.isSelected()) {
-						bean.setSushi(true);
-					}
-					if (hamburgerCheck.isSelected()) {
-						bean.setHamburger(true);
-					}
-					if (pastaCheck.isSelected()) {
-						bean.setPasta(true);
-					}
-					if (meatCheck.isSelected()) {
-						bean.setMeat(true);
-					}
-					if (fishCheck.isSelected()) {
-						bean.setFish(true);
-					}
-					if (veganCheck.isSelected()) {
-						bean.setVegan(true);
-					}
-					if (gourmetCheck.isSelected()) {
-						bean.setGourmet(true);
 					}
 					
 					controller.changeScene2();
-				}
+				
 			}
 		});
     }

@@ -17,10 +17,10 @@ import logic.model.Hotel;
 
 public class StructureScene {
 
-    protected static HBox hBox;
-    protected static VBox vBox1;
-    protected static VBox vBox2;
-    protected static Stage window;
+    protected HBox hBox;
+    protected VBox vBox1;
+    protected VBox vBox2;
+    protected Stage window;
     protected Label label1;
     protected Button btnAddRoom;
     protected Button btnViewReviews;
@@ -39,6 +39,8 @@ public class StructureScene {
         btnViewReviews = new Button();
         btnOpenAgenda = new Button();
         btnAddDescription = new Button();
+        
+        String btnColor = "-fx-background-color: #1B59D7;";
 
         window.initModality(Modality.APPLICATION_MODAL);
         window.setMinWidth(250);
@@ -60,7 +62,8 @@ public class StructureScene {
         vBox2.setSpacing(25.0);
 
         try {
-			label1.setText("Rooms number: " + RoomDao.getRoomsNumber(hotel.getHotelRooms()));
+			// questo qui non ci deve stare .. no chiamate dao da view
+        	label1.setText("Rooms number: " + RoomDao.getRoomsNumber(hotel.getHotelRooms()));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -69,7 +72,7 @@ public class StructureScene {
         btnViewReviews.setMnemonicParsing(false);
         btnViewReviews.setText("View Reviews");
         btnViewReviews.setFont(new Font(24.0));
-        btnViewReviews.setStyle("-fx-background-color: #1B59D7;");
+        btnViewReviews.setStyle(btnColor);
         btnViewReviews.setTextFill(javafx.scene.paint.Color.WHITE);
 
         btnViewReviews.setOnMouseEntered(evt -> btnViewReviews.setUnderline(true));
@@ -78,7 +81,7 @@ public class StructureScene {
         btnAddRoom.setMnemonicParsing(false);
         btnAddRoom.setText("Add Room");
         btnAddRoom.setFont(new Font(24.0));
-        btnAddRoom.setStyle("-fx-background-color: #1B59D7;");
+        btnAddRoom.setStyle(btnColor);
         btnAddRoom.setTextFill(javafx.scene.paint.Color.WHITE);
 
         btnAddRoom.setOnMouseEntered(evt -> btnAddRoom.setUnderline(true));
@@ -87,7 +90,7 @@ public class StructureScene {
         btnOpenAgenda.setMnemonicParsing(false);
         btnOpenAgenda.setText("Open Agenda");
         btnOpenAgenda.setFont(new Font(24.0));
-        btnOpenAgenda.setStyle("-fx-background-color: #1B59D7;");
+        btnOpenAgenda.setStyle(btnColor);
         btnOpenAgenda.setTextFill(javafx.scene.paint.Color.WHITE);
 
         btnOpenAgenda.setOnMouseEntered(evt -> btnOpenAgenda.setUnderline(true));
@@ -96,7 +99,7 @@ public class StructureScene {
         btnAddDescription.setMnemonicParsing(false);
         btnAddDescription.setText("Add Description");
         btnAddDescription.setFont(new Font(24.0));
-        btnAddDescription.setStyle("-fx-background-color: #1B59D7;");
+        btnAddDescription.setStyle(btnColor);
         btnAddDescription.setTextFill(javafx.scene.paint.Color.WHITE);
 
         btnAddDescription.setOnMouseEntered(evt -> btnAddDescription.setUnderline(true));

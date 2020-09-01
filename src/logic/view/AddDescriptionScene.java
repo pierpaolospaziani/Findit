@@ -68,8 +68,10 @@ public class AddDescriptionScene {
         hBox.getChildren().add(btnSubmit);
         descriptionScene.getChildren().add(hBox);
         
+       
         btnSubmit.setOnAction(new EventHandler<ActionEvent>(){
- 			public void handle(ActionEvent event) {
+        	@Override
+        	public void handle(ActionEvent event) {
  				
  				controller.addDescription(textArea.getText(), structure);
  				
