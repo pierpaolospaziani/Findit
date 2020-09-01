@@ -76,6 +76,10 @@ public class HotelRegistrationScene extends VBox {
         btnUndo = new Button();
         btnRegister = new Button();
         
+        String style = "-fx-background-color: #e2e8ff; -fx-background-radius: 20;";
+        String black = "-fx-text-fill: black";
+        String red = "-fx-text-fill: red";
+        
         setAlignment(javafx.geometry.Pos.TOP_CENTER);
         setPrefHeight(525.0);
         setPrefWidth(1050.0);
@@ -98,7 +102,7 @@ public class HotelRegistrationScene extends VBox {
         hotelTextField.setAlignment(javafx.geometry.Pos.CENTER);
         hotelTextField.setPrefWidth(402.0);
         hotelTextField.setPromptText("Structure name");
-        hotelTextField.setStyle("-fx-background-color: #e2e8ff; -fx-background-radius: 20;");
+        hotelTextField.setStyle(style);
         hotelTextField.setFont(new Font(24.0));
         VBox.setMargin(hotelTextField, new Insets(15.0, 0.0, 0.0, 0.0));
 
@@ -108,7 +112,7 @@ public class HotelRegistrationScene extends VBox {
 
         hotelTextField1.setAlignment(javafx.geometry.Pos.CENTER);
         hotelTextField1.setPromptText("Structure city");
-        hotelTextField1.setStyle("-fx-background-color: #e2e8ff; -fx-background-radius: 20;");
+        hotelTextField1.setStyle(style);
         hotelTextField1.setFont(new Font(24.0));
         VBox.setMargin(hotelTextField1, new Insets(15.0, 0.0, 0.0, 0.0));
         
@@ -118,7 +122,7 @@ public class HotelRegistrationScene extends VBox {
 
         hotelTextField2.setAlignment(javafx.geometry.Pos.CENTER);
         hotelTextField2.setPromptText("Structure address");
-        hotelTextField2.setStyle("-fx-background-color: #e2e8ff; -fx-background-radius: 20;");
+        hotelTextField2.setStyle(style);
         hotelTextField2.setFont(new Font(24.0));
         VBox.setMargin(hotelTextField2, new Insets(15.0, 0.0, 0.0, 0.0));
 
@@ -282,83 +286,70 @@ public class HotelRegistrationScene extends VBox {
 		btnRegister.setOnAction(new EventHandler<ActionEvent>(){
 			public void handle(ActionEvent event) {
 				
-				boolean nameOk = false, cityOk = false, addressOk = false, typeOk = false;
+				boolean nameOk = false;
+				boolean cityOk = false;
+				boolean addressOk = false;
+				boolean typeOk = false;
 				
 				String name = hotelTextField.getText();
 		        
 				if (!name.equals("")) {
-					hotelLabel.setStyle("-fx-text-fill: black");
+					hotelLabel.setStyle(black);
 		        	bean.setName(name);
 		        	nameOk = true;
 		        } else {
-		        	hotelLabel.setStyle("-fx-text-fill: red");
+		        	hotelLabel.setStyle(red);
 		        }
 				
 				String city = hotelTextField1.getText();
 				
 				if (!city.equals("")) {
-					hotelLabel0.setStyle("-fx-text-fill: black");
+					hotelLabel0.setStyle(black);
 		        	bean.setCity(city);
 		        	cityOk = true;
 		        } else {
-		        	hotelLabel0.setStyle("-fx-text-fill: red");
+		        	hotelLabel0.setStyle(red);
 		        }
 				
 				String address = hotelTextField2.getText();
 				
 				if (!address.equals("")) {
-					hotelLabel1.setStyle("-fx-text-fill: black");
+					hotelLabel1.setStyle(black);
 		        	bean.setAddress(address);
 		        	addressOk = true;
 		        } else {
-		        	hotelLabel1.setStyle("-fx-text-fill: red");
+		        	hotelLabel1.setStyle(red);
 		        }
 				
 				if (checkBoxapartaments.isSelected() ||
 						checkBoxBeB.isSelected() ||
 						checkBoxHostels.isSelected() ||
 						checkBoxHotels.isSelected()) {
-		        	label0.setStyle("-fx-text-fill: black");
+		        	label0.setStyle(black);
 					typeOk = true;
 				} else {
-		        	label0.setStyle("-fx-text-fill: red");
+		        	label0.setStyle(red);
 				}
 				
 				if (nameOk && cityOk && addressOk && typeOk) {
 			        
-					if (checkBoxFitnessCenter.isSelected()) {
-						bean.setGym(true);
-					} else {
-						bean.setGym(false);
-					}
-			        
-					if (checkBoxParking.isSelected()) {
-						bean.setParking(true);
-					} else {
-						bean.setParking(false);
-					}
-			        
-					if (checkBoxRestaurant.isSelected()) {
-						bean.setRestaurant(true);
-					} else {
-						bean.setRestaurant(false);
-					}
-			        
-					if (checkBoxRoomService.isSelected()) {
-						bean.setRoomService(true);
-					} else {
-						bean.setRoomService(false);
-					}
 					
-					if (checkBoxapartaments.isSelected()) {
-						bean.setApartment(true);
-					} else if (checkBoxBeB.isSelected()) {
-						bean.setBeb(true);
-					} else if (checkBoxHostels.isSelected()) {
-						bean.setHostel(true);
-					} else {
-						bean.setHotel(true);
-					}
+					bean.setGym(checkBoxFitnessCenter.isSelected());
+				
+					bean.setParking(checkBoxParking.isSelected());
+					
+					bean.setRestaurant(checkBoxRestaurant.isSelected());
+				
+					bean.setRoomService(checkBoxRoomService.isSelected());
+				
+					bean.setApartment(checkBoxapartaments.isSelected());
+				
+					bean.setBeb(checkBoxBeB.isSelected());
+				
+					bean.setHostel(checkBoxHostels.isSelected());
+				
+					bean.setHotel(checkBoxHotels.isSelected());
+					
 					
 					btnRegister.setText("Structure registered");
 					btnRegister.setDisable(true);

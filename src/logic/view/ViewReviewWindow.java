@@ -8,7 +8,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import logic.controller.ProfileController;
 import logic.model.Review;
 
 public class ViewReviewWindow {
@@ -19,7 +18,7 @@ public class ViewReviewWindow {
 	protected ScrollPane scrollPane;
     protected Stage window;
 
-    public ViewReviewWindow(ProfileController controller, Review review, String structure) {
+    public ViewReviewWindow(Review review, String structure) {
 
     	reviewScene = new VBox();
         label = new Label();
@@ -27,6 +26,8 @@ public class ViewReviewWindow {
         scrollPane = new ScrollPane();
         
         window = new Stage();
+        
+        String white = "-fx-background-color: white;";
 
         //Block events to other windows
         window.initModality(Modality.APPLICATION_MODAL);
@@ -37,7 +38,7 @@ public class ViewReviewWindow {
         reviewScene.setPrefHeight(274.0);
         reviewScene.setPrefWidth(500.0);
         reviewScene.setSpacing(10.0);
-        reviewScene.setStyle("-fx-background-color: white;");
+        reviewScene.setStyle(white);
         
         label.setText("You voted: " + review.getReviewVote() + " star/s");
         label.setFont(new Font(24.0));
@@ -48,13 +49,13 @@ public class ViewReviewWindow {
         text.setFont(new Font(24.0));
         text.setMaxWidth(450.0);
         text.setMinHeight(200.0);
-        text.setStyle("-fx-background-color: white;");
+        text.setStyle(white);
         
         scrollPane.setContent(text);
         scrollPane.setMaxWidth(450.0);
         scrollPane.setPrefHeight(203.0);
         scrollPane.setFitToWidth(true);
-        scrollPane.setStyle("-fx-background-color: white;");
+        scrollPane.setStyle(white);
         scrollPane.setStyle("-fx-color: lightGray;");
         
         reviewScene.setOpaqueInsets(new Insets(0.0));

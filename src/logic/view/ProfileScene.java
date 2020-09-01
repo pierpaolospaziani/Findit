@@ -10,7 +10,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import logic.controller.ProfileController;
-import logic.model.User;
 
 public class ProfileScene extends VBox{
 	
@@ -31,10 +30,10 @@ public class ProfileScene extends VBox{
     protected Label profileLabel8;
     protected Button profileRegisterButton;
     
-    protected static User user;
+
     protected boolean isLogged = false;
     
-    // manca il bottone come argomento per il cambio nome
+
     public ProfileScene(ProfileController controller) {
 
     	profileHBox = new HBox();
@@ -53,8 +52,7 @@ public class ProfileScene extends VBox{
         profileLabel7 = new Label();
         profileLabel8 = new Label();
         profileRegisterButton = new Button();
-        
-        user = User.getIstance();
+
         
         setAlignment(javafx.geometry.Pos.TOP_CENTER);
         setPrefHeight(525.0);
@@ -155,18 +153,6 @@ public class ProfileScene extends VBox{
 			public void handle(ActionEvent event) {
 
 				controller.openLogWindow();
-				/*
-				if (user.getUsername() == null) {
-					isLogged = false;
-				} else if (!(user.getUsername().equals(""))) {
-					isLogged = true;
-				}
-		        if (isLogged == true) {
-		        	//b_profile.setText(user.getUsername());
-		        	getChildren().clear();
-		            userScene = new UserPage(user.getUsername());
-		        	getChildren().add(userScene);
-		        }*/
 			}
 		});
         
@@ -175,17 +161,7 @@ public class ProfileScene extends VBox{
 				
 				if (controller.openRegisterWindow()) {
 					controller.openLogWindow();
-					/*
-					if (user.getUsername() == null) {
-						isLogged = false;
-					} else if (!(user.getUsername().equals(""))) {
-						isLogged = true;
-					}
-			        if (isLogged == true) {
-			        	getChildren().clear();
-			            userScene = new UserPage(user.getUsername());
-			        	getChildren().add(userScene);
-			        }*/
+	
 				}
 			}
 		});

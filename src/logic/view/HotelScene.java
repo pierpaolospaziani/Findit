@@ -38,9 +38,9 @@ public class HotelScene extends VBox{
     protected HBox hotelHBox3;
     protected VBox hotelVBox2;
     protected Label hotelLabel3;
-    protected CheckBox check50_100;
-    protected CheckBox check100_150;
-    protected CheckBox check150_200;
+    protected CheckBox check50To100;
+    protected CheckBox check100To150;
+    protected CheckBox check150To200;
     protected CheckBox check200;
     protected VBox hotelVBox3;
     protected Label hotelLabel4;
@@ -64,14 +64,15 @@ public class HotelScene extends VBox{
     protected CheckBox check5Star;
     protected Button hotelSearchButton;
     
-    private boolean cityOk = false, dateOk = false, peopleOk = false;
+    private boolean cityOk = false;
+    private boolean dateOk = false;
+    private boolean peopleOk = false;
     
     private String city;
     
     private int people;
     
-    //private int yearOut, yearIn, monthOut, monthIn, dayOut, dayIn;
-	
+    
     public HotelScene(HotelController controller, HotelBean bean) {
     
     	hotelHBox = new HBox();
@@ -92,9 +93,9 @@ public class HotelScene extends VBox{
         hotelHBox3 = new HBox();
         hotelVBox2 = new VBox();
         hotelLabel3 = new Label();
-        check50_100 = new CheckBox();
-        check100_150 = new CheckBox();
-        check150_200 = new CheckBox();
+        check50To100 = new CheckBox();
+        check100To150 = new CheckBox();
+        check150To200 = new CheckBox();
         check200 = new CheckBox();
         hotelVBox3 = new VBox();
         hotelLabel4 = new Label();
@@ -117,6 +118,9 @@ public class HotelScene extends VBox{
         check4Star = new CheckBox();
         check5Star = new CheckBox();
         hotelSearchButton = new Button();
+        
+        LocalDate today = LocalDate.now();
+        String red = "-fx-text-fill: red";
         
         setAlignment(javafx.geometry.Pos.TOP_CENTER);
         setPrefHeight(525.0);
@@ -168,7 +172,7 @@ public class HotelScene extends VBox{
 		hotelCheckIn.setDayCellFactory(picker -> new DateCell() {
 			public void updateItem(LocalDate date, boolean empty) {
 				super.updateItem(date, empty);
-				LocalDate today = LocalDate.now();
+				
 				
 				setDisable(empty || date.compareTo(today) < 0);
 			}
@@ -218,17 +222,17 @@ public class HotelScene extends VBox{
         hotelLabel3.setFont(new Font(24.0));
         VBox.setMargin(hotelLabel3, new Insets(0.0));
 
-        check50_100.setMnemonicParsing(false);
-        check50_100.setText("€0 - €100 for night");
-        check50_100.setFont(new Font(18.0));
+        check50To100.setMnemonicParsing(false);
+        check50To100.setText("€0 - €100 for night");
+        check50To100.setFont(new Font(18.0));
 
-        check100_150.setMnemonicParsing(false);
-        check100_150.setText("€100 - €150 for night");
-        check100_150.setFont(new Font(18.0));
+        check100To150.setMnemonicParsing(false);
+        check100To150.setText("€100 - €150 for night");
+        check100To150.setFont(new Font(18.0));
 
-        check150_200.setMnemonicParsing(false);
-        check150_200.setText("€150 - €200 for night");
-        check150_200.setFont(new Font(18.0));
+        check150To200.setMnemonicParsing(false);
+        check150To200.setText("€150 - €200 for night");
+        check150To200.setFont(new Font(18.0));
 
         check200.setMnemonicParsing(false);
         check200.setText("€200 + for night");
@@ -338,9 +342,9 @@ public class HotelScene extends VBox{
         hotelHBox.getChildren().add(hotelVBox0);
         hotelHBox.getChildren().add(line);
         hotelVBox2.getChildren().add(hotelLabel3);
-        hotelVBox2.getChildren().add(check50_100);
-        hotelVBox2.getChildren().add(check100_150);
-        hotelVBox2.getChildren().add(check150_200);
+        hotelVBox2.getChildren().add(check50To100);
+        hotelVBox2.getChildren().add(check100To150);
+        hotelVBox2.getChildren().add(check150To200);
         hotelVBox2.getChildren().add(check200);
         hotelHBox3.getChildren().add(hotelVBox2);
         hotelVBox3.getChildren().add(hotelLabel4);
@@ -376,48 +380,48 @@ public class HotelScene extends VBox{
 				if (!check200.isSelected()) {
 					check200.setSelected(false);
 				} else {
-					check50_100.setSelected(true);
-	        		check100_150.setSelected(true);	        	
-		        	check150_200.setSelected(true);
+					check50To100.setSelected(true);
+	        		check100To150.setSelected(true);	        	
+		        	check150To200.setSelected(true);
 	        		check200.setSelected(true);
 				}	
 			}
 		});
         
-        check150_200.setOnAction(new EventHandler<ActionEvent>(){
+        check150To200.setOnAction(new EventHandler<ActionEvent>(){
 			public void handle(ActionEvent event) {
-				if (!check150_200.isSelected() && !check200.isSelected()) {
-					check150_200.setSelected(false);
+				if (!check150To200.isSelected() && !check200.isSelected()) {
+					check150To200.setSelected(false);
 				} else {
-					check50_100.setSelected(true);
-	        		check100_150.setSelected(true);	        	
-		        	check150_200.setSelected(true);
+					check50To100.setSelected(true);
+	        		check100To150.setSelected(true);	        	
+		        	check150To200.setSelected(true);
 	        		check200.setSelected(false);
 				}		
 	        }
 		});
         
-        check100_150.setOnAction(new EventHandler<ActionEvent>(){
+        check100To150.setOnAction(new EventHandler<ActionEvent>(){
 			public void handle(ActionEvent event) {
-				if (!check100_150.isSelected() && !check150_200.isSelected() && !check200.isSelected()) {
-					check100_150.setSelected(false);
+				if (!check100To150.isSelected() && !check150To200.isSelected() && !check200.isSelected()) {
+					check100To150.setSelected(false);
 				} else {
-		        	check50_100.setSelected(true);
-		        	check100_150.setSelected(true);	        	
-			        check150_200.setSelected(false);
+		        	check50To100.setSelected(true);
+		        	check100To150.setSelected(true);	        	
+			        check150To200.setSelected(false);
 		        	check200.setSelected(false);
 				}			
 	        }
 		});
         
-        check50_100.setOnAction(new EventHandler<ActionEvent>(){
+        check50To100.setOnAction(new EventHandler<ActionEvent>(){
 			public void handle(ActionEvent event) {
-				if (!check50_100.isSelected() && !check100_150.isSelected() && !check150_200.isSelected() && !check200.isSelected()) {
-					check50_100.setSelected(false);
+				if (!check50To100.isSelected() && !check100To150.isSelected() && !check150To200.isSelected() && !check200.isSelected()) {
+					check50To100.setSelected(false);
 				} else {
-		        	check50_100.setSelected(true);
-		        	check100_150.setSelected(false);	        	
-			        check150_200.setSelected(false);
+		        	check50To100.setSelected(true);
+		        	check100To150.setSelected(false);	        	
+			        check150To200.setSelected(false);
 		        	check200.setSelected(false);
 				}
 	        }
@@ -503,123 +507,54 @@ public class HotelScene extends VBox{
 		        	bean.setCity(city);
 		        	cityOk = true;
 		        } else {
-		        	hotelLabel.setStyle("-fx-text-fill: red");
+		        	hotelLabel.setStyle(red);
 		        }
 				
 				if (!hotelTextField0.getText().equals("")) {
 					try {
 						people = Integer.valueOf(hotelTextField0.getText());
 					} catch (NumberFormatException e) {
-						hotelLabel2.setStyle("-fx-text-fill: red");
+						hotelLabel2.setStyle(red);
 					}
 					if (people > 0) {
 						hotelLabel2.setStyle("-fx-text-fill: black");
 			        	bean.setNumPeople(people);
 			        	peopleOk = true;
 					} else {
-						hotelLabel2.setStyle("-fx-text-fill: red");
+						hotelLabel2.setStyle(red);
 			        }
 		        } else {
-		        	hotelLabel2.setStyle("-fx-text-fill: red");
+		        	hotelLabel2.setStyle(red);
 		        }
 				
-				if (dateOk != true) {
-					hotelLabel0.setStyle("-fx-text-fill: red");
-					hotelLabel1.setStyle("-fx-text-fill: red");
+				if (!dateOk) {
+					hotelLabel0.setStyle(red);
+					hotelLabel1.setStyle(red);
 				}
 				
-				if (cityOk == true && dateOk == true && peopleOk == true) {
+				if (cityOk && dateOk && peopleOk) {
+								
+					bean.setBudget1(check50To100.isSelected());				
+					bean.setBudget2(check100To150.isSelected());			
+					bean.setBudget3(check150To200.isSelected());		
+					bean.setBudget4(check200.isSelected());
 					
-					if (check50_100.isSelected()) {
-						bean.setBudget1(true);
-					} else {
-						bean.setBudget1(false);
-					}
-					if (check100_150.isSelected()) {
-						bean.setBudget2(true);
-					} else {
-						bean.setBudget2(false);
-					}
-					if (check150_200.isSelected()) {
-						bean.setBudget3(true);
-					} else {
-						bean.setBudget3(false);
-					}
-					if (check200.isSelected()) {
-						bean.setBudget4(true);
-					} else {
-						bean.setBudget4(false);
-					}
-
-					if (checkApartaments.isSelected()) {
-						bean.setApartment(true);
-					} else {
-						bean.setApartment(false);
-					}
-					if (checkHotels.isSelected()) {
-						bean.setHotel(true);
-					} else {
-						bean.setHotel(false);
-					}
-					if (checkBeB.isSelected()) {
-						bean.setBeb(true);
-					} else {
-						bean.setBeb(false);
-					}
-					if (checkHostels.isSelected()) {
-						bean.setHostel(true);
-					} else {
-						bean.setHostel(false);
-					}
+					bean.setApartment(checkApartaments.isSelected());		
+					bean.setHotel(checkHotels.isSelected());	
+					bean.setBeb(checkBeB.isSelected());
+					bean.setHostel(checkHostels.isSelected());
+						
+					bean.setParking(checkParking.isSelected());
+					bean.setRestaurant(checkRestaurant.isSelected());
+					bean.setRoomService(checkRoomService.isSelected());
+					bean.setGym(checkFitnessCenter.isSelected());
 					
-
-					if (checkParking.isSelected()) {
-						bean.setParking(true);
-					} else {
-						bean.setParking(false);
-					}
-					if (checkRestaurant.isSelected()) {
-						bean.setRestaurant(true);
-					} else {
-						bean.setRestaurant(false);
-					}
-					if (checkRoomService.isSelected()) {
-						bean.setRoomService(true);
-					} else {
-						bean.setRoomService(false);
-					}
-					if (checkFitnessCenter.isSelected()) {
-						bean.setGym(true);
-					} else {
-						bean.setGym(false);
-					}
-					
-					if (check1Star.isSelected()) {
-						bean.setStar1(true);
-					} else {
-						bean.setStar1(false);
-					}
-					if (check2Star.isSelected()) {
-						bean.setStar2(true);
-					} else {
-						bean.setStar2(false);
-					}
-					if (check3Star.isSelected()) {
-						bean.setStar3(true);
-					} else {
-						bean.setStar3(false);
-					}
-					if (check4Star.isSelected()) {
-						bean.setStar4(true);
-					} else {
-						bean.setStar4(false);
-					}
-					if (check5Star.isSelected()) {
-						bean.setStar5(true);
-					} else {
-						bean.setStar5(false);
-					}
-					
+					bean.setStar1(check1Star.isSelected());
+					bean.setStar2(check2Star.isSelected());
+					bean.setStar3(check3Star.isSelected());
+					bean.setStar4(check4Star.isSelected());
+					bean.setStar5(check5Star.isSelected());
+			
 					bean.setType();
 					controller.setStep(2);
 					controller.changeScene2(0);
@@ -630,15 +565,7 @@ public class HotelScene extends VBox{
         hotelCheckIn.setOnAction(new EventHandler<ActionEvent>(){
 			public void handle(ActionEvent event) {
 				LocalDate ld = hotelCheckIn.getValue();
-				/*
-				yearIn = ld.getYear();
-				monthIn = ld.getMonth().getValue();
-				dayIn = ld.getDayOfMonth();
-				
-				bean.setCheckInYear(yearIn);
-				bean.setCheckInMonth(monthIn);
-				bean.setCheckInDay(dayIn);
-				*/
+			
 				bean.setLocalDateIn(ld);
 				
 				hotelCheckOut.setDisable(false);
@@ -658,15 +585,7 @@ public class HotelScene extends VBox{
 			public void handle(ActionEvent event) {
 				
 				LocalDate ld = hotelCheckOut.getValue();
-				/*
-				yearOut = ld.getYear();
-				monthOut = ld.getMonth().getValue();
-				dayOut = ld.getDayOfMonth();
 				
-				bean.setCheckOutYear(yearOut);
-				bean.setCheckOutMonth(monthOut);
-				bean.setCheckOutDay(dayOut);
-				*/
 				bean.setLocalDateOut(ld);
 				
 				bean.setDays(ld.compareTo(hotelCheckIn.getValue()));

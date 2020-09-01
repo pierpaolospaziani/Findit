@@ -43,8 +43,8 @@ public class Hotel2Scene extends VBox{
     protected  Label labelStar3;
     protected  VBox vBoxPrezzo3;
     protected  Label labelPrezzo3;
-    protected  HBox hBoxBtn;
-    protected  Button btnBack;
+    protected  HBox hBoxBtnH2;
+    protected  Button btnBackH2;
     protected  Button btnPrecedent;
     protected  Button btnNext;
     protected  Label txtNumberPage;
@@ -52,7 +52,7 @@ public class Hotel2Scene extends VBox{
     protected  Separator separatorHotel1;
     protected  Separator separatorHotel2;
     protected  Separator separatorHotel3;
-    protected  Separator separatorBtnBack;
+    protected  Separator separatorBtnBackH2;
     protected  Separator separatorBtnFrecce;
 
     protected  Label bedsHotel1;
@@ -86,8 +86,8 @@ public class Hotel2Scene extends VBox{
         labelStar3 = new Label();
         vBoxPrezzo3 = new VBox();
         labelPrezzo3 = new Label();
-        hBoxBtn = new HBox();
-        btnBack = new Button();
+        hBoxBtnH2 = new HBox();
+        btnBackH2 = new Button();
         btnPrecedent = new Button();
         btnNext = new Button();
         txtNumberPage = new Label();
@@ -96,14 +96,14 @@ public class Hotel2Scene extends VBox{
         separatorHotel2 = new Separator();
         separatorHotel3 = new Separator();
         
-        separatorBtnBack = new Separator();
+        separatorBtnBackH2 = new Separator();
         separatorBtnFrecce = new Separator();
 
         bedsHotel1 = new Label();
         bedsHotel2 = new Label();
         bedsHotel3 = new Label();
         
-        String StructImage = "strucutre.jpg";
+        String structImage = "strucutre.jpg";
         String transparent = "-fx-background-color: transparent;";
         String noReviews = "Still 0 Reviews";
         String stars = " Stars";
@@ -138,7 +138,7 @@ public class Hotel2Scene extends VBox{
         Image photo = hotel1.getHotelImage();
         
         if (photo == null) {
-        	imageViewHotel1.setImage(new Image(getClass().getResource(StructImage).toExternalForm()));
+        	imageViewHotel1.setImage(new Image(getClass().getResource(structImage).toExternalForm()));
         } else {
         	imageViewHotel1.setImage(photo);
         }
@@ -204,7 +204,7 @@ public class Hotel2Scene extends VBox{
         photo = hotel2.getHotelImage();
         
         if (photo == null) {
-        	imageViewHotel2.setImage(new Image(getClass().getResource(StructImage).toExternalForm()));
+        	imageViewHotel2.setImage(new Image(getClass().getResource(structImage).toExternalForm()));
         } else {
         	imageViewHotel2.setImage(photo);
         }
@@ -271,7 +271,7 @@ public class Hotel2Scene extends VBox{
         photo = hotel3.getHotelImage();
         
         if (photo == null) {
-        	imageViewHotel3.setImage(new Image(getClass().getResource(StructImage).toExternalForm()));
+        	imageViewHotel3.setImage(new Image(getClass().getResource(structImage).toExternalForm()));
         } else {
         	imageViewHotel3.setImage(photo);
         }
@@ -320,26 +320,26 @@ public class Hotel2Scene extends VBox{
             btnHotel3.setOnMouseExited(evt -> btnHotel3.setUnderline(false));
         }
 
-        hBoxBtn.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
-        hBoxBtn.setPrefHeight(63.0);
-        hBoxBtn.setPrefWidth(841.0);
-        hBoxBtn.setSpacing(10.0);
+        hBoxBtnH2.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
+        hBoxBtnH2.setPrefHeight(63.0);
+        hBoxBtnH2.setPrefWidth(841.0);
+        hBoxBtnH2.setSpacing(10.0);
         
-        separatorBtnBack.setOpacity(0.0);
-        separatorBtnBack.setOrientation(javafx.geometry.Orientation.VERTICAL);
-        separatorBtnBack.setPrefHeight(57.0);
-        separatorBtnBack.setPrefWidth(50.0);
+        separatorBtnBackH2.setOpacity(0.0);
+        separatorBtnBackH2.setOrientation(javafx.geometry.Orientation.VERTICAL);
+        separatorBtnBackH2.setPrefHeight(57.0);
+        separatorBtnBackH2.setPrefWidth(50.0);
         
-        btnBack.setMnemonicParsing(false);
-        btnBack.setPrefHeight(39.0);
-        btnBack.setMinWidth(118.0);
-        btnBack.setStyle(colorBlu);
-        btnBack.setText("<< back");
-        btnBack.setTextFill(javafx.scene.paint.Color.WHITE);
-        btnBack.setFont(new Font(24.0));
+        btnBackH2.setMnemonicParsing(false);
+        btnBackH2.setPrefHeight(39.0);
+        btnBackH2.setMinWidth(118.0);
+        btnBackH2.setStyle(colorBlu);
+        btnBackH2.setText("<< back");
+        btnBackH2.setTextFill(javafx.scene.paint.Color.WHITE);
+        btnBackH2.setFont(new Font(24.0));
         
-        btnBack.setOnMouseEntered(evt -> btnBack.setUnderline(true));
-    	btnBack.setOnMouseExited(evt -> btnBack.setUnderline(false));
+        btnBackH2.setOnMouseEntered(evt -> btnBackH2.setUnderline(true));
+    	btnBackH2.setOnMouseExited(evt -> btnBackH2.setUnderline(false));
         
         separatorBtnFrecce.setOpacity(0.0);
         separatorBtnFrecce.setOrientation(javafx.geometry.Orientation.VERTICAL);
@@ -406,13 +406,13 @@ public class Hotel2Scene extends VBox{
         vBoxPrezzo3.getChildren().add(bedsHotel3);
         hBoxHotel3.getChildren().add(vBoxPrezzo3); 
         vBoxListHotel.getChildren().add(hBoxHotel3);
-        hBoxBtn.getChildren().add(separatorBtnBack);
-        hBoxBtn.getChildren().add(btnBack);
-        hBoxBtn.getChildren().add(separatorBtnFrecce);
-        hBoxBtn.getChildren().add(btnPrecedent);
-        hBoxBtn.getChildren().add(txtNumberPage);
-        hBoxBtn.getChildren().add(btnNext);
-        vBoxListHotel.getChildren().add(hBoxBtn);
+        hBoxBtnH2.getChildren().add(separatorBtnBackH2);
+        hBoxBtnH2.getChildren().add(btnBackH2);
+        hBoxBtnH2.getChildren().add(separatorBtnFrecce);
+        hBoxBtnH2.getChildren().add(btnPrecedent);
+        hBoxBtnH2.getChildren().add(txtNumberPage);
+        hBoxBtnH2.getChildren().add(btnNext);
+        vBoxListHotel.getChildren().add(hBoxBtnH2);
         getChildren().add(vBoxListHotel);
         
         btnHotel1.setOnAction(new EventHandler<ActionEvent>(){
@@ -439,7 +439,7 @@ public class Hotel2Scene extends VBox{
  			}
  		});
         
-        btnBack.setOnAction(new EventHandler<ActionEvent>(){
+        btnBackH2.setOnAction(new EventHandler<ActionEvent>(){
  			public void handle(ActionEvent event) {
  				controller.setStep(1);
  				controller.changeScene();

@@ -129,12 +129,12 @@ public class ProfileController {
 	
 	public void openLogWindow() {
 		window = new LogWindow();
-		window.Log(this,bean);
+		window.log(this,bean);
 	}
 	
 	public boolean openRegisterWindow() {
 		window = new LogWindow();
-		return window.Register(this,bean);
+		return window.register(this,bean);
 	}
 	
 	public void loggedScene() {
@@ -372,7 +372,7 @@ public class ProfileController {
 		if (bool) {
 			new WriteReviewWindow(this,review,experience.getName(),experience.getDayIn(),experience.getDayOut());
 		} else {
-			new ViewReviewWindow(this,review,experience.getName());
+			new ViewReviewWindow(review,experience.getName());
 		}
 	}
 	

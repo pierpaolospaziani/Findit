@@ -17,7 +17,7 @@ import logic.controller.RestaurantsController;
 public class MainMenu extends HBox{
 	
 	protected Button buttonFindit;
-    protected HBox baseScene;;
+    protected HBox baseScene;
     protected HBox baseHBox;
     protected Button buttonHotel;
     protected Button buttonRestaurants;
@@ -54,7 +54,9 @@ public class MainMenu extends HBox{
     	buttonFindit.setPrefWidth(215.0);
     	buttonFindit.setMinWidth(215.0);
     	buttonFindit.setText("FindIT");
-    	//buttonFindit.setUnderline(true);
+    	
+    	String selected = "b_selected";
+    	String menu = "b_menu";
     	
     	buttonFindit.setOnMouseEntered(evt -> buttonFindit.setUnderline(true));
     	buttonFindit.setOnMouseExited(evt -> buttonFindit.setUnderline(false));
@@ -78,7 +80,6 @@ public class MainMenu extends HBox{
         buttonHotel.setMnemonicParsing(false);
         buttonHotel.setText("Hotels");
         buttonHotel.setTextFill(javafx.scene.paint.Color.WHITE);
-        //buttonHotel.setUnderline(true);
     	
         buttonHotel.setOnMouseEntered(evt -> buttonHotel.setUnderline(true));
         buttonHotel.setOnMouseExited(evt -> buttonHotel.setUnderline(false));
@@ -88,7 +89,6 @@ public class MainMenu extends HBox{
         buttonRestaurants.setMnemonicParsing(false);
         buttonRestaurants.setText("Restaurants");
         buttonRestaurants.setTextFill(javafx.scene.paint.Color.WHITE);
-        //buttonRestaurants.setUnderline(true);
     	
         buttonRestaurants.setOnMouseEntered(evt -> buttonRestaurants.setUnderline(true));
         buttonRestaurants.setOnMouseExited(evt -> buttonRestaurants.setUnderline(false));
@@ -98,7 +98,6 @@ public class MainMenu extends HBox{
         buttonEvents.setMnemonicParsing(false);
         buttonEvents.setText("Events");
         buttonEvents.setTextFill(javafx.scene.paint.Color.WHITE);
-        //buttonEvents.setUnderline(true);
     	
         buttonEvents.setOnMouseEntered(evt -> buttonEvents.setUnderline(true));
         buttonEvents.setOnMouseExited(evt -> buttonEvents.setUnderline(false));
@@ -108,7 +107,6 @@ public class MainMenu extends HBox{
         buttonMap.setMnemonicParsing(false);
         buttonMap.setText("Map");
         buttonMap.setTextFill(javafx.scene.paint.Color.WHITE);
-        //buttonMap.setUnderline(true);
     	
         buttonMap.setOnMouseEntered(evt -> buttonMap.setUnderline(true));
         buttonMap.setOnMouseExited(evt -> buttonMap.setUnderline(false));
@@ -118,28 +116,27 @@ public class MainMenu extends HBox{
         buttonProfile.setMnemonicParsing(false);
         buttonProfile.setText("Profile");
         buttonProfile.setTextFill(javafx.scene.paint.Color.WHITE);
-        //buttonProfile.setUnderline(true);
     	
         buttonProfile.setOnMouseEntered(evt -> buttonProfile.setUnderline(true));
         buttonProfile.setOnMouseExited(evt -> buttonProfile.setUnderline(false));
     	
         buttonProfile.setFont(new Font(24.0));
         
-        buttonFindit.setId("b_selected");
-        buttonHotel.setId("b_menu");
-        buttonRestaurants.setId("b_menu");
-        buttonEvents.setId("b_menu");
-        buttonMap.setId("b_menu");
-        buttonProfile.setId("b_menu");
+        buttonFindit.setId(selected);
+        buttonHotel.setId(menu);
+        buttonRestaurants.setId(menu);
+        buttonEvents.setId(menu);
+        buttonMap.setId(menu);
+        buttonProfile.setId(menu);
         
         buttonFindit.setOnAction(new EventHandler<ActionEvent>(){
 			public void handle(ActionEvent event) {
-				buttonFindit.setId("b_selected");
-		        buttonHotel.setId("b_menu");
-		        buttonRestaurants.setId("b_menu");
-		        buttonEvents.setId("b_menu");
-		        buttonMap.setId("b_menu");
-		        buttonProfile.setId("b_menu");
+				buttonFindit.setId(selected);
+		        buttonHotel.setId(menu);
+		        buttonRestaurants.setId(menu);
+		        buttonEvents.setId(menu);
+		        buttonMap.setId(menu);
+		        buttonProfile.setId(menu);
 		        
 				homeController.changeScene(scenePane);
 			}
@@ -147,12 +144,12 @@ public class MainMenu extends HBox{
         
         buttonHotel.setOnAction(new EventHandler<ActionEvent>(){
 			public void handle(ActionEvent event) {
-				buttonFindit.setId("b_menu");
-		        buttonHotel.setId("b_selected");
-		        buttonRestaurants.setId("b_menu");
-		        buttonEvents.setId("b_menu");
-		        buttonMap.setId("b_menu");
-		        buttonProfile.setId("b_menu");
+				buttonFindit.setId(menu);
+		        buttonHotel.setId(selected);
+		        buttonRestaurants.setId(menu);
+		        buttonEvents.setId(menu);
+		        buttonMap.setId(menu);
+		        buttonProfile.setId(menu);
 
 				hotelController.changeScene();
 			}
@@ -160,12 +157,12 @@ public class MainMenu extends HBox{
         
         buttonRestaurants.setOnAction(new EventHandler<ActionEvent>(){
 			public void handle(ActionEvent event) {
-				buttonFindit.setId("b_menu");
-		        buttonHotel.setId("b_menu");
-		        buttonRestaurants.setId("b_selected");
-		        buttonEvents.setId("b_menu");
-		        buttonMap.setId("b_menu");
-		        buttonProfile.setId("b_menu");
+				buttonFindit.setId(menu);
+		        buttonHotel.setId(menu);
+		        buttonRestaurants.setId(selected);
+		        buttonEvents.setId(menu);
+		        buttonMap.setId(menu);
+		        buttonProfile.setId(menu);
 		        
 				restaurantsController.changeScene();
 			}
@@ -173,12 +170,12 @@ public class MainMenu extends HBox{
         
         buttonEvents.setOnAction(new EventHandler<ActionEvent>(){
 			public void handle(ActionEvent event) {
-				buttonFindit.setId("b_menu");
-		        buttonHotel.setId("b_menu");
-		        buttonRestaurants.setId("b_menu");
-		        buttonEvents.setId("b_selected");
-		        buttonMap.setId("b_menu");
-		        buttonProfile.setId("b_menu");
+				buttonFindit.setId(menu);
+		        buttonHotel.setId(menu);
+		        buttonRestaurants.setId(menu);
+		        buttonEvents.setId(selected);
+		        buttonMap.setId(menu);
+		        buttonProfile.setId(menu);
 		        
 				eventsController.changeScene();
 			}
@@ -186,12 +183,12 @@ public class MainMenu extends HBox{
         
         buttonMap.setOnAction(new EventHandler<ActionEvent>(){
 			public void handle(ActionEvent event) {
-				buttonFindit.setId("b_menu");
-		        buttonHotel.setId("b_menu");
-		        buttonRestaurants.setId("b_menu");
-		        buttonEvents.setId("b_menu");
-		        buttonMap.setId("b_selected");
-		        buttonProfile.setId("b_menu");
+				buttonFindit.setId(menu);
+		        buttonHotel.setId(menu);
+		        buttonRestaurants.setId(menu);
+		        buttonEvents.setId(menu);
+		        buttonMap.setId(selected);
+		        buttonProfile.setId(menu);
 		        
 				mapController.changeScene(scenePane);
 			}
@@ -199,12 +196,12 @@ public class MainMenu extends HBox{
         
         buttonProfile.setOnAction(new EventHandler<ActionEvent>(){
 			public void handle(ActionEvent event) {
-				buttonFindit.setId("b_menu");
-		        buttonHotel.setId("b_menu");
-		        buttonRestaurants.setId("b_menu");
-		        buttonEvents.setId("b_menu");
-		        buttonMap.setId("b_menu");
-		        buttonProfile.setId("b_selected");
+				buttonFindit.setId(menu);
+		        buttonHotel.setId(menu);
+		        buttonRestaurants.setId(menu);
+		        buttonEvents.setId(menu);
+		        buttonMap.setId(menu);
+		        buttonProfile.setId(selected);
 		        
 				profileController.changeScene();
 			}
@@ -219,16 +216,5 @@ public class MainMenu extends HBox{
         baseHBox.getChildren().add(buttonProfile);
         scenePane.getChildren().add(this);
 	}
-    /*
-    public void mapScene(AnchorPane scenePane) {
-		
-        scenePane.getChildren().clear();
-        
-		webView.setLayoutY(155.0);
-		webView.setPrefHeight(525.0);
-		webView.setPrefWidth(1050.0);
-		scenePane.getChildren().add(webView);
-		//getChildren().add(mapScene);
-    }
-    */
+    
 }

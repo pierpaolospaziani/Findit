@@ -250,7 +250,7 @@ public class EventsScene extends VBox{
 					eventsLabel.setStyle(black);
 		        	bean.setCity(name);
 		        	ok = true;
-		        } else if (ok != true){
+		        } else if (!ok){
 		        	eventsLabel.setStyle(red);
 		        } else {
 					eventsLabel.setStyle(black);
@@ -261,7 +261,7 @@ public class EventsScene extends VBox{
 					eventsLabel.setStyle(black);
 		        	bean.setCity(city);
 		        	ok = true;
-		        } else if (ok != true){
+		        } else if (!ok){
 		        	eventsLabel0.setStyle(red);
 		        } else {
 					eventsLabel0.setStyle(black);
@@ -285,7 +285,7 @@ public class EventsScene extends VBox{
 		        	eventsLabel1.setStyle(red);
 		        }
 				
-				if (ok == true && peopleOk == true) {
+				if (ok && peopleOk) {
 					
 					if (!eventsText2.getText().equals("")) {
 						try {

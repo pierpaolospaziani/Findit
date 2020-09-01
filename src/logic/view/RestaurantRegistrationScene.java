@@ -1,6 +1,6 @@
 package logic.view;
 
-import java.beans.EventHandler;
+import javafx.event.EventHandler;
 
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
@@ -63,9 +63,9 @@ public class RestaurantRegistrationScene extends VBox {
     protected VBox vBox4;
     protected Text text9;
     protected VBox vBox5;
-    protected CheckBox check50_100;
-    protected CheckBox check100_150;
-    protected CheckBox check150_200;
+    protected CheckBox check50To100;
+    protected CheckBox check100To150;
+    protected CheckBox check150To200;
     protected CheckBox checkBox200;
     protected HBox hBoxBtn;
     protected Button btnUndo;
@@ -121,13 +121,15 @@ public class RestaurantRegistrationScene extends VBox {
         vBox4 = new VBox();
         text9 = new Text();
         vBox5 = new VBox();
-        check50_100 = new CheckBox();
-        check100_150 = new CheckBox();
-        check150_200 = new CheckBox();
+        check50To100 = new CheckBox();
+        check100To150 = new CheckBox();
+        check150To200 = new CheckBox();
         checkBox200 = new CheckBox();
         hBoxBtn = new HBox();
         btnUndo = new Button();
         btnRegister = new Button();
+        
+        String style = "-fx-background-color: #e2e8ff#e2e8ff; -fx-background-radius: 20;";
 
         setAlignment(javafx.geometry.Pos.TOP_CENTER);
         setPrefHeight(525.0);
@@ -179,13 +181,13 @@ public class RestaurantRegistrationScene extends VBox {
 
         textFieldName.setAlignment(javafx.geometry.Pos.CENTER);
         textFieldName.setPromptText("Name Restaurant");
-        textFieldName.setStyle("-fx-background-color: #e2e8ff#e2e8ff; -fx-background-radius: 20;");
+        textFieldName.setStyle(style );
         textFieldName.setFont(new Font(24.0));
         HBox.setMargin(textFieldName, new Insets(0.0, 0.0, 0.0, 10.0));
 
         textFieldStar.setAlignment(javafx.geometry.Pos.CENTER);
         textFieldStar.setPromptText("1 to 5 star");
-        textFieldStar.setStyle("-fx-background-color: #e2e8ff#e2e8ff; -fx-background-radius: 20;");
+        textFieldStar.setStyle(style);
         textFieldStar.setFont(new Font(24.0));
         HBox.setMargin(textFieldStar, new Insets(0.0, 10.0, 0.0, 0.0));
         VBox.setMargin(hBox3, new Insets(0.0, 0.0, 0.0, 10.0));
@@ -213,13 +215,13 @@ public class RestaurantRegistrationScene extends VBox {
 
         textFieldCity.setAlignment(javafx.geometry.Pos.CENTER);
         textFieldCity.setPromptText("City Restaurant");
-        textFieldCity.setStyle("-fx-background-color: #e2e8ff#e2e8ff; -fx-background-radius: 20;");
+        textFieldCity.setStyle(style);
         textFieldCity.setFont(new Font(24.0));
         HBox.setMargin(textFieldCity, new Insets(0.0, 0.0, 0.0, 10.0));
 
         textFieldAddress.setAlignment(javafx.geometry.Pos.CENTER);
         textFieldAddress.setPromptText("Address Rest");
-        textFieldAddress.setStyle("-fx-background-color: #e2e8ff#e2e8ff; -fx-background-radius: 20;");
+        textFieldAddress.setStyle(style);
         textFieldAddress.setFont(new Font(24.0));
         HBox.setMargin(textFieldAddress, new Insets(0.0, 10.0, 0.0, 0.0));
         VBox.setMargin(hBox5, new Insets(0.0, 0.0, 0.0, 10.0));
@@ -294,8 +296,8 @@ public class RestaurantRegistrationScene extends VBox {
         tfTables2Seats.setAlignment(javafx.geometry.Pos.CENTER);
         tfTables2Seats.setPrefHeight(45.0);
         tfTables2Seats.setPrefWidth(80.0);
-        tfTables2Seats.setPromptText("Es. 4");
-        tfTables2Seats.setStyle("-fx-background-color: #e2e8ff#e2e8ff; -fx-background-radius: 20;");
+        tfTables2Seats.setPromptText("Es. 3");
+        tfTables2Seats.setStyle(style);
         tfTables2Seats.setFont(new Font(24.0));
 
         hBox9.setAlignment(javafx.geometry.Pos.CENTER);
@@ -312,8 +314,8 @@ public class RestaurantRegistrationScene extends VBox {
         tfTables4Seats.setAlignment(javafx.geometry.Pos.CENTER);
         tfTables4Seats.setPrefHeight(45.0);
         tfTables4Seats.setPrefWidth(80.0);
-        tfTables4Seats.setPromptText("Es. 4");
-        tfTables4Seats.setStyle("-fx-background-color: #e2e8ff#e2e8ff; -fx-background-radius: 20;");
+        tfTables4Seats.setPromptText("Es. 5");
+        tfTables4Seats.setStyle(style);
         tfTables4Seats.setFont(new Font(24.0));
 
         hBox10.setAlignment(javafx.geometry.Pos.CENTER);
@@ -330,8 +332,8 @@ public class RestaurantRegistrationScene extends VBox {
         tfTables6Seats.setAlignment(javafx.geometry.Pos.CENTER);
         tfTables6Seats.setPrefHeight(45.0);
         tfTables6Seats.setPrefWidth(80.0);
-        tfTables6Seats.setPromptText("Es. 4");
-        tfTables6Seats.setStyle("-fx-background-color: #e2e8ff#e2e8ff; -fx-background-radius: 20;");
+        tfTables6Seats.setPromptText("Es. 2");
+        tfTables6Seats.setStyle(style);
         tfTables6Seats.setFont(new Font(24.0));
 
         hBox11.setAlignment(javafx.geometry.Pos.CENTER);
@@ -348,8 +350,8 @@ public class RestaurantRegistrationScene extends VBox {
         tfTables8Seats.setAlignment(javafx.geometry.Pos.CENTER);
         tfTables8Seats.setPrefHeight(45.0);
         tfTables8Seats.setPrefWidth(80.0);
-        tfTables8Seats.setPromptText("Es. 4");
-        tfTables8Seats.setStyle("-fx-background-color: #e2e8ff#e2e8ff; -fx-background-radius: 20;");
+        tfTables8Seats.setPromptText("Es. 3");
+        tfTables8Seats.setStyle(style);
         tfTables8Seats.setFont(new Font(24.0));
 
         separator.setOpacity(0.0);
@@ -374,17 +376,17 @@ public class RestaurantRegistrationScene extends VBox {
         vBox5.setPrefWidth(138.0);
         vBox5.setSpacing(2.0);
 
-        check50_100.setMnemonicParsing(false);
-        check50_100.setText("€ - €€");
-        check50_100.setFont(new Font(18.0));
+        check50To100.setMnemonicParsing(false);
+        check50To100.setText("€ - €€");
+        check50To100.setFont(new Font(18.0));
 
-        check100_150.setMnemonicParsing(false);
-        check100_150.setText("€€ - €€€");
-        check100_150.setFont(new Font(18.0));
+        check100To150.setMnemonicParsing(false);
+        check100To150.setText("€€ - €€€");
+        check100To150.setFont(new Font(18.0));
 
-        check150_200.setMnemonicParsing(false);
-        check150_200.setText("€€€ - €€€€");
-        check150_200.setFont(new Font(18.0));
+        check150To200.setMnemonicParsing(false);
+        check150To200.setText("€€€ - €€€€");
+        check150To200.setFont(new Font(18.0));
 
         checkBox200.setMnemonicParsing(false);
         checkBox200.setText("more €€€€");
@@ -460,9 +462,9 @@ public class RestaurantRegistrationScene extends VBox {
         vBoxDx.getChildren().add(separator);
         vBox4.getChildren().add(text9);
         hBoxBudget.getChildren().add(vBox4);
-        vBox5.getChildren().add(check50_100);
-        vBox5.getChildren().add(check100_150);
-        vBox5.getChildren().add(check150_200);
+        vBox5.getChildren().add(check50To100);
+        vBox5.getChildren().add(check100To150);
+        vBox5.getChildren().add(check150To200);
         vBox5.getChildren().add(checkBox200);
         hBoxBudget.getChildren().add(vBox5);
         vBoxDx.getChildren().add(hBoxBudget);
@@ -473,7 +475,7 @@ public class RestaurantRegistrationScene extends VBox {
         vBoxPrincipale.getChildren().add(hBoxBtn);
         getChildren().add(vBoxPrincipale);
         
-       /*
+       
         btnUndo.setOnAction(new EventHandler<ActionEvent>(){
  			public void handle(ActionEvent event) {
  				
@@ -488,6 +490,6 @@ public class RestaurantRegistrationScene extends VBox {
  			}
  		});
 
-	*/
+	
     }
 }

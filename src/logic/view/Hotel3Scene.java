@@ -57,6 +57,8 @@ public class Hotel3Scene extends VBox{
         btnBack = new Button();
         btnBook = new Button();
         
+        String colorBtn = "-fx-background-color: #1B59D7;";
+        
         separatorBtnBack = new Separator();
         separatorBtnFrecce = new Separator();
 
@@ -123,11 +125,9 @@ public class Hotel3Scene extends VBox{
         vBoxReview.setPrefWidth(239.0);
 
         btnReview.setMnemonicParsing(false);
-        //btnReview.setStyle("-fx-background-color: transparent;");
-        btnReview.setStyle("-fx-background-color: #1B59D7;");
+        btnReview.setStyle(colorBtn);
         btnReview.setText("View Reviews");
         btnReview.setTextFill(javafx.scene.paint.Color.WHITE);
-        //btnReview.setUnderline(true);
         btnReview.setFont(new Font(24.0));
         btnReview.setMinWidth(86.0);
         
@@ -166,7 +166,7 @@ public class Hotel3Scene extends VBox{
         btnBack.setMnemonicParsing(false);
         btnBack.setPrefHeight(39.0);
         btnBack.setMinWidth(118.0);
-        btnBack.setStyle("-fx-background-color: #1B59D7;");
+        btnBack.setStyle(colorBtn);
         btnBack.setText("<< back");
         btnBack.setTextFill(javafx.scene.paint.Color.WHITE);
         btnBack.setFont(new Font(24.0));
@@ -180,7 +180,7 @@ public class Hotel3Scene extends VBox{
         separatorBtnFrecce.setPrefWidth(250.0);
 
         btnBook.setMnemonicParsing(false);
-        btnBook.setStyle("-fx-background-color: #1B59D7;");
+        btnBook.setStyle(colorBtn);
         btnBook.setPrefHeight(39.0);
         btnBook.setText("Book");
         btnBook.setTextFill(javafx.scene.paint.Color.WHITE);

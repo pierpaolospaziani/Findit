@@ -20,27 +20,29 @@ import logic.controller.ProfileController;
 
 public class LogWindow {
     
-    protected static VBox loginScene;
-    protected static HBox loginHBox;
-    protected static Label label;
-    protected static Label usernameLabel;
-    protected static TextField usernameTextField;
-    protected static String username;
-    protected static HBox loginHBox0;
-    protected static Label passwordLabel;
-    protected static PasswordField passwordTextField;
-    protected static String password;
-    protected static Button loginButton;
-    protected static Button registerButton;
-    protected static Stage window;
-    protected static HBox registerHBox;
-    protected static VBox registerVBox;
-    protected static RadioButton registerAsUser;
-    protected static RadioButton registerAsOwner;
+    protected VBox loginScene;
+    protected HBox loginHBox;
+    protected Label label;
+    protected Label usernameLabel;
+    protected TextField usernameTextField;
+    protected String username;
+    protected HBox loginHBox0;
+    protected Label passwordLabel;
+    protected PasswordField passwordTextField;
+    protected String password;
+    protected Button loginButton;
+    protected Button registerButton;
+    protected Stage window;
+    protected HBox registerHBox;
+    protected VBox registerVBox;
+    protected RadioButton registerAsUser;
+    protected RadioButton registerAsOwner;
     
-    static boolean isRegistred = false;
+    boolean isRegistred = false;
+    
+	String labelStyle = "-fx-text-fill: #ff0000;";
 
-	public void Log(ProfileController controller, LoginBean bean) {
+	public void log(ProfileController controller, LoginBean bean) {
 		
 		loginScene = new VBox();
         loginHBox = new HBox();
@@ -51,8 +53,11 @@ public class LogWindow {
         passwordLabel = new Label();
         passwordTextField = new PasswordField();
         loginButton = new Button();
-        
+       
+        /*
 		window = new Stage();
+		
+
 
         //Block events to other windows
         window.initModality(Modality.APPLICATION_MODAL);
@@ -73,13 +78,16 @@ public class LogWindow {
         usernameTextField.setAlignment(javafx.geometry.Pos.CENTER);
         usernameTextField.setPromptText("Username");
         usernameTextField.setStyle("-fx-background-color: #e2e8ff; -fx-background-radius: 20;");
-        usernameTextField.setFont(new Font(24.0));
+        usernameTextField.setFont(new Font(24.0)); */
+        
+        inizialize();
+        
         VBox.setMargin(loginHBox, new Insets(-10.0, 0.0, 0.0, 0.0));
         
         loginHBox0.setAlignment(javafx.geometry.Pos.CENTER);
         loginHBox0.setSpacing(30.0);
         
-        if (isRegistred == true) {
+        if (isRegistred) {
             label.setText("Registration completed, proceed with Login!");
             label.setStyle("-fx-text-fill: green;");
             isRegistred = false;
@@ -130,10 +138,10 @@ public class LogWindow {
 		        
 		        if (username.equals("")) {
 					label.setText("Insert Username!");
-			        label.setStyle("-fx-text-fill: #ff0000;");  
+			        label.setStyle(labelStyle);  
 		        } else if (password.equals("")){
 					label.setText("Insert Password!");
-			        label.setStyle("-fx-text-fill: #ff0000;");
+			        label.setStyle(labelStyle);
 		        } else {
 		        	
 		        	bean.setUsername(usernameTextField.getText());
@@ -146,7 +154,7 @@ public class LogWindow {
 						controller.loggedScene();
 					} else {
 						label.setText("Error, try again or Register your profile!");
-				        label.setStyle("-fx-text-fill: #ff0000;");
+				        label.setStyle(labelStyle);
 					}
 		        }
 			}
@@ -155,7 +163,7 @@ public class LogWindow {
         window.showAndWait();
 	}
 	
-	public boolean Register(ProfileController controller, LoginBean bean) {
+	public boolean register(ProfileController controller, LoginBean bean) {
 		
 		loginScene = new VBox();
         loginHBox = new HBox();
@@ -175,7 +183,7 @@ public class LogWindow {
 		window = new Stage();
 
         //Block events to other windows
-        window.initModality(Modality.APPLICATION_MODAL);
+       /* window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle("Registration");
         window.setMinWidth(250);
 
@@ -193,7 +201,10 @@ public class LogWindow {
         usernameTextField.setAlignment(javafx.geometry.Pos.CENTER);
         usernameTextField.setPromptText("Username");
         usernameTextField.setStyle("-fx-background-color: #e2e8ff; -fx-background-radius: 20;");
-        usernameTextField.setFont(new Font(24.0));
+        usernameTextField.setFont(new Font(24.0)); */
+		
+		inizialize();
+		
         VBox.setMargin(loginHBox, new Insets(15.0, 0.0, 0.0, 0.0));
 
         loginHBox0.setAlignment(javafx.geometry.Pos.CENTER);
@@ -266,13 +277,13 @@ public class LogWindow {
 		        
 		        if (username.equals("")) {
 					label.setText("Insert Username!");
-			        label.setStyle("-fx-text-fill: #ff0000;");
+			        label.setStyle(labelStyle);
 		        } else if (password.equals("")){
 					label.setText("Insert Password!");
-			        label.setStyle("-fx-text-fill: #ff0000;");
+			        label.setStyle(labelStyle);
 		        } else if (!registerAsUser.isSelected() && !registerAsOwner.isSelected()) {
 					label.setText("Select User or Owner!");
-			        label.setStyle("-fx-text-fill: #ff0000;");
+			        label.setStyle(labelStyle);
 		        } else {
 			        
 		        	bean.setUsername(usernameTextField.getText());
@@ -284,7 +295,7 @@ public class LogWindow {
 							isRegistred = true;
 			        	} else {
 							label.setText("This Username is already been used!");
-					        label.setStyle("-fx-text-fill: #ff0000;");
+					        label.setStyle(labelStyle);
 						}
 		        	} else {
 		        		if (controller.registerOwner()) {
@@ -292,7 +303,7 @@ public class LogWindow {
 							isRegistred = true;
 			        	} else {
 							label.setText("This Username is already been used!");
-					        label.setStyle("-fx-text-fill: #ff0000;");
+					        label.setStyle(labelStyle);
 						}
 		        	}		        	
 		        }
@@ -300,5 +311,30 @@ public class LogWindow {
 		});
         window.showAndWait();
         return isRegistred;
+	}
+	
+	private void inizialize() {
+		window = new Stage();
+
+        //Block events to other windows
+        window.initModality(Modality.APPLICATION_MODAL);
+        window.setTitle("Registration");
+        window.setMinWidth(250);
+
+        loginScene.setAlignment(javafx.geometry.Pos.TOP_CENTER);
+        loginScene.setPrefWidth(500.0);
+        loginScene.setPrefHeight(275.0);
+        loginScene.setSpacing(30.0);
+
+        loginHBox.setAlignment(javafx.geometry.Pos.CENTER);
+        loginHBox.setSpacing(30.0);
+
+        usernameLabel.setText("Username:");
+        usernameLabel.setFont(new Font(24.0));
+
+        usernameTextField.setAlignment(javafx.geometry.Pos.CENTER);
+        usernameTextField.setPromptText("Username");
+        usernameTextField.setStyle("-fx-background-color: #e2e8ff; -fx-background-radius: 20;");
+        usernameTextField.setFont(new Font(24.0));
 	}
 }

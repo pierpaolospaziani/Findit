@@ -38,10 +38,12 @@ public class WriteReviewWindow {
         hBox0 = new HBox();
         textVote = new Label();
         txtStars = new Label();
-        choiceBoxVote = new ChoiceBox<Integer>();
+        choiceBoxVote = new ChoiceBox<>();
         btnSubmit = new Button();
         
         window = new Stage();
+        
+        String red = "-fx-text-fill: red";
 
         //Block events to other windows
         window.initModality(Modality.APPLICATION_MODAL);
@@ -127,8 +129,8 @@ public class WriteReviewWindow {
 				if (!reviewText.equals("")) {
 					label.setStyle("-fx-text-fill: black");
 					if (voto == 0) {
-						textVote.setStyle("-fx-text-fill: red");
-						txtStars.setStyle("-fx-text-fill: red");
+						textVote.setStyle(red);
+						txtStars.setStyle(red);
 					} else {
 						review.setReviewText(reviewText);
 						review.setReviewVote(voto);
@@ -137,7 +139,7 @@ public class WriteReviewWindow {
 						controller.loggedScene();
 					}
 				} else {
-					label.setStyle("-fx-text-fill: red");
+					label.setStyle(red);
 				}
 			}
 		});
