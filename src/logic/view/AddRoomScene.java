@@ -169,10 +169,7 @@ public class AddRoomScene {
         	label3.setStyle(red);
         }
 		
-		if (idOk && bedsOk && priceOk) {
-			return true;
-		}
-		
-		return false;
+		return (idOk && bedsOk && priceOk);
+	
 	}
 }

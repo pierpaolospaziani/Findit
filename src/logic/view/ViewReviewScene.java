@@ -1,5 +1,7 @@
 package logic.view;
 
+import java.util.List;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -10,6 +12,7 @@ import javafx.scene.control.Separator;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import logic.bean.ReviewBean;
 import logic.controller.HotelController;
 import logic.controller.ProfileController;
 import logic.model.Review;
@@ -52,7 +55,7 @@ public class ViewReviewScene extends VBox {
     protected Separator separatorUser3;
     
 
-    public ViewReviewScene(boolean isHotel, HotelController controller, Review review1, Review review2, Review review3, String reviewTable, int indice, ProfileController profileController) {
+    public ViewReviewScene(boolean isHotel, HotelController controller, ReviewBean beanReview, String reviewTable, int indice, ProfileController profileController) {
 
         vBox = new VBox();
         hBoxReview1 = new HBox();
@@ -83,6 +86,8 @@ public class ViewReviewScene extends VBox {
         separatorUser1 = new Separator();
         separatorUser2 = new Separator();
         separatorUser3 = new Separator();
+        
+        List<Review> listReview = beanReview.getReviewList();
         
         String transparent = "-fx-background-color: transparent;";
         String white = "-fx-background-color: white;";
@@ -118,14 +123,14 @@ public class ViewReviewScene extends VBox {
         btnNameUser1.setMnemonicParsing(false);
         btnNameUser1.setPrefWidth(240.0);
         btnNameUser1.setStyle(transparent);
-        btnNameUser1.setText(review1.getReviewUser());
+        btnNameUser1.setText(((Review)listReview.get(0)).getReviewUser());
         
         btnNameUser1.setPadding(new Insets(1.0, 0.0, 0.0, 0.0));
         btnNameUser1.setFont(new Font(24.0));
 
         labelNumberStar1.setPrefWidth(230.0);
         labelNumberStar1.setFont(new Font(18.0));
-        labelNumberStar1.setText(String.valueOf(review1.getReviewVote()) + stars);
+        labelNumberStar1.setText(String.valueOf(((Review)listReview.get(0)).getReviewVote()) + stars);
         
         scrollPane1.setContent(txtReview1);
         scrollPane1.setMaxWidth(650.0);
@@ -135,14 +140,14 @@ public class ViewReviewScene extends VBox {
 
         txtReview1.setFont(new Font(18.0));
         hBoxReview1.setPadding(new Insets(5.0));
-        txtReview1.setText(review1.getReviewText());
+        txtReview1.setText(((Review)listReview.get(0)).getReviewText());
         txtReview1.setPrefWidth(650.0);
         txtReview1.setMinHeight(132.0);
         txtReview1.setWrapText(true);
         txtReview1.setAlignment(javafx.geometry.Pos.TOP_LEFT);
         txtReview1.setStyle(white);
         
-        if (review1.getReviewUser() == null) {
+        if (((Review)listReview.get(0)).getReviewUser() == null) {
         	btnNameUser1.setText(noReview);
         	labelNumberStar1.setText("");
         	txtReview1.setText("");
@@ -168,11 +173,11 @@ public class ViewReviewScene extends VBox {
         btnNameUser2.setStyle(transparent);
         btnNameUser2.setPadding(new Insets(1.0, 0.0, 0.0, 0.0));
         btnNameUser2.setFont(new Font(24.0));
-        btnNameUser2.setText(review1.getReviewUser());
+        btnNameUser2.setText(((Review)listReview.get(0)).getReviewUser());
 
         labelNumberStar2.setPrefWidth(230.0);
         labelNumberStar2.setFont(new Font(18.0));
-        labelNumberStar2.setText(String.valueOf(review2.getReviewVote()) + stars);
+        labelNumberStar2.setText(String.valueOf(((Review)listReview.get(1)).getReviewVote()) + stars);
         
         scrollPane2.setContent(txtReview2);
         scrollPane2.setMaxWidth(650.0);
@@ -182,14 +187,14 @@ public class ViewReviewScene extends VBox {
 
         txtReview2.setFont(new Font(18.0));
         hBoxReview2.setPadding(new Insets(5.0));
-        txtReview2.setText(review2.getReviewText());
+        txtReview2.setText(((Review)listReview.get(1)).getReviewText());
         txtReview2.setPrefWidth(650.0);
         txtReview2.setMinHeight(132.0);
         txtReview2.setWrapText(true);
         txtReview2.setAlignment(javafx.geometry.Pos.TOP_LEFT);
         txtReview2.setStyle(white);
         
-        if (review2.getReviewUser() == null) {
+        if (((Review)listReview.get(1)).getReviewUser() == null) {
         	btnNameUser2.setText(noReview);
         	labelNumberStar2.setText("");
         	txtReview2.setText("");
@@ -216,12 +221,12 @@ public class ViewReviewScene extends VBox {
         btnNameUser3.setStyle(transparent);
         btnNameUser3.setPadding(new Insets(1.0, 0.0, 0.0, 0.0));
         btnNameUser3.setFont(new Font(24.0));
-        btnNameUser3.setText(review1.getReviewUser());
+        btnNameUser3.setText(((Review)listReview.get(2)).getReviewUser());
 
         labelNumberStar3.setPrefHeight(27.0);
         labelNumberStar3.setPrefWidth(230.0);
         labelNumberStar3.setFont(new Font(18.0));
-        labelNumberStar3.setText(String.valueOf(review3.getReviewVote()) + stars);
+        labelNumberStar3.setText(String.valueOf(((Review)listReview.get(2)).getReviewVote()) + stars);
         
         scrollPane3.setContent(txtReview3);
         scrollPane3.setMaxWidth(650.0);
@@ -231,14 +236,14 @@ public class ViewReviewScene extends VBox {
 
         txtReview3.setFont(new Font(18.0));
         hBoxReview3.setPadding(new Insets(5.0));
-        txtReview3.setText(review3.getReviewText());
+        txtReview3.setText(((Review)listReview.get(2)).getReviewText());
         txtReview3.setPrefWidth(650.0);
         txtReview3.setMinHeight(132.0);
         txtReview3.setWrapText(true);
         txtReview3.setAlignment(javafx.geometry.Pos.TOP_LEFT);
         txtReview3.setStyle(white);
         
-        if (review3.getReviewUser() == null) {
+        if (((Review)listReview.get(2)).getReviewUser() == null) {
         	btnNameUser3.setText(noReview);
         	labelNumberStar3.setText("");
         	txtReview3.setText("");
@@ -293,7 +298,7 @@ public class ViewReviewScene extends VBox {
         btnNext.setTextFill(javafx.scene.paint.Color.WHITE);
         btnNext.setFont(new Font(24.0));
         
-        if (review3.getReviewUser() == null) {
+        if (((Review)listReview.get(2)).getReviewUser() == null) {
         	btnNext.setDisable(true);
         }
         

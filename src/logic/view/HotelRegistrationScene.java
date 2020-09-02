@@ -328,11 +328,8 @@ public class HotelRegistrationScene extends VBox {
         	label0.setStyle(red);
 		}
 		
-		if (nameOk && cityOk && addressOk && typeOk) {
-			return true;
-		}
-		
-		return false;
+		return (nameOk && cityOk && addressOk && typeOk);
+	
     }
     
     private void checkBoxType() {

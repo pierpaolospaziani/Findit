@@ -333,7 +333,7 @@ public class EventsScene extends VBox{
 	
 	private void getHour(EventBean bean) {
 		
-		int hour = 25;
+		int hour;
 		
 		if (!eventsText2.getText().equals("")) {
 			try {
