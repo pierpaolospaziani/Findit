@@ -458,39 +458,7 @@ public class User2Scene extends HBox{
         vBox0.getChildren().add(hBoxBtn);
         getChildren().add(vBox0);
         
-        btnPrecedent.setOnAction(new EventHandler<ActionEvent>(){
-        	@Override
-        	public void handle(ActionEvent event) {
- 				
- 				int indice = controller.getIndice();
- 				
- 				if (indice > 6) {
- 					
- 					int modIndice = indice%6;
- 					
- 					if (modIndice == 0) {
- 	 					indice = indice - 12;
- 	 					//controller.changeExperiences(indice,0);
- 					} else if (modIndice == 1) {
- 	 	 				indice = indice - 7;
- 	 	 				//controller.changeExperiences(indice,0);
- 	 				} else if (modIndice == 2){
- 	 					indice = indice - 8;
- 	 					//controller.changeExperiences(indice,0);
- 	 				} else if (modIndice == 3){
- 	 					indice = indice - 9;
- 	 					//controller.changeExperiences(indice,0);
- 	 				} else if (modIndice == 4){
- 	 					indice = indice - 10;
- 	 					//controller.changeExperiences(indice,0);
- 	 				} else {
- 	 					indice = indice - 11;
- 	 					//controller.changeExperiences(indice,0);
- 	 				}
-	 				controller.changeExperiences(indice,0);
- 				}
- 			}
- 		});
+        precedent(controller);
         
         btnNext.setOnAction(new EventHandler<ActionEvent>(){
         	@Override
@@ -597,5 +565,35 @@ public class User2Scene extends HBox{
  		});
     }
     
+    private void precedent(ProfileController controller) {
+        
+        btnPrecedent.setOnAction(new EventHandler<ActionEvent>(){
+        	@Override
+        	public void handle(ActionEvent event) {
+ 				
+ 				int indice = controller.getIndice();
+ 				
+ 				if (indice > 6) {
+ 					
+ 					int modIndice = indice%6;
+ 					
+ 					if (modIndice == 0) {
+ 	 					indice = indice - 12;
+ 					} else if (modIndice == 1) {
+ 	 	 				indice = indice - 7;
+ 	 				} else if (modIndice == 2){
+ 	 					indice = indice - 8;
+ 	 				} else if (modIndice == 3){
+ 	 					indice = indice - 9;
+ 	 				} else if (modIndice == 4){
+ 	 					indice = indice - 10;
+ 	 				} else {
+ 	 					indice = indice - 11;
+ 	 				}
+	 				controller.changeExperiences(indice,0);
+ 				}
+ 			}
+ 		});
+    }
 
 }

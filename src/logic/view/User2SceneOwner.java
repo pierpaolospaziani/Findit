@@ -449,22 +449,16 @@ public class User2SceneOwner extends HBox{
  					
  					if (modOwnIndice == 0) {
  	 					indiceOwn = indiceOwn - 12;
- 	 					//controller.changeExperiences(indiceOwn,1);
  					} else if (modOwnIndice == 1) {
  	 	 				indiceOwn = indiceOwn - 7;
- 	 	 				//controller.changeExperiences(indiceOwn,1);
  	 				} else if (modOwnIndice == 2){
  	 					indiceOwn = indiceOwn - 8;
- 	 					//controller.changeExperiences(indiceOwn,1);
  	 				} else if (modOwnIndice == 3){
  	 					indiceOwn = indiceOwn - 9;
- 	 					//controller.changeExperiences(indiceOwn,1);
  	 				} else if (modOwnIndice == 4){
  	 					indiceOwn = indiceOwn - 10;
- 	 					//controller.changeExperiences(indiceOwn,1);
  	 				} else {
  	 					indiceOwn = indiceOwn - 11;
- 	 					//controller.changeExperiences(indiceOwn,1);
  	 				}
 	 				controller.changeExperiences(indiceOwn,1);
  				}

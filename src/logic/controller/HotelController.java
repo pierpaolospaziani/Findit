@@ -479,7 +479,6 @@ public class HotelController {
 		}
 		
 		if (r1 != null) {
-			System.out.println("è entrato cazoooooo");
 
 			ViewReviewScene viewReviewScene = new ViewReviewScene(isHotel,this,reviewBean,reviewTable,indice,profileController);
 
