@@ -1,5 +1,6 @@
 package logic.controller;
 
+
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import logic.bean.HotelBean;
@@ -24,6 +25,7 @@ import logic.view.LogWindow;
 import logic.view.ProfileScene;
 import logic.view.StructureScene;
 import logic.view.User2Scene;
+import logic.view.User2SceneOwner;
 import logic.view.ViewReviewWindow;
 import logic.view.WriteReviewWindow;
 
@@ -31,6 +33,7 @@ import logic.view.WriteReviewWindow;
 public class ProfileController {
 
 	private User2Scene userScene;
+	private User2SceneOwner userSceneOwner;
 	private LogWindow window;
 	private AnchorPane pane;
 	private Login login;
@@ -151,10 +154,14 @@ public class ProfileController {
 			if (user.getUserLogged()) {
 				
 				changeExperiences(0,0);
+				pane.getChildren().clear();
+				pane.getChildren().add(userScene);
 				
 			} else {
 
 				changeExperiences(0,1);
+				pane.getChildren().clear();
+				pane.getChildren().add(userSceneOwner);
 			}
 			
 			pane.getChildren().clear();
@@ -282,10 +289,10 @@ public class ProfileController {
 						
 						int structures = StructureDao.getStructures(table);
 						
-						userScene = new User2Scene(this,owner,structure1,structure2,structure3,structure4,structure5,structure6,structures);
+						userSceneOwner = new User2SceneOwner(this,owner,structure1,structure2,structure3,structure4,structure5,structure6,structures);
 
 						pane.getChildren().clear();
-						pane.getChildren().add(userScene);
+						pane.getChildren().add(userSceneOwner);
 					}
 				}
 				

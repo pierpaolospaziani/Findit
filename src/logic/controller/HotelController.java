@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import javafx.scene.layout.AnchorPane;
 import logic.bean.HotelBean;
+import logic.bean.ReviewBean;
 import logic.model.Hotel;
 import logic.model.Owner;
 import logic.dao.ExperienceDao;
@@ -457,6 +458,7 @@ public class HotelController {
 	public void viewReviews(boolean isHotel, String reviewTable, int indice) {
 	
 		ProfileController profileController = ProfileController.getIstance(pane);
+		ReviewBean reviewBean = new ReviewBean();
 		
 		Review r1 = null;
 		Review r2 = null;
@@ -465,10 +467,13 @@ public class HotelController {
 		try {
 			indice++;
 			r1 = ReviewDao.getReview(reviewTable, indice);
+			reviewBean.getReviewList().add(0, r1);
 			indice++;
 			r2 = ReviewDao.getReview(reviewTable, indice);
+			reviewBean.getReviewList().add(1, r2);
 			indice++;
 			r3 = ReviewDao.getReview(reviewTable, indice);
+			reviewBean.getReviewList().add(2, r3);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -476,7 +481,7 @@ public class HotelController {
 		if (r1 != null) {
 			System.out.println("è entrato cazoooooo");
 
-			ViewReviewScene viewReviewScene = new ViewReviewScene(isHotel,this,r1,r2,r3,reviewTable,indice,profileController);
+			ViewReviewScene viewReviewScene = new ViewReviewScene(isHotel,this,reviewBean,reviewTable,indice,profileController);
 
 			pane.getChildren().clear();
 			pane.getChildren().add(viewReviewScene);
