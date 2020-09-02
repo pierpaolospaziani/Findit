@@ -7,7 +7,6 @@ import java.sql.Statement;
 
 import logic.model.Experience;
 import logic.model.Review;
-import logic.model.User;
 
 public class ExperienceDao {
 	
@@ -15,6 +14,10 @@ public class ExperienceDao {
     private static String pass = "passwfindit2020";
     private static String url = "jdbc:mysql://localhost:3306/findit?useTimezone=true&serverTimezone=UTC";
     private static String driverClassName = "com.mysql.cj.jdbc.Driver";
+    
+    private ExperienceDao() {
+    	
+    }
     
 	public static Experience getExperience(String reviewTable, int index){
 		
@@ -170,27 +173,27 @@ public class ExperienceDao {
 		
 		String numQuery = "select count(*) from " + reviewTable + " where review != ''";
 		
-		Connection con = null;
-		Statement st = null;
+		Connection experienceConn = null;
+		Statement experienceSt = null;
 		
     	int i = 0;
 		try {
         	try {
             	Class.forName(driverClassName);
-    			con = DriverManager.getConnection(url,name,pass);
+    			experienceConn = DriverManager.getConnection(url,name,pass);
     			
-    			st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+    			experienceSt = experienceConn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
     	                ResultSet.CONCUR_READ_ONLY);
     				    	
-    			ResultSet rs = st.executeQuery(numQuery);
+    			ResultSet rs = experienceSt.executeQuery(numQuery);
     			rs.next();
     			i = rs.getInt("count(*)");
     			rs.close();
     			
         	} finally {
         		
-        		st.close();
-        		con.close();
+        		experienceSt.close();
+        		experienceConn.close();
         		
         	}
 		} catch(Exception e){
@@ -201,8 +204,6 @@ public class ExperienceDao {
 	}
 	
 	public static void addReview(Review review, String structure, int dayIn, int dayOut, String table){
-		
-		//String table = User.getIstance().getUserReviewsTable();
 
 		String insertReviewQuery = "update " + table + " set review = '" + review.getReviewText() + "' where structure = '" + structure + "' and dateIn = '" + dayIn + "' and dateOut = '" + dayOut + "'";
 		String insertStarsQuery = "update " + table + " set stars = '" + review.getReviewVote() + "' where structure = '" + structure + "' and dateIn = '" + dayIn + "' and dateOut = '" + dayOut + "'";

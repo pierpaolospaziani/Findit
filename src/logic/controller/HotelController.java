@@ -177,7 +177,7 @@ public class HotelController {
 								}
 							}
 							
-							if (validRoom == false) {
+							if (!validRoom) {
 								roomIndex++;
 							} else {
 								valid = false;
@@ -251,7 +251,7 @@ public class HotelController {
 								}
 							}
 							
-							if (validRoom == false) {
+							if (!validRoom) {
 								roomIndex++;
 							} else {
 								valid = false;
@@ -314,7 +314,7 @@ public class HotelController {
 								}
 							}
 							
-							if (validRoom == false) {
+							if (!validRoom) {
 								roomIndex++;
 							} else {
 								valid = false;
