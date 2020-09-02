@@ -2,6 +2,9 @@ package logic.view;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.List;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -66,7 +69,7 @@ public class User2Scene extends HBox{
 
     protected Stage window;
     
-    public User2Scene(ProfileController controller, User user, Experience experience1, Experience experience2, Experience experience3, Experience experience4, Experience experience5, Experience experience6, int booked, int review) {
+    public User2Scene(ProfileController controller, User user, List<Experience> listExp, int booked, int review) {
     	
     	vBox = new VBox();
         nameLabel = new Label();
@@ -112,6 +115,7 @@ public class User2Scene extends HBox{
         window = new Stage();
         
         String transparent = "-fx-background-color: transparent;";
+        String struct = "strucutre.jpg";
         
         //Block events to other windows
         window.initModality(Modality.APPLICATION_MODAL);
@@ -215,10 +219,10 @@ public class User2Scene extends HBox{
         imageView1.setPickOnBounds(true);
         imageView1.setPreserveRatio(true);
         
-        photo = experience1.getImage();
+        photo = ((Experience)listExp.get(0)).getImage();
         
         if (photo == null) {
-        	imageView1.setImage(new Image(getClass().getResource("strucutre.jpg").toExternalForm()));
+        	imageView1.setImage(new Image(getClass().getResource(struct).toExternalForm()));
         } else {
         	imageView1.setImage(photo);
         }
@@ -228,10 +232,10 @@ public class User2Scene extends HBox{
         imageView2.setPickOnBounds(true);
         imageView2.setPreserveRatio(true);
         
-        photo = experience2.getImage();
+        photo = ((Experience)listExp.get(1)).getImage();
         
         if (photo == null) {
-        	imageView2.setImage(new Image(getClass().getResource("strucutre.jpg").toExternalForm()));
+        	imageView2.setImage(new Image(getClass().getResource(struct).toExternalForm()));
         } else {
         	imageView2.setImage(photo);
         }
@@ -241,10 +245,10 @@ public class User2Scene extends HBox{
         imageView3.setPickOnBounds(true);
         imageView3.setPreserveRatio(true);
         
-        photo = experience3.getImage();
+        photo = ((Experience)listExp.get(2)).getImage();
         
         if (photo == null) {
-        	imageView3.setImage(new Image(getClass().getResource("strucutre.jpg").toExternalForm()));
+        	imageView3.setImage(new Image(getClass().getResource(struct).toExternalForm()));
         } else {
         	imageView3.setImage(photo);
         }
@@ -260,10 +264,10 @@ public class User2Scene extends HBox{
         imageView4.setPickOnBounds(true);
         imageView4.setPreserveRatio(true);
         
-        photo = experience4.getImage();
+        photo = ((Experience)listExp.get(3)).getImage();
         
         if (photo == null) {
-        	imageView4.setImage(new Image(getClass().getResource("strucutre.jpg").toExternalForm()));
+        	imageView4.setImage(new Image(getClass().getResource(struct).toExternalForm()));
         } else {
         	imageView4.setImage(photo);
         }
@@ -273,10 +277,10 @@ public class User2Scene extends HBox{
         imageView5.setPickOnBounds(true);
         imageView5.setPreserveRatio(true);
         
-        photo = experience5.getImage();
+        photo = ((Experience)listExp.get(4)).getImage();
         
         if (photo == null) {
-        	imageView5.setImage(new Image(getClass().getResource("strucutre.jpg").toExternalForm()));
+        	imageView5.setImage(new Image(getClass().getResource(struct).toExternalForm()));
         } else {
         	imageView5.setImage(photo);
         }
@@ -286,10 +290,10 @@ public class User2Scene extends HBox{
         imageView6.setPickOnBounds(true);
         imageView6.setPreserveRatio(true);
         
-        photo = experience6.getImage();
+        photo = ((Experience)listExp.get(5)).getImage();
         
         if (photo == null) {
-        	imageView6.setImage(new Image(getClass().getResource("strucutre.jpg").toExternalForm()));
+        	imageView6.setImage(new Image(getClass().getResource(struct).toExternalForm()));
         } else {
         	imageView6.setImage(photo);
         }
@@ -327,7 +331,7 @@ public class User2Scene extends HBox{
         
         expName1.setFont(new Font(24.0));
         expName1.setPrefHeight(50.0);
-        String name = experience1.getName();
+        String name = ((Experience)listExp.get(0)).getName();
         if (name == null) {
         	expName1.setText("----------1");
         	expName1.setDisable(true);
@@ -339,7 +343,7 @@ public class User2Scene extends HBox{
         }
         expName2.setFont(new Font(24.0));
         expName2.setPrefHeight(50.0);
-        name = experience2.getName();
+        name = ((Experience)listExp.get(1)).getName();
         if (name == null) {
         	expName2.setText("----------2");
         	expName2.setDisable(true);
@@ -351,7 +355,7 @@ public class User2Scene extends HBox{
         }
         expName3.setFont(new Font(24.0));
         expName3.setPrefHeight(50.0);
-        name = experience3.getName();
+        name = ((Experience)listExp.get(2)).getName();
         if (name == null) {
         	expName3.setText("----------3");
         	expName3.setDisable(true);
@@ -364,7 +368,7 @@ public class User2Scene extends HBox{
         
         expName4.setFont(new Font(24.0));
         expName4.setPrefHeight(50.0);
-        name = experience4.getName();
+        name = ((Experience)listExp.get(3)).getName();
         if (name == null) {
         	expName4.setText("----------4");
         	expName4.setDisable(true);
@@ -377,7 +381,7 @@ public class User2Scene extends HBox{
         
         expName5.setFont(new Font(24.0));
         expName5.setPrefHeight(50.0);
-        name = experience5.getName();
+        name = ((Experience)listExp.get(4)).getName();
         if (name == null) {
         	expName5.setText("----------5");
         	expName5.setDisable(true);
@@ -390,7 +394,7 @@ public class User2Scene extends HBox{
         
         expName6.setFont(new Font(24.0));
         expName6.setPrefHeight(50.0);
-        name = experience6.getName();
+        name = ((Experience)listExp.get(5)).getName();
         if (name == null) {
         	expName6.setText("----------6");
         	expName6.setDisable(true);
@@ -523,8 +527,9 @@ public class User2Scene extends HBox{
         btnChangeImage.setOnAction(new EventHandler<ActionEvent>(){
         	@Override
         	public void handle(ActionEvent event) {
- 				
- 				FileChooser fileChooser = new FileChooser();
+
+        		FileChooser fileChooser = new FileChooser();
+ 				FileInputStream inputStream = null;
  				
  				window.setTitle("Select Image");
  				
@@ -537,10 +542,18 @@ public class User2Scene extends HBox{
  	                user.setUserImage(image);
  	                
  	                try {
- 	                	FileInputStream inputStream = new FileInputStream(file);
+ 	                	inputStream = new FileInputStream(file);
 						UserDao.setImage(user.getUserName(), inputStream);
 					} catch (Exception e) {
 						e.printStackTrace();
+					} finally {
+						try {
+						if (inputStream != null) {
+							inputStream.close();
+			        		}
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
 					}
  	                
  	                userImage.setImage(image);
@@ -551,66 +564,54 @@ public class User2Scene extends HBox{
         expName1.setOnAction(new EventHandler<ActionEvent>(){
         	@Override
         	public void handle(ActionEvent event) {
- 				if (experience1.getReview().equals("")) {
- 					controller.review(true,experience1);
- 				} else {
- 					controller.review(false,experience1);
- 				}
+ 				
+ 				controller.review((((Experience)listExp.get(0)).getReview().equals("")),((Experience)listExp.get(0)));
+ 			
  			}
  		});
         
         expName2.setOnAction(new EventHandler<ActionEvent>(){
         	@Override
         	public void handle(ActionEvent event) {
- 				if (experience2.getReview().equals("")) {
- 					controller.review(true,experience2);
- 				} else {
- 					controller.review(false,experience2);
- 				}
+ 				
+ 				controller.review((((Experience)listExp.get(1)).getReview().equals("")), ((Experience)listExp.get(1)));
+ 				
  			}
  		});
         
         expName3.setOnAction(new EventHandler<ActionEvent>(){
         	@Override
         	public void handle(ActionEvent event) {
- 				if (experience3.getReview().equals("")) {
- 					controller.review(true,experience3);
- 				} else {
- 					controller.review(false,experience3);
- 				}
+ 				
+ 				controller.review((((Experience)listExp.get(2)).getReview().equals("")),((Experience)listExp.get(2)));
+ 			
  			}
  		});
         
         expName4.setOnAction(new EventHandler<ActionEvent>(){
         	@Override
         	public void handle(ActionEvent event) {
- 				if (experience4.getReview().equals("")) {
- 					controller.review(true,experience4);
- 				} else {
- 					controller.review(false,experience4);
- 				}
+ 				
+ 				controller.review((((Experience)listExp.get(3)).getReview().equals("")), ((Experience)listExp.get(3)));
+ 			
  			}
  		});
         
         expName5.setOnAction(new EventHandler<ActionEvent>(){
         	@Override
         	public void handle(ActionEvent event) {
- 				if (experience5.getReview().equals("")) {
- 					controller.review(true,experience5);
- 				} else {
- 					controller.review(false,experience5);
- 				}
+ 				
+ 				controller.review((((Experience)listExp.get(4)).getReview().equals("")), ((Experience)listExp.get(4)));
+ 				
  			}
  		});
         
         expName6.setOnAction(new EventHandler<ActionEvent>(){
         	@Override
         	public void handle(ActionEvent event) {
- 				if (experience6.getReview().equals("")) {
- 					controller.review(true,experience6);
- 				} else {
- 					controller.review(false,experience6);
- 				}
+ 				
+ 				controller.review(( ((Experience)listExp.get(5)).getReview().equals("")), ((Experience)listExp.get(5)));
+ 				
  			}
  		});
     }

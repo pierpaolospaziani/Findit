@@ -1,6 +1,9 @@
 package logic.controller;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import logic.bean.HotelBean;
@@ -164,8 +167,6 @@ public class ProfileController {
 				pane.getChildren().add(userSceneOwner);
 			}
 			
-			pane.getChildren().clear();
-			pane.getChildren().add(userScene);
 		}
 	}
 	
@@ -182,6 +183,8 @@ public class ProfileController {
 	        
 	        	if (tipo == 0) {
 	        		
+	        		List<Experience> listExp = new ArrayList<>(6);
+	        		
 	        		table = user.getUserReviewsTable();
 	        	
 	        		index++;
@@ -189,6 +192,8 @@ public class ProfileController {
 					Experience experience1 = ExperienceDao.getExperience(table, index);
 					
 					if (experience1.getName() != null) {
+						
+						
 						
 						if (indice < index) {
 							setPage(page+1);
@@ -201,38 +206,51 @@ public class ProfileController {
 						newPage = true;
 					}
 					
+					
 					if (newPage) {
 						
 						index++;
 						Experience experience2 = ExperienceDao.getExperience(table, index);
 						if (experience2.getName() != null) {
 							setIndice(index);
+							
 						}
 						index++;
 						Experience experience3 = ExperienceDao.getExperience(table, index);
 						if (experience3.getName() != null) {
 							setIndice(index);
+							
 						}
 						index++;
 						Experience experience4 = ExperienceDao.getExperience(table, index);
 						if (experience4.getName() != null) {
 							setIndice(index);
+							
 						}
 						index++;
 						Experience experience5 = ExperienceDao.getExperience(table, index);
 						if (experience5.getName() != null) {
 							setIndice(index);
+							
 						}
 						index++;
 						Experience experience6 = ExperienceDao.getExperience(table, index);
 						if (experience6.getName() != null) {
 							setIndice(index);
+							
 						}
 						
 						int booked = ExperienceDao.getBooked(table);
 						int review = ExperienceDao.getReviewsNumber(table);
 						
-						userScene = new User2Scene(this,user,experience1,experience2,experience3,experience4,experience5,experience6,booked,review);
+						listExp.add(0, experience1);
+						listExp.add(1, experience2);
+						listExp.add(2, experience3);
+						listExp.add(3, experience4);
+						listExp.add(4, experience5);
+						listExp.add(5, experience6);
+						
+						userScene = new User2Scene(this,user,listExp,booked,review);
 
 						pane.getChildren().clear();
 						pane.getChildren().add(userScene);
@@ -241,6 +259,7 @@ public class ProfileController {
 	        	} else {
 	        		
 	        		table = owner.getOwnerStructures();
+	        		List<Structure> listStruct = new ArrayList<>(6);
 	        		
 	        		index++;
 					
@@ -289,7 +308,14 @@ public class ProfileController {
 						
 						int structures = StructureDao.getStructures(table);
 						
-						userSceneOwner = new User2SceneOwner(this,owner,structure1,structure2,structure3,structure4,structure5,structure6,structures);
+						listStruct.add(0, structure1);
+						listStruct.add(1, structure2);
+						listStruct.add(2, structure3);
+						listStruct.add(3, structure4);
+						listStruct.add(4, structure5);
+						listStruct.add(5, structure6);
+						
+						userSceneOwner = new User2SceneOwner(this,owner,listStruct,structures);
 
 						pane.getChildren().clear();
 						pane.getChildren().add(userSceneOwner);
