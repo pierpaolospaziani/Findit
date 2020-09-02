@@ -29,20 +29,20 @@ public class ExperienceDao {
 
 		Experience experience = new Experience();
 		
-		Connection con = null;
-		Statement st = null;
+		Connection experienceConn = null;
+		Statement experienceSt = null;
 		
 		try {
 		
 			try {
 	    		Class.forName(driverClassName);
 	    		
-				con = DriverManager.getConnection(url,name,pass);
+				experienceConn = DriverManager.getConnection(url,name,pass);
 				
-				st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+				experienceSt = experienceConn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
 		                ResultSet.CONCUR_READ_ONLY);
 			
-				ResultSet rs = st.executeQuery(nameQuery);
+				ResultSet rs = experienceSt.executeQuery(nameQuery);
 				
 				if (!rs.first()) {
 					return experience;
@@ -58,7 +58,7 @@ public class ExperienceDao {
 				experience.setName(nome);
 				rs.close();
 				
-				ResultSet rs3 = st.executeQuery(reviewQuery);
+				ResultSet rs3 = experienceSt.executeQuery(reviewQuery);
 				rs3.first();
 				for (int i=1; i<index; i++) {
 					rs3.next();
@@ -67,7 +67,7 @@ public class ExperienceDao {
 				experience.setReview(review);
 				rs3.close();
 				
-				ResultSet rs4 = st.executeQuery(ratingQuery);
+				ResultSet rs4 = experienceSt.executeQuery(ratingQuery);
 				rs4.first();
 				for (int i=1; i<index; i++) {
 					rs4.next();
@@ -76,7 +76,7 @@ public class ExperienceDao {
 				experience.setRating(rate);
 				rs4.close();
 				
-				ResultSet rs1 = st.executeQuery(dayInQuery);
+				ResultSet rs1 = experienceSt.executeQuery(dayInQuery);
 				rs1.first();
 				for (int i=1; i<index; i++) {
 					rs1.next();
@@ -85,7 +85,7 @@ public class ExperienceDao {
 				experience.setDayIn(dateIn);
 				rs1.close();
 				
-				ResultSet rs2 = st.executeQuery(dayOutQuery);
+				ResultSet rs2 = experienceSt.executeQuery(dayOutQuery);
 				rs2.first();
 				for (int i=1; i<index; i++) {
 					rs2.next();
@@ -96,8 +96,8 @@ public class ExperienceDao {
 				
 	    	} finally {
 	    		
-	    		st.close();
-	    		con.close();
+	    		experienceSt.close();
+	    		experienceConn.close();
 				
 	    	}
     	
@@ -109,25 +109,26 @@ public class ExperienceDao {
 	
 	public static void setExperienceRow(String reviewTable, String experienceName, int dayIn, int dayOut){
         
-    	Connection con = null;
-		Statement st = null;
+    	Connection experienceConn = null;
+		Statement experienceSt = null;
 		
     	try {
         	try{
         		Class.forName(driverClassName);
-    			con = DriverManager.getConnection(url,name,pass);
+    			experienceConn = DriverManager.getConnection(url,name,pass);
     			
-    			st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+    			experienceSt = experienceConn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
     	                ResultSet.CONCUR_READ_ONLY);
     			
     			String insertQuery = "insert into " + reviewTable + " value ('" + experienceName + "','','" + 0 + "','" + dayIn + "','" + dayOut + "')";
     				    	
-    			st.executeUpdate(insertQuery);
+    			experienceSt.executeUpdate(insertQuery);
     			
         	} finally {
-        		
-        		st.close();
-        		con.close();
+        		if (experienceSt != null) {
+            		experienceSt.close();
+        		}
+        		experienceConn.close();
         		
         	}
 		} catch(Exception e){
@@ -139,27 +140,27 @@ public class ExperienceDao {
 		
 		String numQuery = "select count(*) from " + reviewTable;
 		
-		Connection con = null;
-		Statement st = null;
+		Connection experienceConn = null;
+		Statement experienceSt = null;
 		
     	int i = 0;
 		try {
 			try {
             	Class.forName(driverClassName);
-    			con = DriverManager.getConnection(url,name,pass);
+    			experienceConn = DriverManager.getConnection(url,name,pass);
     			
-    			st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+    			experienceSt = experienceConn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
     	                ResultSet.CONCUR_READ_ONLY);
     				    	
-    			ResultSet rs = st.executeQuery(numQuery);
+    			ResultSet rs = experienceSt.executeQuery(numQuery);
     			rs.next();
     			i = rs.getInt("count(*)");
     			rs.close();
     			
         	} finally {
         		
-        		st.close();
-        		con.close();
+        		experienceSt.close();
+        		experienceConn.close();
         		
         	}
 			
@@ -208,24 +209,24 @@ public class ExperienceDao {
 		String insertReviewQuery = "update " + table + " set review = '" + review.getReviewText() + "' where structure = '" + structure + "' and dateIn = '" + dayIn + "' and dateOut = '" + dayOut + "'";
 		String insertStarsQuery = "update " + table + " set stars = '" + review.getReviewVote() + "' where structure = '" + structure + "' and dateIn = '" + dayIn + "' and dateOut = '" + dayOut + "'";
 
-		Connection con = null;
-		Statement st = null;
+		Connection experienceConn = null;
+		Statement experienceSt = null;
 		
     	try {
         	try {
             	Class.forName(driverClassName);
-    			con = DriverManager.getConnection(url,name,pass);
+    			experienceConn = DriverManager.getConnection(url,name,pass);
     			
-    			st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+    			experienceSt = experienceConn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
     	                ResultSet.CONCUR_READ_ONLY);
 
-    			st.executeUpdate(insertReviewQuery);
-    			st.executeUpdate(insertStarsQuery);
+    			experienceSt.executeUpdate(insertReviewQuery);
+    			experienceSt.executeUpdate(insertStarsQuery);
     			
         	} finally {
         		
-        		st.close();
-        		con.close();
+        		experienceSt.close();
+        		experienceConn.close();
         		
         	}
 		} catch(Exception e){
