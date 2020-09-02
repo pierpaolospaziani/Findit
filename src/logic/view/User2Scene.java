@@ -2,7 +2,6 @@ package logic.view;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.List;
 
 import javafx.event.ActionEvent;
@@ -117,7 +116,6 @@ public class User2Scene extends HBox{
         String transparent = "-fx-background-color: transparent;";
         String struct = "strucutre.jpg";
         
-        //Block events to other windows
         window.initModality(Modality.APPLICATION_MODAL);
         window.setMinWidth(250);
         
@@ -142,10 +140,9 @@ public class User2Scene extends HBox{
         Image photo = user.getUserImage();
         
         if (photo == null) {
-        	userImage.setImage(new Image(getClass().getResource("account.jpg").toExternalForm()));
-        } else {
-            userImage.setImage(photo);
+        	photo = new Image(getClass().getResource("account.jpg").toExternalForm());
         }
+        userImage.setImage(photo);
         
         VBox.setMargin(userImage, new Insets(0.0));
 
@@ -529,7 +526,6 @@ public class User2Scene extends HBox{
         	public void handle(ActionEvent event) {
 
         		FileChooser fileChooser = new FileChooser();
- 				FileInputStream inputStream = null;
  				
  				window.setTitle("Select Image");
  				
@@ -541,19 +537,10 @@ public class User2Scene extends HBox{
  	                
  	                user.setUserImage(image);
  	                
- 	                try {
- 	                	inputStream = new FileInputStream(file);
+ 	               try (FileInputStream inputStream = new FileInputStream(file)){
 						UserDao.setImage(user.getUserName(), inputStream);
 					} catch (Exception e) {
 						e.printStackTrace();
-					} finally {
-						try {
-						if (inputStream != null) {
-							inputStream.close();
-			        		}
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
 					}
  	                
  	                userImage.setImage(image);

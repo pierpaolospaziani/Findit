@@ -145,7 +145,7 @@ public class UserDao {
     			userSt = userConn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
     	                ResultSet.CONCUR_READ_ONLY);
 
-    			String reviewsTable = (username + "Reviews").replaceAll("\\s+","");
+    			String reviewsTable = (username + "Review").replaceAll("\\s+","");
     	    	String searchUserQuery = "select name from users where name = '" + username + "'";
     	    	String searchOwnerQuery = "select name from owners where name = '" + username + "'";
     		

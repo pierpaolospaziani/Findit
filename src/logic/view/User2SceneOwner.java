@@ -2,7 +2,6 @@ package logic.view;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.List;
 
 import javafx.event.ActionEvent;
@@ -38,7 +37,7 @@ public class User2SceneOwner extends HBox{
 	    protected Button btnLogoutStr;
 	    
 	    protected VBox vBox0;
-	    protected Label experienceLable;
+	    protected Label structureLable;
 	    protected HBox hBox2;
 	    protected ImageView imageView1Str;
 	    protected Button strName1;
@@ -82,7 +81,7 @@ public class User2SceneOwner extends HBox{
         btnLogoutStr = new Button();
 
         vBox0 = new VBox();
-        experienceLable = new Label();
+        structureLable = new Label();
         hBox2 = new HBox();
         imageView1Str = new ImageView();
         imageView2Str = new ImageView();
@@ -119,7 +118,6 @@ public class User2SceneOwner extends HBox{
         String transparent = "-fx-background-color: transparent;";
         String colorBtn = "-fx-background-color: #1B59D7;";
 
-        //Block events to other windows
         windowOwner.initModality(Modality.APPLICATION_MODAL);
         windowOwner.setMinWidth(250);
         
@@ -192,9 +190,9 @@ public class User2SceneOwner extends HBox{
         vBox0.setPrefWidth(700.0);
         vBox0.setAlignment(javafx.geometry.Pos.TOP_CENTER);
         
-        experienceLable.setText("Here are your structures!");
-        experienceLable.setFont(new Font(36.0));
-        VBox.setMargin(experienceLable, new Insets(20.0, 0.0, 0.0, 0.0));
+        structureLable.setText("Here are your structures!");
+        structureLable.setFont(new Font(36.0));
+        VBox.setMargin(structureLable, new Insets(20.0, 0.0, 0.0, 0.0));
 
         hBox2.setAlignment(javafx.geometry.Pos.CENTER);
         hBox2.setPrefHeight(200.0);
@@ -441,7 +439,7 @@ public class User2SceneOwner extends HBox{
         vBoxOwner.getChildren().add(btnLogoutStr);
         getChildren().add(vBoxOwner);
 
-        vBox0.getChildren().add(experienceLable);
+        vBox0.getChildren().add(structureLable);
         vBox1Str.getChildren().add(imageView1Str);
         vBox1Str.getChildren().add(strName1);
         hBox2.getChildren().add(vBox1Str);
@@ -534,7 +532,6 @@ public class User2SceneOwner extends HBox{
         	public void handle(ActionEvent event) {
  				
  				FileChooser fileChooser = new FileChooser();
- 				FileInputStream inputStream = null;
  				
  				windowOwner.setTitle("Select Image");
  				
@@ -546,19 +543,10 @@ public class User2SceneOwner extends HBox{
  	                
  	                owner.setOwnerImage(image);
  	                
- 	               try {
-	                	inputStream = new FileInputStream(file);
+ 	               try (FileInputStream inputStream = new FileInputStream(file)){
 						OwnerDao.setImage(owner.getOwnerUsername(), inputStream);
 					} catch (Exception e) {
 						e.printStackTrace();
-					} finally {
-						try {
-						if (inputStream != null) {
-							inputStream.close();
-			        		}
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
 					}
 	                
 	                userImageOwner.setImage(image);
