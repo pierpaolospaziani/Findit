@@ -67,10 +67,6 @@ public class RestaurantsScene extends VBox{
     private boolean okField = false;
     private boolean  peopleOk = false;
     
-    private String name;
-    
-    private String city;
-    
     private int people;
    
     String black = "-fx-text-fill: black";
@@ -381,8 +377,8 @@ public class RestaurantsScene extends VBox{
     
     private void getInfo(RestaurantsBean bean) {
     	
-    	name = restText.getText();
-		city = restText0.getText();
+    	String name = restText.getText();
+    	String city = restText0.getText();
 		
 		if (name.equals("") && city.equals("")) {
 			okField = false;
@@ -392,7 +388,7 @@ public class RestaurantsScene extends VBox{
 			restLabel.setStyle(black);
         	bean.setCity(city);
         	okField = true;
-        } else if (okField != true){
+        } else if (!okField){
         	restLabel.setStyle(red);
         } else {
         	restLabel.setStyle(black);

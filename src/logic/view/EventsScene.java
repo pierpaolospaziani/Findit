@@ -48,14 +48,10 @@ public class EventsScene extends VBox{
     private boolean peopleOk = false;
     private boolean timeOk = true;
     
-    private String name;
-    private String city;
-    private int people;
     private int year;
     private int month;
     private int day;
     
-    private int hour = 25;
     
 	String black = "-fx-text-fill: black";
     String red = "-fx-text-fill: red";
@@ -283,8 +279,8 @@ public class EventsScene extends VBox{
 		
 	
 		
-        name = eventsText.getText();
-		city = eventsText0.getText();
+        String name = eventsText.getText();
+		String city = eventsText0.getText();
 		
 		if (name.equals("") && city.equals("")) {
 			ok = false;
@@ -314,6 +310,8 @@ public class EventsScene extends VBox{
 	
 	private void getPeople(EventBean bean) {
 		
+		int people;
+		
 		if (!eventsText1.getText().equals("")) {
 			try {
 				people = Integer.valueOf(eventsText1.getText());
@@ -334,6 +332,8 @@ public class EventsScene extends VBox{
 	}
 	
 	private void getHour(EventBean bean) {
+		
+		int hour = 25;
 		
 		if (!eventsText2.getText().equals("")) {
 			try {

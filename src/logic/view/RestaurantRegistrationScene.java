@@ -1,8 +1,5 @@
 package logic.view;
 
-import javafx.event.EventHandler;
-
-import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;

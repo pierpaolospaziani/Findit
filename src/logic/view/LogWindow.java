@@ -37,11 +37,14 @@ public class LogWindow {
     protected VBox registerVBox;
     protected RadioButton registerAsUser;
     protected RadioButton registerAsOwner;
+    protected String usernameReg;
+    protected String passwordReg;
     
     boolean isRegistred = false;
     
 	String labelStyle = "-fx-text-fill: #ff0000;";
-
+	String styleInput = "-fx-background-color: #e2e8ff; -fx-background-radius: 20;";
+	
 	public void log(ProfileController controller, LoginBean bean) {
 		
 		loginScene = new VBox();
@@ -53,6 +56,8 @@ public class LogWindow {
         passwordLabel = new Label();
         passwordTextField = new PasswordField();
         loginButton = new Button();
+        
+       
         
         inizialize();
         
@@ -77,7 +82,7 @@ public class LogWindow {
 
         passwordTextField.setAlignment(javafx.geometry.Pos.CENTER);
         passwordTextField.setPromptText("Password");
-        passwordTextField.setStyle("-fx-background-color: #e2e8ff; -fx-background-radius: 20;");
+        passwordTextField.setStyle(styleInput);
         passwordTextField.setFont(new Font(24.0));
 
         loginButton.setMnemonicParsing(false);
@@ -180,7 +185,7 @@ public class LogWindow {
 
         passwordTextField.setAlignment(javafx.geometry.Pos.CENTER);
         passwordTextField.setPromptText("Password");
-        passwordTextField.setStyle("-fx-background-color: #e2e8ff; -fx-background-radius: 20;");
+        passwordTextField.setStyle(styleInput);
         passwordTextField.setFont(new Font(24.0));
 
         registerButton.setMnemonicParsing(false);
@@ -234,13 +239,13 @@ public class LogWindow {
         	@Override
         	public void handle(ActionEvent event) {
 				
-		        username = usernameTextField.getText();
-		        password = passwordTextField.getText();
+		        usernameReg = usernameTextField.getText();
+		        passwordReg = passwordTextField.getText();
 		        
-		        if (username.equals("")) {
+		        if (usernameReg.equals("")) {
 					label.setText("Insert Username!");
 			        label.setStyle(labelStyle);
-		        } else if (password.equals("")){
+		        } else if (passwordReg.equals("")){
 					label.setText("Insert Password!");
 			        label.setStyle(labelStyle);
 		        } else if (!registerAsUser.isSelected() && !registerAsOwner.isSelected()) {
@@ -284,7 +289,7 @@ public class LogWindow {
 	private void inizialize() {
 		window = new Stage();
 
-        //Block events to other windows
+      
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle("Registration");
         window.setMinWidth(250);
@@ -302,7 +307,7 @@ public class LogWindow {
 
         usernameTextField.setAlignment(javafx.geometry.Pos.CENTER);
         usernameTextField.setPromptText("Username");
-        usernameTextField.setStyle("-fx-background-color: #e2e8ff; -fx-background-radius: 20;");
+        usernameTextField.setStyle(styleInput);
         usernameTextField.setFont(new Font(24.0));
 	}
 }

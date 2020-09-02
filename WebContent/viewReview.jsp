@@ -4,7 +4,7 @@
     pageEncoding="UTF-8"%>
 
 <% ReviewBean reviewBean = (ReviewBean)session.getAttribute("reviewBean");
-	java.util.ArrayList<Review> listReview = reviewBean.getReviewList();%>
+	java.util.List<Review> listReview = reviewBean.getReviewList();%>
 
 <!DOCTYPE html>
 <html>

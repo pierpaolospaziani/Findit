@@ -9,7 +9,7 @@
 		o faccio 2 pagine separate utente/owner -->
 <% UserWeb loggato = (UserWeb)session.getAttribute("userLog"); 
 LoginBeanWeb beanLog = (LoginBeanWeb)session.getAttribute("beanLog");
- java.util.ArrayList<Experience> listExp = beanLog.getExpList();
+ java.util.List<Experience> listExp = beanLog.getExpList();
  int len = listExp.size();
  
  //String pageExp = (String)session.getAttribute("page");%>

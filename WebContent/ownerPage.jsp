@@ -6,7 +6,7 @@
 
     <% OwnerWeb loggato = (OwnerWeb)session.getAttribute("ownerLog"); 
 LoginBeanWeb beanLog = (LoginBeanWeb)session.getAttribute("beanLog");
- java.util.ArrayList<Structure> listStruct = beanLog.getStructList();
+ java.util.List<Structure> listStruct = beanLog.getStructList();
  int len = listStruct.size();
  
  //potrebbe servire per label numpag

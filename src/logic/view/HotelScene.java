@@ -67,8 +67,7 @@ public class HotelScene extends VBox{
     private boolean cityOk = false;
     private boolean dateOk = false;
     private boolean peopleOk = false;
-    
-    private String city;
+  
     
     private int people;
     
@@ -422,7 +421,7 @@ public class HotelScene extends VBox{
     
     private void getInfoBook(HotelBean bean) {
     	  
-    	city = hotelTextField.getText();
+    	String city = hotelTextField.getText();
     	String red = "-fx-text-fill: red"; 
     	 
 			if (!city.equals("")) {
