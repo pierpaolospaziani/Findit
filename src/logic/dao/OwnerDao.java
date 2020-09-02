@@ -24,6 +24,10 @@ public class OwnerDao {
     private static String url = "jdbc:mysql://localhost:3306/findit?useTimezone=true&serverTimezone=UTC";
     private static String driverClassName = "com.mysql.cj.jdbc.Driver";
     
+    private OwnerDao() {
+    	
+    }
+    
     public static Owner getOwner(String username) throws Exception{
     	
     	Owner owner = Owner.getIstance();
@@ -50,18 +54,18 @@ public class OwnerDao {
     	
     	OwnerWeb owner = new OwnerWeb();
     	
-    	Connection con = null;
-		Statement st = null;
+    	Connection ownerConn = null;
+		Statement ownerSt = null;
 		
     	try {
         	try {
             	Class.forName(driverClassName);
-    			con = DriverManager.getConnection(url,name,pass);
+    			ownerConn = DriverManager.getConnection(url,name,pass);
     			
-    			st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+    			ownerSt = ownerConn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
     	                ResultSet.CONCUR_READ_ONLY);
     		
-    			ResultSet rs = st.executeQuery(nameOwnerQuery);
+    			ResultSet rs = ownerSt.executeQuery(nameOwnerQuery);
     		
     			rs.next();
     		
@@ -75,7 +79,7 @@ public class OwnerDao {
     			
     			rs.close();
     			
-    			ResultSet rs1 = st.executeQuery(psswOwnerQuery);
+    			ResultSet rs1 = ownerSt.executeQuery(psswOwnerQuery);
     		
     			rs1.next();
     		
@@ -85,7 +89,7 @@ public class OwnerDao {
     		
     			rs1.close();
     			
-    			ResultSet rs2 = st.executeQuery(structuresOwnerQuery);
+    			ResultSet rs2 = ownerSt.executeQuery(structuresOwnerQuery);
     			
     			rs2.next();
     		
@@ -95,7 +99,7 @@ public class OwnerDao {
     		
     			rs2.close();
     			
-    			ResultSet rs3 = st.executeQuery(imageUserQuery);
+    			ResultSet rs3 = ownerSt.executeQuery(imageUserQuery);
     			
     			rs3.next();
     			
@@ -122,8 +126,13 @@ public class OwnerDao {
         
         	} finally {
         		
-        		st.close();
-        		con.close();
+        		if (ownerSt != null) {
+        			ownerSt.close();
+        		}
+        		
+        		if (ownerConn != null) {
+        			ownerConn.close();
+        		}
         		
         	}
 		} catch(Exception e){
@@ -140,30 +149,30 @@ public class OwnerDao {
     	String searchOwnerQuery = "select name from owners where name = '" + username + "'";
     	String searchUserQuery = "select name from users where name = '" + username + "'";
     	
-    	Connection con = null;
-		Statement st = null;
+    	Connection ownerConn = null;
+		Statement ownerSt = null;
 		
     	try {
         	try {
             	Class.forName(driverClassName);
-    			con = DriverManager.getConnection(url,name,pass);
+    			ownerConn = DriverManager.getConnection(url,name,pass);
     			
-    			st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+    			ownerSt = ownerConn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
     	                ResultSet.CONCUR_READ_ONLY);
     		
-    			ResultSet rs = st.executeQuery(searchOwnerQuery);
+    			ResultSet rs = ownerSt.executeQuery(searchOwnerQuery);
     			
     			if (!rs.first()) {
 
     				rs.close();
     				
-    				ResultSet rs2 = st.executeQuery(searchUserQuery);
+    				ResultSet rs2 = ownerSt.executeQuery(searchUserQuery);
     				
     				if (!rs2.first()) {
 
     					rs2.close();
     					
-    					java.sql.DatabaseMetaData meta = con.getMetaData();
+    					java.sql.DatabaseMetaData meta = ownerConn.getMetaData();
 
     					String variableStructuresTable = structuresTable;
     					
@@ -183,9 +192,9 @@ public class OwnerDao {
     					    	String insertQuery = "insert into owners value ('" + username + "','" + password + "','" + structuresTable + "','" + null + "')";
     					    	String createStructureQuery = "create table " + structuresTable + " (name varchar(20))";
     							
-    							st.executeUpdate(insertQuery);
+    							ownerSt.executeUpdate(insertQuery);
 
-    							st.executeUpdate(createStructureQuery);
+    							ownerSt.executeUpdate(createStructureQuery);
     						}
     					}					
     					return true;
@@ -195,8 +204,13 @@ public class OwnerDao {
     			}
         	} finally {
         		
-        		st.close();
-        		con.close();
+        		if (ownerSt != null) {
+        			ownerSt.close();
+        		}
+        		
+        		if (ownerConn != null) {
+        			ownerConn.close();
+        		}
         		
         	}
 		} catch(Exception e){
@@ -207,28 +221,28 @@ public class OwnerDao {
 	
 	public static void setImage(String username, FileInputStream image){
 		
-    	String insertQuery = "UPDATE owners SET photo = ? WHERE name = '" + username + "'";
-		
-		Connection con = null;
+		Connection ownerConn = null;
 		
     	try {
         	try {
             	Class.forName(driverClassName);
-    			con = DriverManager.getConnection(url,name,pass);
+    			ownerConn = DriverManager.getConnection(url,name,pass);
     			
-        		con.setAutoCommit(false);
+    	    	String insertQuery = "UPDATE owners SET photo = ? WHERE name = '" + username + "'";
+    			
+        		ownerConn.setAutoCommit(false);
         		
-        		PreparedStatement ps = con.prepareStatement(insertQuery);
+        		PreparedStatement ps = ownerConn.prepareStatement(insertQuery);
         		
         		ps.setBinaryStream(1, image);
         		
         		ps.executeUpdate();
         		
-        		con.commit();
+        		ownerConn.commit();
         		
         	} finally {
         		
-        		con.close();
+        		ownerConn.close();
         		
         	}
 		} catch(Exception e){
@@ -238,27 +252,32 @@ public class OwnerDao {
 	
 	public static void setStructure(String username, String structure){
 		
-		String table = (username + "Structures").replaceAll("\\s+","");
-		
-		Connection con = null;
-		Statement st = null;
+		Connection ownerConn = null;
+		Statement ownerSt = null;
 		
     	try {
         	try {
             	Class.forName(driverClassName);
-    			con = DriverManager.getConnection(url,name,pass);
+    			ownerConn = DriverManager.getConnection(url,name,pass);
 
-        		st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+        		ownerSt = ownerConn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
     	                ResultSet.CONCUR_READ_ONLY);
+        		
+        		String table = (username + "Structures").replaceAll("\\s+","");
         		
             	String insertQuery = "insert into " + table + " value ('" + structure + "')";
     		
-    			st.executeUpdate(insertQuery);
+    			ownerSt.executeUpdate(insertQuery);
     			
         	} finally {
         		
-        		st.close();
-        		con.close();
+        		if (ownerSt != null) {
+        			ownerSt.close();
+        		}
+        		
+        		if (ownerConn != null) {
+        			ownerConn.close();
+        		}
         		
         	}
 		} catch(Exception e){
