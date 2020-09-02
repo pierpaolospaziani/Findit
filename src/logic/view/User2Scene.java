@@ -459,6 +459,7 @@ public class User2Scene extends HBox{
         getChildren().add(vBox0);
         
         precedent(controller);
+        changeImage(user);
         
         btnNext.setOnAction(new EventHandler<ActionEvent>(){
         	@Override
@@ -480,33 +481,6 @@ public class User2Scene extends HBox{
  				controller.setPage(0);
  				
  				controller.changeScene();
- 			}
- 		});
-        
-        btnChangeImage.setOnAction(new EventHandler<ActionEvent>(){
-        	@Override
-        	public void handle(ActionEvent event) {
-
-        		FileChooser fileChooser = new FileChooser();
- 				
- 				window.setTitle("Select Image");
- 				
- 				final File file = fileChooser.showOpenDialog(window);
- 				
- 	            if (file != null) {
-
- 	                Image image = new Image(file.toURI().toString());
- 	                
- 	                user.setUserImage(image);
- 	                
- 	               try (FileInputStream inputStream = new FileInputStream(file)){
-						UserDao.setImage(user.getUserName(), inputStream);
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
- 	                
- 	                userImage.setImage(image);
- 	            }
  			}
  		});
         
@@ -595,5 +569,34 @@ public class User2Scene extends HBox{
  			}
  		});
     }
+    
+    private void changeImage(User user) {
+        
+        btnChangeImage.setOnAction(new EventHandler<ActionEvent>(){
+        	@Override
+        	public void handle(ActionEvent event) {
 
+        		FileChooser fileChooser = new FileChooser();
+ 				
+ 				window.setTitle("Select Image");
+ 				
+ 				final File file = fileChooser.showOpenDialog(window);
+ 				
+ 	            if (file != null) {
+
+ 	                Image image = new Image(file.toURI().toString());
+ 	                
+ 	                user.setUserImage(image);
+ 	                
+ 	               try (FileInputStream inputStream = new FileInputStream(file)){
+						UserDao.setImage(user.getUserName(), inputStream);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+ 	                
+ 	                userImage.setImage(image);
+ 	            }
+ 			}
+ 		});
+    }
 }

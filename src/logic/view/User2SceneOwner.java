@@ -430,38 +430,13 @@ public class User2SceneOwner extends HBox{
         vBox0.getChildren().add(hBoxBtnStr);
         getChildren().add(vBox0);
         
+        precedent(controller);
+        changeImage(owner);
+        
         buttonAddStructure.setOnAction(new EventHandler<ActionEvent>(){
         	@Override
         	public void handle(ActionEvent event) {
  				controller.setStructure(owner.getOwnerUsername());
- 			}
- 		});
-        
-        btnPrecedentStr.setOnAction(new EventHandler<ActionEvent>(){
-        	@Override
-        	public void handle(ActionEvent event) {
- 				
- 				int indiceOwn = controller.getIndice();
- 				
- 				if (indiceOwn > 6) {
- 					
- 					int modOwnIndice = indiceOwn%6;
- 					
- 					if (modOwnIndice == 0) {
- 	 					indiceOwn = indiceOwn - 12;
- 					} else if (modOwnIndice == 1) {
- 	 	 				indiceOwn = indiceOwn - 7;
- 	 				} else if (modOwnIndice == 2){
- 	 					indiceOwn = indiceOwn - 8;
- 	 				} else if (modOwnIndice == 3){
- 	 					indiceOwn = indiceOwn - 9;
- 	 				} else if (modOwnIndice == 4){
- 	 					indiceOwn = indiceOwn - 10;
- 	 				} else {
- 	 					indiceOwn = indiceOwn - 11;
- 	 				}
-	 				controller.changeExperiences(indiceOwn,1);
- 				}
  			}
  		});
         
@@ -485,33 +460,6 @@ public class User2SceneOwner extends HBox{
  				controller.setPage(0);
  				
  				controller.changeScene();
- 			}
- 		});
-        
-        btnChangeImageOwner.setOnAction(new EventHandler<ActionEvent>(){
-        	@Override
-        	public void handle(ActionEvent event) {
- 				
- 				FileChooser fileChooser = new FileChooser();
- 				
- 				windowOwner.setTitle("Select Image");
- 				
- 				final File file = fileChooser.showOpenDialog(windowOwner);
- 				
- 	            if (file != null) {
- 	            	
- 	                Image image = new Image(file.toURI().toString());
- 	                
- 	                owner.setOwnerImage(image);
- 	                
- 	               try (FileInputStream inputStream = new FileInputStream(file)){
-						OwnerDao.setImage(owner.getOwnerUsername(), inputStream);
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-	                
-	                userImageOwner.setImage(image);
- 	            }
  			}
  		});
         
@@ -564,5 +512,65 @@ public class User2SceneOwner extends HBox{
  			}
  		});
     }
-
+	    
+	    private void precedent(ProfileController controller) {
+	        
+	    	btnPrecedentStr.setOnAction(new EventHandler<ActionEvent>(){
+	        	@Override
+	        	public void handle(ActionEvent event) {
+	 				
+	 				int indiceOwn = controller.getIndice();
+	 				
+	 				if (indiceOwn > 6) {
+	 					
+	 					int modOwnIndice = indiceOwn%6;
+	 					
+	 					if (modOwnIndice == 0) {
+	 	 					indiceOwn = indiceOwn - 12;
+	 					} else if (modOwnIndice == 1) {
+	 	 	 				indiceOwn = indiceOwn - 7;
+	 	 				} else if (modOwnIndice == 2){
+	 	 					indiceOwn = indiceOwn - 8;
+	 	 				} else if (modOwnIndice == 3){
+	 	 					indiceOwn = indiceOwn - 9;
+	 	 				} else if (modOwnIndice == 4){
+	 	 					indiceOwn = indiceOwn - 10;
+	 	 				} else {
+	 	 					indiceOwn = indiceOwn - 11;
+	 	 				}
+		 				controller.changeExperiences(indiceOwn,1);
+	 				}
+	 			}
+	 		});
+	    }
+	    
+	    private void changeImage(Owner owner) {
+	        
+	        btnChangeImageOwner.setOnAction(new EventHandler<ActionEvent>(){
+	        	@Override
+	        	public void handle(ActionEvent event) {
+	 				
+	 				FileChooser fileChooser = new FileChooser();
+	 				
+	 				windowOwner.setTitle("Select Image");
+	 				
+	 				final File file = fileChooser.showOpenDialog(windowOwner);
+	 				
+	 	            if (file != null) {
+	 	            	
+	 	                Image image = new Image(file.toURI().toString());
+	 	                
+	 	                owner.setOwnerImage(image);
+	 	                
+	 	               try (FileInputStream inputStream = new FileInputStream(file)){
+							OwnerDao.setImage(owner.getOwnerUsername(), inputStream);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+		                
+		                userImageOwner.setImage(image);
+	 	            }
+	 			}
+	 		});
+	    }
 }
