@@ -33,6 +33,7 @@ public class UserDao {
     	
     	Connection userConn = null;
 		Statement userSt = null;
+		InputStream userBinaryStream = null;
 		
     	try {
         	try {
@@ -92,9 +93,9 @@ public class UserDao {
 
     				byte[] imageByte = blob.getBytes(1, (int) blob.length());
     				
-    				InputStream binaryStream = new ByteArrayInputStream(imageByte);
+    				userBinaryStream = new ByteArrayInputStream(imageByte);
     				
-    				BufferedImage bf = ImageIO.read(binaryStream);
+    				BufferedImage bf = ImageIO.read(userBinaryStream);
     				
     				Image  img = SwingFXUtils.toFXImage(bf, null);
     				
@@ -116,6 +117,10 @@ public class UserDao {
         		
         		if (userConn != null) {
         			userConn.close();
+        		}
+        		
+        		if (userBinaryStream != null) {
+        			userBinaryStream.close();
         		}
         		
         	}
@@ -164,7 +169,7 @@ public class UserDao {
     					
     					int i=0;
     					
-    					while (exist == true) {
+    					while (exist) {
     						ResultSet res = meta.getTables(null, null, variableReviewsTable, null);
     						if (res.next()) {
     							variableReviewsTable = reviewsTable + i;
@@ -208,6 +213,7 @@ public class UserDao {
 	public static void setImage(String username, FileInputStream image){
 		
 		Connection userConn = null;
+		PreparedStatement ps = null;
 		
     	try {
         	try {
@@ -217,8 +223,8 @@ public class UserDao {
     	    	String insertQuery = "UPDATE users SET photo = ? WHERE name = '" + username + "'";
     			
         		userConn.setAutoCommit(false);
-        		
-        		PreparedStatement ps = userConn.prepareStatement(insertQuery);
+
+        		ps = userConn.prepareStatement(insertQuery);
         		
         		ps.setBinaryStream(1, image);
         		
@@ -230,6 +236,10 @@ public class UserDao {
         		
         		if (userConn != null) {
         			userConn.close();
+        		}
+        		
+        		if (ps != null) {
+        			ps.close();
         		}
         		
         	}

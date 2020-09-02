@@ -159,9 +159,9 @@ public class ExperienceDao {
     			experienceSt = experienceConn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
     	                ResultSet.CONCUR_READ_ONLY);
     			
-    			String numQuery = "select count(*) from " + reviewTable;
+    			String numBookedQuery = "select count(*) from " + reviewTable;
     				    	
-    			ResultSet rs = experienceSt.executeQuery(numQuery);
+    			ResultSet rs = experienceSt.executeQuery(numBookedQuery);
     			rs.next();
     			i = rs.getInt("count(*)");
     			rs.close();
@@ -198,9 +198,9 @@ public class ExperienceDao {
     			experienceSt = experienceConn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
     	                ResultSet.CONCUR_READ_ONLY);
     			
-    			String numQuery = "select count(*) from " + reviewTable + " where review != ''";
+    			String numReviewsQuery = "select count(*) from " + reviewTable + " where review != ''";
     				    	
-    			ResultSet rs = experienceSt.executeQuery(numQuery);
+    			ResultSet rs = experienceSt.executeQuery(numReviewsQuery);
     			rs.next();
     			i = rs.getInt("count(*)");
     			rs.close();

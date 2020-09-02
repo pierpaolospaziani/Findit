@@ -243,11 +243,8 @@ public class HotelDao {
     				
     				result = true;
     				
-    			} else {
-    				
-    				result = false;
-    				
     			}
+    			
         	} finally {
         		
         		if (hotelSt != null) {
@@ -289,24 +286,24 @@ public class HotelDao {
     				nameQuery = nameQuery + " and type = '" + type + "'";
     			}
 
-    			if (parking == true) {
-    				serachQuery = serachQuery + " and parking = '" + true + "'";
-    				nameQuery = nameQuery + " and parking = '" + true + "'";
+    			if (parking) {
+    				serachQuery = serachQuery + " and parking = '" + parking + "'";
+    				nameQuery = nameQuery + " and parking = '" + parking + "'";
     			}
     			
-    			if (restaurant == true) {
-    				serachQuery = serachQuery + " and restaurant = '" + true + "'";
-    				nameQuery = nameQuery + " and restaurant = '" + true + "'";
+    			if (restaurant) {
+    				serachQuery = serachQuery + " and restaurant = '" + restaurant + "'";
+    				nameQuery = nameQuery + " and restaurant = '" + restaurant + "'";
     			}
     			
-    			if (roomService == true) {
-    				serachQuery = serachQuery + " and roomService = '" + true + "'";
-    				nameQuery = nameQuery + " and roomService = '" + true + "'";
+    			if (roomService) {
+    				serachQuery = serachQuery + " and roomService = '" + roomService + "'";
+    				nameQuery = nameQuery + " and roomService = '" + roomService + "'";
     			}
     			
-    			if (gym == true) {
-    				serachQuery = serachQuery + " and gym = '" + true + "'";
-    				nameQuery = nameQuery + " and gym = '" + true + "'";
+    			if (gym) {
+    				serachQuery = serachQuery + " and gym = '" + gym + "'";
+    				nameQuery = nameQuery + " and gym = '" + gym + "'";
     			}
     			
     			if (stars != 0) {
@@ -372,8 +369,13 @@ public class HotelDao {
     			
         	} finally {
         		
-        		hotelSt.close();
-        		hotelConn.close();
+        		if (hotelSt != null) {
+        			hotelSt.close();
+        		}
+        		
+        		if (hotelConn != null) {
+        			hotelConn.close();
+        		}
         		
         	}
 		} catch(Exception e){

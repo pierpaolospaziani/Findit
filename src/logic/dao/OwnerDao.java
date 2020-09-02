@@ -28,7 +28,7 @@ public class OwnerDao {
     	
     }
     
-    public static Owner getOwner(String username) throws Exception{
+    public static Owner getOwner(String username){
     	
     	Owner owner = Owner.getIstance();
     	
@@ -56,6 +56,7 @@ public class OwnerDao {
     	
     	Connection ownerConn = null;
 		Statement ownerSt = null;
+		InputStream ownerBinaryStream = null;
 		
     	try {
         	try {
@@ -109,9 +110,9 @@ public class OwnerDao {
     				
     				byte[] imageByte = blob.getBytes(1, (int) blob.length());
     				
-    				InputStream binaryStream = new ByteArrayInputStream(imageByte);
+    				ownerBinaryStream = new ByteArrayInputStream(imageByte);
     				
-    				BufferedImage bf = ImageIO.read(binaryStream);
+    				BufferedImage bf = ImageIO.read(ownerBinaryStream);
     				
     				Image  img = SwingFXUtils.toFXImage(bf, null);
     				
@@ -132,6 +133,10 @@ public class OwnerDao {
         		
         		if (ownerConn != null) {
         			ownerConn.close();
+        		}
+        		
+        		if (ownerBinaryStream != null) {
+        			ownerBinaryStream.close();
         		}
         		
         	}
@@ -180,7 +185,7 @@ public class OwnerDao {
     					
     					int i=0;
     					
-    					while (exist == true) {
+    					while (exist) {
     						ResultSet res = meta.getTables(null, null, variableStructuresTable, null);
     						if (res.next()) {
     							variableStructuresTable = structuresTable + i;
@@ -222,6 +227,7 @@ public class OwnerDao {
 	public static void setImage(String username, FileInputStream image){
 		
 		Connection ownerConn = null;
+		PreparedStatement ps = null;
 		
     	try {
         	try {
@@ -232,7 +238,7 @@ public class OwnerDao {
     			
         		ownerConn.setAutoCommit(false);
         		
-        		PreparedStatement ps = ownerConn.prepareStatement(insertQuery);
+        		ps = ownerConn.prepareStatement(insertQuery);
         		
         		ps.setBinaryStream(1, image);
         		
@@ -242,7 +248,13 @@ public class OwnerDao {
         		
         	} finally {
         		
-        		ownerConn.close();
+        		if (ps != null) {
+        			ps.close();
+        		}
+        		
+        		if (ownerConn != null) {
+        			ownerConn.close();
+        		}
         		
         	}
 		} catch(Exception e){
