@@ -121,9 +121,11 @@ public class AddRoomScene {
  				boolean bedsOk = false;
  				boolean priceOk = false;
  				
- 				setBool(idOk, bedsOk, priceOk); 
+ 				boolean ok = false;
  				
- 				if (idOk && bedsOk && priceOk) {
+ 				ok = setBool(idOk, bedsOk, priceOk); 
+ 				
+ 				if (ok) {
  					
  					boolean result = controller.addRoom(roomsTable, Integer.valueOf(tf1.getText()), Integer.valueOf(tf3.getText()), Integer.valueOf(tf2.getText()));
  	 				
@@ -142,7 +144,7 @@ public class AddRoomScene {
         window.setScene(scene);
 	}
 	
-	private void setBool(boolean idOk , boolean bedsOk, boolean priceOk ) {
+	private boolean setBool(boolean idOk , boolean bedsOk, boolean priceOk ) {
 		
 		String red = "-fx-text-fill: red";
 		String black = "-fx-text-fill: black";
@@ -160,11 +162,17 @@ public class AddRoomScene {
         } else {
         	label2.setStyle(red);
         }
-			if (!tf3.getText().equals("")) {
+		if (!tf3.getText().equals("")) {
 			label3.setStyle(black);
 			priceOk = true;
         } else {
         	label3.setStyle(red);
         }
+		
+		if (idOk && bedsOk && priceOk) {
+			return true;
+		}
+		
+		return false;
 	}
 }
