@@ -13,6 +13,10 @@ public class HotelDao {
     private static String url = "jdbc:mysql://localhost:3306/findit?useTimezone=true&serverTimezone=UTC";
     private static String driverClassName = "com.mysql.cj.jdbc.Driver";
     
+    private HotelDao() {
+    	
+    }
+    
 	public static Hotel getHotel(String hotelName){
 
     	String nameQuery = "select name from hotels where name = '" + hotelName + "'";
@@ -32,18 +36,18 @@ public class HotelDao {
     	
     	Hotel hotel = new Hotel();
     	
-    	Connection con = null;
-		Statement st = null;
+    	Connection hotelConn = null;
+		Statement hotelSt = null;
 		
     	try {
         	try {
             	Class.forName(driverClassName);
-    			con = DriverManager.getConnection(url,name,pass);
+    			hotelConn = DriverManager.getConnection(url,name,pass);
     			
-    			st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+    			hotelSt = hotelConn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
     	                ResultSet.CONCUR_READ_ONLY);
     		
-    			ResultSet rs = st.executeQuery(nameQuery);
+    			ResultSet rs = hotelSt.executeQuery(nameQuery);
     		
     			rs.next();
     			
@@ -55,79 +59,79 @@ public class HotelDao {
     			hotel.setHotelName(nome);			
     			rs.close();
     			
-    			ResultSet rs1 = st.executeQuery(ownerQuery);			
+    			ResultSet rs1 = hotelSt.executeQuery(ownerQuery);			
     			rs1.next();		
     			String owner = rs1.getNString("owner");
     			hotel.setHotelOwner(owner);		
     			rs1.close();
     			
-    			ResultSet rs2 = st.executeQuery(typeQuery);			
+    			ResultSet rs2 = hotelSt.executeQuery(typeQuery);			
     			rs2.next();		
     			String type = rs2.getNString("type");			
     			hotel.setHotelType(type);		
     			rs2.close();
     			
-    			ResultSet rs3 = st.executeQuery(cityQuery);			
+    			ResultSet rs3 = hotelSt.executeQuery(cityQuery);			
     			rs3.next();		
     			String city = rs3.getNString("city");			
     			hotel.setHotelCity(city);		
     			rs3.close();
     			
-    			ResultSet rs4 = st.executeQuery(addressQuery);			
+    			ResultSet rs4 = hotelSt.executeQuery(addressQuery);			
     			rs4.next();		
     			String address = rs4.getNString("address");
     			hotel.setHotelAddress(address);
     			rs4.close();
     			
-    			ResultSet rs5 = st.executeQuery(ratingQuery);
+    			ResultSet rs5 = hotelSt.executeQuery(ratingQuery);
     			rs5.next();
     			int rating = rs5.getInt("rating");
     			hotel.setHotelRating(rating);
     			rs5.close();
     			
-    			ResultSet rs6 = st.executeQuery(parkingQuery);
+    			ResultSet rs6 = hotelSt.executeQuery(parkingQuery);
     			rs6.next();
     			boolean parking = rs6.getBoolean("parking");
     			hotel.setHotelParking(parking);
     			rs6.close();
     			
-    			ResultSet rs7 = st.executeQuery(restaurantQuery);
+    			ResultSet rs7 = hotelSt.executeQuery(restaurantQuery);
     			rs7.next();
     			boolean restaurant = rs7.getBoolean("restaurant");
     			hotel.setHotelRestaurant(restaurant);
     			rs7.close();
     			
-    			ResultSet rs8 = st.executeQuery(roomServiceQuery);
+    			ResultSet rs8 = hotelSt.executeQuery(roomServiceQuery);
     			rs8.next();
     			boolean roomService = rs8.getBoolean("roomService");
     			hotel.setHotelRoomService(roomService);
     			rs8.close();
     			
-    			ResultSet rs9 = st.executeQuery(gymQuery);
+    			ResultSet rs9 = hotelSt.executeQuery(gymQuery);
     			rs9.next();
     			boolean gym = rs9.getBoolean("gym");
     			hotel.setHotelGym(gym);
     			rs9.close();
     			
-    			ResultSet rs10 = st.executeQuery(roomsQuery);
+    			ResultSet rs10 = hotelSt.executeQuery(roomsQuery);
     			rs10.next();
     			String rooms = rs10.getNString("rooms");
     			hotel.setHotelRooms(rooms);
     			rs10.close();
     			
-    			ResultSet rs11 = st.executeQuery(agendaQuery);
+    			ResultSet rs11 = hotelSt.executeQuery(agendaQuery);
     			rs11.next();
     			String agenda = rs11.getNString("agenda");
     			hotel.setHotelAgenda(agenda);
     			rs11.close();
     			
-    			ResultSet rs12 = st.executeQuery(reviewsQuery);
+    			ResultSet rs12 = hotelSt.executeQuery(reviewsQuery);
     			rs12.next();
     			String reviews = rs12.getNString("reviews");
     			hotel.setHotelReviews(reviews);
     			rs12.close();
     			
-    			ResultSet rs14 = st.executeQuery(descriptionQuery);
+    			ResultSet rs14 = hotelSt.executeQuery(descriptionQuery);
     			rs14.next();
     			String description = rs14.getString("description");
     			hotel.setHotelDescription(description);
@@ -135,8 +139,13 @@ public class HotelDao {
     			
         	} finally {
         		
-        		st.close();
-        		con.close();
+        		if (hotelSt != null) {
+        			hotelSt.close();
+        		}
+        		
+        		if (hotelConn != null) {
+        			hotelConn.close();
+        		}
         		
         	}
 		} catch(Exception e){
@@ -164,26 +173,26 @@ public class HotelDao {
 
     	String searchQuery = "select name from hotels where name = '" + nome + "'";
     	
-    	Connection con = null;
-		Statement st = null;
+    	Connection hotelConn = null;
+		Statement hotelSt = null;
 		
 		boolean result = false;
 		
     	try {
         	try {
             	Class.forName(driverClassName);
-    			con = DriverManager.getConnection(url,name,pass);
+    			hotelConn = DriverManager.getConnection(url,name,pass);
     			
-    			st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+    			hotelSt = hotelConn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
     	                ResultSet.CONCUR_READ_ONLY);
     		
-    			ResultSet rs = st.executeQuery(searchQuery);
+    			ResultSet rs = hotelSt.executeQuery(searchQuery);
     			
     			if (!rs.first()) {
 
     				rs.close();
     				
-    				java.sql.DatabaseMetaData meta = con.getMetaData();
+    				java.sql.DatabaseMetaData meta = hotelConn.getMetaData();
     				
     				String variableRooms = rooms;
     				String variableAgenda = agenda;
@@ -225,10 +234,10 @@ public class HotelDao {
     		    					+ "'" + reviewsTable + "',"
     		    					+ "'" + null + "')";
     				    	
-    						st.executeUpdate(insertQuery);
-    						st.executeUpdate(createRoomsTable);
-    						st.executeUpdate(createAgendaTable);
-    						st.executeUpdate(createReviewsQuery);
+    						hotelSt.executeUpdate(insertQuery);
+    						hotelSt.executeUpdate(createRoomsTable);
+    						hotelSt.executeUpdate(createAgendaTable);
+    						hotelSt.executeUpdate(createReviewsQuery);
     					}
     				}
     				
@@ -241,8 +250,13 @@ public class HotelDao {
     			}
         	} finally {
         		
-        		st.close();
-        		con.close();
+        		if (hotelSt != null) {
+        			hotelSt.close();
+        		}
+        		
+        		if (hotelConn != null) {
+        			hotelConn.close();
+        		}
         		
         	}
 		} catch(Exception e){
@@ -252,23 +266,23 @@ public class HotelDao {
     }
 	
 	public static Hotel searchHotel(String city, String type, Boolean parking, Boolean restaurant, Boolean roomService, Boolean gym, int stars, int index){
-
-		String serachQuery = "select * from hotels where city = '" + city + "'";
-		
-    	String nameQuery = "select name from hotels where city = '" + city + "'";
     	
     	Hotel hotel = new Hotel();
     	
-    	Connection con = null;
-		Statement st = null;
+    	Connection hotelConn = null;
+		Statement hotelSt = null;
 		
     	try {
         	try {
             	Class.forName(driverClassName);
-    			con = DriverManager.getConnection(url,name,pass);
+    			hotelConn = DriverManager.getConnection(url,name,pass);
     			
-    			st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+    			hotelSt = hotelConn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
     	                ResultSet.CONCUR_READ_ONLY);
+
+    			String serachQuery = "select * from hotels where city = '" + city + "'";
+    			
+    	    	String nameQuery = "select name from hotels where city = '" + city + "'";
 
     			if (type != null) {
     				serachQuery = serachQuery + " and type = '" + type + "'";
@@ -300,7 +314,7 @@ public class HotelDao {
     				nameQuery = nameQuery + " and rating >= '" + stars + "'";
     			}
     			
-    			ResultSet rs = st.executeQuery(serachQuery);
+    			ResultSet rs = hotelSt.executeQuery(serachQuery);
     		
     			rs.next();
     			
@@ -308,7 +322,7 @@ public class HotelDao {
     				return hotel;
     			}
     			
-    			ResultSet rs1 = st.executeQuery(nameQuery);
+    			ResultSet rs1 = hotelSt.executeQuery(nameQuery);
     			rs1.next();
     			
     			for (int i=1; i<index; i++) {
@@ -323,8 +337,13 @@ public class HotelDao {
         
         	} finally {
         		
-        		st.close();
-        		con.close();
+        		if (hotelSt != null) {
+        			hotelSt.close();
+        		}
+        		
+        		if (hotelConn != null) {
+        			hotelConn.close();
+        		}
         		
         	}
 		} catch(Exception e){
@@ -336,25 +355,25 @@ public class HotelDao {
 	
 	public static void setDescription(String description, String structure){
 		
-		String insertQuery = "update hotels set description = '" + description + "' where name = '" + structure + "'";
-		
-		Connection con = null;
-		Statement st = null;
+		Connection hotelConn = null;
+		Statement hotelSt = null;
 		
     	try {
         	try {
             	Class.forName(driverClassName);
-    			con = DriverManager.getConnection(url,name,pass);
+    			hotelConn = DriverManager.getConnection(url,name,pass);
     			
-    			st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+    			hotelSt = hotelConn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
     	                ResultSet.CONCUR_READ_ONLY);
+    			
+    			String insertQuery = "update hotels set description = '" + description + "' where name = '" + structure + "'";
     				    	
-    			st.executeUpdate(insertQuery);
+    			hotelSt.executeUpdate(insertQuery);
     			
         	} finally {
         		
-        		st.close();
-        		con.close();
+        		hotelSt.close();
+        		hotelConn.close();
         		
         	}
 		} catch(Exception e){
@@ -364,25 +383,30 @@ public class HotelDao {
 	
 	public static void setRating(int avg, String structure){
 		
-		String insertQuery = "update hotels set rating = '" + avg + "' where name = '" + structure + "'";
-		
-		Connection con = null;
-		Statement st = null;
+		Connection hotelConn = null;
+		Statement hotelSt = null;
 		
     	try {
         	try {
             	Class.forName(driverClassName);
-    			con = DriverManager.getConnection(url,name,pass);
+    			hotelConn = DriverManager.getConnection(url,name,pass);
     			
-    			st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+    			hotelSt = hotelConn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
     	                ResultSet.CONCUR_READ_ONLY);
+    			
+    			String insertQuery = "update hotels set rating = '" + avg + "' where name = '" + structure + "'";
     				    	
-    			st.executeUpdate(insertQuery);
+    			hotelSt.executeUpdate(insertQuery);
     			
         	} finally {
         		
-        		st.close();
-        		con.close();
+        		if (hotelSt != null) {
+        			hotelSt.close();
+        		}
+        		
+        		if (hotelConn != null) {
+        			hotelConn.close();
+        		}
         		
         	}
 		} catch(Exception e){

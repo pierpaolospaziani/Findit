@@ -23,27 +23,31 @@ public class UserDao {
     private static String url = "jdbc:mysql://localhost:3306/findit?useTimezone=true&serverTimezone=UTC";
     private static String driverClassName = "com.mysql.cj.jdbc.Driver";
     
-	public static User getUser(String username){
+    private UserDao() {
     	
-    	String nameUserQuery = "select name from users where name = '" + username + "'";
-    	String psswUserQuery = "select pssw from users where name = '" + username + "'";
-    	String reviewsTableUserQuery = "select reviews from users where name = '" + username + "'";
-    	String imageUserQuery = "select photo from users where name = '" + username + "'";
+    }
+    
+	public static User getUser(String username){
     	
     	User user = User.getIstance();
     	
-    	Connection con = null;
-		Statement st = null;
+    	Connection userConn = null;
+		Statement userSt = null;
 		
     	try {
         	try {
             	Class.forName(driverClassName);
-    			con = DriverManager.getConnection(url,name,pass);
+    			userConn = DriverManager.getConnection(url,name,pass);
     			
-    			st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+    			userSt = userConn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
     	                ResultSet.CONCUR_READ_ONLY);
+    	    	
+    	    	String nameUserQuery = "select name from users where name = '" + username + "'";
+    	    	String psswUserQuery = "select pssw from users where name = '" + username + "'";
+    	    	String reviewsTableUserQuery = "select reviews from users where name = '" + username + "'";
+    	    	String imageUserQuery = "select photo from users where name = '" + username + "'";
     		
-    			ResultSet rs = st.executeQuery(nameUserQuery);
+    			ResultSet rs = userSt.executeQuery(nameUserQuery);
     		
     			rs.next();
     			
@@ -58,7 +62,7 @@ public class UserDao {
     			
     			rs.close();
     			
-    			ResultSet rs1 = st.executeQuery(psswUserQuery);
+    			ResultSet rs1 = userSt.executeQuery(psswUserQuery);
     		
     			rs1.next();
     		
@@ -68,7 +72,7 @@ public class UserDao {
     		
     			rs1.close();
     			
-    			ResultSet rs3 = st.executeQuery(reviewsTableUserQuery);
+    			ResultSet rs3 = userSt.executeQuery(reviewsTableUserQuery);
     		
     			rs3.next();
     		
@@ -78,7 +82,7 @@ public class UserDao {
     		
     			rs3.close();
     			
-    			ResultSet rs2 = st.executeQuery(imageUserQuery);
+    			ResultSet rs2 = userSt.executeQuery(imageUserQuery);
     			
     			rs2.next();
     			
@@ -106,8 +110,13 @@ public class UserDao {
         
         	} finally {
         		
-        		st.close();
-        		con.close();
+        		if (userSt != null) {
+        			userSt.close();
+        		}
+        		
+        		if (userConn != null) {
+        			userConn.close();
+        		}
         		
         	}
 		} catch(Exception e){
@@ -118,36 +127,36 @@ public class UserDao {
     }
 	
 	public static boolean setUser(String username, String password){
-
-		String reviewsTable = (username + "Reviews").replaceAll("\\s+","");
-    	String searchUserQuery = "select name from users where name = '" + username + "'";
-    	String searchOwnerQuery = "select name from owners where name = '" + username + "'";
     	
     	
-    	Connection con = null;
-		Statement st = null;
+    	Connection userConn = null;
+		Statement userSt = null;
 		
     	try {
         	try{
             	Class.forName(driverClassName);
-    			con = DriverManager.getConnection(url,name,pass);
+    			userConn = DriverManager.getConnection(url,name,pass);
     			
-    			st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+    			userSt = userConn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
     	                ResultSet.CONCUR_READ_ONLY);
+
+    			String reviewsTable = (username + "Reviews").replaceAll("\\s+","");
+    	    	String searchUserQuery = "select name from users where name = '" + username + "'";
+    	    	String searchOwnerQuery = "select name from owners where name = '" + username + "'";
     		
-    			ResultSet rs = st.executeQuery(searchUserQuery);
+    			ResultSet rs = userSt.executeQuery(searchUserQuery);
     			
     			if (!rs.first()) {
 
     				rs.close();
     				
-    				ResultSet rs2 = st.executeQuery(searchOwnerQuery);
+    				ResultSet rs2 = userSt.executeQuery(searchOwnerQuery);
     				
     				if (!rs2.first()) {
 
     					rs2.close();
     					
-    					java.sql.DatabaseMetaData meta = con.getMetaData();
+    					java.sql.DatabaseMetaData meta = userConn.getMetaData();
 
     					String variableReviewsTable = reviewsTable;
     					
@@ -167,8 +176,8 @@ public class UserDao {
     							String insertQuery = "insert into users value ('" + username + "','" + password + "','" + reviewsTable + "','" + null + "')";
     					    	String createReviewsQuery = "create table " + reviewsTable + " (structure varchar(20),review text,stars int,dateIn int,dateOut int)";
     				
-    					    	st.executeUpdate(insertQuery);
-    							st.executeUpdate(createReviewsQuery);
+    					    	userSt.executeUpdate(insertQuery);
+    							userSt.executeUpdate(createReviewsQuery);
     						}
     					}
 
@@ -181,8 +190,13 @@ public class UserDao {
     			}
         	} finally {
         		
-        		st.close();
-        		con.close();
+        		if (userSt != null) {
+        			userSt.close();
+        		}
+        		
+        		if (userConn != null) {
+        			userConn.close();
+        		}
         		
         	}
 		} catch(Exception e){
@@ -193,28 +207,30 @@ public class UserDao {
 	
 	public static void setImage(String username, FileInputStream image){
 		
-    	String insertQuery = "UPDATE users SET photo = ? WHERE name = '" + username + "'";
-		
-		Connection con = null;
+		Connection userConn = null;
 		
     	try {
         	try {
             	Class.forName(driverClassName);
-    			con = DriverManager.getConnection(url,name,pass);
+    			userConn = DriverManager.getConnection(url,name,pass);
     			
-        		con.setAutoCommit(false);
+    	    	String insertQuery = "UPDATE users SET photo = ? WHERE name = '" + username + "'";
+    			
+        		userConn.setAutoCommit(false);
         		
-        		PreparedStatement ps = con.prepareStatement(insertQuery);
+        		PreparedStatement ps = userConn.prepareStatement(insertQuery);
         		
         		ps.setBinaryStream(1, image);
         		
         		ps.executeUpdate();
         		
-        		con.commit();
+        		userConn.commit();
         		
         	} finally {
         		
-        		con.close();
+        		if (userConn != null) {
+        			userConn.close();
+        		}
         		
         	}
 		} catch(Exception e){

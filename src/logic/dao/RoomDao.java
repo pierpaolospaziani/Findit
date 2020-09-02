@@ -13,40 +13,49 @@ public class RoomDao {
     private static String url = "jdbc:mysql://localhost:3306/findit?useTimezone=true&serverTimezone=UTC";
     private static String driverClassName = "com.mysql.cj.jdbc.Driver";
     
+    private RoomDao() {
+    	
+    }
+    
     public static Room getRoom(String roomsTable, int id){
-
-    	String bedsQuery = "select beds from " + roomsTable + " where id = '" + id + "'";
-    	String priceQuery = "select price from " + roomsTable + " where id = '" + id + "'";
 
     	Room room = new Room();
     	
-    	Connection con = null;
-		Statement st = null;
+    	Connection roomConn = null;
+		Statement roomSt = null;
 		
     	try {
         	try{
             	Class.forName(driverClassName);
-    			con = DriverManager.getConnection(url,name,pass);
+    			roomConn = DriverManager.getConnection(url,name,pass);
     			
-    			st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+    			roomSt = roomConn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
     	                ResultSet.CONCUR_READ_ONLY);
+
+    	    	String bedsQuery = "select beds from " + roomsTable + " where id = '" + id + "'";
+    	    	String priceQuery = "select price from " + roomsTable + " where id = '" + id + "'";
     		
     			room.setRoomId(id);
     			
-    			ResultSet rs = st.executeQuery(bedsQuery);
+    			ResultSet rs = roomSt.executeQuery(bedsQuery);
     			int roomBeds = rs.getInt("beds");
     			room.setBeds(roomBeds);		
     			rs.close();
     			
-    			ResultSet rs1 = st.executeQuery(priceQuery);
+    			ResultSet rs1 = roomSt.executeQuery(priceQuery);
     			int rightPrice = rs.getInt("price");
     			room.setRoomId(rightPrice);
     			rs1.close();
         
         	} finally {
         		
-        		st.close();
-        		con.close();
+        		if (roomSt != null) {
+        			roomSt.close();
+        		}
+        		
+        		if (roomConn != null) {
+        			roomConn.close();
+        		}
         		
         	}
 		} catch(Exception e){
@@ -56,23 +65,23 @@ public class RoomDao {
 		return room;
     }
 	
-    public static boolean setRoom(String roomsTable, int id, int beds, int price){		
-
-    	String searchQuery = "select id from " + roomsTable + " where id = '" + id + "'";
+    public static boolean setRoom(String roomsTable, int id, int beds, int price){
         
-    	Connection con = null;
-		Statement st = null;
+    	Connection roomConn = null;
+		Statement roomSt = null;
 		boolean result = false;
 		
     	try {
         	try{
             	Class.forName(driverClassName);
-    			con = DriverManager.getConnection(url,name,pass);
+    			roomConn = DriverManager.getConnection(url,name,pass);
     			
-    			st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+    			roomSt = roomConn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
     	                ResultSet.CONCUR_READ_ONLY);
+
+    	    	String searchQuery = "select id from " + roomsTable + " where id = '" + id + "'";
     		
-    			ResultSet rs = st.executeQuery(searchQuery);
+    			ResultSet rs = roomSt.executeQuery(searchQuery);
     			
     			if (!rs.first()) {
 
@@ -80,15 +89,20 @@ public class RoomDao {
 
     				String insertQuery = "insert into " + roomsTable + " value ('" + id + "','" + price + "','" + beds + "')";
     				    	
-    				st.executeUpdate(insertQuery);
+    				roomSt.executeUpdate(insertQuery);
     				
     				result = true;
     			}
     			
         	} finally {
         		
-        		st.close();
-        		con.close();
+        		if (roomSt != null) {
+        			roomSt.close();
+        		}
+        		
+        		if (roomConn != null) {
+        			roomConn.close();
+        		}
         		
         	}
 		} catch(Exception e){
@@ -98,24 +112,24 @@ public class RoomDao {
     }
     
     public static Room searchRoom(String roomsTable, int beds, int price, int index){
-
-    	String searchQuery = "select * from " + roomsTable + " where beds >= '" + beds + "' and price <= '" + price + "' order by price";
-    	String idQuery = "select id from " + roomsTable + " where beds >= '" + beds + "' and price <= '" + price + "' order by price";
     	
     	Room room = new Room();
     	
-    	Connection con = null;
-		Statement st = null;
+    	Connection roomConn = null;
+		Statement roomSt = null;
 		
     	try {
         	try{
             	Class.forName(driverClassName);
-    			con = DriverManager.getConnection(url,name,pass);
+    			roomConn = DriverManager.getConnection(url,name,pass);
     			
-    			st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+    			roomSt = roomConn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
     	                ResultSet.CONCUR_READ_ONLY);
+
+    	    	String searchQuery = "select * from " + roomsTable + " where beds >= '" + beds + "' and price <= '" + price + "' order by price";
+    	    	String idQuery = "select id from " + roomsTable + " where beds >= '" + beds + "' and price <= '" + price + "' order by price";
     		
-    			ResultSet rs = st.executeQuery(searchQuery);
+    			ResultSet rs = roomSt.executeQuery(searchQuery);
     		
     			rs.next();
     			
@@ -125,7 +139,7 @@ public class RoomDao {
     			
     			rs.close();
     			
-    			ResultSet rs1 = st.executeQuery(idQuery);
+    			ResultSet rs1 = roomSt.executeQuery(idQuery);
     			rs1.next();
     			
     			for (int i=1; i<index; i++) {
@@ -140,7 +154,7 @@ public class RoomDao {
     			
     	    	String bedQuery = "select beds from " + roomsTable + " where id = '" + roomId + "'";
     	    	
-    	    	ResultSet rs3 = st.executeQuery(bedQuery);
+    	    	ResultSet rs3 = roomSt.executeQuery(bedQuery);
     			rs3.next();
     			int bed = rs3.getInt("beds");
     			room.setBeds(bed);
@@ -148,7 +162,7 @@ public class RoomDao {
     			
     	    	String priceQuery = "select price from " + roomsTable + " where id = '" + roomId + "'";
     	    	
-    	    	ResultSet rs2 = st.executeQuery(priceQuery);
+    	    	ResultSet rs2 = roomSt.executeQuery(priceQuery);
     			rs2.next();
     			int roomPrice = rs2.getInt("price");
     			room.setPrice(roomPrice);
@@ -156,8 +170,13 @@ public class RoomDao {
         
         	} finally {
         		
-        		st.close();
-        		con.close();
+        		if (roomSt != null) {
+        			roomSt.close();
+        		}
+        		
+        		if (roomConn != null) {
+        			roomConn.close();
+        		}
         		
         	}
 		} catch(Exception e){
@@ -168,30 +187,35 @@ public class RoomDao {
     }
     
     public static int getRoomsNumber(String roomsTable){
-    	
-    	String numQuery = "select count(*) from " + roomsTable;
 		
-		Connection con = null;
-		Statement st = null;
+		Connection roomConn = null;
+		Statement roomSt = null;
 		
     	int i = 0;
 		try {
         	try{
             	Class.forName(driverClassName);
-    			con = DriverManager.getConnection(url,name,pass);
+    			roomConn = DriverManager.getConnection(url,name,pass);
     			
-    			st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+    			roomSt = roomConn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
     	                ResultSet.CONCUR_READ_ONLY);
+    	    	
+    	    	String numQuery = "select count(*) from " + roomsTable;
     				    	
-    			ResultSet rs = st.executeQuery(numQuery);
+    			ResultSet rs = roomSt.executeQuery(numQuery);
     			rs.next();
     			i = rs.getInt("count(*)");
     			rs.close();
     			
         	} finally {
         		
-        		st.close();
-        		con.close();
+        		if (roomSt != null) {
+        			roomSt.close();
+        		}
+        		
+        		if (roomConn != null) {
+        			roomConn.close();
+        		}
         		
         	}
 		} catch(Exception e){

@@ -13,6 +13,10 @@ public class ReservationDao {
     private static String url = "jdbc:mysql://localhost:3306/findit?useTimezone=true&serverTimezone=UTC";
     private static String driverClassName = "com.mysql.cj.jdbc.Driver";
     
+    private ReservationDao() {
+    	
+    }
+    
     public static Reservation getReservation(String reservationTable, int id, int date){
 
     	String idQuery = "select id from " + reservationTable + " where id = '" + id + "' and date = '" + date + "'";
@@ -20,18 +24,18 @@ public class ReservationDao {
     	
     	Reservation reservation = new Reservation();
     	
-    	Connection con = null;
-		Statement st = null;
+    	Connection reservationConn = null;
+		Statement reservationSt = null;
 		
     	try {
         	try {
             	Class.forName(driverClassName);
-    			con = DriverManager.getConnection(url,name,pass);
+    			reservationConn = DriverManager.getConnection(url,name,pass);
     			
-    			st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+    			reservationSt = reservationConn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
     	                ResultSet.CONCUR_READ_ONLY);
     		
-    			ResultSet rs = st.executeQuery(idQuery);
+    			ResultSet rs = reservationSt.executeQuery(idQuery);
     		
     			rs.next();
     			
@@ -45,7 +49,7 @@ public class ReservationDao {
     			
     			reservation.setDate(date);
     			
-    			ResultSet rs2 = st.executeQuery(userQuery);
+    			ResultSet rs2 = reservationSt.executeQuery(userQuery);
     			rs2.next();
     			String user = rs2.getNString("user");
     			reservation.setUserBooked(user);
@@ -54,8 +58,13 @@ public class ReservationDao {
         
         	} finally {
         		
-        		st.close();
-        		con.close();
+        		if (reservationSt != null) {
+        			reservationSt.close();
+        		}
+        		
+        		if (reservationConn != null) {
+        			reservationConn.close();
+        		}
         		
         	}
 		} catch(Exception e){
@@ -65,22 +74,22 @@ public class ReservationDao {
 		return reservation;
     }
 	
-    public static void setReservation(String reservationTable, int id, int date, String user){		
-
-    	String searchQuery = "select id from " + reservationTable + " where id = '" + id + "' and date = '" + date + "'";
+    public static void setReservation(String reservationTable, int id, int date, String user){
         
-    	Connection con = null;
-		Statement st = null;
+    	Connection reservationConn = null;
+		Statement reservationSt = null;
 		
     	try {
         	try {
             	Class.forName(driverClassName);
-    			con = DriverManager.getConnection(url,name,pass);
+    			reservationConn = DriverManager.getConnection(url,name,pass);
     			
-    			st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+    			reservationSt = reservationConn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
     	                ResultSet.CONCUR_READ_ONLY);
+
+    	    	String searchQuery = "select id from " + reservationTable + " where id = '" + id + "' and date = '" + date + "'";
     		
-    			ResultSet rs = st.executeQuery(searchQuery);
+    			ResultSet rs = reservationSt.executeQuery(searchQuery);
     			
     			if (!rs.first()) {
 
@@ -88,13 +97,18 @@ public class ReservationDao {
 
     				String insertQuery = "insert into " + reservationTable + " value ('" + id + "','" + date + "','" + user + "')";
 
-    				st.executeUpdate(insertQuery);
+    				reservationSt.executeUpdate(insertQuery);
     			}
     			
         	} finally {
         		
-        		st.close();
-        		con.close();
+        		if (reservationSt != null) {
+        			reservationSt.close();
+        		}
+        		
+        		if (reservationConn != null) {
+        			reservationConn.close();
+        		}
         		
         	}
 		} catch(Exception e){
@@ -103,23 +117,23 @@ public class ReservationDao {
     }
     
     public static Reservation searchReservation(String reservationTable, int id, int date){
-
-    	String searchQuery = "select * from " + reservationTable + " where id = '" + id + "' and date = '" + date + "'";
     	
     	Reservation reservation = new Reservation();
     	
-    	Connection con = null;
-		Statement st = null;
+    	Connection reservationConn = null;
+		Statement reservationSt = null;
 		
     	try {
         	try {
             	Class.forName(driverClassName);
-    			con = DriverManager.getConnection(url,name,pass);
+    			reservationConn = DriverManager.getConnection(url,name,pass);
     			
-    			st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+    			reservationSt = reservationConn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
     	                ResultSet.CONCUR_READ_ONLY);
+
+    	    	String searchQuery = "select * from " + reservationTable + " where id = '" + id + "' and date = '" + date + "'";
     			
-    			ResultSet rs = st.executeQuery(searchQuery);
+    			ResultSet rs = reservationSt.executeQuery(searchQuery);
     		
     			rs.next();
     			
@@ -131,8 +145,13 @@ public class ReservationDao {
     			
         	} finally {
         		
-        		st.close();
-        		con.close();
+        		if (reservationSt != null) {
+        			reservationSt.close();
+        		}
+        		
+        		if (reservationConn != null) {
+        			reservationConn.close();
+        		}
         		
         	}
 		} catch(Exception e){

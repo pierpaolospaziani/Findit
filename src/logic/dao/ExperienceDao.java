@@ -147,8 +147,6 @@ public class ExperienceDao {
 	
 	public static int getBooked(String reviewTable){
 		
-		String numQuery = "select count(*) from " + reviewTable;
-		
 		Connection experienceConn = null;
 		Statement experienceSt = null;
 		
@@ -160,6 +158,8 @@ public class ExperienceDao {
     			
     			experienceSt = experienceConn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
     	                ResultSet.CONCUR_READ_ONLY);
+    			
+    			String numQuery = "select count(*) from " + reviewTable;
     				    	
     			ResultSet rs = experienceSt.executeQuery(numQuery);
     			rs.next();
@@ -186,8 +186,6 @@ public class ExperienceDao {
 	
 	public static int getReviewsNumber(String reviewTable){
 		
-		String numQuery = "select count(*) from " + reviewTable + " where review != ''";
-		
 		Connection experienceConn = null;
 		Statement experienceSt = null;
 		
@@ -199,6 +197,8 @@ public class ExperienceDao {
     			
     			experienceSt = experienceConn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
     	                ResultSet.CONCUR_READ_ONLY);
+    			
+    			String numQuery = "select count(*) from " + reviewTable + " where review != ''";
     				    	
     			ResultSet rs = experienceSt.executeQuery(numQuery);
     			rs.next();
@@ -225,9 +225,6 @@ public class ExperienceDao {
 	
 	public static void addReview(Review review, String structure, int dayIn, int dayOut, String table){
 
-		String insertReviewQuery = "update " + table + " set review = '" + review.getReviewText() + "' where structure = '" + structure + "' and dateIn = '" + dayIn + "' and dateOut = '" + dayOut + "'";
-		String insertStarsQuery = "update " + table + " set stars = '" + review.getReviewVote() + "' where structure = '" + structure + "' and dateIn = '" + dayIn + "' and dateOut = '" + dayOut + "'";
-
 		Connection experienceConn = null;
 		Statement experienceSt = null;
 		
@@ -238,6 +235,9 @@ public class ExperienceDao {
     			
     			experienceSt = experienceConn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
     	                ResultSet.CONCUR_READ_ONLY);
+
+    			String insertReviewQuery = "update " + table + " set review = '" + review.getReviewText() + "' where structure = '" + structure + "' and dateIn = '" + dayIn + "' and dateOut = '" + dayOut + "'";
+    			String insertStarsQuery = "update " + table + " set stars = '" + review.getReviewVote() + "' where structure = '" + structure + "' and dateIn = '" + dayIn + "' and dateOut = '" + dayOut + "'";
 
     			experienceSt.executeUpdate(insertReviewQuery);
     			experienceSt.executeUpdate(insertStarsQuery);

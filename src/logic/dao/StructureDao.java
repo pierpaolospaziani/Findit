@@ -14,24 +14,28 @@ public class StructureDao {
     private static String url = "jdbc:mysql://localhost:3306/findit?useTimezone=true&serverTimezone=UTC";
     private static String driverClassName = "com.mysql.cj.jdbc.Driver";
     
+    private StructureDao() {
+    	
+    }
+    
     public static Structure getStructure(String structureTable, int index){
-
-		String nameQuery = "select name from " + structureTable;
 
 		Structure structure = new Structure();
 		
-		Connection con = null;
-		Statement st = null;
+		Connection structureConn = null;
+		Statement structureSt = null;
 
     	try {
         	try{
             	Class.forName(driverClassName);
-    			con = DriverManager.getConnection(url,name,pass);
+    			structureConn = DriverManager.getConnection(url,name,pass);
     			
-    			st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+    			structureSt = structureConn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
     	                ResultSet.CONCUR_READ_ONLY);
+
+    			String nameQuery = "select name from " + structureTable;
     		
-    			ResultSet rs = st.executeQuery(nameQuery);
+    			ResultSet rs = structureSt.executeQuery(nameQuery);
     			
     			if (!rs.first()) {
     				return structure;
@@ -49,8 +53,13 @@ public class StructureDao {
     			
         	} finally {
         		
-        		st.close();
-        		con.close();
+        		if (structureSt != null) {
+        			structureSt.close();
+        		}
+        		
+        		if (structureConn != null) {
+        			structureConn.close();
+        		}
     			
         	}
 		} catch(Exception e){
@@ -61,25 +70,30 @@ public class StructureDao {
 	
 	public static void setStructure(String structureTable, String structureName, String type){
         
-    	Connection con = null;
-		Statement st = null;
+    	Connection structureConn = null;
+		Statement structureSt = null;
 		
     	try {
         	try{
             	Class.forName(driverClassName);
-    			con = DriverManager.getConnection(url,name,pass);
+    			structureConn = DriverManager.getConnection(url,name,pass);
     			
-    			st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+    			structureSt = structureConn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
     	                ResultSet.CONCUR_READ_ONLY);
     			
     			String insertQuery = "insert into " + structureTable + " value ('" + structureName + "','" + type + "')";
     				    	
-    			st.executeUpdate(insertQuery);
+    			structureSt.executeUpdate(insertQuery);
     			
         	} finally {
         		
-        		st.close();
-        		con.close();
+        		if (structureSt != null) {
+        			structureSt.close();
+        		}
+        		
+        		if (structureConn != null) {
+        			structureConn.close();
+        		}
         		
         	}
 		} catch(Exception e){
@@ -89,29 +103,34 @@ public class StructureDao {
 	
 	public static int getStructures(String structureTable){
 		
-		String numQuery = "select count(*) from " + structureTable;
-		
-		Connection con = null;
-		Statement st = null;
+		Connection structureConn = null;
+		Statement structureSt = null;
 		
     	int i = 0;
 		try {
         	try{
             	Class.forName(driverClassName);
-    			con = DriverManager.getConnection(url,name,pass);
+    			structureConn = DriverManager.getConnection(url,name,pass);
     			
-    			st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+    			structureSt = structureConn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
     	                ResultSet.CONCUR_READ_ONLY);
+    			
+    			String numQuery = "select count(*) from " + structureTable;
     				    	
-    			ResultSet rs = st.executeQuery(numQuery);
+    			ResultSet rs = structureSt.executeQuery(numQuery);
     			rs.next();
     			i = rs.getInt("count(*)");
     			rs.close();
     			
         	} finally {
         		
-        		st.close();
-        		con.close();
+        		if (structureSt != null) {
+        			structureSt.close();
+        		}
+        		
+        		if (structureConn != null) {
+        			structureConn.close();
+        		}
         		
         	}
 		} catch(Exception e){

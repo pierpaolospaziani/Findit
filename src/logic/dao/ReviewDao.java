@@ -14,6 +14,10 @@ public class ReviewDao {
     private static String url = "jdbc:mysql://localhost:3306/findit?useTimezone=true&serverTimezone=UTC";
     private static String driverClassName = "com.mysql.cj.jdbc.Driver";
     
+    private ReviewDao() {
+    	
+    }
+    
 	public static Review getReview(String reviewTable, int index){
 		
 		String userQuery = "select user from " + reviewTable;
@@ -22,18 +26,18 @@ public class ReviewDao {
 
 		Review review = new Review();
 		
-		Connection con = null;
-		Statement st = null;
+		Connection reviewConn = null;
+		Statement reviewSt = null;
 		
     	try {
         	try{
             	Class.forName(driverClassName);
-    			con = DriverManager.getConnection(url,name,pass);
+    			reviewConn = DriverManager.getConnection(url,name,pass);
     			
-    			st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+    			reviewSt = reviewConn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
     	                ResultSet.CONCUR_READ_ONLY);
     		
-    			ResultSet rs = st.executeQuery(userQuery);
+    			ResultSet rs = reviewSt.executeQuery(userQuery);
     			
     			if (!rs.first()) {
     				return review;
@@ -49,7 +53,7 @@ public class ReviewDao {
     			review.setReviewUser(nome);
     			rs.close();
     			
-    			ResultSet rs3 = st.executeQuery(reviewQuery);
+    			ResultSet rs3 = reviewSt.executeQuery(reviewQuery);
     			rs3.first();
     			for (int i=1; i<index; i++) {
     				rs3.next();
@@ -58,7 +62,7 @@ public class ReviewDao {
     			review.setReviewText(reviewText);
     			rs3.close();
     			
-    			ResultSet rs4 = st.executeQuery(ratingQuery);
+    			ResultSet rs4 = reviewSt.executeQuery(ratingQuery);
     			rs4.first();
     			for (int i=1; i<index; i++) {
     				rs4.next();
@@ -69,8 +73,13 @@ public class ReviewDao {
     			
         	} finally {
         		
-        		st.close();
-        		con.close();
+        		if (reviewSt != null) {
+        			reviewSt.close();
+        		}
+        		
+        		if (reviewConn != null) {
+        			reviewConn.close();
+        		}
     			
         	}
 		} catch(Exception e){
@@ -83,36 +92,41 @@ public class ReviewDao {
 		
 		String insertQuery = "insert into " + table + " value ('" + user + "','" + review + "','" + stars + "')";
 		
-		Connection con = null;
-		Statement st = null;
+		Connection reviewConn = null;
+		Statement reviewSt = null;
 		
     	int avg = 0;
 		try {
         	try{
             	Class.forName(driverClassName);
-    			con = DriverManager.getConnection(url,name,pass);
+    			reviewConn = DriverManager.getConnection(url,name,pass);
     			
-    			st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+    			reviewSt = reviewConn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
     	                ResultSet.CONCUR_READ_ONLY);
     				    	
-    			st.executeUpdate(insertQuery);
+    			reviewSt.executeUpdate(insertQuery);
         	
-        	String avgQuery = "select AVG(stars) from " + table;
+    			String avgQuery = "select AVG(stars) from " + table;
 
-        	ResultSet rs = st.executeQuery(avgQuery);
-        	rs.next();
-        	avg = rs.getInt("AVG(stars)");
-    		rs.close();
+    			ResultSet rs = reviewSt.executeQuery(avgQuery);
+    			rs.next();
+    			avg = rs.getInt("AVG(stars)");
+    			rs.close();
     			
-        	} finally {
+        		} finally {
         		
-        		st.close();
-        		con.close();
+        		if (reviewSt != null) {
+        			reviewSt.close();
+        		}
+        		
+        		if (reviewConn != null) {
+        			reviewConn.close();
+        		}
         		
         	}
 		} catch(Exception e){
 	        System.exit(1);
-	        }
+	    }
     	
 		return avg;
 	}
