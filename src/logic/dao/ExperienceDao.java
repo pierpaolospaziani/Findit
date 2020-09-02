@@ -95,8 +95,10 @@ public class ExperienceDao {
 				rs2.close();
 				
 	    	} finally {
-	    		
-	    		experienceSt.close();
+        		
+        		if (experienceSt != null) {
+            		experienceSt.close();
+        		}
 	    		experienceConn.close();
 				
 	    	}
@@ -125,6 +127,7 @@ public class ExperienceDao {
     			experienceSt.executeUpdate(insertQuery);
     			
         	} finally {
+        		
         		if (experienceSt != null) {
             		experienceSt.close();
         		}
@@ -159,7 +162,9 @@ public class ExperienceDao {
     			
         	} finally {
         		
-        		experienceSt.close();
+        		if (experienceSt != null) {
+            		experienceSt.close();
+        		}
         		experienceConn.close();
         		
         	}
@@ -193,7 +198,9 @@ public class ExperienceDao {
     			
         	} finally {
         		
-        		experienceSt.close();
+        		if (experienceSt != null) {
+            		experienceSt.close();
+        		}
         		experienceConn.close();
         		
         	}
@@ -225,7 +232,9 @@ public class ExperienceDao {
     			
         	} finally {
         		
-        		experienceSt.close();
+        		if (experienceSt != null) {
+            		experienceSt.close();
+        		}
         		experienceConn.close();
         		
         	}
