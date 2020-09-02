@@ -99,7 +99,10 @@ public class ExperienceDao {
         		if (experienceSt != null) {
             		experienceSt.close();
         		}
-	    		experienceConn.close();
+        		
+        		if (experienceConn != null) {
+        			experienceConn.close();
+        		}
 				
 	    	}
     	
@@ -131,7 +134,10 @@ public class ExperienceDao {
         		if (experienceSt != null) {
             		experienceSt.close();
         		}
-        		experienceConn.close();
+        		
+        		if (experienceConn != null) {
+        			experienceConn.close();
+        		}
         		
         	}
 		} catch(Exception e){
@@ -165,7 +171,10 @@ public class ExperienceDao {
         		if (experienceSt != null) {
             		experienceSt.close();
         		}
-        		experienceConn.close();
+        		
+        		if (experienceConn != null) {
+        			experienceConn.close();
+        		}
         		
         	}
 			
@@ -201,7 +210,10 @@ public class ExperienceDao {
         		if (experienceSt != null) {
             		experienceSt.close();
         		}
-        		experienceConn.close();
+        		
+        		if (experienceConn != null) {
+        			experienceConn.close();
+        		}
         		
         	}
 		} catch(Exception e){
@@ -235,7 +247,10 @@ public class ExperienceDao {
         		if (experienceSt != null) {
             		experienceSt.close();
         		}
-        		experienceConn.close();
+        		
+        		if (experienceConn != null) {
+        			experienceConn.close();
+        		}
         		
         	}
 		} catch(Exception e){
