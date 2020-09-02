@@ -320,7 +320,8 @@ public class ProfileController {
 		
 		try {
 			Hotel hotel = HotelDao.getHotel(structure);
-			new StructureScene(this,hotel,hotelController);
+			int roomsNumber = RoomDao.getRoomsNumber(hotel.getHotelRooms());
+			new StructureScene(this,hotel,hotelController,roomsNumber);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

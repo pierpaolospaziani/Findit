@@ -12,7 +12,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import logic.controller.HotelController;
 import logic.controller.ProfileController;
-import logic.dao.RoomDao;
 import logic.model.Hotel;
 
 public class StructureScene {
@@ -28,7 +27,7 @@ public class StructureScene {
     
     protected Button btnAddDescription;
 
-    public StructureScene(ProfileController profileController, Hotel hotel, HotelController hotelController) {
+    public StructureScene(ProfileController profileController, Hotel hotel, HotelController hotelController, int roomsNumber) {
 
 		hBox = new HBox();
 		vBox1 = new VBox();
@@ -61,12 +60,7 @@ public class StructureScene {
         vBox2.setPrefHeight(274.0);
         vBox2.setSpacing(25.0);
 
-        try {
-			// questo qui non ci deve stare .. no chiamate dao da view
-        	label1.setText("Rooms number: " + RoomDao.getRoomsNumber(hotel.getHotelRooms()));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+        label1.setText("Rooms number: " + roomsNumber);
         label1.setFont(new Font(24.0));
         
         btnViewReviews.setMnemonicParsing(false);

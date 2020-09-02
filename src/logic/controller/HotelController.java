@@ -2,8 +2,6 @@ package logic.controller;
 
 import java.time.LocalDate;
 
-import com.sun.istack.internal.NotNull;
-
 import javafx.scene.layout.AnchorPane;
 import logic.bean.HotelBean;
 import logic.model.Hotel;
@@ -456,7 +454,6 @@ public class HotelController {
 		return false;
 	}
 	
-	@NotNull
 	public void viewReviews(boolean isHotel, String reviewTable, int indice) {
 	
 		ProfileController profileController = ProfileController.getIstance(pane);
@@ -476,7 +473,8 @@ public class HotelController {
 			e.printStackTrace();
 		}
 		
-		if (r1.getReviewUser() != null) {
+		if (r1 != null) {
+			System.out.println("è entrato cazoooooo");
 
 			ViewReviewScene viewReviewScene = new ViewReviewScene(isHotel,this,r1,r2,r3,reviewTable,indice,profileController);
 

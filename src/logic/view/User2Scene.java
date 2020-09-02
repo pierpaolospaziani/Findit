@@ -2,6 +2,8 @@ package logic.view;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -525,8 +527,9 @@ public class User2Scene extends HBox{
         btnChangeImage.setOnAction(new EventHandler<ActionEvent>(){
         	@Override
         	public void handle(ActionEvent event) {
- 				
- 				FileChooser fileChooser = new FileChooser();
+
+        		FileChooser fileChooser = new FileChooser();
+ 				FileInputStream inputStream = null;
  				
  				window.setTitle("Select Image");
  				
@@ -539,10 +542,16 @@ public class User2Scene extends HBox{
  	                user.setUserImage(image);
  	                
  	                try {
- 	                	FileInputStream inputStream = new FileInputStream(file);
+ 	                	inputStream = new FileInputStream(file);
 						UserDao.setImage(user.getUserName(), inputStream);
 					} catch (Exception e) {
 						e.printStackTrace();
+					} finally {
+						try {
+							inputStream.close();
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
 					}
  	                
  	                userImage.setImage(image);
