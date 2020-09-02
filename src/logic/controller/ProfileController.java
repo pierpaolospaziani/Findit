@@ -306,9 +306,8 @@ public class ProfileController {
 	}
 	
 	public void registerStructure(String ownerName, HotelBean bean) {
-		
 		try {
-			HotelDao.setHotel(bean.getName(), ownerName, bean.getType(), bean.getCity(), bean.getAddress(), 0, bean.getParking(), bean.getRestaurant(), bean.getRoomService(), bean.getGym());
+			HotelDao.setHotel(bean, ownerName, 0);
 			OwnerDao.setStructure(ownerName, bean.getName());
 		} catch (Exception e) {
 			e.printStackTrace();

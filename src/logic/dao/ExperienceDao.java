@@ -161,10 +161,10 @@ public class ExperienceDao {
     			
     			String numBookedQuery = "select count(*) from " + reviewTable;
     				    	
-    			ResultSet rs = experienceSt.executeQuery(numBookedQuery);
-    			rs.next();
-    			i = rs.getInt("count(*)");
-    			rs.close();
+    			ResultSet bookedRs = experienceSt.executeQuery(numBookedQuery);
+    			bookedRs.next();
+    			i = bookedRs.getInt("count(*)");
+    			bookedRs.close();
     			
         	} finally {
         		
@@ -200,10 +200,10 @@ public class ExperienceDao {
     			
     			String numReviewsQuery = "select count(*) from " + reviewTable + " where review != ''";
     				    	
-    			ResultSet rs = experienceSt.executeQuery(numReviewsQuery);
-    			rs.next();
-    			i = rs.getInt("count(*)");
-    			rs.close();
+    			ResultSet reviewsRs = experienceSt.executeQuery(numReviewsQuery);
+    			reviewsRs.next();
+    			i = reviewsRs.getInt("count(*)");
+    			reviewsRs.close();
     			
         	} finally {
         		

@@ -249,11 +249,12 @@ public class HotelRegistrationScene extends VBox {
 				boolean addressOk = false;
 				boolean typeOk = false;
 				
-				getParamReg(nameOk, cityOk, addressOk, bean);
+				boolean ok = false;
+				
+				ok = getParamReg(nameOk, cityOk, addressOk, typeOk, bean);
 			
 				
-				if (nameOk && cityOk && addressOk && typeOk) {
-			        
+				if (ok) {
 					
 					bean.setGym(checkBoxFitnessCenter.isSelected());				
 					bean.setParking(checkBoxParking.isSelected());					
@@ -283,7 +284,7 @@ public class HotelRegistrationScene extends VBox {
 		});
     }
     
-    private void getParamReg(boolean nameOk, boolean cityOk, boolean addressOk, HotelBean bean) {
+    private boolean getParamReg(boolean nameOk, boolean cityOk, boolean addressOk, boolean typeOk, HotelBean bean) {
     	
     	String black = "-fx-text-fill: black";
         String red = "-fx-text-fill: red";
@@ -317,6 +318,21 @@ public class HotelRegistrationScene extends VBox {
         	hotelLabel1.setStyle(red);
         }
 		
+		if (checkBoxapartaments.isSelected() ||
+				checkBoxBeB.isSelected() ||
+				checkBoxHostels.isSelected() ||
+				checkBoxHotels.isSelected()) {
+        	label0.setStyle(black);
+			typeOk = true;
+		} else {
+        	label0.setStyle(red);
+		}
+		
+		if (nameOk && cityOk && addressOk && typeOk) {
+			return true;
+		}
+		
+		return false;
     }
     
     private void checkBoxType() {

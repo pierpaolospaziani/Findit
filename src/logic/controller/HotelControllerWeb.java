@@ -139,14 +139,7 @@ public class HotelControllerWeb {
 					
 					index++;
 					// esce qui con null pointer excption
-					hotel1 = HotelDao.searchHotel(bean.getCity(),
-							bean.getType(),
-							bean.getParking(),
-							bean.getRestaurant(),
-							bean.getRoomService(),
-							bean.getGym(),
-							stars,
-							index);
+					hotel1 = HotelDao.searchHotel(bean, stars, index);
 					
 					//System.out.println(hotel1.getName());
 					
@@ -233,14 +226,7 @@ public class HotelControllerWeb {
 					
 					index++;
 					
-					hotel2 = HotelDao.searchHotel(bean.getCity(),
-							bean.getType(),
-							bean.getParking(),
-							bean.getRestaurant(),
-							bean.getRoomService(),
-							bean.getGym(),
-							stars,
-							index);
+					hotel2 = HotelDao.searchHotel(bean, stars, index);
 					//System.out.println(hotel2.getName());
 					
 					if (hotel2.getHotelName() != null) {
@@ -315,14 +301,7 @@ public class HotelControllerWeb {
 					
 					index++;
 					
-					hotel3 = HotelDao.searchHotel(bean.getCity(),
-							bean.getType(),
-							bean.getParking(),
-							bean.getRestaurant(),
-							bean.getRoomService(),
-							bean.getGym(),
-							stars,
-							index);
+					hotel3 = HotelDao.searchHotel(bean, stars, index);
 					//System.out.println(hotel3.getName());
 					
 					if (hotel3.getHotelName() != null) {

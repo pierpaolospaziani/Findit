@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import logic.bean.HotelBean;
 import logic.model.Hotel;
 
 public class HotelDao {
@@ -155,18 +156,17 @@ public class HotelDao {
 		return hotel;
     }
 	
-	public static boolean setHotel(
-			String nome, 
-			String owner, 
-			String type,
-			String city,
-			String address,
-			int rating,
-			boolean parking,
-			boolean restaurant,
-			boolean roomService,
-			boolean gym){
+	public static boolean setHotel(HotelBean bean, String owner, int rating){
 
+		String nome = bean.getName();
+		String type = bean.getType();
+		String city = bean.getCity();
+		String address = bean.getAddress();
+		boolean parking = bean.getParking();
+		boolean restaurant = bean.getRestaurant();
+		boolean roomService = bean.getRoomService();
+		boolean gym = bean.getGym();
+		
 		String rooms = (nome + "Rooms").replaceAll("\\s+","");
 		String agenda = (nome + "Agenda").replaceAll("\\s+","");
 		String reviewsTable = (nome + "Reviews").replaceAll("\\s+","");
@@ -177,7 +177,7 @@ public class HotelDao {
 		Statement hotelSt = null;
 		
 		boolean result = false;
-		
+
     	try {
         	try {
             	Class.forName(driverClassName);
@@ -262,12 +262,19 @@ public class HotelDao {
     	return result;
     }
 	
-	public static Hotel searchHotel(String city, String type, Boolean parking, Boolean restaurant, Boolean roomService, Boolean gym, int stars, int index){
+	public static Hotel searchHotel(HotelBean bean, int stars, int index){
     	
     	Hotel hotel = new Hotel();
     	
     	Connection hotelConn = null;
 		Statement hotelSt = null;
+
+		String city = bean.getCity();
+		String type = bean.getType();
+		Boolean parking = bean.getParking();
+		Boolean restaurant = bean.getRestaurant();
+		Boolean roomService = bean.getRoomService();
+		Boolean gym = bean.getGym();
 		
     	try {
         	try {
@@ -286,22 +293,22 @@ public class HotelDao {
     				nameQuery = nameQuery + " and type = '" + type + "'";
     			}
 
-    			if (parking) {
+    			if (Boolean.TRUE.equals(parking)) {
     				serachQuery = serachQuery + " and parking = '" + parking + "'";
     				nameQuery = nameQuery + " and parking = '" + parking + "'";
     			}
     			
-    			if (restaurant) {
+    			if (Boolean.TRUE.equals(restaurant)) {
     				serachQuery = serachQuery + " and restaurant = '" + restaurant + "'";
     				nameQuery = nameQuery + " and restaurant = '" + restaurant + "'";
     			}
     			
-    			if (roomService) {
+    			if (Boolean.TRUE.equals(roomService)) {
     				serachQuery = serachQuery + " and roomService = '" + roomService + "'";
     				nameQuery = nameQuery + " and roomService = '" + roomService + "'";
     			}
     			
-    			if (gym) {
+    			if (Boolean.TRUE.equals(gym)) {
     				serachQuery = serachQuery + " and gym = '" + gym + "'";
     				nameQuery = nameQuery + " and gym = '" + gym + "'";
     			}
