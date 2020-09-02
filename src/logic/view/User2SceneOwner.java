@@ -142,10 +142,9 @@ public class User2SceneOwner extends HBox{
         Image photo = owner.getOwnerImage();
         
         if (photo == null) {
-        	userImageOwner.setImage(new Image(getClass().getResource("account.jpg").toExternalForm()));
-        } else {
-            userImageOwner.setImage(photo);
+        	photo = new Image(getClass().getResource("account.jpg").toExternalForm());
         }
+        userImageOwner.setImage(photo);
         
         VBox.setMargin(userImageOwner, new Insets(0.0));
 
@@ -205,39 +204,23 @@ public class User2SceneOwner extends HBox{
         imageView1Str.setPickOnBounds(true);
         imageView1Str.setPreserveRatio(true);
         
+        photo = new Image(getClass().getResource(struct).toExternalForm());
         
-        
-        if (photo == null) {
-        	imageView1Str.setImage(new Image(getClass().getResource(struct).toExternalForm()));
-        } else {
-        	imageView1Str.setImage(photo);
-        }
+        imageView1Str.setImage(photo);
 
         imageView2Str.setFitHeight(150.0);
         imageView2Str.setFitWidth(150.0);
         imageView2Str.setPickOnBounds(true);
         imageView2Str.setPreserveRatio(true);
         
-    
-        
-        if (photo == null) {
-        	imageView2Str.setImage(new Image(getClass().getResource(struct).toExternalForm()));
-        } else {
-        	imageView2Str.setImage(photo);
-        }
+        imageView2Str.setImage(photo);
 
         imageView3Str.setFitHeight(150.0);
         imageView3Str.setFitWidth(150.0);
         imageView3Str.setPickOnBounds(true);
         imageView3Str.setPreserveRatio(true);
         
-  
-        
-        if (photo == null) {
-        	imageView3Str.setImage(new Image(getClass().getResource(struct).toExternalForm()));
-        } else {
-        	imageView3Str.setImage(photo);
-        }
+        imageView3Str.setImage(photo);
         
         hBox3.setAlignment(javafx.geometry.Pos.CENTER);
         hBox3.setPrefHeight(200.0);
@@ -250,39 +233,21 @@ public class User2SceneOwner extends HBox{
         imageView4Str.setPickOnBounds(true);
         imageView4Str.setPreserveRatio(true);
         
-   
-        
-        if (photo == null) {
-        	imageView4Str.setImage(new Image(getClass().getResource(struct).toExternalForm()));
-        } else {
-        	imageView4Str.setImage(photo);
-        }
+        imageView4Str.setImage(photo);
 
         imageView5Str.setFitHeight(150.0);
         imageView5Str.setFitWidth(150.0);
         imageView5Str.setPickOnBounds(true);
         imageView5Str.setPreserveRatio(true);
         
-
-        
-        if (photo == null) {
-        	imageView5Str.setImage(new Image(getClass().getResource(struct).toExternalForm()));
-        } else {
-        	imageView5Str.setImage(photo);
-        }
+        imageView5Str.setImage(photo);
 
         imageView6Str.setFitHeight(150.0);
         imageView6Str.setFitWidth(150.0);
         imageView6Str.setPickOnBounds(true);
         imageView6Str.setPreserveRatio(true);
         
-   
-        
-        if (photo == null) {
-        	imageView6Str.setImage(new Image(getClass().getResource(struct).toExternalForm()));
-        } else {
-        	imageView6Str.setImage(photo);
-        }
+        imageView6Str.setImage(photo);
 
         hBoxBtnStr.setAlignment(javafx.geometry.Pos.CENTER);
         hBoxBtnStr.setPrefHeight(63.0);
@@ -313,37 +278,38 @@ public class User2SceneOwner extends HBox{
         
         int page = controller.getPage();
 
-        txtNumberPage.setText(String.valueOf(page));strName1.setFont(new Font(24.0));
+        txtNumberPage.setText(String.valueOf(page));
+        
+        strName1.setFont(new Font(24.0));
         strName1.setPrefHeight(50.0);
         String name = ((Structure)listStruct.get(0)).getName();
-        if (name == null) {
-        	strName1.setText("----------1");
-        	strName1.setDisable(true);
-        } else {
+    	strName1.setText("----------1");
+    	strName1.setDisable(true);
+        if (name != null) {
         	strName1.setText(name);
         	strName1.setDisable(false);
             strName1.setOnMouseEntered(evt -> strName1.setUnderline(true));
             strName1.setOnMouseExited(evt -> strName1.setUnderline(false));
         }
+        
         strName2.setFont(new Font(24.0));
         strName2.setPrefHeight(50.0);
         name = ((Structure)listStruct.get(1)).getName();
-        if (name == null) {
-        	strName2.setText("----------2");
-        	strName2.setDisable(true);
-        } else {
+    	strName2.setText("----------2");
+    	strName2.setDisable(true);
+        if (name != null) {
         	strName2.setText(name);
         	strName2.setDisable(false);
             strName2.setOnMouseEntered(evt -> strName2.setUnderline(true));
             strName2.setOnMouseExited(evt -> strName2.setUnderline(false));
         }
+        
         strName3.setFont(new Font(24.0));
         strName3.setPrefHeight(50.0);
         name = ((Structure)listStruct.get(2)).getName();
-        if (name == null) {
-        	strName3.setText("----------3");
-        	strName3.setDisable(true);
-        } else {
+    	strName3.setText("----------3");
+    	strName3.setDisable(true);
+        if (name != null) {
         	strName3.setText(name);
         	strName3.setDisable(false);
             strName3.setOnMouseEntered(evt -> strName3.setUnderline(true));
@@ -353,10 +319,9 @@ public class User2SceneOwner extends HBox{
         strName4.setFont(new Font(24.0));
         strName4.setPrefHeight(50.0);
         name = ((Structure)listStruct.get(3)).getName();
-        if (name == null) {
-        	strName4.setText("----------4");
-        	strName4.setDisable(true);
-        } else {
+    	strName4.setText("----------4");
+    	strName4.setDisable(true);
+        if (name != null) {
         	strName4.setText(name);
         	strName4.setDisable(false);
             strName4.setOnMouseEntered(evt -> strName4.setUnderline(true));
@@ -366,10 +331,9 @@ public class User2SceneOwner extends HBox{
         strName5.setFont(new Font(24.0));
         strName5.setPrefHeight(50.0);
         name = ((Structure)listStruct.get(4)).getName();
-        if (name == null) {
-        	strName5.setText("----------5");
-        	strName5.setDisable(true);
-        } else {
+    	strName5.setText("----------5");
+    	strName5.setDisable(true);
+        if (name != null) {
         	strName5.setText(name);
         	strName5.setDisable(false);
             strName5.setOnMouseEntered(evt -> strName5.setUnderline(true));
@@ -379,10 +343,9 @@ public class User2SceneOwner extends HBox{
         strName6.setFont(new Font(24.0));
         strName6.setPrefHeight(50.0);
         name = ((Structure)listStruct.get(5)).getName();
-        if (name == null) {
-        	strName6.setText("----------6");
-        	strName6.setDisable(true);
-        } else {
+    	strName6.setText("----------6");
+    	strName6.setDisable(true);
+        if (name != null) {
         	strName6.setText(name);
         	strName6.setDisable(false);
             strName6.setOnMouseEntered(evt -> strName6.setUnderline(true));
@@ -481,25 +444,29 @@ public class User2SceneOwner extends HBox{
  				int indiceOwn = controller.getIndice();
  				
  				if (indiceOwn > 6) {
- 					if ((indiceOwn%6) == 0) {
+ 					
+ 					int modOwnIndice = indiceOwn%6;
+ 					
+ 					if (modOwnIndice == 0) {
  	 					indiceOwn = indiceOwn - 12;
- 	 					controller.changeExperiences(indiceOwn,1);
- 					} else if ((indiceOwn%6) == 1) {
+ 	 					//controller.changeExperiences(indiceOwn,1);
+ 					} else if (modOwnIndice == 1) {
  	 	 				indiceOwn = indiceOwn - 7;
- 	 					controller.changeExperiences(indiceOwn,1);
- 	 				} else if ((indiceOwn%6) == 2){
+ 	 	 				//controller.changeExperiences(indiceOwn,1);
+ 	 				} else if (modOwnIndice == 2){
  	 					indiceOwn = indiceOwn - 8;
- 	 					controller.changeExperiences(indiceOwn,1);
- 	 				} else if ((indiceOwn%6) == 3){
+ 	 					//controller.changeExperiences(indiceOwn,1);
+ 	 				} else if (modOwnIndice == 3){
  	 					indiceOwn = indiceOwn - 9;
- 	 					controller.changeExperiences(indiceOwn,1);
- 	 				} else if ((indiceOwn%6) == 4){
+ 	 					//controller.changeExperiences(indiceOwn,1);
+ 	 				} else if (modOwnIndice == 4){
  	 					indiceOwn = indiceOwn - 10;
- 	 					controller.changeExperiences(indiceOwn,1);
+ 	 					//controller.changeExperiences(indiceOwn,1);
  	 				} else {
  	 					indiceOwn = indiceOwn - 11;
- 	 					controller.changeExperiences(indiceOwn,1);
+ 	 					//controller.changeExperiences(indiceOwn,1);
  	 				}
+	 				controller.changeExperiences(indiceOwn,1);
  				}
  			}
  		});

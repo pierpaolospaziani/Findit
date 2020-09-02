@@ -219,10 +219,9 @@ public class User2Scene extends HBox{
         photo = ((Experience)listExp.get(0)).getImage();
         
         if (photo == null) {
-        	imageView1.setImage(new Image(getClass().getResource(struct).toExternalForm()));
-        } else {
-        	imageView1.setImage(photo);
+        	photo = new Image(getClass().getResource(struct).toExternalForm());
         }
+    	imageView1.setImage(photo);
 
         imageView2.setFitHeight(150.0);
         imageView2.setFitWidth(150.0);
@@ -232,10 +231,9 @@ public class User2Scene extends HBox{
         photo = ((Experience)listExp.get(1)).getImage();
         
         if (photo == null) {
-        	imageView2.setImage(new Image(getClass().getResource(struct).toExternalForm()));
-        } else {
-        	imageView2.setImage(photo);
+        	photo = new Image(getClass().getResource(struct).toExternalForm());
         }
+    	imageView2.setImage(photo);
 
         imageView3.setFitHeight(150.0);
         imageView3.setFitWidth(150.0);
@@ -245,10 +243,9 @@ public class User2Scene extends HBox{
         photo = ((Experience)listExp.get(2)).getImage();
         
         if (photo == null) {
-        	imageView3.setImage(new Image(getClass().getResource(struct).toExternalForm()));
-        } else {
-        	imageView3.setImage(photo);
+        	photo = new Image(getClass().getResource(struct).toExternalForm());
         }
+    	imageView3.setImage(photo);
         
         hBox3.setAlignment(javafx.geometry.Pos.CENTER);
         hBox3.setPrefHeight(200.0);
@@ -264,10 +261,9 @@ public class User2Scene extends HBox{
         photo = ((Experience)listExp.get(3)).getImage();
         
         if (photo == null) {
-        	imageView4.setImage(new Image(getClass().getResource(struct).toExternalForm()));
-        } else {
-        	imageView4.setImage(photo);
+        	photo = new Image(getClass().getResource(struct).toExternalForm());
         }
+    	imageView4.setImage(photo);
 
         imageView5.setFitHeight(150.0);
         imageView5.setFitWidth(150.0);
@@ -277,10 +273,9 @@ public class User2Scene extends HBox{
         photo = ((Experience)listExp.get(4)).getImage();
         
         if (photo == null) {
-        	imageView5.setImage(new Image(getClass().getResource(struct).toExternalForm()));
-        } else {
-        	imageView5.setImage(photo);
+        	photo = new Image(getClass().getResource(struct).toExternalForm());
         }
+    	imageView5.setImage(photo);
 
         imageView6.setFitHeight(150.0);
         imageView6.setFitWidth(150.0);
@@ -290,10 +285,9 @@ public class User2Scene extends HBox{
         photo = ((Experience)listExp.get(5)).getImage();
         
         if (photo == null) {
-        	imageView6.setImage(new Image(getClass().getResource(struct).toExternalForm()));
-        } else {
-        	imageView6.setImage(photo);
+        	photo = new Image(getClass().getResource(struct).toExternalForm());
         }
+    	imageView6.setImage(photo);
 
         hBoxBtn.setAlignment(javafx.geometry.Pos.CENTER);
         hBoxBtn.setPrefHeight(63.0);
@@ -329,34 +323,33 @@ public class User2Scene extends HBox{
         expName1.setFont(new Font(24.0));
         expName1.setPrefHeight(50.0);
         String name = ((Experience)listExp.get(0)).getName();
-        if (name == null) {
-        	expName1.setText("----------1");
-        	expName1.setDisable(true);
-        } else {
+    	expName1.setText("----------1");
+    	expName1.setDisable(true);
+        if (name != null) {
         	expName1.setText(name);
         	expName1.setDisable(false);
             expName1.setOnMouseEntered(evt -> expName1.setUnderline(true));
             expName1.setOnMouseExited(evt -> expName1.setUnderline(false));
         }
+        
         expName2.setFont(new Font(24.0));
         expName2.setPrefHeight(50.0);
         name = ((Experience)listExp.get(1)).getName();
-        if (name == null) {
-        	expName2.setText("----------2");
-        	expName2.setDisable(true);
-        } else {
+    	expName2.setText("----------2");
+    	expName2.setDisable(true);
+        if (name != null) {
         	expName2.setText(name);
         	expName2.setDisable(false);
             expName2.setOnMouseEntered(evt -> expName2.setUnderline(true));
             expName2.setOnMouseExited(evt -> expName2.setUnderline(false));
         }
+        
         expName3.setFont(new Font(24.0));
         expName3.setPrefHeight(50.0);
         name = ((Experience)listExp.get(2)).getName();
-        if (name == null) {
-        	expName3.setText("----------3");
-        	expName3.setDisable(true);
-        } else {
+    	expName3.setText("----------3");
+    	expName3.setDisable(true);
+        if (name != null) {
         	expName3.setText(name);
         	expName3.setDisable(false);
             expName3.setOnMouseEntered(evt -> expName3.setUnderline(true));
@@ -366,10 +359,9 @@ public class User2Scene extends HBox{
         expName4.setFont(new Font(24.0));
         expName4.setPrefHeight(50.0);
         name = ((Experience)listExp.get(3)).getName();
-        if (name == null) {
-        	expName4.setText("----------4");
-        	expName4.setDisable(true);
-        } else {
+    	expName4.setText("----------4");
+    	expName4.setDisable(true);
+        if (name != null) {
         	expName4.setText(name);
         	expName4.setDisable(false);
             expName4.setOnMouseEntered(evt -> expName4.setUnderline(true));
@@ -379,10 +371,9 @@ public class User2Scene extends HBox{
         expName5.setFont(new Font(24.0));
         expName5.setPrefHeight(50.0);
         name = ((Experience)listExp.get(4)).getName();
-        if (name == null) {
-        	expName5.setText("----------5");
-        	expName5.setDisable(true);
-        } else {
+    	expName5.setText("----------5");
+    	expName5.setDisable(true);
+        if (name != null) {
         	expName5.setText(name);
         	expName5.setDisable(false);
             expName5.setOnMouseEntered(evt -> expName5.setUnderline(true));
@@ -392,10 +383,9 @@ public class User2Scene extends HBox{
         expName6.setFont(new Font(24.0));
         expName6.setPrefHeight(50.0);
         name = ((Experience)listExp.get(5)).getName();
-        if (name == null) {
-        	expName6.setText("----------6");
-        	expName6.setDisable(true);
-        } else {
+    	expName6.setText("----------6");
+    	expName6.setDisable(true);
+        if (name != null) {
         	expName6.setText(name);
         	expName6.setDisable(false);
             expName6.setOnMouseEntered(evt -> expName6.setUnderline(true));
@@ -475,25 +465,29 @@ public class User2Scene extends HBox{
  				int indice = controller.getIndice();
  				
  				if (indice > 6) {
- 					if ((indice%6) == 0) {
+ 					
+ 					int modIndice = indice%6;
+ 					
+ 					if (modIndice == 0) {
  	 					indice = indice - 12;
- 	 					controller.changeExperiences(indice,0);
- 					} else if ((indice%6) == 1) {
+ 	 					//controller.changeExperiences(indice,0);
+ 					} else if (modIndice == 1) {
  	 	 				indice = indice - 7;
- 	 					controller.changeExperiences(indice,0);
- 	 				} else if ((indice%6) == 2){
+ 	 	 				//controller.changeExperiences(indice,0);
+ 	 				} else if (modIndice == 2){
  	 					indice = indice - 8;
- 	 					controller.changeExperiences(indice,0);
- 	 				} else if ((indice%6) == 3){
+ 	 					//controller.changeExperiences(indice,0);
+ 	 				} else if (modIndice == 3){
  	 					indice = indice - 9;
- 	 					controller.changeExperiences(indice,0);
- 	 				} else if ((indice%6) == 4){
+ 	 					//controller.changeExperiences(indice,0);
+ 	 				} else if (modIndice == 4){
  	 					indice = indice - 10;
- 	 					controller.changeExperiences(indice,0);
+ 	 					//controller.changeExperiences(indice,0);
  	 				} else {
  	 					indice = indice - 11;
- 	 					controller.changeExperiences(indice,0);
+ 	 					//controller.changeExperiences(indice,0);
  	 				}
+	 				controller.changeExperiences(indice,0);
  				}
  			}
  		});
