@@ -15,7 +15,6 @@ import javax.imageio.ImageIO;
 
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
-import logic.model.User;
 import logic.model.UserWeb;
 
 public class UserWebDao {
@@ -34,18 +33,19 @@ public class UserWebDao {
     	
     	UserWeb user = new UserWeb();
     	
-    	Connection con = null;
-		Statement st = null;
+    	Connection userWebConn = null;
+		Statement userWebSt = null;
+		InputStream userWebBinaryStream = null;
 		
     	try {
         	try {
             	Class.forName(driverClassName);
-    			con = DriverManager.getConnection(url,name,pass);
+    			userWebConn = DriverManager.getConnection(url,name,pass);
     			
-    			st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+    			userWebSt = userWebConn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
     	                ResultSet.CONCUR_READ_ONLY);
     		
-    			ResultSet rs = st.executeQuery(nameUserQuery);
+    			ResultSet rs = userWebSt.executeQuery(nameUserQuery);
     		
     			rs.next();
     			
@@ -60,7 +60,7 @@ public class UserWebDao {
     			
     			rs.close();
     			
-    			ResultSet rs1 = st.executeQuery(psswUserQuery);
+    			ResultSet rs1 = userWebSt.executeQuery(psswUserQuery);
     		
     			rs1.next();
     		
@@ -70,7 +70,7 @@ public class UserWebDao {
     		
     			rs1.close();
     			
-    			ResultSet rs3 = st.executeQuery(reviewsTableUserQuery);
+    			ResultSet rs3 = userWebSt.executeQuery(reviewsTableUserQuery);
     		
     			rs3.next();
     		
@@ -80,7 +80,7 @@ public class UserWebDao {
     		
     			rs3.close();
     			
-    			ResultSet rs2 = st.executeQuery(imageUserQuery);
+    			ResultSet rs2 = userWebSt.executeQuery(imageUserQuery);
     			
     			rs2.next();
     			
@@ -90,9 +90,9 @@ public class UserWebDao {
 
     				byte[] imageByte = blob.getBytes(1, (int) blob.length());
     				
-    				InputStream binaryStream = new ByteArrayInputStream(imageByte);
+    				userWebBinaryStream = new ByteArrayInputStream(imageByte);
     				
-    				BufferedImage bf = ImageIO.read(binaryStream);
+    				BufferedImage bf = ImageIO.read(userWebBinaryStream);
     				
     				Image  img = SwingFXUtils.toFXImage(bf, null);
     				
@@ -108,8 +108,17 @@ public class UserWebDao {
         
         	} finally {
         		
-        		st.close();
-        		con.close();
+        		if (userWebSt != null) {
+        			userWebSt.close();
+        		}
+        		
+        		if (userWebConn != null) {
+        			userWebConn.close();
+        		}
+        		
+        		if (userWebBinaryStream != null) {
+        			userWebBinaryStream.close();
+        		}
         		
         	}
 		} catch(Exception e){
@@ -126,30 +135,30 @@ public class UserWebDao {
     	String searchOwnerQuery = "select name from owners where name = '" + username + "'";
     	
     	
-    	Connection con = null;
-		Statement st = null;
+    	Connection userWebConn = null;
+		Statement userWebSt = null;
 		
     	try {
         	try{
             	Class.forName(driverClassName);
-    			con = DriverManager.getConnection(url,name,pass);
+    			userWebConn = DriverManager.getConnection(url,name,pass);
     			
-    			st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+    			userWebSt = userWebConn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
     	                ResultSet.CONCUR_READ_ONLY);
     		
-    			ResultSet rs = st.executeQuery(searchUserQuery);
+    			ResultSet rs = userWebSt.executeQuery(searchUserQuery);
     			
     			if (!rs.first()) {
 
     				rs.close();
     				
-    				ResultSet rs2 = st.executeQuery(searchOwnerQuery);
+    				ResultSet rs2 = userWebSt.executeQuery(searchOwnerQuery);
     				
     				if (!rs2.first()) {
 
     					rs2.close();
     					
-    					java.sql.DatabaseMetaData meta = con.getMetaData();
+    					java.sql.DatabaseMetaData meta = userWebConn.getMetaData();
 
     					String variableReviewsTable = reviewsTable;
     					
@@ -169,8 +178,8 @@ public class UserWebDao {
     							String insertQuery = "insert into users value ('" + username + "','" + password + "','" + reviewsTable + "','" + null + "')";
     					    	String createReviewsQuery = "create table " + reviewsTable + " (structure varchar(20),review text,stars int,dateIn int,dateOut int)";
     				
-    					    	st.executeUpdate(insertQuery);
-    							st.executeUpdate(createReviewsQuery);
+    					    	userWebSt.executeUpdate(insertQuery);
+    							userWebSt.executeUpdate(createReviewsQuery);
     						}
     					}
 
@@ -183,8 +192,13 @@ public class UserWebDao {
     			}
         	} finally {
         		
-        		st.close();
-        		con.close();
+        		if (userWebSt != null) {
+        			userWebSt.close();
+        		}
+        		
+        		if (userWebConn != null) {
+        			userWebConn.close();
+        		}
         		
         	}
 		} catch(Exception e){
@@ -197,26 +211,33 @@ public class UserWebDao {
 		
     	String insertQuery = "UPDATE users SET photo = ? WHERE name = '" + username + "'";
 		
-		Connection con = null;
+		Connection userWebConn = null;
+		PreparedStatement ps = null;
 		
     	try {
         	try {
             	Class.forName(driverClassName);
-    			con = DriverManager.getConnection(url,name,pass);
+    			userWebConn = DriverManager.getConnection(url,name,pass);
     			
-        		con.setAutoCommit(false);
+        		userWebConn.setAutoCommit(false);
         		
-        		PreparedStatement ps = con.prepareStatement(insertQuery);
+        		ps = userWebConn.prepareStatement(insertQuery);
         		
         		ps.setBinaryStream(1, image);
         		
         		ps.executeUpdate();
         		
-        		con.commit();
+        		userWebConn.commit();
         		
         	} finally {
         		
-        		con.close();
+        		if (userWebConn != null) {
+        			userWebConn.close();
+        		}
+        		
+        		if (ps != null) {
+        			ps.close();
+        		}
         		
         	}
 		} catch(Exception e){

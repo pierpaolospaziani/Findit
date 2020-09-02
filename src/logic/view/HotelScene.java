@@ -67,7 +67,6 @@ public class HotelScene extends VBox{
     private boolean cityOk = false;
     private boolean dateOk = false;
     private boolean peopleOk = false;
-  
     
     private int people;
     
@@ -423,36 +422,40 @@ public class HotelScene extends VBox{
     	  
     	String city = hotelTextField.getText();
     	String red = "-fx-text-fill: red"; 
+    	String black = "-fx-text-fill: black"; 
     	 
-			if (!city.equals("")) {
-				hotelLabel.setStyle("-fx-text-fill: black");
-	        	bean.setCity(city);
-	        	cityOk = true;
-	        } else {
-	        	hotelLabel.setStyle(red);
-	        }
-			
-			if (!hotelTextField0.getText().equals("")) {
-				try {
-					people = Integer.valueOf(hotelTextField0.getText());
-				} catch (NumberFormatException e) {
-					hotelLabel2.setStyle(red);
-				}
-				if (people > 0) {
-					hotelLabel2.setStyle("-fx-text-fill: black");
-		        	bean.setNumPeople(people);
-		        	peopleOk = true;
-				} else {
-					hotelLabel2.setStyle(red);
-		        }
-	        } else {
-	        	hotelLabel2.setStyle(red);
-	        }
-			
-			if (!dateOk) {
-				hotelLabel0.setStyle(red);
-				hotelLabel1.setStyle(red);
+    	if (!city.equals("")) {
+			hotelLabel.setStyle(black);
+        	bean.setCity(city);
+        	cityOk = true;
+        } else {
+        	hotelLabel.setStyle(red);
+        }
+		
+		if (!hotelTextField0.getText().equals("")) {
+			try {
+				people = Integer.valueOf(hotelTextField0.getText());
+			} catch (NumberFormatException e) {
+				hotelLabel2.setStyle(red);
 			}
+			if (people > 0) {
+				hotelLabel2.setStyle(black);
+	        	bean.setNumPeople(people);
+	        	peopleOk = true;
+			} else {
+				hotelLabel2.setStyle(red);
+	        }
+        } else {
+        	hotelLabel2.setStyle(red);
+        }
+		
+		if (!dateOk) {
+			hotelLabel0.setStyle(red);
+			hotelLabel1.setStyle(red);
+		} else {
+			hotelLabel0.setStyle(black);
+			hotelLabel1.setStyle(black);
+		}
     }
     
     

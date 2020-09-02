@@ -116,7 +116,6 @@ public class User2Scene extends HBox{
         
         String transparent = "-fx-background-color: transparent;";
         
-        //Block events to other windows
         window.initModality(Modality.APPLICATION_MODAL);
         window.setMinWidth(250);
         

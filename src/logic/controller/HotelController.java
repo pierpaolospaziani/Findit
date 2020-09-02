@@ -2,6 +2,8 @@ package logic.controller;
 
 import java.time.LocalDate;
 
+import com.sun.istack.internal.NotNull;
+
 import javafx.scene.layout.AnchorPane;
 import logic.bean.HotelBean;
 import logic.model.Hotel;
@@ -454,6 +456,7 @@ public class HotelController {
 		return false;
 	}
 	
+	@NotNull
 	public void viewReviews(boolean isHotel, String reviewTable, int indice) {
 	
 		ProfileController profileController = ProfileController.getIstance(pane);
