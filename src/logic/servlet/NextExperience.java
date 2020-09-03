@@ -39,7 +39,7 @@ public class NextExperience extends HttpServlet {
 		if(user != null) {
 			if((indice%6) == 0) {
 				bean.getExpList().clear();  
-				controller.changeExperiences(indice,0,bean);
+				controller.changeExperiences(indice,bean);
 			}
 			
 			RequestDispatcher view = request.getRequestDispatcher("profilePage2.jsp");
@@ -48,7 +48,7 @@ public class NextExperience extends HttpServlet {
 		}else if(owner != null) {
 			if((indice%6) == 0) {
 				bean.getStructList().clear();  
-				controller.changeExperiences(indice,1,bean);
+				controller.changeStructures(indice,bean);
 			}
 			
 			RequestDispatcher view1 = request.getRequestDispatcher("ownerPage.jsp");

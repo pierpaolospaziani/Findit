@@ -156,13 +156,13 @@ public class ProfileController {
 
 			if (user.getUserLogged()) {
 				
-				changeExperiences(0,0);
+				changeExperiences(0);
 				pane.getChildren().clear();
 				pane.getChildren().add(userScene);
 				
 			} else {
 
-				changeExperiences(0,1);
+				changeStructures(0);
 				pane.getChildren().clear();
 				pane.getChildren().add(userSceneOwner);
 			}
@@ -170,7 +170,85 @@ public class ProfileController {
 		}
 	}
 	
-	public void changeExperiences(int index, int tipo) {
+	public void changeStructures(int index) {
+	
+		
+		try {
+			
+			boolean newPage = false;
+        	
+        	if (index == 0) {
+        		newPage = true;
+        	}
+			
+			String table;
+			table = owner.getOwnerStructures();
+    		List<Structure> listStruct = new ArrayList<>(6);
+    		
+    		index++;
+			
+			Structure structure1 = StructureDao.getStructure(table, index);
+			
+			if (structure1.getName() != null) {
+				
+				setNumPage(index);
+				
+				setIndice(index);
+				
+				newPage = true;
+			}
+			
+			if (newPage) {
+				
+				index++;
+				Structure structure2 = StructureDao.getStructure(table, index);
+				if (structure2.getName() != null) {
+					setIndice(index);
+				}
+				index++;
+				Structure structure3 = StructureDao.getStructure(table, index);
+				if (structure3.getName() != null) {
+					setIndice(index);
+				}
+				index++;
+				Structure structure4 = StructureDao.getStructure(table, index);
+				if (structure4.getName() != null) {
+					setIndice(index);
+				}
+				index++;
+				Structure structure5 = StructureDao.getStructure(table, index);
+				if (structure5.getName() != null) {
+					setIndice(index);
+				}
+				index++;
+				Structure structure6 = StructureDao.getStructure(table, index);
+				if (structure6.getName() != null) {
+					setIndice(index);
+				}
+				
+				int structures = StructureDao.getStructures(table);
+				
+				listStruct.add(0, structure1);
+				listStruct.add(1, structure2);
+				listStruct.add(2, structure3);
+				listStruct.add(3, structure4);
+				listStruct.add(4, structure5);
+				listStruct.add(5, structure6);
+				
+				userSceneOwner = new User2SceneOwner(this,owner,listStruct,structures);
+
+				pane.getChildren().clear();
+				pane.getChildren().add(userSceneOwner);
+			}
+		
+		} catch (Exception e1) {
+		e1.printStackTrace();
+		}
+		
+	}
+	
+	//public void changeExperiences(int index, int tipo) {
+	public void changeExperiences(int index) {
 		
         try {
 	        	boolean newPage = false;
@@ -181,146 +259,76 @@ public class ProfileController {
 	        
 	        	String table;
 	        
-	        	if (tipo == 0) {
+	        
 	        		
-	        		List<Experience> listExp = new ArrayList<>(6);
+	        	List<Experience> listExp = new ArrayList<>(6);
 	        		
-	        		table = user.getUserReviewsTable();
+	        	table = user.getUserReviewsTable();
 	        	
-	        		index++;
+	        	index++;
 					
-					Experience experience1 = ExperienceDao.getExperience(table, index);
+				Experience experience1 = ExperienceDao.getExperience(table, index);
 					
-					if (experience1.getName() != null) {
+				if (experience1.getName() != null) {
 						
-						
-						
-						if (indice < index) {
-							setPage(page+1);
-						} else {
-							setPage(page-1);
-						}
-						
-						setIndice(index);
-						
-						newPage = true;
-					}
+					setNumPage(index);
 					
-					
-					if (newPage) {
+					setIndice(index);
 						
-						index++;
-						Experience experience2 = ExperienceDao.getExperience(table, index);
-						if (experience2.getName() != null) {
-							setIndice(index);
-							
-						}
-						index++;
-						Experience experience3 = ExperienceDao.getExperience(table, index);
-						if (experience3.getName() != null) {
-							setIndice(index);
-							
-						}
-						index++;
-						Experience experience4 = ExperienceDao.getExperience(table, index);
-						if (experience4.getName() != null) {
-							setIndice(index);
-							
-						}
-						index++;
-						Experience experience5 = ExperienceDao.getExperience(table, index);
-						if (experience5.getName() != null) {
-							setIndice(index);
-							
-						}
-						index++;
-						Experience experience6 = ExperienceDao.getExperience(table, index);
-						if (experience6.getName() != null) {
-							setIndice(index);
-							
-						}
-						
-						int booked = ExperienceDao.getBooked(table);
-						int review = ExperienceDao.getReviewsNumber(table);
-						
-						listExp.add(0, experience1);
-						listExp.add(1, experience2);
-						listExp.add(2, experience3);
-						listExp.add(3, experience4);
-						listExp.add(4, experience5);
-						listExp.add(5, experience6);
-						
-						userScene = new User2Scene(this,user,listExp,booked,review);
-
-						pane.getChildren().clear();
-						pane.getChildren().add(userScene);
-					}
-	        	
-	        	} else {
-	        		
-	        		table = owner.getOwnerStructures();
-	        		List<Structure> listStruct = new ArrayList<>(6);
-	        		
-	        		index++;
-					
-					Structure structure1 = StructureDao.getStructure(table, index);
-					
-					if (structure1.getName() != null) {
-						
-						if (indice < index) {
-							setPage(page+1);
-						} else {
-							setPage(page-1);
-						}
-						
-						setIndice(index);
-						
-						newPage = true;
-					}
-					
-					if (newPage) {
-						
-						index++;
-						Structure structure2 = StructureDao.getStructure(table, index);
-						if (structure2.getName() != null) {
-							setIndice(index);
-						}
-						index++;
-						Structure structure3 = StructureDao.getStructure(table, index);
-						if (structure3.getName() != null) {
-							setIndice(index);
-						}
-						index++;
-						Structure structure4 = StructureDao.getStructure(table, index);
-						if (structure4.getName() != null) {
-							setIndice(index);
-						}
-						index++;
-						Structure structure5 = StructureDao.getStructure(table, index);
-						if (structure5.getName() != null) {
-							setIndice(index);
-						}
-						index++;
-						Structure structure6 = StructureDao.getStructure(table, index);
-						if (structure6.getName() != null) {
-							setIndice(index);
-						}
-						
-						int structures = StructureDao.getStructures(table);
-						
-						listStruct.add(0, structure1);
-						listStruct.add(1, structure2);
-						listStruct.add(2, structure3);
-						listStruct.add(3, structure4);
-						listStruct.add(4, structure5);
-						listStruct.add(5, structure6);
-						
-						userSceneOwner = new User2SceneOwner(this,owner,listStruct,structures);
-
-						pane.getChildren().clear();
-						pane.getChildren().add(userSceneOwner);
-					}
+					newPage = true;
 				}
+					
+					
+				if (newPage) {
+						
+					index++;
+					Experience experience2 = ExperienceDao.getExperience(table, index);
+					if (experience2.getName() != null) {
+						setIndice(index);
+						
+					}
+					index++;
+					Experience experience3 = ExperienceDao.getExperience(table, index);
+					if (experience3.getName() != null) {
+						setIndice(index);
+							
+					}
+					index++;
+					Experience experience4 = ExperienceDao.getExperience(table, index);
+					if (experience4.getName() != null) {
+						setIndice(index);
+							
+					}
+					index++;
+					Experience experience5 = ExperienceDao.getExperience(table, index);
+					if (experience5.getName() != null) {
+						setIndice(index);
+							
+					}
+					index++;
+					Experience experience6 = ExperienceDao.getExperience(table, index);
+					if (experience6.getName() != null) {
+						setIndice(index);
+							
+					}
+						
+					int booked = ExperienceDao.getBooked(table);
+					int review = ExperienceDao.getReviewsNumber(table);
+						
+					listExp.add(0, experience1);
+					listExp.add(1, experience2);
+					listExp.add(2, experience3);
+					listExp.add(3, experience4);
+					listExp.add(4, experience5);
+					listExp.add(5, experience6);
+						
+					userScene = new User2Scene(this,user,listExp,booked,review);
+
+					pane.getChildren().clear();
+					pane.getChildren().add(userScene);
+				}
+	        	
+	        
 				
 			} catch (Exception e1) {
 				e1.printStackTrace();
@@ -435,5 +443,13 @@ public class ProfileController {
 
 	public void setIndice(int indice) {
 		this.indice = indice;
+	}
+	
+	private void setNumPage(int index) {
+		if (indice < index) {
+			setPage(page+1);
+		} else {
+			setPage(page-1);
+		}
 	}
 }

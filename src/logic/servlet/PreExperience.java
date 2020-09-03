@@ -39,13 +39,13 @@ public class PreExperience extends HttpServlet {
 		
 		if(indice == 6) {
 			if(user != null) {
-				controller.changeExperiences(0,0,bean);
+				controller.changeExperiences(0,bean);
 			
 				RequestDispatcher view = request.getRequestDispatcher(profilePage);
 				view.forward(request, response);
 				
 			}else if(owner != null) {
-				controller.changeExperiences(0,1,bean);
+				controller.changeStructures(0,bean);
 				
 				RequestDispatcher view1 = request.getRequestDispatcher(ownerPage);
 				view1.forward(request, response);
@@ -58,7 +58,7 @@ public class PreExperience extends HttpServlet {
 			if(user != null) {
 				
 				bean.getExpList().clear();
-				pre(0,indice,controller,bean);
+				pre(indice,controller,bean);
 			
 				RequestDispatcher view2 = request.getRequestDispatcher(profilePage);
 				view2.forward(request, response);
@@ -66,7 +66,7 @@ public class PreExperience extends HttpServlet {
 			}else if(owner != null) {
 				
 				bean.getStructList().clear();
-				pre(1,indice,controller,bean);
+				pre1(indice,controller,bean);
 				
 				RequestDispatcher view1 = request.getRequestDispatcher(ownerPage);
 				view1.forward(request, response);
@@ -82,30 +82,55 @@ public class PreExperience extends HttpServlet {
 		}
 	}
 	
-	private void pre(int type, int indice, LoginControllerWeb controller, LoginBeanWeb bean) {
+	private void pre(int indice, LoginControllerWeb controller, LoginBeanWeb bean) {
 		
 		int modIndice = indice%6;
 		
 		if (modIndice == 0) {
 			indice = indice - 12;
-			controller.changeExperiences(indice,type,bean);
+			controller.changeExperiences(indice,bean);
 		} else if (modIndice== 1) {
 			indice = indice - 7;
-			controller.changeExperiences(indice,type,bean);
+			controller.changeExperiences(indice,bean);
 		} else if (modIndice == 2){
 			indice = indice - 8;
-			controller.changeExperiences(indice,type,bean);
+			controller.changeExperiences(indice,bean);
 		} else if (modIndice == 3){
 			indice = indice - 9;
-			controller.changeExperiences(indice,type,bean);
+			controller.changeExperiences(indice,bean);
 		} else if (modIndice == 4){
 			indice = indice - 10;
-			controller.changeExperiences(indice,type,bean);
+			controller.changeExperiences(indice,bean);
 		} else {
 			indice = indice - 11;
-			controller.changeExperiences(indice,type,bean);
+			controller.changeExperiences(indice,bean);
 		}
 	}
 
 
+	private void pre1(int indice, LoginControllerWeb controller, LoginBeanWeb bean) {
+
+		int modIndiceOwn = indice%6;
+		
+		if (modIndiceOwn == 0) {
+			indice = indice - 12;
+			controller.changeStructures(indice,bean);
+		} else if (modIndiceOwn== 1) {
+			indice = indice - 7;
+			controller.changeStructures(indice,bean);
+		} else if (modIndiceOwn == 2){
+			indice = indice - 8;
+			controller.changeStructures(indice,bean);
+		} else if (modIndiceOwn == 3){
+			indice = indice - 9;
+			controller.changeStructures(indice,bean);
+		} else if (modIndiceOwn == 4){
+			indice = indice - 10;
+			controller.changeStructures(indice,bean);
+		} else {
+			indice = indice - 11;
+			controller.changeStructures(indice,bean);
+		}
+	}
+	
 }

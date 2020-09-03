@@ -42,7 +42,7 @@ public class LoginServ extends HttpServlet {
 			if(beanLogin.getUserWebLog() != null) {  // potrebbe dare problema sonar null pointer exception
 				UserWeb log =  beanLogin.getUserWebLog();
 				session.setAttribute("userLog", log);
-				controller.changeExperiences(0,0,beanLogin);
+				controller.changeExperiences(0,beanLogin);
 				session.setAttribute("beanLog",beanLogin);
 			
 				RequestDispatcher view = request.getRequestDispatcher("profilePage2.jsp");
@@ -51,7 +51,7 @@ public class LoginServ extends HttpServlet {
 			if(beanLogin.getOwnerWebLog() != null) {
 				OwnerWeb ownLog = beanLogin.getOwnerWebLog();
 				session.setAttribute("ownerLog", ownLog);
-				controller.changeExperiences(0,1,beanLogin);
+				controller.changeStructures(0,beanLogin);
 				session.setAttribute("beanLog",beanLogin);
 			
 				RequestDispatcher view1 = request.getRequestDispatcher("ownerPage.jsp");

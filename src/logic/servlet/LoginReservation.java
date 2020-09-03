@@ -41,7 +41,7 @@ public class LoginReservation extends HttpServlet {
 		session.setAttribute("userLog", beanLog.getUserWebLog());
 		
 		if(beanLog.getResult() && (beanLog.getUserWebLog() != null)) {  // nel metodo login viene chiamato login.checkuser che ritorna l'user e lo setta come attr del contr
-			controller.changeExperiences(0,0,beanLog);
+			controller.changeExperiences(0,beanLog);
 			session.setAttribute("beanLog",beanLog);
 			session.setAttribute("ownerLog", null);
 			RequestDispatcher view = request.getRequestDispatcher("hotelsConfirm.jsp");

@@ -37,13 +37,13 @@ public class NextPageReview extends HttpServlet {
 		
 		if(session.getAttribute("type") == "1") {
 	
-			controller.viewReviews(true, hotelBean.getBookHotel().getHotelReviews(), reviewBean.getIndex(), reviewBean);
+			controller.viewReviews(hotelBean.getBookHotel().getHotelReviews(), reviewBean.getIndex(), reviewBean);
 			session.setAttribute(reviewBeanStr, reviewBean);
 		
 		}else if(session.getAttribute("type") == "2") {
 			
 			Hotel str = (Hotel)session.getAttribute("struct");
-			controller.viewReviews(true, str.getHotelReviews(), reviewBean.getIndex(), reviewBean);
+			controller.viewReviews(str.getHotelReviews(), reviewBean.getIndex(), reviewBean);
 			session.setAttribute(reviewBeanStr, reviewBean);
 		}
  		

@@ -466,7 +466,7 @@ public class User2Scene extends HBox{
         	public void handle(ActionEvent event) {
  				
  				int indice = controller.getIndice();
-				controller.changeExperiences(indice,0);
+				controller.changeExperiences(indice);
  				
  			}
  		});
@@ -564,7 +564,7 @@ public class User2Scene extends HBox{
  	 				} else {
  	 					indice = indice - 11;
  	 				}
-	 				controller.changeExperiences(indice,0);
+	 				controller.changeExperiences(indice);
  				}
  			}
  		});

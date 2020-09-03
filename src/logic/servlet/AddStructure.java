@@ -54,7 +54,7 @@ public class AddStructure extends HttpServlet {
 		request.setAttribute("regStr", "ok");
 	
 		beanLog.getStructList().clear();
-		controller.changeExperiences(0,1,beanLog);
+		controller.changeStructures(0,beanLog);
 		session.setAttribute("beanLog",beanLog);
 
 		RequestDispatcher view1 = request.getRequestDispatcher("addStructurePage.jsp");

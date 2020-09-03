@@ -31,7 +31,7 @@ public class ViewReviewServ extends HttpServlet {
 		
 		HotelBeanWeb hotelBean = (HotelBeanWeb)session.getAttribute("bean");
 
-		controller.viewReviews(true, hotelBean.getBookHotel().getHotelReviews(), 0, reviewBean);
+		controller.viewReviews(hotelBean.getBookHotel().getHotelReviews(), 0, reviewBean);
 		session.setAttribute("reviewBean", reviewBean);
 		
 		session.setAttribute("type", "1");

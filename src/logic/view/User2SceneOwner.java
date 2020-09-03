@@ -445,7 +445,7 @@ public class User2SceneOwner extends HBox{
         	public void handle(ActionEvent event) {
  				
  				int indice = controller.getIndice();
-				controller.changeExperiences(indice,1);
+				controller.changeStructures(indice);
  				
  			}
  		});
@@ -538,7 +538,7 @@ public class User2SceneOwner extends HBox{
 	 	 				} else {
 	 	 					indiceOwn = indiceOwn - 11;
 	 	 				}
-		 				controller.changeExperiences(indiceOwn,1);
+		 				controller.changeStructures(indiceOwn);
 	 				}
 	 			}
 	 		});

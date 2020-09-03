@@ -44,7 +44,7 @@ public class WriteReview extends HttpServlet {
 	
 		controller.addReview(review, experience.getName(), experience.getDayIn(), experience.getDayOut(), user);
 		bean.getExpList().clear();
-		controller.changeExperiences(0,0,bean);
+		controller.changeExperiences(0,bean);
 		
 		RequestDispatcher view = request.getRequestDispatcher("profilePage2.jsp");
 		view.forward(request, response);

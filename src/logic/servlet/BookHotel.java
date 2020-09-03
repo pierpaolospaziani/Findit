@@ -39,7 +39,7 @@ public class BookHotel extends HttpServlet {
 		
 			request.setAttribute("bookCheck", "ok");
 			beanLog.getExpList().clear();
-			controllerLog.changeExperiences(0, 0, beanLog);
+			controllerLog.changeExperiences(0,beanLog);
 			RequestDispatcher view = request.getRequestDispatcher("hotelsConfirm.jsp");
 			view.forward(request, response);
 	

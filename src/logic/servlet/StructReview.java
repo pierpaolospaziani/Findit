@@ -30,7 +30,7 @@ public class StructReview extends HttpServlet {
 		HttpSession session = request.getSession();
 		Hotel str = (Hotel)session.getAttribute("struct");
 		
-		controller.viewReviews(true, str.getHotelReviews(), reviewBean.getIndex(), reviewBean);
+		controller.viewReviews(str.getHotelReviews(), reviewBean.getIndex(), reviewBean);
 		
 		session.setAttribute("reviewBean", reviewBean);
 		session.setAttribute("type", "2");
