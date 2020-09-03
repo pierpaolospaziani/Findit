@@ -12,6 +12,9 @@ public class ReservationDao {
     private static String pass = "passwfindit2020";
     private static String url = "jdbc:mysql://localhost:3306/findit?useTimezone=true&serverTimezone=UTC";
     private static String driverClassName = "com.mysql.cj.jdbc.Driver";
+    static String whereId = " where id = '";
+    static String andDate = "' and date = '";
+    
     
     private ReservationDao() {
     	
@@ -19,8 +22,8 @@ public class ReservationDao {
     
     public static Reservation getReservation(String reservationTable, int id, int date){
 
-    	String idQuery = "select id from " + reservationTable + " where id = '" + id + "' and date = '" + date + "'";
-    	String userQuery = "select user from " + reservationTable + " where id = '" + id + "' and date = '" + date + "'";
+    	String idQuery = "select id from " + reservationTable + whereId + id + andDate + date + "'";
+    	String userQuery = "select user from " + reservationTable + whereId + id + andDate + date + "'";
     	
     	Reservation reservation = new Reservation();
     	
@@ -87,7 +90,7 @@ public class ReservationDao {
     			reservationSt = reservationConn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
     	                ResultSet.CONCUR_READ_ONLY);
 
-    	    	String searchQuery = "select id from " + reservationTable + " where id = '" + id + "' and date = '" + date + "'";
+    	    	String searchQuery = "select id from " + reservationTable + whereId + id + andDate + date + "'";
     		
     			ResultSet rs = reservationSt.executeQuery(searchQuery);
     			
@@ -131,7 +134,7 @@ public class ReservationDao {
     			reservationSt = reservationConn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
     	                ResultSet.CONCUR_READ_ONLY);
 
-    	    	String searchQuery = "select * from " + reservationTable + " where id = '" + id + "' and date = '" + date + "'";
+    	    	String searchQuery = "select * from " + reservationTable + whereId + id + andDate + date + "'";
     			
     			ResultSet rs = reservationSt.executeQuery(searchQuery);
     		

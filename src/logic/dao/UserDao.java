@@ -92,9 +92,9 @@ public class UserDao {
     			if (blob.length() > 4) {
 
     				byte[] imageByte = blob.getBytes(1, (int) blob.length());
-    				
+  
     				userBinaryStream = new ByteArrayInputStream(imageByte);
-    				
+    			
     				BufferedImage bf = ImageIO.read(userBinaryStream);
     				
     				Image  img = SwingFXUtils.toFXImage(bf, null);

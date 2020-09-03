@@ -24,7 +24,11 @@ public class UserWebDao {
     private static String url = "jdbc:mysql://localhost:3306/findit?useTimezone=true&serverTimezone=UTC";
     private static String driverClassName = "com.mysql.cj.jdbc.Driver";
     
-	public static UserWeb getUserWeb(String username){
+    private UserWebDao() {
+    	
+    }
+	
+    public static UserWeb getUserWeb(String username){
     	
     	String nameUserQuery = "select name from users where name = '" + username + "'";
     	String psswUserQuery = "select pssw from users where name = '" + username + "'";
@@ -166,7 +170,7 @@ public class UserWebDao {
     					
     					int i=0;
     					
-    					while (exist == true) {
+    					while (exist) {
     						ResultSet res = meta.getTables(null, null, variableReviewsTable, null);
     						if (res.next()) {
     							variableReviewsTable = reviewsTable + i;

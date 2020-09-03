@@ -34,7 +34,7 @@ public class OwnerDao {
     	
     	OwnerWeb ownerApp = getOwnerWeb(username) ;
     	
-    	if(ownerApp != null) {
+    	if(ownerApp.getUsername() != null) {
     		owner.setOwnerUsername(ownerApp.getUsername());
     		owner.setOwnerPassword(ownerApp.getPassword());
     		owner.setOwnerImage(ownerApp.getImage());

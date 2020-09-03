@@ -170,6 +170,7 @@ public class HotelDao {
 		String rooms = (nome + "Rooms").replaceAll("\\s+","");
 		String agenda = (nome + "Agenda").replaceAll("\\s+","");
 		String reviewsTable = (nome + "Reviews").replaceAll("\\s+","");
+		String createTable = "create table ";
 
     	String searchQuery = "select name from hotels where name = '" + nome + "'";
     	
@@ -215,9 +216,9 @@ public class HotelDao {
     						agenda = variableAgenda;
     						reviewsTable = variableReviewsTable;
     						
-    				    	String createRoomsTable = "create table " + rooms + " (id int, price int, beds int)";
-    				    	String createAgendaTable = "create table " + agenda + " (id int, date varchar(10), user varchar(20))";	
-    				    	String createReviewsQuery = "create table " + reviewsTable + " (user varchar(20),review text, stars int)";
+    				    	String createRoomsTable = createTable + rooms + " (id int, price int, beds int)";
+    				    	String createAgendaTable = createTable + agenda + " (id int, date varchar(10), user varchar(20))";	
+    				    	String createReviewsQuery = createTable + reviewsTable + " (user varchar(20),review text, stars int)";
     				    	String insertQuery = "insert into hotels value ("
     				    			+ "'" + nome + "',"
     				    			+ "'" + owner + "',"

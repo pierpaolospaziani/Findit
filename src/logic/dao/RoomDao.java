@@ -12,6 +12,7 @@ public class RoomDao {
     private static String pass = "passwfindit2020";
     private static String url = "jdbc:mysql://localhost:3306/findit?useTimezone=true&serverTimezone=UTC";
     private static String driverClassName = "com.mysql.cj.jdbc.Driver";
+    static String whereId = " where id = '";
     
     private RoomDao() {
     	
@@ -32,8 +33,8 @@ public class RoomDao {
     			roomSt = roomConn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
     	                ResultSet.CONCUR_READ_ONLY);
 
-    	    	String bedsQuery = "select beds from " + roomsTable + " where id = '" + id + "'";
-    	    	String priceQuery = "select price from " + roomsTable + " where id = '" + id + "'";
+    	    	String bedsQuery = "select beds from " + roomsTable + whereId + id + "'";
+    	    	String priceQuery = "select price from " + roomsTable + whereId + id + "'";
     		
     			room.setRoomId(id);
     			
@@ -79,7 +80,7 @@ public class RoomDao {
     			roomSt = roomConn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
     	                ResultSet.CONCUR_READ_ONLY);
 
-    	    	String searchQuery = "select id from " + roomsTable + " where id = '" + id + "'";
+    	    	String searchQuery = "select id from " + roomsTable + whereId + id + "'";
     		
     			ResultSet rs = roomSt.executeQuery(searchQuery);
     			
@@ -152,7 +153,7 @@ public class RoomDao {
     			room.setRoomId(roomId);
     			rs1.close();
     			
-    	    	String bedQuery = "select beds from " + roomsTable + " where id = '" + roomId + "'";
+    	    	String bedQuery = "select beds from " + roomsTable + whereId + roomId + "'";
     	    	
     	    	ResultSet rs3 = roomSt.executeQuery(bedQuery);
     			rs3.next();
@@ -160,7 +161,7 @@ public class RoomDao {
     			room.setBeds(bed);
     			rs3.close();
     			
-    	    	String priceQuery = "select price from " + roomsTable + " where id = '" + roomId + "'";
+    	    	String priceQuery = "select price from " + roomsTable + whereId + roomId + "'";
     	    	
     	    	ResultSet rs2 = roomSt.executeQuery(priceQuery);
     			rs2.next();
