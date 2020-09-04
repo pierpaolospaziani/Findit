@@ -9,12 +9,14 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.imageio.ImageIO;
 
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
+import javafx.scene.image.WritableImage;
 import logic.model.Owner;
 import logic.model.OwnerWeb;
 
@@ -104,19 +106,14 @@ public class OwnerDao {
     			
     			rs3.next();
     			
-    			Blob blob = rs3.getBlob("photo");
+    			Blob blobOwner = rs3.getBlob("photo");
     			
-    			if (blob.length() > 4) {
+    			if (blobOwner.length() > 4) {
+
+    				Image imgOwner = getImage(blobOwner);
     				
-    				byte[] imageByte = blob.getBytes(1, (int) blob.length());
+    				owner.setImage(imgOwner);
     				
-    				ownerBinaryStream = new ByteArrayInputStream(imageByte);
-    				
-    				BufferedImage bf = ImageIO.read(ownerBinaryStream);
-    				
-    				Image  img = SwingFXUtils.toFXImage(bf, null);
-    				
-    				owner.setImage(img);
     			} else {
     				owner.setImage(null);
     			}
@@ -295,5 +292,29 @@ public class OwnerDao {
 		} catch(Exception e){
 	        System.exit(1);
 	    }
+	}
+	
+	private static Image getImage(Blob blobOwner) {
+		
+		byte[] imageByteOwner = null;
+		WritableImage imgOwner = null;
+		
+		try {
+			imageByteOwner = blobOwner.getBytes(1, (int) blobOwner.length());
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		
+		try (InputStream userBinaryStreamOwner = new ByteArrayInputStream(imageByteOwner)){
+
+			BufferedImage bfOwner = ImageIO.read(userBinaryStreamOwner);
+			
+			imgOwner = SwingFXUtils.toFXImage(bfOwner, null);
+			
+		} catch(Exception e){
+	        System.exit(1);
+	    }
+		
+		return imgOwner;
 	}
 }

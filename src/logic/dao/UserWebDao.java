@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.imageio.ImageIO;
@@ -88,19 +89,13 @@ public class UserWebDao {
     			
     			rs2.next();
     			
-    			Blob blob = rs2.getBlob("photo");
+    			Blob blobWeb = rs2.getBlob("photo");
     			
-    			if (blob.length() > 4) {
+    			if (blobWeb.length() > 4) {
 
-    				byte[] imageByte = blob.getBytes(1, (int) blob.length());
+    				Image imgWeb = getImage(blobWeb);
     				
-    				userWebBinaryStream = new ByteArrayInputStream(imageByte);
-    				
-    				BufferedImage bf = ImageIO.read(userWebBinaryStream);
-    				
-    				Image  img = SwingFXUtils.toFXImage(bf, null);
-    				
-    				user.setImage(img);
+    				user.setImage(imgWeb);
     				
     			} else {
     				user.setImage(null);
@@ -247,6 +242,30 @@ public class UserWebDao {
 		} catch(Exception e){
 	        System.exit(1);
 	    }
+	}
+	
+	private static Image getImage(Blob blobWeb) {
+		
+		byte[] imageByteWeb = null;
+		Image imgWeb = null;
+		
+		try {
+			imageByteWeb = blobWeb.getBytes(1, (int) blobWeb.length());
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		
+		try (InputStream userBinaryStreamWeb = new ByteArrayInputStream(imageByteWeb)){
+
+			BufferedImage bfWeb = ImageIO.read(userBinaryStreamWeb);
+			
+			imgWeb = SwingFXUtils.toFXImage(bfWeb, null);
+			
+		} catch(Exception e){
+	        System.exit(1);
+	    }
+		
+		return imgWeb;
 	}
 }
 

@@ -16,7 +16,6 @@ import javax.imageio.ImageIO;
 
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
-import javafx.scene.image.WritableImage;
 import logic.model.User;
 
 public class UserDao {
@@ -242,7 +241,7 @@ public class UserDao {
 	private static Image getImage(Blob blob) {
 		
 		byte[] imageByte = null;
-		WritableImage img = null;
+		Image img = null;
 		
 		try {
 			imageByte = blob.getBytes(1, (int) blob.length());
