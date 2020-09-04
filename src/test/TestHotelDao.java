@@ -14,6 +14,8 @@ import logic.model.Hotel;
 
 class TestHotelDao {
 
+	private String testHotel = "Hotel Adventure";
+	
 	@Test
 	void testGetHotelHotelPresentInDB() {
 		
@@ -37,7 +39,7 @@ class TestHotelDao {
 		String owner = "mario98";
 		int rating = 3;
 		
-		bean.setName("Hotel Adventure");
+		bean.setName(testHotel);
 		bean.setCity("Verona");
 		bean.setAddress("via Marconi 45");
 		bean.setHostel(true);
@@ -59,8 +61,8 @@ class TestHotelDao {
 		 
 		String description = "Hotel situato a pochi passi dal centro";
 		
-		HotelDao.setDescription(description, "Hotel Adventure");
-		Hotel adventure = HotelDao.getHotel("Hotel Adventure");
+		HotelDao.setDescription(description, testHotel);
+		Hotel adventure = HotelDao.getHotel(testHotel);
 		
 		assertEquals(description, adventure.getHotelDescription());
 	}
@@ -70,8 +72,8 @@ class TestHotelDao {
 		 
 		int rating = 4;
 		
-		HotelDao.setRating(rating, "Hotel Adventure");
-		Hotel adventure = HotelDao.getHotel("Hotel Adventure");
+		HotelDao.setRating(rating, testHotel);
+		Hotel adventure = HotelDao.getHotel(testHotel);
 		
 		assertEquals(rating, adventure.getHotelRating());
 	}
