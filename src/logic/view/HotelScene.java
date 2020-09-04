@@ -1,6 +1,7 @@
 package logic.view;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -624,11 +625,13 @@ public class HotelScene extends VBox{
         	@Override
         	public void handle(ActionEvent event) {
 				
-				LocalDate ld = hotelCheckOut.getValue();
+				LocalDate dayOut = hotelCheckOut.getValue();
 				
-				bean.setLocalDateOut(ld);
+				bean.setLocalDateOut(dayOut);
 				
-				bean.setDays(ld.compareTo(hotelCheckIn.getValue()));
+				LocalDate dayIn = hotelCheckIn.getValue();
+				
+				bean.setDays((int) ChronoUnit.DAYS.between(dayIn, dayOut));
 
 				dateOk = true;
 			}
