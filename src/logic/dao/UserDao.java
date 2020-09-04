@@ -9,12 +9,14 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.imageio.ImageIO;
 
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
+import javafx.scene.image.WritableImage;
 import logic.model.User;
 
 public class UserDao {
@@ -90,18 +92,9 @@ public class UserDao {
     			
     			if (blob.length() > 4) {
 
-    				byte[] imageByte = blob.getBytes(1, (int) blob.length());
-  
-    				try (InputStream userBinaryStream = new ByteArrayInputStream(imageByte)){
-
-        				BufferedImage bf = ImageIO.read(userBinaryStream);
+    				Image img = getImage(blob);
         				
-        				Image  img = SwingFXUtils.toFXImage(bf, null);
-        				
-        				user.setUserImage(img);
-    				} catch(Exception e){
-    			        System.exit(1);
-    			    }
+        			user.setUserImage(img);
     				
     			} else {
     				user.setUserImage(null);
@@ -244,5 +237,29 @@ public class UserDao {
 		} catch(Exception e){
 	        System.exit(1);
 	    }
+	}
+	
+	private static Image getImage(Blob blob) {
+		
+		byte[] imageByte = null;
+		WritableImage img = null;
+		
+		try {
+			imageByte = blob.getBytes(1, (int) blob.length());
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		
+		try (InputStream userBinaryStream = new ByteArrayInputStream(imageByte)){
+
+			BufferedImage bf = ImageIO.read(userBinaryStream);
+			
+			img = SwingFXUtils.toFXImage(bf, null);
+			
+		} catch(Exception e){
+	        System.exit(1);
+	    }
+		
+		return img;
 	}
 }
