@@ -40,7 +40,6 @@ public class UserWebDao {
     	
     	Connection userWebConn = null;
 		Statement userWebSt = null;
-		InputStream userWebBinaryStream = null;
 		
     	try {
         	try {
@@ -114,11 +113,6 @@ public class UserWebDao {
         		if (userWebConn != null) {
         			userWebConn.close();
         		}
-        		
-        		if (userWebBinaryStream != null) {
-        			userWebBinaryStream.close();
-        		}
-        		
         	}
 		} catch(Exception e){
 	        System.exit(1);

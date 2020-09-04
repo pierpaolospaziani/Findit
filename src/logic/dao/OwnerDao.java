@@ -16,7 +16,6 @@ import javax.imageio.ImageIO;
 
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
-import javafx.scene.image.WritableImage;
 import logic.model.Owner;
 import logic.model.OwnerWeb;
 
@@ -58,7 +57,6 @@ public class OwnerDao {
     	
     	Connection ownerConn = null;
 		Statement ownerSt = null;
-		InputStream ownerBinaryStream = null;
 		
     	try {
         	try {
@@ -130,10 +128,6 @@ public class OwnerDao {
         		
         		if (ownerConn != null) {
         			ownerConn.close();
-        		}
-        		
-        		if (ownerBinaryStream != null) {
-        			ownerBinaryStream.close();
         		}
         		
         	}
@@ -297,7 +291,7 @@ public class OwnerDao {
 	private static Image getImage(Blob blobOwner) {
 		
 		byte[] imageByteOwner = null;
-		WritableImage imgOwner = null;
+		Image imgOwner = null;
 		
 		try {
 			imageByteOwner = blobOwner.getBytes(1, (int) blobOwner.length());
