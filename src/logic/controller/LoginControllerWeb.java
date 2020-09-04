@@ -3,7 +3,6 @@ package logic.controller;
 
 import logic.dao.ReviewDao;
 import logic.model.Review;
-import javafx.scene.layout.AnchorPane;
 import logic.bean.HotelBean;
 import logic.bean.LoginBeanWeb;
 import logic.dao.ExperienceDao;

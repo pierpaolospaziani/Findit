@@ -82,55 +82,45 @@ public class PreExperience extends HttpServlet {
 		}
 	}
 	
-	private void pre(int indice, LoginControllerWeb controller, LoginBeanWeb bean) {
+	private void pre(int indiceUser, LoginControllerWeb controller, LoginBeanWeb bean) {
 		
-		int modIndice = indice%6;
+		int modIndiceUser = indiceUser%6;
 		
-		if (modIndice == 0) {
-			indice = indice - 12;
-			controller.changeExperiences(indice,bean);
-		} else if (modIndice== 1) {
-			indice = indice - 7;
-			controller.changeExperiences(indice,bean);
-		} else if (modIndice == 2){
-			indice = indice - 8;
-			controller.changeExperiences(indice,bean);
-		} else if (modIndice == 3){
-			indice = indice - 9;
-			controller.changeExperiences(indice,bean);
-		} else if (modIndice == 4){
-			indice = indice - 10;
-			controller.changeExperiences(indice,bean);
+		if (modIndiceUser == 0) {
+			indiceUser = indiceUser - 12;
+		} else if (modIndiceUser== 1) {
+			indiceUser = indiceUser - 7;
+		} else if (modIndiceUser == 2){
+			indiceUser = indiceUser - 8;
+		} else if (modIndiceUser == 3){
+			indiceUser = indiceUser - 9;
+		} else if (modIndiceUser == 4){
+			indiceUser = indiceUser - 10;
 		} else {
-			indice = indice - 11;
-			controller.changeExperiences(indice,bean);
+			indiceUser = indiceUser - 11;
 		}
+		controller.changeExperiences(indiceUser,bean);
 	}
 
 
-	private void pre1(int indice, LoginControllerWeb controller, LoginBeanWeb bean) {
+	private void pre1(int indiceOwner, LoginControllerWeb controller, LoginBeanWeb bean) {
 
-		int modIndiceOwn = indice%6;
+		int modIndiceOwner = indiceOwner%6;
 		
-		if (modIndiceOwn == 0) {
-			indice = indice - 12;
-			controller.changeStructures(indice,bean);
-		} else if (modIndiceOwn== 1) {
-			indice = indice - 7;
-			controller.changeStructures(indice,bean);
-		} else if (modIndiceOwn == 2){
-			indice = indice - 8;
-			controller.changeStructures(indice,bean);
-		} else if (modIndiceOwn == 3){
-			indice = indice - 9;
-			controller.changeStructures(indice,bean);
-		} else if (modIndiceOwn == 4){
-			indice = indice - 10;
-			controller.changeStructures(indice,bean);
+		if (modIndiceOwner == 0) {
+			indiceOwner = indiceOwner - 12;
+		} else if (modIndiceOwner== 1) {
+			indiceOwner = indiceOwner - 7;
+		} else if (modIndiceOwner == 2){
+			indiceOwner = indiceOwner - 8;
+		} else if (modIndiceOwner == 3){
+			indiceOwner = indiceOwner - 9;
+		} else if (modIndiceOwner == 4){
+			indiceOwner = indiceOwner - 10;
 		} else {
-			indice = indice - 11;
-			controller.changeStructures(indice,bean);
+			indiceOwner = indiceOwner - 11;
 		}
+		controller.changeExperiences(indiceOwner,bean);
 	}
 	
 }

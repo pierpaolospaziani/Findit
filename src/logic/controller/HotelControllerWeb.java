@@ -18,19 +18,19 @@ import logic.dao.RoomDao;
 
 public class HotelControllerWeb {
 	
-	private Hotel hotel1;
-	private Room room1;
-	private Hotel hotel2;
-	private Room room2;
-	private Hotel hotel3;
-	private Room room3;
+	private Hotel hotel1Web;
+	private Room room1Web;
+	private Hotel hotel2Web;
+	private Room room2Web;
+	private Hotel hotel3Web;
+	private Room room3Web;
 
 	
 	private int step = 1;
 	private int page = 0;
 	private int hotelSelected;
 	
-	private int indice;
+	private int indiceWeb;
 	
 	private static HotelControllerWeb istance = null;
 	
@@ -45,105 +45,106 @@ public class HotelControllerWeb {
 
 	 private HotelControllerWeb() {
 	
-		this.hotel1 = new Hotel();
-		this.room1 = new Room();
-		this.hotel2 = new Hotel();
-		this.room2 = new Room();
-		this.hotel3 = new Hotel();
-		this.room3 = new Room();
+		this.hotel1Web = new Hotel();
+		this.room1Web = new Room();
+		this.hotel2Web = new Hotel();
+		this.room2Web = new Room();
+		this.hotel3Web = new Hotel();
+		this.room3Web = new Room();
 	 }
 	
-	public void changeScene2(int index, HotelBeanWeb bean){
+	public void changeScene2(int indexWeb, HotelBeanWeb beanWeb){
 		
-		int budget = 1000;
+		int budgetWeb = 1000;
 		
-			if (bean.isBudget1()){
-				budget = 100;
+			if (beanWeb.isBudget1()){
+				budgetWeb = 100;
 			}
-			if (bean.isBudget2()){
-				budget = 150;
+			if (beanWeb.isBudget2()){
+				budgetWeb = 150;
 			}
-			if (bean.isBudget3()){
-				budget = 200;
+			if (beanWeb.isBudget3()){
+				budgetWeb = 200;
 			}
-			if (bean.isBudget4()){
-				budget = 1000;
+			if (beanWeb.isBudget4()){
+				budgetWeb = 1000;
 			}
 		
-			int stars = 0;
+			int starsWeb = 0;
 		
-			if (bean.getStar5()){
-				stars = 5;
+			if (beanWeb.getStar5()){
+				starsWeb = 5;
 			}
-			if (bean.getStar4()){
-				stars = 4;
+			if (beanWeb.getStar4()){
+				starsWeb = 4;
 			}
-			if (bean.getStar3()){
-				stars = 3;
+			if (beanWeb.getStar3()){
+				starsWeb = 3;
 			}
-			if (bean.getStar2()){
-				stars = 2;
+			if (beanWeb.getStar2()){
+				starsWeb = 2;
 			}
-			if (bean.getStar1()){
-				stars = 1;
+			if (beanWeb.getStar1()){
+				starsWeb = 1;
 			}
 
-			boolean valid = true;
+			boolean validWeb = true;
 			
 		
 			try {
 				
-				while (valid) {
+				while (validWeb) {
 					
-					index++;
-					hotel1 = HotelDao.searchHotel(bean, stars, index);
+					indexWeb++;
+					
+					hotel1Web = HotelDao.searchHotel(beanWeb, starsWeb, indexWeb);
 
-					if (hotel1.getHotelName() != null) {
+					if (hotel1Web.getHotelName() != null) {
 						int roomIndex = 1;
 						
 						try {
 							while (true) {
-								room1 = RoomDao.searchRoom(hotel1.getHotelRooms(), bean.getNumPeople(), budget, roomIndex);
-								if (room1.getRoomId() == 0) {
+								room1Web = RoomDao.searchRoom(hotel1Web.getHotelRooms(), beanWeb.getNumPeople(), budgetWeb, roomIndex);
+								if (room1Web.getRoomId() == 0) {
 									break;
 								}
 								
-								LocalDate day = bean.getLocalDateIn();
-								day = day.plusDays(-1);
+								LocalDate dayWeb = beanWeb.getLocalDateIn();
+								dayWeb = dayWeb.plusDays(-1);
 								
-								int dayIndex = 0;
+								int dayIndexWeb = 0;
 								
-								boolean validRoom = false;
+								boolean validRoomWeb = false;
 								
-								while (dayIndex<=bean.getDays()) {
+								while (dayIndexWeb<=beanWeb.getDays()) {
 									
-									day = day.plusDays(1);
+									dayWeb = dayWeb.plusDays(1);
 									
-									int date = (day.getYear()*10000) + (day.getMonth().getValue()*100) + (day.getDayOfMonth());
+									int dateWeb = (dayWeb.getYear()*10000) + (dayWeb.getMonth().getValue()*100) + (dayWeb.getDayOfMonth());
 									
-									Reservation reservation1 = ReservationDao.searchReservation(hotel1.getHotelAgenda(), room1.getRoomId(), date);
-									if (room1.getRoomId() == reservation1.getReservationId()) {
-										validRoom = false;
+									Reservation reservation1Web = ReservationDao.searchReservation(hotel1Web.getHotelAgenda(), room1Web.getRoomId(), dateWeb);
+									if (room1Web.getRoomId() == reservation1Web.getReservationId()) {
+										validRoomWeb = false;
 										break;
 									
 									} else {
-										dayIndex++;
-										validRoom = true;
+										dayIndexWeb++;
+										validRoomWeb = true;
 									}
 								}
 								
-								if (!validRoom) {
+								if (!validRoomWeb) {
 									roomIndex++;
 								} else {
-									valid = false;
+									validWeb = false;
 									
-									if (indice < index) {
+									if (indiceWeb < indexWeb) {
 										setPage(page+1);
 									} else {
 										setPage(page-1);
 									}
 									
-									setIndice(index);
+									setIndice(indexWeb);
 									break;							
 								}
 							} 
@@ -154,7 +155,7 @@ public class HotelControllerWeb {
 						
 					} else {
 						
-						if (index != 1) {
+						if (indexWeb != 1) {
 							//change = false;
 						}
 						break;
@@ -165,56 +166,56 @@ public class HotelControllerWeb {
 				e.printStackTrace();
 			}
 			
-			valid = true;
+			validWeb = true;
 			
 			try {
 				
-				while (valid) {
+				while (validWeb) {
 					
-					index++;
+					indexWeb++;
 					
-					hotel2 = HotelDao.searchHotel(bean, stars, index);
+					hotel2Web = HotelDao.searchHotel(beanWeb, starsWeb, indexWeb);
 					
-					if (hotel2.getHotelName() != null) {
+					if (hotel2Web.getHotelName() != null) {
 						
 						int roomIndex = 1;
 						
 						try {
 							while (true) {
-								room2 = RoomDao.searchRoom(hotel2.getHotelRooms(), bean.getNumPeople(), budget, roomIndex);
-								if (room2.getRoomId() == 0) {
+								room2Web = RoomDao.searchRoom(hotel2Web.getHotelRooms(), beanWeb.getNumPeople(), budgetWeb, roomIndex);
+								if (room2Web.getRoomId() == 0) {
 									break;
 								}
 								
-								LocalDate day = bean.getLocalDateIn();
-								day = day.plusDays(-1);
+								LocalDate dayWeb = beanWeb.getLocalDateIn();
+								dayWeb = dayWeb.plusDays(-1);
 								
-								int dayIndex = 0;
+								int dayIndexWeb = 0;
 								
-								boolean validRoom = false;
+								boolean validRoomWeb = false;
 								
-								while (dayIndex<=bean.getDays()) {
+								while (dayIndexWeb<=beanWeb.getDays()) {
 									
-									day = day.plusDays(1);
+									dayWeb = dayWeb.plusDays(1);
 									
-									int date = (day.getYear()*10000) + (day.getMonth().getValue()*100) + (day.getDayOfMonth());
+									int date = (dayWeb.getYear()*10000) + (dayWeb.getMonth().getValue()*100) + (dayWeb.getDayOfMonth());
 									
-									Reservation reservation2 = ReservationDao.searchReservation(hotel2.getHotelAgenda(), room2.getRoomId(), date);
-									if (room2.getRoomId() == reservation2.getReservationId()) {
-										validRoom = false;
+									Reservation reservation2Web = ReservationDao.searchReservation(hotel2Web.getHotelAgenda(), room2Web.getRoomId(), date);
+									if (room2Web.getRoomId() == reservation2Web.getReservationId()) {
+										validRoomWeb = false;
 										break;
 									
 									} else {
-										dayIndex++;
-										validRoom = true;
+										dayIndexWeb++;
+										validRoomWeb = true;
 									}
 								}
 								
-								if (!validRoom) {
+								if (!validRoomWeb) {
 									roomIndex++;
 								} else {
-									valid = false;
-									setIndice(index);
+									validWeb = false;
+									setIndice(indexWeb);
 									break;							
 								}
 							}
@@ -232,56 +233,56 @@ public class HotelControllerWeb {
 				e.printStackTrace();
 			}
 			
-			valid = true;
+			validWeb = true;
 			
 			try {
 				
-				while (valid) {
+				while (validWeb) {
 					
-					index++;
+					indexWeb++;
 					
-					hotel3 = HotelDao.searchHotel(bean, stars, index);
+					hotel3Web = HotelDao.searchHotel(beanWeb, starsWeb, indexWeb);
 					
-					if (hotel3.getHotelName() != null) {
+					if (hotel3Web.getHotelName() != null) {
 						
-						int roomIndex = 1;
+						int roomIndexWeb = 1;
 						
 						try {
 							while (true) {
-								room3 = RoomDao.searchRoom(hotel3.getHotelRooms(), bean.getNumPeople(), budget, roomIndex);
-								if (room3.getRoomId() == 0) {
+								room3Web = RoomDao.searchRoom(hotel3Web.getHotelRooms(), beanWeb.getNumPeople(), budgetWeb, roomIndexWeb);
+								if (room3Web.getRoomId() == 0) {
 									break;
 								}
 								
-								LocalDate day = bean.getLocalDateIn();
-								day = day.plusDays(-1);
+								LocalDate dayWeb = beanWeb.getLocalDateIn();
+								dayWeb = dayWeb.plusDays(-1);
 								
-								int dayIndex = 0;
+								int dayIndexWeb = 0;
 								
-								boolean validRoom = false;
+								boolean validRoomWeb = false;
 								
-								while (dayIndex<=bean.getDays()) {
+								while (dayIndexWeb<=beanWeb.getDays()) {
 									
-									day = day.plusDays(1);
+									dayWeb = dayWeb.plusDays(1);
 									
-									int date = (day.getYear()*10000) + (day.getMonth().getValue()*100) + (day.getDayOfMonth());
+									int dateWeb = (dayWeb.getYear()*10000) + (dayWeb.getMonth().getValue()*100) + (dayWeb.getDayOfMonth());
 									
-									Reservation reservation3 = ReservationDao.searchReservation(hotel3.getHotelAgenda(), room3.getRoomId(), date);
-									if (room3.getRoomId() == reservation3.getReservationId()) {
-										validRoom = false;
+									Reservation reservation3Web = ReservationDao.searchReservation(hotel3Web.getHotelAgenda(), room3Web.getRoomId(), dateWeb);
+									if (room3Web.getRoomId() == reservation3Web.getReservationId()) {
+										validRoomWeb = false;
 										break;
 									
 									} else {
-										dayIndex++;
-										validRoom = true;
+										dayIndexWeb++;
+										validRoomWeb = true;
 									}
 								}
 								
-								if (!validRoom) {
-									roomIndex++;
+								if (!validRoomWeb) {
+									roomIndexWeb++;
 								} else {
-									valid = false;
-									setIndice(index);
+									validWeb = false;
+									setIndice(indexWeb);
 									break;							
 								}
 							}
@@ -301,38 +302,38 @@ public class HotelControllerWeb {
 		}
 	
 	public int getIndice() {
-		return indice;
+		return indiceWeb;
 	}
 
 	public void setIndice(int indice) {
-		this.indice = indice;
+		this.indiceWeb = indice;
 	}
 	
 	
-	public void viewReviews(String reviewTable, int indice, ReviewBean reviewBean) {
+	public void viewReviews(String reviewTable, int indice, ReviewBean reviewBeanWeb) {
 		
 		//ProfileController profileController = ProfileController.getIstance(pane);
 		
-		Review r1 = null;
-		Review r2 = null;
-		Review r3 = null;
+		Review r1Web = null;
+		Review r2Web = null;
+		Review r3Web = null;
 		
 		
 		try {
 			indice++;
-			r1 = ReviewDao.getReview(reviewTable, indice);
-			reviewBean.getReviewList().add(0,r1);
+			r1Web = ReviewDao.getReview(reviewTable, indice);
+			reviewBeanWeb.getReviewList().add(0,r1Web);
 			indice++;
-			r2 = ReviewDao.getReview(reviewTable, indice);
-			reviewBean.getReviewList().add(1,r2);
+			r2Web = ReviewDao.getReview(reviewTable, indice);
+			reviewBeanWeb.getReviewList().add(1,r2Web);
 			indice++;
-			r3 = ReviewDao.getReview(reviewTable, indice);
-			reviewBean.getReviewList().add(2, r3);
+			r3Web = ReviewDao.getReview(reviewTable, indice);
+			reviewBeanWeb.getReviewList().add(2, r3Web);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		reviewBean.setIndex(indice);
+		reviewBeanWeb.setIndex(indice);
 	}
 	
 	public int getStep() {
@@ -399,51 +400,51 @@ public class HotelControllerWeb {
 	}
 
 	public Hotel getHotel1() {
-		return hotel1;
+		return hotel1Web;
 	}
 
 	public void setHotel1(Hotel hotel1) {
-		this.hotel1 = hotel1;
+		this.hotel1Web = hotel1;
 	}
 	
 	public Hotel getHotel2() {
-		return hotel2;
+		return hotel2Web;
 	}
 
 	public void setHotel2(Hotel hotel2) {
-		this.hotel2 = hotel2;
+		this.hotel2Web = hotel2;
 	}
 	
 	public Hotel getHotel3() {
-		return hotel3;
+		return hotel3Web;
 	}
 
 	public void setHotel3(Hotel hotel3) {
-		this.hotel3 = hotel3;
+		this.hotel3Web = hotel3;
 	}
 
 	public Room getRoom1() {
-		return room1;
+		return room1Web;
 	}
 
 	public void setRoom1(Room room1) {
-		this.room1 = room1;
+		this.room1Web = room1;
 	}
 
 	public Room getRoom2() {
-		return room2;
+		return room2Web;
 	}
 
 	public void setRoom2(Room room2) {
-		this.room2 = room2;
+		this.room2Web = room2;
 	}
 
 	public Room getRoom3() {
-		return room3;
+		return room3Web;
 	}
 
 	public void setRoom3(Room room3) {
-		this.room3 = room3;
+		this.room3Web = room3;
 	}
 	
 

@@ -242,12 +242,11 @@ public class ProfileController {
 			}
 		
 		} catch (Exception e1) {
-		e1.printStackTrace();
+			e1.printStackTrace();
 		}
 		
 	}
 	
-	//public void changeExperiences(int index, int tipo) {
 	public void changeExperiences(int index) {
 		
         try {

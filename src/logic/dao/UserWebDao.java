@@ -134,7 +134,7 @@ public class UserWebDao {
 	
 	public static boolean setUser(String username, String password){
 
-		String reviewsTable = (username + "Reviews").replaceAll("\\s+","");
+		String reviewsTableWeb = (username + "Reviews").replaceAll("\\s+","");
     	String searchUserQuery = "select name from users where name = '" + username + "'";
     	String searchOwnerQuery = "select name from owners where name = '" + username + "'";
     	
@@ -164,26 +164,26 @@ public class UserWebDao {
     					
     					java.sql.DatabaseMetaData meta = userWebConn.getMetaData();
 
-    					String variableReviewsTable = reviewsTable;
+    					String variableReviewsTableWeb = reviewsTableWeb;
     					
-    					boolean exist = true;
+    					boolean existWeb = true;
     					
-    					int i=0;
+    					int iWeb=0;
     					
-    					while (exist) {
-    						ResultSet res = meta.getTables(null, null, variableReviewsTable, null);
+    					while (existWeb) {
+    						ResultSet res = meta.getTables(null, null, variableReviewsTableWeb, null);
     						if (res.next()) {
-    							variableReviewsTable = reviewsTable + i;
-    							i++;
+    							variableReviewsTableWeb = reviewsTableWeb + iWeb;
+    							iWeb++;
     						} else {
-    							exist = false;
-    							reviewsTable = variableReviewsTable;
+    							existWeb = false;
+    							reviewsTableWeb = variableReviewsTableWeb;
 
-    							String insertQuery = "insert into users value ('" + username + "','" + password + "','" + reviewsTable + "','" + null + "')";
-    					    	String createReviewsQuery = "create table " + reviewsTable + " (structure varchar(20),review text,stars int,dateIn int,dateOut int)";
+    							String insertQueryWeb = "insert into users value ('" + username + "','" + password + "','" + reviewsTableWeb + "','" + null + "')";
+    					    	String createReviewsQueryWeb = "create table " + reviewsTableWeb + " (structure varchar(20),review text,stars int,dateIn int,dateOut int)";
     				
-    					    	userWebSt.executeUpdate(insertQuery);
-    							userWebSt.executeUpdate(createReviewsQuery);
+    					    	userWebSt.executeUpdate(insertQueryWeb);
+    							userWebSt.executeUpdate(createReviewsQueryWeb);
     						}
     					}
 
