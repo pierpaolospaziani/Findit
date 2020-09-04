@@ -139,10 +139,10 @@ public class HotelController {
 				
 				if (hotel1.getHotelName() != null) {
 					
-					int roomIndex = 1;
+					int roomIndex1 = 1;
 					
 						while (true) {
-							room1 = RoomDao.searchRoom(hotel1.getHotelRooms(), bean.getNumPeople(), budget, roomIndex);
+							room1 = RoomDao.searchRoom(hotel1.getHotelRooms(), bean.getNumPeople(), budget, roomIndex1);
 							if (room1.getRoomId() == 0) {
 								break;
 							}
@@ -152,7 +152,7 @@ public class HotelController {
 							
 							int dayIndex = 0;
 							
-							boolean validRoom = false;
+							boolean validRoom1 = false;
 							
 							while (dayIndex<=bean.getDays()) {
 								
@@ -162,17 +162,17 @@ public class HotelController {
 								
 								Reservation reservation1 = ReservationDao.searchReservation(hotel1.getHotelAgenda(), room1.getRoomId(), date);
 								if (room1.getRoomId() == reservation1.getReservationId()) {
-									validRoom = false;
+									validRoom1 = false;
 									break;
 								
 								} else {
 									dayIndex++;
-									validRoom = true;
+									validRoom1 = true;
 								}
 							}
 							
-							if (!validRoom) {
-								roomIndex++;
+							if (!validRoom1) {
+								roomIndex1++;
 							} else {
 								valid = false;
 								
@@ -206,10 +206,10 @@ public class HotelController {
 				
 				if (hotel2.getHotelName() != null) {
 					
-					int roomIndex = 1;
+					int roomIndex2 = 1;
 					
 						while (true) {
-							room2 = RoomDao.searchRoom(hotel2.getHotelRooms(), bean.getNumPeople(), budget, roomIndex);
+							room2 = RoomDao.searchRoom(hotel2.getHotelRooms(), bean.getNumPeople(), budget, roomIndex2);
 							if (room2.getRoomId() == 0) {
 								break;
 							}
@@ -219,7 +219,7 @@ public class HotelController {
 							
 							int dayIndex = 0;
 							
-							boolean validRoom = false;
+							boolean validRoom2 = false;
 							
 							while (dayIndex<=bean.getDays()) {
 								
@@ -229,17 +229,17 @@ public class HotelController {
 								
 								Reservation reservation2 = ReservationDao.searchReservation(hotel2.getHotelAgenda(), room2.getRoomId(), date);
 								if (room2.getRoomId() == reservation2.getReservationId()) {
-									validRoom = false;
+									validRoom2 = false;
 									break;
 								
 								} else {
 									dayIndex++;
-									validRoom = true;
+									validRoom2 = true;
 								}
 							}
 							
-							if (!validRoom) {
-								roomIndex++;
+							if (!validRoom2) {
+								roomIndex2++;
 							} else {
 								valid = false;
 								setIndice(index);
@@ -262,10 +262,10 @@ public class HotelController {
 				
 				if (hotel3.getHotelName() != null) {
 					
-					int roomIndex = 1;
+					int roomIndex3 = 1;
 
 						while (true) {
-							room3 = RoomDao.searchRoom(hotel3.getHotelRooms(), bean.getNumPeople(), budget, roomIndex);
+							room3 = RoomDao.searchRoom(hotel3.getHotelRooms(), bean.getNumPeople(), budget, roomIndex3);
 							if (room3.getRoomId() == 0) {
 								break;
 							}
@@ -275,7 +275,7 @@ public class HotelController {
 							
 							int dayIndex = 0;
 							
-							boolean validRoom = false;
+							boolean validRoom3 = false;
 							
 							while (dayIndex<=bean.getDays()) {
 								
@@ -285,17 +285,17 @@ public class HotelController {
 								
 								Reservation reservation3 = ReservationDao.searchReservation(hotel3.getHotelAgenda(), room3.getRoomId(), date);
 								if (room3.getRoomId() == reservation3.getReservationId()) {
-									validRoom = false;
+									validRoom3 = false;
 									break;
 								
 								} else {
 									dayIndex++;
-									validRoom = true;
+									validRoom3 = true;
 								}
 							}
 							
-							if (!validRoom) {
-								roomIndex++;
+							if (!validRoom3) {
+								roomIndex3++;
 							} else {
 								valid = false;
 								setIndice(index);

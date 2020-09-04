@@ -33,7 +33,6 @@ public class UserDao {
     	
     	Connection userConn = null;
 		Statement userSt = null;
-		InputStream userBinaryStream = null;
 		
     	try {
         	try {
@@ -93,13 +92,16 @@ public class UserDao {
 
     				byte[] imageByte = blob.getBytes(1, (int) blob.length());
   
-    				userBinaryStream = new ByteArrayInputStream(imageByte);
-    			
-    				BufferedImage bf = ImageIO.read(userBinaryStream);
-    				
-    				Image  img = SwingFXUtils.toFXImage(bf, null);
-    				
-    				user.setUserImage(img);
+    				try (InputStream userBinaryStream = new ByteArrayInputStream(imageByte)){
+
+        				BufferedImage bf = ImageIO.read(userBinaryStream);
+        				
+        				Image  img = SwingFXUtils.toFXImage(bf, null);
+        				
+        				user.setUserImage(img);
+    				} catch(Exception e){
+    			        System.exit(1);
+    			    }
     				
     			} else {
     				user.setUserImage(null);
@@ -117,10 +119,6 @@ public class UserDao {
         		
         		if (userConn != null) {
         			userConn.close();
-        		}
-        		
-        		if (userBinaryStream != null) {
-        			userBinaryStream.close();
         		}
         		
         	}

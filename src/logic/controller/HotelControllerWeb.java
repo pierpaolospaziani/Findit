@@ -100,11 +100,11 @@ public class HotelControllerWeb {
 					hotel1Web = HotelDao.searchHotel(beanWeb, starsWeb, indexWeb);
 
 					if (hotel1Web.getHotelName() != null) {
-						int roomIndex = 1;
+						int roomIndexWeb1 = 1;
 						
 						try {
 							while (true) {
-								room1Web = RoomDao.searchRoom(hotel1Web.getHotelRooms(), beanWeb.getNumPeople(), budgetWeb, roomIndex);
+								room1Web = RoomDao.searchRoom(hotel1Web.getHotelRooms(), beanWeb.getNumPeople(), budgetWeb, roomIndexWeb1);
 								if (room1Web.getRoomId() == 0) {
 									break;
 								}
@@ -134,7 +134,7 @@ public class HotelControllerWeb {
 								}
 								
 								if (!validRoomWeb) {
-									roomIndex++;
+									roomIndexWeb1++;
 								} else {
 									validWeb = false;
 									
@@ -178,11 +178,11 @@ public class HotelControllerWeb {
 					
 					if (hotel2Web.getHotelName() != null) {
 						
-						int roomIndex = 1;
+						int roomIndexWeb2 = 1;
 						
 						try {
 							while (true) {
-								room2Web = RoomDao.searchRoom(hotel2Web.getHotelRooms(), beanWeb.getNumPeople(), budgetWeb, roomIndex);
+								room2Web = RoomDao.searchRoom(hotel2Web.getHotelRooms(), beanWeb.getNumPeople(), budgetWeb, roomIndexWeb2);
 								if (room2Web.getRoomId() == 0) {
 									break;
 								}
@@ -212,7 +212,7 @@ public class HotelControllerWeb {
 								}
 								
 								if (!validRoomWeb) {
-									roomIndex++;
+									roomIndexWeb2++;
 								} else {
 									validWeb = false;
 									setIndice(indexWeb);
@@ -245,11 +245,11 @@ public class HotelControllerWeb {
 					
 					if (hotel3Web.getHotelName() != null) {
 						
-						int roomIndexWeb = 1;
+						int roomIndexWeb3 = 1;
 						
 						try {
 							while (true) {
-								room3Web = RoomDao.searchRoom(hotel3Web.getHotelRooms(), beanWeb.getNumPeople(), budgetWeb, roomIndexWeb);
+								room3Web = RoomDao.searchRoom(hotel3Web.getHotelRooms(), beanWeb.getNumPeople(), budgetWeb, roomIndexWeb3);
 								if (room3Web.getRoomId() == 0) {
 									break;
 								}
@@ -279,7 +279,7 @@ public class HotelControllerWeb {
 								}
 								
 								if (!validRoomWeb) {
-									roomIndexWeb++;
+									roomIndexWeb3++;
 								} else {
 									validWeb = false;
 									setIndice(indexWeb);
