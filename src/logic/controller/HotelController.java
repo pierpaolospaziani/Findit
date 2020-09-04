@@ -224,17 +224,23 @@ public class HotelController {
 			} else {
 				good = true;
 				
-				if (indice < index) {
-					setPage(page+1);
-				} else {
-					setPage(page-1);
-				}
+				page(indice, index);
 				
 				setIndice(index);							
 			}
+			System.out.println(validRoom1);
 		}
 		
 		return good;
+	}
+	
+	private void page(int indice, int index) {
+		
+		if (indice < index) {
+			setPage(page+1);
+		} else {
+			setPage(page-1);
+		}
 	}
 	
 	private void getHotel2(int budget, int stars, int index) {
