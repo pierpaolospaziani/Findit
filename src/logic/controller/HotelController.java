@@ -266,9 +266,9 @@ public class HotelController {
 		
 		int roomIndex2 = 1;
 		
-		boolean validRoom2 = false;
+		boolean validRoom2 = true;
 		
-		while (!validRoom2) {
+		while (validRoom2) {
 			room2 = RoomDao.searchRoom(hotel2.getHotelRooms(), bean.getNumPeople(), budget, roomIndex2);
 			if (room2.getRoomId() == 0) {
 				break;
@@ -278,8 +278,6 @@ public class HotelController {
 			day = day.plusDays(-1);
 			
 			int dayIndex = 0;
-			
-			validRoom2 = true;
 			
 			while (dayIndex<=bean.getDays()) {
 				
@@ -294,6 +292,7 @@ public class HotelController {
 				
 				} else {
 					dayIndex++;
+					validRoom2 = true;
 				}
 			}
 			

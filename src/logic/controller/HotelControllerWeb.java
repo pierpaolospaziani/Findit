@@ -110,7 +110,6 @@ public class HotelControllerWeb {
 		
 		if (!change) {
 			page = getPage()-1;
-			System.out.println(page);
 			beanWeb.setPage(page);
 			indexWeb = getIndice()-3;
 			changeScene2(indexWeb, beanWeb);
