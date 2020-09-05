@@ -3,6 +3,8 @@ package logic.servlet;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -57,7 +59,7 @@ public class SearchHotel extends HttpServlet {
 		}
 		
 		
-		beanSearchHotel.setDays(dateOut.compareTo(dateIn));
+		beanSearchHotel.setDays((int) ChronoUnit.DAYS.between(dateIn, dateOut));
 		
 		beanSearchHotel.setBudget1(request.getParameter("check50_100") != null);
 		beanSearchHotel.setBudget2(request.getParameter("check100_150") != null);

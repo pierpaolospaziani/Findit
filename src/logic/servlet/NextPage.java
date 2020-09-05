@@ -30,6 +30,14 @@ public class NextPage extends HttpServlet {
 		HotelControllerWeb controller = HotelControllerWeb.getIstance();
 		int index = controller.getIndice();
 		
+		if ((index%3) != 0) {
+			if ((index%3) == 1) {
+				index = index - 1;
+			} else {
+				index = index - 2;
+			}
+		}
+		
 		controller.changeScene2(index, bean);
 		
 		bean.setHotel1(controller.getHotel1());

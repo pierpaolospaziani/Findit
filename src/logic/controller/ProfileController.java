@@ -345,13 +345,15 @@ public class ProfileController {
 		
 	}
 	
-	public void registerStructure(String ownerName, HotelBean bean) {
+	public boolean registerStructure(String ownerName, HotelBean bean) {
+		boolean added = false;
 		try {
-			HotelDao.setHotel(bean, ownerName, 0);
+			added = HotelDao.setHotel(bean, ownerName, 0);
 			OwnerDao.setStructure(ownerName, bean.getName());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return added;
 	}
 	
 	public void openStructureWindow(String structure) {

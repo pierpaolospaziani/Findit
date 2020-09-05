@@ -63,8 +63,6 @@ public class User2Scene extends HBox{
     protected VBox vBox4;
     protected VBox vBox5;
     protected VBox vBox6;
-    
-    protected Button buttonAddStructure;
 
     protected Stage window;
     

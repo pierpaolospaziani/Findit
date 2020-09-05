@@ -269,8 +269,17 @@ public class OwnerDao {
         		String table = (username + "Structures").replaceAll("\\s+","");
         		
             	String insertQuery = "insert into " + table + " value ('" + structure + "')";
+            	
+            	String searchQuery = "select name from " + table + " where name = '" + structure + "'";
     		
-    			ownerSt.executeUpdate(insertQuery);
+            	ResultSet rs = ownerSt.executeQuery(searchQuery);
+    			
+    			if (!rs.first()) {
+
+    				rs.close();
+            	
+    				ownerSt.executeUpdate(insertQuery);
+    			}
     			
         	} finally {
         		

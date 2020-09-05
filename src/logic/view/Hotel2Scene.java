@@ -106,8 +106,8 @@ public class Hotel2Scene extends VBox{
         String structImage = "strucutre.jpg";
         String transparent = "-fx-background-color: transparent;";
         String noReviews = "Still 0 Reviews";
-        String stars = " Stars";
-        String beds = " Beds";
+        String stars = " Star/s";
+        String beds = " Bed/s";
         String notFound = "Hotel not found!";
         String colorBlu = "-fx-background-color: #1B59D7;";
         
@@ -238,7 +238,7 @@ public class Hotel2Scene extends VBox{
         vBoxPrezzo2.setPadding(new Insets(20.0, 0.0, 0.0, 0.0));
         hBoxHotel2.setPadding(new Insets(5.0));
         
-        bedsHotel2.setText(String.valueOf(room1.getBeds()) + beds);
+        bedsHotel2.setText(String.valueOf(room2.getBeds()) + beds);
         bedsHotel2.setFont(new Font(18.0));
         
         if (hotel2.getHotelName() == null) {
@@ -302,7 +302,7 @@ public class Hotel2Scene extends VBox{
         vBoxPrezzo3.setPadding(new Insets(20.0, 0.0, 0.0, 0.0));
         hBoxHotel3.setPadding(new Insets(5.0));
         
-        bedsHotel3.setText(String.valueOf(room1.getBeds()) + beds);
+        bedsHotel3.setText(String.valueOf(room3.getBeds()) + beds);
         bedsHotel3.setFont(new Font(18.0));
         
         if (hotel3.getHotelName() == null) {

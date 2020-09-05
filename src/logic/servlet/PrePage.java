@@ -41,7 +41,10 @@ public class PrePage extends HttpServlet {
 					indice = indice - 5;
 	 				controller.changeScene2(indice, bean);
 				}
-			}
+		} else {
+			indice = 0;
+			controller.changeScene2(indice, bean);
+		}
 		
 		bean.setHotel1(controller.getHotel1());
 		bean.setHotel2(controller.getHotel2());

@@ -266,12 +266,17 @@ public class HotelRegistrationScene extends VBox {
 					bean.setHostel(checkBoxHostels.isSelected());	
 					bean.setHotel(checkBoxHotels.isSelected());
 					
+					boolean added =  controller.registerStructure(ownerName,bean);
 					
-					btnRegister.setText("Structure registered");
-					btnRegister.setDisable(true);
-					btnUndo.setText("Back to Profile");
+					if (added) {
+						btnRegister.setText("Structure registered");
+						btnRegister.setDisable(true);
+						btnUndo.setText("Back to Profile");
+					} else {
+						hotelLabel.setText("Already exist: change name");
+						hotelLabel.setStyle("-fx-text-fill: red");
+					}
 					
-					controller.registerStructure(ownerName,bean);
 				}
 			}
 		});

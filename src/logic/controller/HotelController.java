@@ -228,7 +228,6 @@ public class HotelController {
 				
 				setIndice(index);							
 			}
-			System.out.println(validRoom1);
 		}
 		
 		return good;
@@ -280,6 +279,8 @@ public class HotelController {
 			
 			int dayIndex = 0;
 			
+			validRoom2 = true;
+			
 			while (dayIndex<=bean.getDays()) {
 				
 				day = day.plusDays(1);
@@ -293,7 +294,6 @@ public class HotelController {
 				
 				} else {
 					dayIndex++;
-					validRoom2 = true;
 				}
 			}
 			
