@@ -87,6 +87,7 @@ public class SearchHotel extends HttpServlet {
 		HotelControllerWeb controller = HotelControllerWeb.getIstance();
 		HttpSession session = request.getSession();
 		
+		controller.setPage(1);
 		controller.changeScene2(0, beanSearchHotel);
 		
 		beanSearchHotel.setHotel1(controller.getHotel1());

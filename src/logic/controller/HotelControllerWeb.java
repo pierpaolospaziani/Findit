@@ -57,61 +57,65 @@ public class HotelControllerWeb {
 		
 		int budgetWeb = 1000;
 		
-			if (beanWeb.isBudget1()){
-				budgetWeb = 100;
-			}
-			if (beanWeb.isBudget2()){
-				budgetWeb = 150;
-			}
-			if (beanWeb.isBudget3()){
-				budgetWeb = 200;
-			}
-			if (beanWeb.isBudget4()){
-				budgetWeb = 1000;
-			}
-		
-			int starsWeb = 0;
-		
-			if (beanWeb.getStar5()){
-				starsWeb = 5;
-			}
-			if (beanWeb.getStar4()){
-				starsWeb = 4;
-			}
-			if (beanWeb.getStar3()){
-				starsWeb = 3;
-			}
-			if (beanWeb.getStar2()){
-				starsWeb = 2;
-			}
-			if (beanWeb.getStar1()){
-				starsWeb = 1;
-			}
-		
-			boolean change = false;
-			
-			try {
-				
-				change = getHotelWeb1(budgetWeb, starsWeb, indexWeb, beanWeb);
-				
-				indexWeb = getIndice();
-				
-				getHotelWeb2(budgetWeb, starsWeb, indexWeb, beanWeb);
-				
-				indexWeb = getIndice();
-				
-				getHotelWeb3(budgetWeb, starsWeb, indexWeb, beanWeb);
-				
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			
-			if (!change) {
-				
-				indexWeb = getIndice()-3;
-				changeScene2(indexWeb, beanWeb);
-			}
+		if (beanWeb.isBudget1()){
+			budgetWeb = 100;
 		}
+		if (beanWeb.isBudget2()){
+			budgetWeb = 150;
+		}
+		if (beanWeb.isBudget3()){
+			budgetWeb = 200;
+		}
+		if (beanWeb.isBudget4()){
+			budgetWeb = 1000;
+		}
+	
+		int starsWeb = 0;
+	
+		if (beanWeb.getStar5()){
+			starsWeb = 5;
+		}
+		if (beanWeb.getStar4()){
+			starsWeb = 4;
+		}
+		if (beanWeb.getStar3()){
+			starsWeb = 3;
+		}
+		if (beanWeb.getStar2()){
+			starsWeb = 2;
+		}
+		if (beanWeb.getStar1()){
+			starsWeb = 1;
+		}
+	
+		boolean change = false;
+		
+		try {
+			
+			change = getHotelWeb1(budgetWeb, starsWeb, indexWeb, beanWeb);
+			
+			beanWeb.setPage(getPage());
+			
+			indexWeb = getIndice();
+			
+			getHotelWeb2(budgetWeb, starsWeb, indexWeb, beanWeb);
+			
+			indexWeb = getIndice();
+			
+			getHotelWeb3(budgetWeb, starsWeb, indexWeb, beanWeb);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		if (!change) {
+			page = getPage()-1;
+			System.out.println(page);
+			beanWeb.setPage(page);
+			indexWeb = getIndice()-3;
+			changeScene2(indexWeb, beanWeb);
+		}
+	}
 	
 	private boolean getHotelWeb1(int budgetWeb, int starsWeb, int indexWeb, HotelBeanWeb beanWeb) {
 		
@@ -129,7 +133,6 @@ public class HotelControllerWeb {
 				
 			} else {
 				return false;
-				//validWeb1 = false;
 			}
 		}
 		return true;
@@ -172,21 +175,11 @@ public class HotelControllerWeb {
 			if (!validRoom1Web) {
 				roomIndexWeb1++;
 			} else {
-				page(indiceWeb, indexWeb);
 				
-				setIndice(indexWeb);						
+				setIndice(indexWeb);
 			}
 		}
 		return false;
-	}
-	
-	private void page(int indiceWeb, int indexWeb) {
-		
-		if (indiceWeb < indexWeb) {
-			setPage(page+1);
-		} else {
-			setPage(page-1);
-		}
 	}
 	
 	private void getHotelWeb2(int budgetWeb, int starsWeb, int indexWeb, HotelBeanWeb beanWeb) {
@@ -325,8 +318,6 @@ public class HotelControllerWeb {
 	
 	
 	public void viewReviews(String reviewTable, int indice, ReviewBean reviewBeanWeb) {
-		
-		//ProfileController profileController = ProfileController.getIstance(pane);
 		
 		Review r1Web = null;
 		Review r2Web = null;

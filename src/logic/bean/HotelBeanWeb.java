@@ -15,6 +15,8 @@ public class HotelBeanWeb extends HotelBean{
 	private Room room2;
 	private Room room3;
 	
+	private int page;
+	
 	private Hotel bookHotel;
 	private Room bookRoom;
 	
@@ -83,4 +85,11 @@ public class HotelBeanWeb extends HotelBean{
 		this.bookRoom = bookRoom;
 	}
 
+	public int getPage() {
+		return page;
+	}
+
+	public void setPage(int page) {
+		this.page = page;
+	}
 }

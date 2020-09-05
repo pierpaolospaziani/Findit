@@ -31,20 +31,19 @@ public class PrePage extends HttpServlet {
 		int indice = controller.getIndice();
 		
 		if (indice > 3) {
+			controller.setPage(controller.getPage()-1);
 				if ((indice%3) == 0) {
 					indice = indice - 6;
-					controller.changeScene2(indice, bean);
 				} else if ((indice%3) == 1) {
 	 				indice = indice - 4;
-	 				controller.changeScene2(indice, bean);
 				} else {
 					indice = indice - 5;
-	 				controller.changeScene2(indice, bean);
 				}
 		} else {
 			indice = 0;
-			controller.changeScene2(indice, bean);
 		}
+		
+		controller.changeScene2(indice, bean);
 		
 		bean.setHotel1(controller.getHotel1());
 		bean.setHotel2(controller.getHotel2());

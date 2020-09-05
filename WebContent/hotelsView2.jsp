@@ -146,18 +146,16 @@
 
 				<!-- button -->
 			
-				<div id="box3"  align="left" style="margin-left: 101px;margin-top: 5px;height: 55px">
+				<div id="box3"  align="left" style="margin-left: 101px;margin-top: 5px;height: 55px;">
 						
 					<button class="searchButton" onclick="location.href='hotelsView.jsp'" style="float: left;width: 118px; height: 51px;font-size: 20px"> back </button>
 					<form method="GET" action="PrePage">
 						<input style="background-color: #1B59D7;margin-left : 238px; color: #ffffff;font-size: 20px; height: 51px;width: 50px; border: none;border-radius: 0px;float: left;" type="submit" value="<">
 					</form>
+					<label style="margin-top : 25px; margin-left: 10px; font-size: 15px;"> <%out.print(bean.getPage()); %> </label>
 					<form method="GET" action="NextPage">
-						<input style="background-color: #1B59D7;margin-left : 20px; color: #ffffff;font-size: 20px; height: 51px;width: 50px; border: none;border-radius: 0px;float: left;" type="submit" value=">">
-					</form>	
-						<br><br>
-						<label style="margin-top : 0px; margin-left: 412px; font-size: 15px"> 1 </label>
-					
+						<input style="background-color: #1B59D7; margin-top: -32px; margin-left : 25px; color: #ffffff; font-size: 20px; height: 51px;width: 50px; border: none;border-radius: 0px;float: left;" type="submit" value=">">
+					</form>
 				</div>
 			</div>
 

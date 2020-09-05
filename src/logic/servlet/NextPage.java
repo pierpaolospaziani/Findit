@@ -36,6 +36,8 @@ public class NextPage extends HttpServlet {
 			} else {
 				index = index - 2;
 			}
+		} else {
+			controller.setPage(controller.getPage()+1);
 		}
 		
 		controller.changeScene2(index, bean);
