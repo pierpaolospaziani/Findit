@@ -330,9 +330,9 @@ public class HotelController {
 		
 		int roomIndex3 = 1;
 		
-		boolean validRoom3 = false;
+		boolean validRoom3 = true;
 
-		while (!validRoom3) {
+		while (validRoom3) {
 			room3 = RoomDao.searchRoom(hotel3.getHotelRooms(), bean.getNumPeople(), budget, roomIndex3);
 			if (room3.getRoomId() == 0) {
 				break;
