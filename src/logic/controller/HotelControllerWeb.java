@@ -108,7 +108,7 @@ public class HotelControllerWeb {
 			e.printStackTrace();
 		}
 		
-		if (!change) {
+		if (!change && getPage() != 1) {
 			page = getPage()-1;
 			beanWeb.setPage(page);
 			indexWeb = getIndice()-3;
@@ -118,9 +118,9 @@ public class HotelControllerWeb {
 	
 	private boolean getHotelWeb1(int budgetWeb, int starsWeb, int indexWeb, HotelBeanWeb beanWeb) {
 		
-		boolean validWeb1 = true;
+		boolean exit1 = true;
 		
-		while (validWeb1) {
+		while (exit1) {
 			
 			indexWeb++;
 			
@@ -128,7 +128,11 @@ public class HotelControllerWeb {
 
 			if (hotel1Web.getHotelName() != null) {
 				
-				validWeb1 = getRoomWeb1(budgetWeb, indexWeb, beanWeb);
+				boolean validWeb1 = getRoomWeb1(budgetWeb, indexWeb, beanWeb);
+				
+				if (validWeb1) {
+					exit1 = !validWeb1;
+				}
 				
 			} else {
 				return false;
@@ -176,6 +180,7 @@ public class HotelControllerWeb {
 			} else {
 				
 				setIndice(indexWeb);
+				return true;
 			}
 		}
 		return false;
@@ -183,9 +188,9 @@ public class HotelControllerWeb {
 	
 	private void getHotelWeb2(int budgetWeb, int starsWeb, int indexWeb, HotelBeanWeb beanWeb) {
 		
-		boolean validWeb2 = true;
+		boolean exit2 = true;
 		
-		while (validWeb2) {
+		while (exit2) {
 			
 			indexWeb++;
 			
@@ -193,10 +198,14 @@ public class HotelControllerWeb {
 			
 			if (hotel2Web.getHotelName() != null) {
 				
-				validWeb2 = getRoomWeb2(budgetWeb, indexWeb, beanWeb);
+				boolean validWeb2 = getRoomWeb2(budgetWeb, indexWeb, beanWeb);
+				
+				if (validWeb2) {
+					exit2 = !validWeb2;
+				}
 				
 			} else {
-				validWeb2 = false;				
+				exit2 = false;				
 			}	
 		}
 	}
@@ -238,7 +247,8 @@ public class HotelControllerWeb {
 			if (!validRoom2Web) {
 				roomIndexWeb2++;
 			} else {
-				setIndice(indexWeb);						
+				setIndice(indexWeb);
+				return true;					
 			}
 		}
 		return false;
@@ -246,9 +256,9 @@ public class HotelControllerWeb {
 	
 	private void getHotelWeb3(int budgetWeb, int starsWeb, int indexWeb, HotelBeanWeb beanWeb) {
 		
-		boolean validWeb3 = true;
+		boolean exit3 = true;
 		
-		while (validWeb3) {
+		while (exit3) {
 			
 			indexWeb++;
 			
@@ -256,10 +266,14 @@ public class HotelControllerWeb {
 			
 			if (hotel3Web.getHotelName() != null) {
 				
-				validWeb3 = getRoomWeb3(budgetWeb, indexWeb, beanWeb);
+				boolean validWeb3 = getRoomWeb3(budgetWeb, indexWeb, beanWeb);
+
+				if (validWeb3) {
+					exit3 = !validWeb3;
+				}
 				
 			} else {
-				validWeb3 = false;				
+				exit3 = false;				
 			}	
 		}
 	}
@@ -301,7 +315,8 @@ public class HotelControllerWeb {
 			if (!validRoom3Web) {
 				roomIndexWeb3++;
 			} else {
-				setIndice(indexWeb);						
+				setIndice(indexWeb);
+				return true;					
 			}
 		}
 		return false;
