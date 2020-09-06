@@ -145,9 +145,10 @@ public class HotelControllerWeb {
 		
 		int roomIndexWeb1 = 1;
 		
-		boolean validRoom1Web = false;
+		boolean validRoom1Web = true;
 		
-		while (!validRoom1Web) {
+		while (validRoom1Web) {
+			validRoom1Web = false;
 			room1Web = RoomDao.searchRoom(hotel1Web.getHotelRooms(), beanWeb.getNumPeople(), budgetWeb, roomIndexWeb1);
 			if (room1Web.getRoomId() == 0) {
 				break;
@@ -214,9 +215,10 @@ public class HotelControllerWeb {
 		
 		int roomIndexWeb2 = 1;
 		
-		boolean validRoom2Web = false;
+		boolean validRoom2Web = true;
 		
-		while (!validRoom2Web) {
+		while (validRoom2Web) {
+			validRoom2Web = false;
 			room2Web = RoomDao.searchRoom(hotel2Web.getHotelRooms(), beanWeb.getNumPeople(), budgetWeb, roomIndexWeb2);
 			if (room2Web.getRoomId() == 0) {
 				break;
@@ -282,9 +284,10 @@ public class HotelControllerWeb {
 		
 		int roomIndexWeb3 = 1;
 		
-		boolean validRoom3Web = false;
+		boolean validRoom3Web = true;
 		
-		while (!validRoom3Web) {
+		while (validRoom3Web) {
+			validRoom3Web = false;
 			room3Web = RoomDao.searchRoom(hotel3Web.getHotelRooms(), beanWeb.getNumPeople(), budgetWeb, roomIndexWeb3);
 			if (room3Web.getRoomId() == 0) {
 				break;
