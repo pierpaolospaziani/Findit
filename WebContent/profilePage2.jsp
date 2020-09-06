@@ -82,7 +82,7 @@ LoginBeanWeb beanLog = (LoginBeanWeb)session.getAttribute("beanLog");
  				<div id="box1" align="center" style="width: 660px;height: 250px;margin-top: 0px;">
 					
 					<div id="box1" align="center" style="width: 660px;height:20px;margin-top: 0px;"></div>
-						<%if(len > 1 ){ %>	
+						<%if(len >= 1 ){ %>	
 							<label style="margin-top: -10px;font-size: 25px">Here are your Experiences</label>
  						<% } else%>
  							<label style="float: left;margin-left: 185px; font-size:30px"> No experiences to view</label>

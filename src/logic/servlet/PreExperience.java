@@ -120,7 +120,7 @@ public class PreExperience extends HttpServlet {
 		} else {
 			indiceOwner = indiceOwner - 11;
 		}
-		controller.changeExperiences(indiceOwner,bean);
+		controller.changeStructures(indiceOwner,bean);
 	}
 	
 }
