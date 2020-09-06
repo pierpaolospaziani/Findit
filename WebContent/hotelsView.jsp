@@ -125,14 +125,9 @@
   						<label style="font-size: 20px;"> 5 star</label><br>				
  					
  				</div>
- 				
-  			<!--  	<button class="searchButton">Search</button> -->
-  					<input style="background-color: #1B59D7; color: #ffffff;font-size: 25px; border: none;border-radius: 0px;" type="submit" value="Search">
- 				
-			</div>
-			
+  					<input style="background-color: #1B59D7; color: #ffffff;font-size: 25px; border: none;border-radius: 0px;padding-top: 2px;padding-left: 20px;padding-right: 20px;height: 49px" type="submit" value="Search">
+				</div>
 			</form>
-		
 		</div>
 	</body>
 </html>

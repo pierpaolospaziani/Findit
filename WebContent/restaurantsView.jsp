@@ -56,14 +56,14 @@
  				
  				<div id="box2"class="form-group" align="left">
 					
-  						<label style="margin-top: 15px; margin-left: 130px; font-size: 25px;">Budget</label><br>
-  						<input type="checkbox" class="chk" style="margin-left: 130px;" />
+  						<label style="margin-top: 15px; margin-left: 95px; font-size: 25px;">Budget</label><br>
+  						<input type="checkbox" class="chk" style="margin-left: 95px;" />
   						<label style="font-size: 20px; "> € - €€</label><br>
-  						<input type="checkbox" class="chk" style="margin-left: 130px;"/>
+  						<input type="checkbox" class="chk" style="margin-left: 95px;"/>
   						<label style="font-size: 20px;"> €€ - €€€</label><br>
-  						<input type="checkbox" class="chk" style="margin-left: 130px;"/>
+  						<input type="checkbox" class="chk" style="margin-left: 95px;"/>
   						<label style="font-size: 20px;"> €€€ - €€€€</label><br>
-  						<input type="checkbox" class="chk" style="margin-left: 130px;"/>
+  						<input type="checkbox" class="chk" style="margin-left: 95px;"/>
   						<label style="font-size: 20px;"> more €€€€</label><br>
  					
  				</div>
