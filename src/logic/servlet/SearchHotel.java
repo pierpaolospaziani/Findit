@@ -29,7 +29,7 @@ public class SearchHotel extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			
 		HotelBeanWeb beanSearchHotel = new HotelBeanWeb();
-		final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		String today	= LocalDate.now().format(dtf); 
 		LocalDate oggi = LocalDate.parse(today, dtf);
 
@@ -37,10 +37,10 @@ public class SearchHotel extends HttpServlet {
 		beanSearchHotel.setNumPeople(Integer.valueOf(request.getParameter("numPeople"))); 
 		
 		
-		LocalDate dateIn = LocalDate.parse(request.getParameter("datein"), dtf); 
+		LocalDate dateIn = LocalDate.parse(request.getParameter("datein"),dtf); 
 		beanSearchHotel.setLocalDateIn(dateIn);
 		
-		LocalDate dateOut = LocalDate.parse(request.getParameter("dateout"), dtf);
+		LocalDate dateOut = LocalDate.parse(request.getParameter("dateout"),dtf);
 		beanSearchHotel.setLocalDateOut(dateOut);
 		
 		RequestDispatcher view = request.getRequestDispatcher("hotelsView.jsp");

@@ -58,8 +58,8 @@
   						
   						<label style="margin-right: 25px;">Check-in</label>
   						<label style="margin-left: 25px;">Check-out</label><br>
-  						<input type="date" required name="datein" size="10" placeholder="gg-mm-yyyy" pattern="[0-9]{2}-[0-9]{2}-[0-9]{4}" style="margin-right: 40px;">
-  						<input type="date" required name="dateout" size="10"  placeholder="gg-mm-yyyy" pattern="[0-9]{2}-[0-9]{2}-[0-9]{4}"><br>
+  						<input type="date" required name="datein" size="10" placeholder="yyyy-mm-dd"  pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" style="margin-right: 40px;">
+  						<input type="date" required name="dateout" size="10"  placeholder="yyyy-mm-dd" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" ><br>
    						<%if(request.getAttribute("dateNotValid") == "invalid" ) {%>
    								<label style="color: #F80000;margin-top: 0px;set-font: 20px">Invalid date range!</label><br>
    						<% } %>
