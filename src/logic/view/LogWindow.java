@@ -281,15 +281,6 @@ public class LogWindow {
 		        label.setStyle(labelStyle);
     		}
     		
-    		
-    		/*if (controller.registerUser()) {
-				window.close();
-				isRegistred = true;
-        	} else {
-				label.setText("This Username is already been used!");
-		        label.setStyle(labelStyle);
-			}
-    		*/
     	} else {
     		
     		try {

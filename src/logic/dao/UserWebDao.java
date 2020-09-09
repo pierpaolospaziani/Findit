@@ -122,7 +122,7 @@ public class UserWebDao {
 		return user;
     }
 	
-	public static boolean setUser(String username, String password) throws ExistingUsernameException,Exception{
+	public static boolean setUser(String username, String password) throws ExistingUsernameException{
 
 		String reviewsTableWeb = (username + "Reviews").replaceAll("\\s+","");
     	String searchUserQuery = "select name from users where name = '" + username + "'";
@@ -181,7 +181,6 @@ public class UserWebDao {
     				}
     			} else {
     				
-    				//return false;
     				throw new ExistingUsernameException();    				
     			}
         	} finally {

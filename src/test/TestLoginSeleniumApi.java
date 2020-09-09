@@ -17,7 +17,7 @@ public class TestLoginSeleniumApi {
 	
 	
 	@Test
-	public void TestLoginSelenium() {
+	public void testLoginSelenium() {
 	
 		String user ="simone";		
 		System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");

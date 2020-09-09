@@ -74,13 +74,10 @@ public class LoginControllerWeb {
 		try {
 			result = login.registerUserString(username, password);
 		}catch(ExistingUsernameException e) {
+			e.printStackTrace();
 			throw e;
 		}
-		/*
-		if (login.registerUserString(username, password)) {
-			result = true;
-		}	*/	
-		
+
 		return result;
 	}
 	
@@ -93,14 +90,11 @@ public class LoginControllerWeb {
 		try {
 			result = login.registerOwnerString(username, password);
 		}catch(ExistingOwnerException e) {
+			e.printStackTrace();
 			throw e;
 		}
 		
-		/*
-		if (login.registerOwnerString(username, password)) {
-			result = true;
-		}		
-		*/
+
 		return result;
 	}
 	

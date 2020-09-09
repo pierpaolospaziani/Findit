@@ -122,7 +122,7 @@ public class UserDao {
 		return user;
     }
 	
-	public static boolean setUser(String username, String password) throws ExistingUsernameException, Exception{
+	public static boolean setUser(String username, String password) throws ExistingUsernameException{
     	
     	
     	Connection userConn = null;

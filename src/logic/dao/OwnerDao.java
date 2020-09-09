@@ -197,7 +197,7 @@ public class OwnerDao {
     					return true;
     				}
     			} else {
-    				//return false;
+    			
     				throw new ExistingOwnerException("owner");
     			}
         	} finally {
