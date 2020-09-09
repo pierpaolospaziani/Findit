@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import logic.dao.HotelDao;
 import logic.dao.ReviewDao;
+import logic.exceptions.ExceptionSearchReview;
 import logic.model.Hotel;
 import logic.model.Review;
 
@@ -23,8 +24,13 @@ class TestReviewDao {
 		Hotel casaSinceri = HotelDao.getHotel("Casa Sinceri");
 		String table = casaSinceri.getHotelReviews();
 		
-		Review review = ReviewDao.getReview(table, 1);
-		assertNotEquals("",review.getReviewText());
+		Review review;
+		try {
+			review = ReviewDao.getReview(table, 1);
+			assertNotEquals("",review.getReviewText());
+		} catch (ExceptionSearchReview e) {
+			e.printStackTrace();
+		}
 	}
 	
 

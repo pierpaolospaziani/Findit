@@ -17,6 +17,7 @@ import logic.model.Room;
 import logic.model.User;
 import logic.dao.RoomDao;
 import logic.exceptions.ExceptionSearchHotels;
+import logic.exceptions.ExceptionSearchReview;
 import logic.view.Hotel2Scene;
 import logic.view.Hotel3Scene;
 import logic.view.HotelConfirmScene;
@@ -524,7 +525,7 @@ public class HotelController {
 		return false;
 	}
 	
-	public void viewReviews(boolean isHotel, String reviewTable, int indice) {
+	public void viewReviews(boolean isHotel, String reviewTable, int indice) throws ExceptionSearchReview {
 	
 		ProfileController profileController = ProfileController.getIstance(pane);
 		ReviewBean reviewBean = new ReviewBean();
@@ -543,8 +544,9 @@ public class HotelController {
 			indice++;
 			r3 = ReviewDao.getReview(reviewTable, indice);
 			reviewBean.getReviewList().add(2, r3);
-		} catch (Exception e) {
+		} catch (ExceptionSearchReview e) {
 			e.printStackTrace();
+			throw e;
 		}
 		
 		if (r1 != null) {

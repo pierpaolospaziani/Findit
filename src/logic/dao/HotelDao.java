@@ -279,10 +279,10 @@ public class HotelDao {
 		Boolean gym = bean.getGym();
 		
 		/*
-		 * Demo ExceptionPierpaolo1
+		 * Demo ExceptionSearchHotels (Pierpaolo)
 		 *
-		 * ExceptionSearchHotels ex = new ExceptionSearchHotels();
-		 * throw ex;
+		 ExceptionSearchHotels ex = new ExceptionSearchHotels();
+		 throw ex;
 		 */
 		
     	try {

@@ -12,6 +12,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import logic.controller.HotelController;
 import logic.controller.ProfileController;
+import logic.exceptions.ExceptionSearchReview;
 import logic.model.Hotel;
 
 public class StructureScene {
@@ -124,7 +125,12 @@ public class StructureScene {
         	@Override
         	public void handle(ActionEvent event) {
  				
- 				hotelController.viewReviews(false,hotel.getHotelReviews(), 0);
+ 				try {
+					hotelController.viewReviews(false,hotel.getHotelReviews(), 0);
+				} catch (ExceptionSearchReview e) {
+					btnViewReviews.setDisable(true);
+					btnViewReviews.setText("Can't load Reviews");
+				}
  				
  				window.close();
  			}

@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import logic.exceptions.ExceptionSearchReview;
 import logic.model.Review;
 
 public class ReviewDao {
@@ -18,7 +19,7 @@ public class ReviewDao {
     	
     }
     
-	public static Review getReview(String reviewTable, int index){
+	public static Review getReview(String reviewTable, int index) throws ExceptionSearchReview{
 		
 		String userQuery = "select user from " + reviewTable;
 		String reviewQuery = "select review from " + reviewTable;
@@ -28,6 +29,14 @@ public class ReviewDao {
 		
 		Connection reviewConn = null;
 		Statement reviewSt = null;
+		
+		/*
+		 * Demo ExceptionSearchReview (Pierpaolo)
+		 * 
+		ExceptionSearchReview ex = new ExceptionSearchReview();
+		throw ex;
+		 */
+		 
 		
     	try {
         	try{
@@ -83,7 +92,7 @@ public class ReviewDao {
     			
         	}
 		} catch(Exception e){
-	        System.exit(1);
+	        throw new ExceptionSearchReview();
 	    }
 		return review;
 	}

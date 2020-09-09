@@ -14,6 +14,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import logic.controller.HotelController;
+import logic.exceptions.ExceptionSearchReview;
 import logic.model.Hotel;
 import logic.model.Room;
 
@@ -213,7 +214,12 @@ public class Hotel3Scene extends VBox{
  			@Override
         	public void handle(ActionEvent event) {
  				
- 				controller.viewReviews(true,hotel.getHotelReviews(),0);
+ 				try {
+					controller.viewReviews(true,hotel.getHotelReviews(),0);
+				} catch (ExceptionSearchReview e) {
+					btnReview.setDisable(true);
+					btnReview.setText("Can't load Reviews");
+				}
  			}
  		});
         

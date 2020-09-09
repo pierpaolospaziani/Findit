@@ -15,6 +15,7 @@ import javafx.scene.text.Font;
 import logic.bean.ReviewBean;
 import logic.controller.HotelController;
 import logic.controller.ProfileController;
+import logic.exceptions.ExceptionSearchReview;
 import logic.model.Review;
 
 
@@ -347,7 +348,11 @@ public class ViewReviewScene extends VBox {
         btnPreview.setOnAction(new EventHandler<ActionEvent>(){
         	@Override
         	public void handle(ActionEvent event) {
- 	 				controller.viewReviews(isHotel,reviewTable,indice-6);
+ 	 				try {
+						controller.viewReviews(isHotel,reviewTable,indice-6);
+					} catch (ExceptionSearchReview e) {
+						e.printStackTrace();
+					}
  			}
  		});
         
@@ -355,7 +360,11 @@ public class ViewReviewScene extends VBox {
         	@Override
         	public void handle(ActionEvent event) {
  				
- 				controller.viewReviews(isHotel,reviewTable, indice);
+ 				try {
+					controller.viewReviews(isHotel,reviewTable, indice);
+				} catch (ExceptionSearchReview e) {
+					e.printStackTrace();
+				}
  			}
  		});
         
