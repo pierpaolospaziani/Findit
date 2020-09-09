@@ -278,13 +278,6 @@ public class HotelDao {
 		Boolean roomService = bean.getRoomService();
 		Boolean gym = bean.getGym();
 		
-		/*
-		 * Demo ExceptionSearchHotels (Pierpaolo)
-		 *
-		 ExceptionSearchHotels ex = new ExceptionSearchHotels();
-		 throw ex;
-		 */
-		
     	try {
         	try {
             	Class.forName(driverClassName);

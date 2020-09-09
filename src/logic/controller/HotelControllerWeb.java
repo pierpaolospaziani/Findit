@@ -106,6 +106,7 @@ public class HotelControllerWeb {
 			getHotelWeb3(budgetWeb, starsWeb, indexWeb, beanWeb);
 			
 		} catch (ExceptionSearchHotels e) {
+			e.printStackTrace();
 			throw e;
 		}
 		

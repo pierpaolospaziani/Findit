@@ -30,14 +30,6 @@ public class ReviewDao {
 		Connection reviewConn = null;
 		Statement reviewSt = null;
 		
-		/*
-		 * Demo ExceptionSearchReview (Pierpaolo)
-		 * 
-		ExceptionSearchReview ex = new ExceptionSearchReview();
-		throw ex;
-		 */
-		 
-		
     	try {
         	try{
             	Class.forName(driverClassName);

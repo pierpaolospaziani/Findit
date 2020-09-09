@@ -202,13 +202,7 @@ public class OwnerDao {
     			}
         	} finally {
         		
-        		if (ownerSt != null) {
-        			ownerSt.close();
-        		}
-        		
-        		if (ownerConn != null) {
-        			ownerConn.close();
-        		}
+        		finalCloseOwner(ownerConn, ownerSt);
         		
         	}
     	}catch(ExistingOwnerException e) {
@@ -218,6 +212,25 @@ public class OwnerDao {
 	    }
 		return false;
     }
+	
+	private static void finalCloseOwner(Connection ownerConn, Statement ownerSt) {
+		
+		if (ownerSt != null) {
+			try {
+				ownerSt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		if (ownerConn != null) {
+			try {
+				ownerConn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 	
 	public static void setImage(String username, FileInputStream image){
 		

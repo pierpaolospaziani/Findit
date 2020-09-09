@@ -186,13 +186,7 @@ public class UserDao {
     			}
         	} finally {
         		
-        		if (userSt != null) {
-        			userSt.close();
-        		}
-        		
-        		if (userConn != null) {
-        			userConn.close();
-        		}
+        		finalCloseUser(userConn, userSt);
         		
         	}
 		} catch(ExistingUsernameException e){
@@ -202,6 +196,25 @@ public class UserDao {
 	    }
 		return false;
     }
+	
+	private static void finalCloseUser(Connection userConn, Statement userSt) {
+		
+		if (userSt != null) {
+			try {
+				userSt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		if (userConn != null) {
+			try {
+				userConn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 	
 	public static void setImage(String username, FileInputStream image){
 		

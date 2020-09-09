@@ -14,9 +14,9 @@ import java.sql.Statement;
 
 import javax.imageio.ImageIO;
 
-import exception.ExistingUsernameException;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
+import logic.exceptions.ExistingUsernameException;
 import logic.model.UserWeb;
 
 public class UserWebDao {
@@ -185,13 +185,7 @@ public class UserWebDao {
     			}
         	} finally {
         		
-        		if (userWebSt != null) {
-        			userWebSt.close();
-        		}
-        		
-        		if (userWebConn != null) {
-        			userWebConn.close();
-        		}
+        		finalCloseUserWeb(userWebConn, userWebSt);
         		
         	}
 		} catch(ExistingUsernameException e){
@@ -201,6 +195,25 @@ public class UserWebDao {
 	    }
 		return false;
     }
+	
+	private static void finalCloseUserWeb(Connection userWebConn, Statement userWebSt) {
+		
+		if (userWebSt != null) {
+			try {
+				userWebSt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		if (userWebConn != null) {
+			try {
+				userWebConn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 	
 	public static void setImage(String username, FileInputStream image){
 		
