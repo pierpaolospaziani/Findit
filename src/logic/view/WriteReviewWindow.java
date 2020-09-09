@@ -139,7 +139,6 @@ public class WriteReviewWindow {
 						try {
 							controller.addReview(review, structure, in, out);
 						}catch(LengthReviewException e) {
-							//textAreaReview.setText("The review is too long, respect the 50 characters max");
 							e.showError();
 						}
 						window.close();
