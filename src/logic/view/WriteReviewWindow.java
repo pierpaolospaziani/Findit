@@ -14,6 +14,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import logic.controller.ProfileController;
+import logic.exceptions.LengthReviewException;
 import logic.model.Review;
 
 public class WriteReviewWindow {
@@ -135,7 +136,12 @@ public class WriteReviewWindow {
 					} else {
 						review.setReviewText(reviewText);
 						review.setReviewVote(voto);
-						controller.addReview(review, structure, in, out);
+						try {
+							controller.addReview(review, structure, in, out);
+						}catch(LengthReviewException e) {
+							//textAreaReview.setText("The review is too long, respect the 50 characters max");
+							e.showError();
+						}
 						window.close();
 						controller.loggedScene();
 					}

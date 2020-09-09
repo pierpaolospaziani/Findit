@@ -16,6 +16,7 @@ import logic.dao.RoomDao;
 import logic.dao.StructureDao;
 import logic.exceptions.ExistingOwnerException;
 import logic.exceptions.ExistingUsernameException;
+import logic.exceptions.LengthReviewException;
 import logic.model.Experience;
 import logic.model.Hotel;
 import logic.model.Login;
@@ -427,7 +428,11 @@ public class ProfileController {
 		}
 	}
 	
-	public void addReview(Review review, String structure, int dayIn, int dayOut) {
+	public void addReview(Review review, String structure, int dayIn, int dayOut) throws LengthReviewException {
+		
+		if(review.getReviewText().length() > 50) {
+			throw new LengthReviewException();
+		}
 		
 		try {
 			Hotel hotel = HotelDao.getHotel(structure);
