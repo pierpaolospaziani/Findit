@@ -18,6 +18,7 @@ import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import logic.bean.HotelBean;
 import logic.controller.HotelController;
+import logic.exceptions.ExceptionSearchHotels;
 
 public class HotelScene extends VBox{
 	
@@ -412,7 +413,12 @@ public class HotelScene extends VBox{
 			
 					bean.setType();
 					controller.setStep(2);
-					controller.changeScene2(0);
+					try {
+						controller.changeScene2(0);
+					} catch (ExceptionSearchHotels e) {
+						hotelSearchButton.setDisable(true);
+						hotelSearchButton.setText("Problem with DB");
+					}
 				}
 			}
 		});

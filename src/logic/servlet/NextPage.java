@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import logic.bean.HotelBeanWeb;
 import logic.controller.HotelControllerWeb;
+import logic.exceptions.ExceptionSearchHotels;
 
 /**
  * Servlet implementation class nextPage
@@ -40,7 +41,11 @@ public class NextPage extends HttpServlet {
 			controller.setPage(controller.getPage()+1);
 		}
 		
-		controller.changeScene2(index, bean);
+		try {
+			controller.changeScene2(index, bean);
+		} catch (ExceptionSearchHotels e) {
+			e.printStackTrace();
+		}
 		
 		bean.setHotel1(controller.getHotel1());
 		bean.setHotel2(controller.getHotel2());

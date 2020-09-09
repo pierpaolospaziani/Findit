@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import logic.bean.HotelBeanWeb;
 import logic.controller.HotelControllerWeb;
+import logic.exceptions.ExceptionSearchHotels;
 
 /**
  * Servlet implementation class SearchHotel
@@ -88,7 +89,15 @@ public class SearchHotel extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		controller.setPage(1);
-		controller.changeScene2(0, beanSearchHotel);
+		
+		try {
+			controller.changeScene2(0, beanSearchHotel);
+		} catch (ExceptionSearchHotels e) {
+			session.setAttribute("step", "2");
+			
+			RequestDispatcher viewExc = request.getRequestDispatcher("hotelsView3.jsp");
+			viewExc.forward(request, response);
+		}
 		
 		beanSearchHotel.setHotel1(controller.getHotel1());
 		beanSearchHotel.setHotel2(controller.getHotel2());

@@ -16,6 +16,7 @@ import logic.dao.ReviewDao;
 import logic.model.Room;
 import logic.model.User;
 import logic.dao.RoomDao;
+import logic.exceptions.ExceptionSearchHotels;
 import logic.view.Hotel2Scene;
 import logic.view.Hotel3Scene;
 import logic.view.HotelConfirmScene;
@@ -78,20 +79,22 @@ public class HotelController {
 
 			if ((indice%3) == 0) {
 					indice = indice - 3;
-					changeScene2(indice);
 				} else if ((indice%3) == 1) {
 	 				indice = indice - 1;
-	 				changeScene2(indice);
 				} else {
 					indice = indice - 2;
-					changeScene2(indice);
 				}
+			try {
+				changeScene2(indice);
+			} catch (ExceptionSearchHotels e) {
+				e.printStackTrace();
+			}
 		} else if (step == 3) {
 			viewHotel(hotelSelected);
 		}
 	}
 	
-	public void changeScene2(int index){
+	public void changeScene2(int index) throws ExceptionSearchHotels{
 		
 		int budget = 1000;
 		
@@ -139,8 +142,8 @@ public class HotelController {
 				
 			getHotel3(budget, stars, index);
 			
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (ExceptionSearchHotels e) {
+			throw e;
 		}
 		
 		if (change || indice == 0) {
@@ -151,7 +154,7 @@ public class HotelController {
 		}
 	}
 	
-	private boolean getHotel1(int budget, int stars, int index) {
+	private boolean getHotel1(int budget, int stars, int index) throws ExceptionSearchHotels {
 		
 		boolean valid1 = true;
 		
@@ -161,7 +164,11 @@ public class HotelController {
 			
 			index++;
 			
-			hotel1 = HotelDao.searchHotel(bean, stars, index);
+			try {
+				hotel1 = HotelDao.searchHotel(bean, stars, index);
+			} catch (ExceptionSearchHotels e) {
+				throw e;
+			}
 		
 			if (hotel1.getHotelName() != null) {
 				
@@ -242,7 +249,7 @@ public class HotelController {
 		}
 	}
 	
-	private void getHotel2(int budget, int stars, int index) {
+	private void getHotel2(int budget, int stars, int index) throws ExceptionSearchHotels {
 		
 		boolean valid2 = true;
 		
@@ -250,7 +257,11 @@ public class HotelController {
 			
 			index++;
 			
-			hotel2 = HotelDao.searchHotel(bean, stars, index);
+			try {
+				hotel2 = HotelDao.searchHotel(bean, stars, index);
+			} catch (ExceptionSearchHotels e) {
+				throw e;
+			}
 			
 			if (hotel2.getHotelName() != null) {
 				
@@ -306,7 +317,7 @@ public class HotelController {
 		return true;
 	}
 	
-	private void getHotel3(int budget, int stars, int index) {
+	private void getHotel3(int budget, int stars, int index) throws ExceptionSearchHotels {
 		
 		boolean valid3 = true;
 		
@@ -314,7 +325,11 @@ public class HotelController {
 			
 			index++;
 			
-			hotel3 = HotelDao.searchHotel(bean, stars, index);
+			try {
+				hotel3 = HotelDao.searchHotel(bean, stars, index);
+			} catch (ExceptionSearchHotels e) {
+				throw e;
+			}
 			
 			if (hotel3.getHotelName() != null) {
 				

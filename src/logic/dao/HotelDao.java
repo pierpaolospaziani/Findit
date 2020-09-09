@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 import logic.bean.HotelBean;
+import logic.exceptions.ExceptionSearchHotels;
 import logic.model.Hotel;
 
 public class HotelDao {
@@ -263,7 +264,7 @@ public class HotelDao {
     	return result;
     }
 	
-	public static Hotel searchHotel(HotelBean bean, int stars, int index){
+	public static Hotel searchHotel(HotelBean bean, int stars, int index) throws ExceptionSearchHotels{
     	
     	Hotel hotel = new Hotel();
     	
@@ -276,6 +277,13 @@ public class HotelDao {
 		Boolean restaurant = bean.getRestaurant();
 		Boolean roomService = bean.getRoomService();
 		Boolean gym = bean.getGym();
+		
+		/*
+		 * Demo ExceptionPierpaolo1
+		 */
+		//ExceptionsPierpaolo1 ex = new ExceptionsPierpaolo1();
+		//throw ex;
+		
 		
     	try {
         	try {
@@ -352,7 +360,10 @@ public class HotelDao {
         		
         	}
 		} catch(Exception e){
-	        System.exit(1);
+			
+			ExceptionSearchHotels exception = new ExceptionSearchHotels();
+			
+	        throw exception;
 	    }
     	
 		return hotel;

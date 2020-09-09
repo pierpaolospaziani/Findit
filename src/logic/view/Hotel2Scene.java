@@ -12,6 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import logic.controller.HotelController;
+import logic.exceptions.ExceptionSearchHotels;
 import logic.model.Hotel;
 import logic.model.Room;
 
@@ -461,14 +462,16 @@ public class Hotel2Scene extends VBox{
 	 				if (indice > 3) {
 	 					if ((indice%3) == 0) {
 	 	 					indice = indice - 6;
-	 	 					controller.changeScene2(indice);
 	 					} else if ((indice%3) == 1) {
 	 	 	 				indice = indice - 4;
-	 	 	 				controller.changeScene2(indice);
 	 	 				} else {
 	 	 					indice = indice - 5;
-	 	 	 				controller.changeScene2(indice);
 	 	 				}
+ 	 					try {
+							controller.changeScene2(indice);
+						} catch (ExceptionSearchHotels e) {
+							e.printStackTrace();
+						}
 	 				}
 	 			}
 	 		});
@@ -477,7 +480,11 @@ public class Hotel2Scene extends VBox{
 	 			@Override
 	        	public void handle(ActionEvent event) {
 	 				int indice = controller.getIndice();
-	 				controller.changeScene2(indice);
+	 				try {
+						controller.changeScene2(indice);
+					} catch (ExceptionSearchHotels e) {
+						e.printStackTrace();
+					}
 	 			}
 	 		});
 	}

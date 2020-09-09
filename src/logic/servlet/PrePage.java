@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import logic.bean.HotelBeanWeb;
 import logic.controller.HotelControllerWeb;
+import logic.exceptions.ExceptionSearchHotels;
 
 /**
  * Servlet implementation class prePage
@@ -43,7 +44,11 @@ public class PrePage extends HttpServlet {
 			indice = 0;
 		}
 		
-		controller.changeScene2(indice, bean);
+		try {
+			controller.changeScene2(indice, bean);
+		} catch (ExceptionSearchHotels e) {
+			e.printStackTrace();
+		}
 		
 		bean.setHotel1(controller.getHotel1());
 		bean.setHotel2(controller.getHotel2());

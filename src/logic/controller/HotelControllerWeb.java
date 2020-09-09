@@ -14,6 +14,7 @@ import logic.dao.ReservationDao;
 import logic.model.Room;
 import logic.model.UserWeb;
 import logic.dao.RoomDao;
+import logic.exceptions.ExceptionSearchHotels;
 
 
 public class HotelControllerWeb {
@@ -53,7 +54,7 @@ public class HotelControllerWeb {
 		this.room3Web = new Room();
 	 }
 	
-	public void changeScene2(int indexWeb, HotelBeanWeb beanWeb){
+	public void changeScene2(int indexWeb, HotelBeanWeb beanWeb) throws ExceptionSearchHotels{
 		
 		int budgetWeb = 1000;
 		
@@ -104,8 +105,8 @@ public class HotelControllerWeb {
 			
 			getHotelWeb3(budgetWeb, starsWeb, indexWeb, beanWeb);
 			
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (ExceptionSearchHotels e) {
+			throw e;
 		}
 		
 		if (!change && getPage() != 1) {
@@ -116,7 +117,7 @@ public class HotelControllerWeb {
 		}
 	}
 	
-	private boolean getHotelWeb1(int budgetWeb, int starsWeb, int indexWeb, HotelBeanWeb beanWeb) {
+	private boolean getHotelWeb1(int budgetWeb, int starsWeb, int indexWeb, HotelBeanWeb beanWeb) throws ExceptionSearchHotels {
 		
 		boolean exit1 = true;
 		
@@ -124,7 +125,11 @@ public class HotelControllerWeb {
 			
 			indexWeb++;
 			
-			hotel1Web = HotelDao.searchHotel(beanWeb, starsWeb, indexWeb);
+			try {
+				hotel1Web = HotelDao.searchHotel(beanWeb, starsWeb, indexWeb);
+			} catch (ExceptionSearchHotels e) {
+				throw e;
+			}
 
 			if (hotel1Web.getHotelName() != null) {
 				
@@ -187,7 +192,7 @@ public class HotelControllerWeb {
 		return false;
 	}
 	
-	private void getHotelWeb2(int budgetWeb, int starsWeb, int indexWeb, HotelBeanWeb beanWeb) {
+	private void getHotelWeb2(int budgetWeb, int starsWeb, int indexWeb, HotelBeanWeb beanWeb) throws ExceptionSearchHotels {
 		
 		boolean exit2 = true;
 		
@@ -195,7 +200,11 @@ public class HotelControllerWeb {
 			
 			indexWeb++;
 			
-			hotel2Web = HotelDao.searchHotel(beanWeb, starsWeb, indexWeb);
+			try {
+				hotel2Web = HotelDao.searchHotel(beanWeb, starsWeb, indexWeb);
+			} catch (ExceptionSearchHotels e) {
+				throw e;
+			}
 			
 			if (hotel2Web.getHotelName() != null) {
 				
@@ -256,7 +265,7 @@ public class HotelControllerWeb {
 		return false;
 	}
 	
-	private void getHotelWeb3(int budgetWeb, int starsWeb, int indexWeb, HotelBeanWeb beanWeb) {
+	private void getHotelWeb3(int budgetWeb, int starsWeb, int indexWeb, HotelBeanWeb beanWeb) throws ExceptionSearchHotels {
 		
 		boolean exit3 = true;
 		
@@ -264,7 +273,11 @@ public class HotelControllerWeb {
 			
 			indexWeb++;
 			
-			hotel3Web = HotelDao.searchHotel(beanWeb, starsWeb, indexWeb);
+			try {
+				hotel3Web = HotelDao.searchHotel(beanWeb, starsWeb, indexWeb);
+			} catch (ExceptionSearchHotels e) {
+				throw e;
+			}
 			
 			if (hotel3Web.getHotelName() != null) {
 				
