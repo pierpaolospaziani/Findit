@@ -1,9 +1,11 @@
+<%@page import="logic.model.Hotel"%>
 <%@page import="logic.bean.LoginBeanWeb"%>
 <%@page import="logic.model.OwnerWeb"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     
-    <%OwnerWeb loggato = (OwnerWeb)session.getAttribute("ownerLog"); 
+    <% Hotel struct = (Hotel)session.getAttribute("struct");
+    OwnerWeb loggato = (OwnerWeb)session.getAttribute("ownerLog"); 
     LoginBeanWeb beanLog = (LoginBeanWeb)session.getAttribute("beanLog"); %>
     
 <!DOCTYPE html>
@@ -67,7 +69,7 @@
  				</div>
 
  				<div id="box1" align="center" style="width: 660px;height: 200px;margin-top: 20px;">
-					<label style="margin-top: 5px; line-height: 45px; font-size: 35px;"> Write description of "hotel1"</label><br>
+					<label style="margin-top: 5px; line-height: 45px; font-size: 35px;"> Write description of <% out.print(struct.getHotelName()); %></label><br>
 					
 					<%if(request.getAttribute("descr") != "ok"){ %>
 					<form method="post" action="AddStructDescr" style="display: inline">
