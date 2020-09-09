@@ -106,12 +106,12 @@
   						
 
  					
- 				
- 				
- 				</div class="form-group">
-					<button class="searchButton" style="margin-top: -10px;">Search</button>
  				</div>
- 			</form>		
+					<button class="searchButton" style="margin-top: -10px;">Search</button>
+ 					</form>	
+ 			
+ 			</div>
+ 			
 		</div>	
 	</body>
 </html>
