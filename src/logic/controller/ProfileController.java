@@ -4,8 +4,6 @@ package logic.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import exception.ExistingOwnerException;
-import exception.ExistingUsernameException;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import logic.bean.HotelBean;
@@ -16,6 +14,8 @@ import logic.dao.OwnerDao;
 import logic.dao.ReviewDao;
 import logic.dao.RoomDao;
 import logic.dao.StructureDao;
+import logic.exceptions.ExistingOwnerException;
+import logic.exceptions.ExistingUsernameException;
 import logic.model.Experience;
 import logic.model.Hotel;
 import logic.model.Login;

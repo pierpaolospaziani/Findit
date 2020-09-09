@@ -3,8 +3,6 @@ package logic.controller;
 
 import logic.dao.ReviewDao;
 import logic.model.Review;
-import exception.ExistingOwnerException;
-import exception.ExistingUsernameException;
 import logic.bean.HotelBean;
 import logic.bean.LoginBeanWeb;
 import logic.dao.ExperienceDao;
@@ -12,6 +10,8 @@ import logic.dao.HotelDao;
 import logic.dao.OwnerDao;
 import logic.dao.RoomDao;
 import logic.dao.StructureDao;
+import logic.exceptions.ExistingOwnerException;
+import logic.exceptions.ExistingUsernameException;
 import logic.model.Experience;
 import logic.model.Hotel;
 import logic.model.Login;

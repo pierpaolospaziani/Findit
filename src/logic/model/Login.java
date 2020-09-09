@@ -1,10 +1,10 @@
 package logic.model;
 
-import exception.ExistingOwnerException;
-import exception.ExistingUsernameException;
 import logic.dao.OwnerDao;
 import logic.dao.UserDao;
 import logic.dao.UserWebDao;
+import logic.exceptions.ExistingOwnerException;
+import logic.exceptions.ExistingUsernameException;
 
 
 public class Login {

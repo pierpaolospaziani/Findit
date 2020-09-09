@@ -9,8 +9,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import exception.ExistingOwnerException;
-import exception.ExistingUsernameException;
+import logic.exceptions.ExistingOwnerException;
+import logic.exceptions.ExistingUsernameException;
 import logic.model.Login;
 import logic.model.Owner;
 import logic.model.User;

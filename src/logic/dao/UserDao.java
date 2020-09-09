@@ -14,9 +14,9 @@ import java.sql.Statement;
 
 import javax.imageio.ImageIO;
 
-import exception.ExistingUsernameException;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
+import logic.exceptions.ExistingUsernameException;
 import logic.model.User;
 
 public class UserDao {

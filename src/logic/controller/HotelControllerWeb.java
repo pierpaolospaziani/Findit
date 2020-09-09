@@ -128,6 +128,7 @@ public class HotelControllerWeb {
 			try {
 				hotel1Web = HotelDao.searchHotel(beanWeb, starsWeb, indexWeb);
 			} catch (ExceptionSearchHotels e) {
+				e.printStackTrace();
 				throw e;
 			}
 
@@ -203,6 +204,7 @@ public class HotelControllerWeb {
 			try {
 				hotel2Web = HotelDao.searchHotel(beanWeb, starsWeb, indexWeb);
 			} catch (ExceptionSearchHotels e) {
+				e.printStackTrace();
 				throw e;
 			}
 			
@@ -276,6 +278,7 @@ public class HotelControllerWeb {
 			try {
 				hotel3Web = HotelDao.searchHotel(beanWeb, starsWeb, indexWeb);
 			} catch (ExceptionSearchHotels e) {
+				e.printStackTrace();
 				throw e;
 			}
 			

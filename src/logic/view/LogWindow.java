@@ -1,7 +1,5 @@
 package logic.view;
 
-import exception.ExistingOwnerException;
-import exception.ExistingUsernameException;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -19,6 +17,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import logic.bean.LoginBean;
 import logic.controller.ProfileController;
+import logic.exceptions.ExistingOwnerException;
+import logic.exceptions.ExistingUsernameException;
 
 public class LogWindow {
     

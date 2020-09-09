@@ -43,8 +43,8 @@ public class NextPage extends HttpServlet {
 		
 		try {
 			controller.changeScene2(index, bean);
-		} catch (ExceptionSearchHotels e) {
-			e.printStackTrace();
+		} catch (ExceptionSearchHotels eNext) {
+			eNext.printStackTrace();
 		}
 		
 		bean.setHotel1(controller.getHotel1());

@@ -8,10 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import exception.ExistingOwnerException;
-import exception.ExistingUsernameException;
 import logic.bean.LoginBeanWeb;
 import logic.controller.LoginControllerWeb;
+import logic.exceptions.ExistingOwnerException;
+import logic.exceptions.ExistingUsernameException;
 
 /**
  * Servlet implementation class Register

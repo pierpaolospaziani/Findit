@@ -280,10 +280,10 @@ public class HotelDao {
 		
 		/*
 		 * Demo ExceptionPierpaolo1
+		 *
+		 * ExceptionSearchHotels ex = new ExceptionSearchHotels();
+		 * throw ex;
 		 */
-		//ExceptionsPierpaolo1 ex = new ExceptionsPierpaolo1();
-		//throw ex;
-		
 		
     	try {
         	try {
@@ -361,9 +361,7 @@ public class HotelDao {
         	}
 		} catch(Exception e){
 			
-			ExceptionSearchHotels exception = new ExceptionSearchHotels();
-			
-	        throw exception;
+	        throw new ExceptionSearchHotels();
 	    }
     	
 		return hotel;

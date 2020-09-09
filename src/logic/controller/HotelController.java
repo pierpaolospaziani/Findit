@@ -143,6 +143,7 @@ public class HotelController {
 			getHotel3(budget, stars, index);
 			
 		} catch (ExceptionSearchHotels e) {
+			e.printStackTrace();
 			throw e;
 		}
 		
@@ -167,7 +168,8 @@ public class HotelController {
 			try {
 				hotel1 = HotelDao.searchHotel(bean, stars, index);
 			} catch (ExceptionSearchHotels e) {
-				throw e;
+			e.printStackTrace();
+			throw e;
 			}
 		
 			if (hotel1.getHotelName() != null) {
@@ -260,7 +262,8 @@ public class HotelController {
 			try {
 				hotel2 = HotelDao.searchHotel(bean, stars, index);
 			} catch (ExceptionSearchHotels e) {
-				throw e;
+			e.printStackTrace();
+			throw e;
 			}
 			
 			if (hotel2.getHotelName() != null) {
@@ -328,7 +331,8 @@ public class HotelController {
 			try {
 				hotel3 = HotelDao.searchHotel(bean, stars, index);
 			} catch (ExceptionSearchHotels e) {
-				throw e;
+			e.printStackTrace();
+			throw e;
 			}
 			
 			if (hotel3.getHotelName() != null) {

@@ -46,17 +46,17 @@ public class PrePage extends HttpServlet {
 		
 		try {
 			controller.changeScene2(indice, bean);
-		} catch (ExceptionSearchHotels e) {
-			e.printStackTrace();
+		} catch (ExceptionSearchHotels ePre) {
+			ePre.printStackTrace();
 		}
+
+		bean.setRoom1(controller.getRoom1());
+		bean.setRoom2(controller.getRoom2());
+		bean.setRoom3(controller.getRoom3());
 		
 		bean.setHotel1(controller.getHotel1());
 		bean.setHotel2(controller.getHotel2());
 		bean.setHotel3(controller.getHotel3());
-		
-		bean.setRoom1(controller.getRoom1());
-		bean.setRoom2(controller.getRoom2());
-		bean.setRoom3(controller.getRoom3());
 		
 		RequestDispatcher view = request.getRequestDispatcher("hotelsView2.jsp");
 		view.forward(request, response);

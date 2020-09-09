@@ -14,9 +14,9 @@ import java.sql.Statement;
 
 import javax.imageio.ImageIO;
 
-import exception.ExistingOwnerException;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
+import logic.exceptions.ExistingOwnerException;
 import logic.model.Owner;
 import logic.model.OwnerWeb;
 
