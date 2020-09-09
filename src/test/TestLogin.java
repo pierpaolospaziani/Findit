@@ -9,6 +9,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import exception.ExistingOwnerException;
+import exception.ExistingUsernameException;
 import logic.model.Login;
 import logic.model.Owner;
 import logic.model.User;
@@ -67,10 +69,15 @@ class TestLogin {
 		Login login = new Login();
 		String username = "simone";
 		String password = "asfsvf";
+		boolean result = true;
 		
-		boolean result = login.registerUserString(username, password); 
-		
+		try {
+			result = login.registerUserString(username, password); 
+		}catch(ExistingUsernameException e) {
+			result = false;
+		}
 		assertEquals(false,result);
+		
 	}
 	
 	@Test
@@ -79,9 +86,13 @@ class TestLogin {
 		Login login = new Login();
 		String usernameOwner = "owner";
 		String password = "asfsvf";
+		boolean result = true;
 		
-		boolean result = login.registerOwnerString(usernameOwner, password); 
-		
+		try {
+			result = login.registerOwnerString(usernameOwner, password); 
+		}catch(ExistingOwnerException e) {
+			result = false;
+		}
 		assertEquals(false,result);
 	}
 	

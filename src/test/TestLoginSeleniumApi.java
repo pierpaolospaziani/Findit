@@ -17,12 +17,12 @@ public class TestLoginSeleniumApi {
 	
 	
 	@Test
-	public void testLoginSelenium() {
+	public void TestLoginSelenium() {
 	
 		String user ="simone";		
 		System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
 		WebDriver driver = new ChromeDriver();
-		driver.get("http://localhost:8080/FindITTT/");
+		driver.get("http://localhost:8080/FindIT/");
 		driver.findElement(By.xpath("//*[@id=\"header\"]/ul/li[5]/a")).click();  //*[@id="box1"]/button
 		driver.findElement(By.xpath("//*[@id=\"box1\"]/button")).click();
 		

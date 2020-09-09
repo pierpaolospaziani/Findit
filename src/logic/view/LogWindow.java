@@ -1,5 +1,7 @@
 package logic.view;
 
+import exception.ExistingOwnerException;
+import exception.ExistingUsernameException;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -268,20 +270,36 @@ public class LogWindow {
     	bean.setPassword(passwordTextField.getText());
     	
     	if (registerAsUser.isSelected()) {
-    		if (controller.registerUser()) {
+    		
+    		try {
+    			if(controller.registerUser()){
+    				window.close();
+    				isRegistred = true;
+    			}
+    		}catch(ExistingUsernameException e) {
+    			label.setText("This Username is already been used!");
+		        label.setStyle(labelStyle);
+    		}
+    		
+    		
+    		/*if (controller.registerUser()) {
 				window.close();
 				isRegistred = true;
         	} else {
 				label.setText("This Username is already been used!");
 		        label.setStyle(labelStyle);
 			}
+    		*/
     	} else {
-    		if (controller.registerOwner()) {
-				window.close();
-				isRegistred = true;
-        	} else {
-				label.setText("This Username is already been used!");
-		        label.setStyle(labelStyle);
+    		
+    		try {
+    			if (controller.registerOwner()) {
+    				window.close();
+    				isRegistred = true;
+    			}
+    		}catch(ExistingOwnerException e) {
+    				label.setText("This Username is already been used!");
+    				label.setStyle(labelStyle);
 			}
     	}		      
 	}

@@ -14,6 +14,7 @@ import java.sql.Statement;
 
 import javax.imageio.ImageIO;
 
+import exception.ExistingOwnerException;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 import logic.model.Owner;
@@ -138,7 +139,7 @@ public class OwnerDao {
 		return owner;
     }
 	
-	public static boolean setOwner(String username, String password){
+	public static boolean setOwner(String username, String password) throws ExistingOwnerException{
 		
 		String structuresTable = (username + "Structures").replaceAll("\\s+","");
 
@@ -196,7 +197,8 @@ public class OwnerDao {
     					return true;
     				}
     			} else {
-    				return false;
+    				//return false;
+    				throw new ExistingOwnerException("owner");
     			}
         	} finally {
         		
@@ -209,7 +211,9 @@ public class OwnerDao {
         		}
         		
         	}
-		} catch(Exception e){
+    	}catch(ExistingOwnerException e) {
+    		throw e;
+    	} catch(Exception a){
 	        System.exit(1);
 	    }
 		return false;

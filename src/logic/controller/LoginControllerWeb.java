@@ -3,6 +3,8 @@ package logic.controller;
 
 import logic.dao.ReviewDao;
 import logic.model.Review;
+import exception.ExistingOwnerException;
+import exception.ExistingUsernameException;
 import logic.bean.HotelBean;
 import logic.bean.LoginBeanWeb;
 import logic.dao.ExperienceDao;
@@ -62,30 +64,43 @@ public class LoginControllerWeb {
 		}
 	}
 	
-	public boolean registerUser(LoginBeanWeb bean) {
+	public boolean registerUser(LoginBeanWeb bean) throws ExistingUsernameException {
 		
 		String username = bean.getUsername();
 		String password = bean.getPassword();
 		
 		boolean result = false;
 		
+		try {
+			result = login.registerUserString(username, password);
+		}catch(ExistingUsernameException e) {
+			throw e;
+		}
+		/*
 		if (login.registerUserString(username, password)) {
 			result = true;
-		}		
+		}	*/	
 		
 		return result;
 	}
 	
-	public boolean registerOwner(LoginBeanWeb bean) {
+	public boolean registerOwner(LoginBeanWeb bean)  throws ExistingOwnerException {
 		
 		String username = bean.getUsername();
 		String password = bean.getPassword();
 		boolean result = false;
 		
+		try {
+			result = login.registerOwnerString(username, password);
+		}catch(ExistingOwnerException e) {
+			throw e;
+		}
+		
+		/*
 		if (login.registerOwnerString(username, password)) {
 			result = true;
 		}		
-		
+		*/
 		return result;
 	}
 	

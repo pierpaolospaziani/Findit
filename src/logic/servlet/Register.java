@@ -7,6 +7,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import exception.ExistingOwnerException;
+import exception.ExistingUsernameException;
 import logic.bean.LoginBeanWeb;
 import logic.controller.LoginControllerWeb;
 
@@ -43,19 +46,24 @@ public class Register extends HttpServlet {
 		RequestDispatcher viewLog = request.getRequestDispatcher("loginView.jsp");
 		
 		if(request.getParameter("registerUser") != null) {
-			if(controller.registerUser(bean)) {
-				request.setAttribute("reg1", "ok");
-				viewLog.forward(request, response);
-			}else {
+			try {
+				if(controller.registerUser(bean)) {
+					request.setAttribute("reg1", "ok");
+					viewLog.forward(request, response);
+				}
+			}catch(ExistingUsernameException e) {
 				request.setAttribute("reg", "fail");
 				viewReg.forward(request, response);
 			}
 		}
+		
 		if(request.getParameter("registerOwner") != null) {
-			if(controller.registerOwner(bean)) {
-				request.setAttribute("reg1", "ok");
-				viewLog.forward(request, response);
-			}else {
+			try {
+				if(controller.registerOwner(bean)) {
+					request.setAttribute("reg1", "ok");
+					viewLog.forward(request, response);
+				}
+			}catch(ExistingOwnerException e) {
 				request.setAttribute("reg", "fail");
 				viewReg.forward(request, response);
 			}

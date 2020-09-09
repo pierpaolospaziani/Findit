@@ -1,5 +1,7 @@
 package logic.model;
 
+import exception.ExistingOwnerException;
+import exception.ExistingUsernameException;
 import logic.dao.OwnerDao;
 import logic.dao.UserDao;
 import logic.dao.UserWebDao;
@@ -19,26 +21,30 @@ public class Login {
 		userLoggatoWeb = new UserWeb();
 	}
 		
-	public boolean registerUserString(String username, String password ){
+	public boolean registerUserString(String username, String password ) throws ExistingUsernameException{
 		
 		boolean result = false;
 		
 		try {
 			result = UserDao.setUser(username, password);
-		} catch (Exception e) {
-			e.printStackTrace();
-		} 
+		} catch (ExistingUsernameException e) {
+			throw e;
+		} catch(Exception a) {
+			a.printStackTrace();
+		}
 		return result;			
 	}
 	
-	public boolean registerOwnerString(String username, String password ){
+	public boolean registerOwnerString(String username, String password ) throws ExistingOwnerException{
 		
 		boolean result = false;
 		
 		try {
 			result = OwnerDao.setOwner(username, password);
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch(ExistingOwnerException e){
+			throw e;
+		}catch (Exception a) {
+			a.printStackTrace();
 		} 
 		return result;			
 	}

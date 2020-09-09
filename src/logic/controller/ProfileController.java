@@ -4,6 +4,8 @@ package logic.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import exception.ExistingOwnerException;
+import exception.ExistingUsernameException;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import logic.bean.HotelBean;
@@ -89,31 +91,45 @@ public class ProfileController {
 		}
 	}
 	
-	public boolean registerUser() {
+	public boolean registerUser() throws ExistingUsernameException {
 		
 		String username = bean.getUsername();
 		String password = bean.getPassword();
 		
 		boolean result = false;
 		
+		try {
+			result = login.registerUserString(username, password);
+		}catch(ExistingUsernameException e) {
+			throw e;
+		}
+		
+		/*
 		if (login.registerUserString(username, password)) {
 			result = true;
 		}		
+		*/
 		
 		return result;
 	}
 	
-	public boolean registerOwner() {
+	public boolean registerOwner() throws ExistingOwnerException{
 		
 		String username = bean.getUsername();
 		String password = bean.getPassword();
 		
 		boolean result = false;
 		
+		try {
+			result = login.registerOwnerString(username, password);
+		}catch(ExistingOwnerException e) {
+			throw e;
+		}
+		/*
 		if (login.registerOwnerString(username, password)) {
 			result = true;
 		}		
-		
+		*/
 		return result;
 	}
 	

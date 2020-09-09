@@ -14,6 +14,7 @@ import java.sql.Statement;
 
 import javax.imageio.ImageIO;
 
+import exception.ExistingUsernameException;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 import logic.model.UserWeb;
@@ -121,7 +122,7 @@ public class UserWebDao {
 		return user;
     }
 	
-	public static boolean setUser(String username, String password){
+	public static boolean setUser(String username, String password) throws ExistingUsernameException,Exception{
 
 		String reviewsTableWeb = (username + "Reviews").replaceAll("\\s+","");
     	String searchUserQuery = "select name from users where name = '" + username + "'";
@@ -180,8 +181,8 @@ public class UserWebDao {
     				}
     			} else {
     				
-    				return false;
-    				
+    				//return false;
+    				throw new ExistingUsernameException();    				
     			}
         	} finally {
         		
@@ -194,8 +195,10 @@ public class UserWebDao {
         		}
         		
         	}
-		} catch(Exception e){
-	        System.exit(1);
+		} catch(ExistingUsernameException e){
+			throw e;
+	    }catch(Exception a) {
+	    	System.exit(1);
 	    }
 		return false;
     }
