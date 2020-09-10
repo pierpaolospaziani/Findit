@@ -117,6 +117,7 @@ public class User2SceneOwner extends HBox{
         String struct = "strucutre.jpg";
         String transparent = "-fx-background-color: transparent;";
         String colorBtn = "-fx-background-color: #1B59D7;";
+        String vuotaOwn = "----------";
 
         windowOwner.initModality(Modality.APPLICATION_MODAL);
         windowOwner.setMinWidth(250);
@@ -283,7 +284,7 @@ public class User2SceneOwner extends HBox{
         strName1.setFont(new Font(24.0));
         strName1.setPrefHeight(50.0);
         String name = ((Structure)listStruct.get(0)).getName();
-    	strName1.setText("----------");
+    	strName1.setText(vuotaOwn);
     	strName1.setDisable(true);
         if (name != null) {
         	strName1.setText(name);
@@ -295,7 +296,7 @@ public class User2SceneOwner extends HBox{
         strName2.setFont(new Font(24.0));
         strName2.setPrefHeight(50.0);
         name = ((Structure)listStruct.get(1)).getName();
-    	strName2.setText("----------");
+    	strName2.setText(vuotaOwn);
     	strName2.setDisable(true);
         if (name != null) {
         	strName2.setText(name);
@@ -307,7 +308,7 @@ public class User2SceneOwner extends HBox{
         strName3.setFont(new Font(24.0));
         strName3.setPrefHeight(50.0);
         name = ((Structure)listStruct.get(2)).getName();
-    	strName3.setText("----------");
+    	strName3.setText(vuotaOwn);
     	strName3.setDisable(true);
         if (name != null) {
         	strName3.setText(name);
@@ -319,7 +320,7 @@ public class User2SceneOwner extends HBox{
         strName4.setFont(new Font(24.0));
         strName4.setPrefHeight(50.0);
         name = ((Structure)listStruct.get(3)).getName();
-    	strName4.setText("----------");
+    	strName4.setText(vuotaOwn);
     	strName4.setDisable(true);
         if (name != null) {
         	strName4.setText(name);
@@ -331,7 +332,7 @@ public class User2SceneOwner extends HBox{
         strName5.setFont(new Font(24.0));
         strName5.setPrefHeight(50.0);
         name = ((Structure)listStruct.get(4)).getName();
-    	strName5.setText("----------");
+    	strName5.setText(vuotaOwn);
     	strName5.setDisable(true);
         if (name != null) {
         	strName5.setText(name);
@@ -343,7 +344,7 @@ public class User2SceneOwner extends HBox{
         strName6.setFont(new Font(24.0));
         strName6.setPrefHeight(50.0);
         name = ((Structure)listStruct.get(5)).getName();
-    	strName6.setText("----------");
+    	strName6.setText(vuotaOwn);
     	strName6.setDisable(true);
         if (name != null) {
         	strName6.setText(name);

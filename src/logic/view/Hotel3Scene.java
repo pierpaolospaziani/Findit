@@ -149,7 +149,6 @@ public class Hotel3Scene extends VBox{
         textDescription.setStyle("-fx-background-color: white;");
 
         if (hotel.getHotelDescription().equals("")) {
-        	System.out.println("si");
         	textDescription.setText("No description available");
         }
         
