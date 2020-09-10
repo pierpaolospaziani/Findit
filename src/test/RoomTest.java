@@ -15,11 +15,13 @@ import logic.model.Room;
  */
 
 public class RoomTest {
+	
+	String hotelName = "Casa Mia";
 
 	@Test
 	void testGetRoomCasaMia() {
 		
-		Hotel hotel = HotelDao.getHotel("Casa Mia");
+		Hotel hotel = HotelDao.getHotel(hotelName);
 		String roomsTable = hotel.getHotelRooms();
 		int id = 1;
 		int beds = 10;
@@ -34,7 +36,7 @@ public class RoomTest {
 	@Test
 	void testSetRoomCasaMia() {
 		
-		Hotel hotel = HotelDao.getHotel("Casa Mia");
+		Hotel hotel = HotelDao.getHotel(hotelName);
 		String roomsTable = hotel.getHotelRooms();
 		int id = 1;
 		int beds = 3;
@@ -50,7 +52,7 @@ public class RoomTest {
 	@Test
 	void testGetRoomsNumberCasaMia() {
 		
-		Hotel hotel = HotelDao.getHotel("Casa Mia");
+		Hotel hotel = HotelDao.getHotel(hotelName);
 		String roomsTable = hotel.getHotelRooms();
 		int roomsNumber = 10;
 		
