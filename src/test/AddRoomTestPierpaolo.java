@@ -30,10 +30,10 @@ public class AddRoomTestPierpaolo {
     driver.findElement(By.linkText("Profile")).click();
     driver.findElement(By.xpath("//button[@onclick=\"location.href = \'loginView.jsp\';\"]")).click();
     driver.findElement(By.name("username")).click();
-    driver.findElement(By.name("username")).sendKeys("owner");
-    driver.findElement(By.name("password")).sendKeys("owner");
+    driver.findElement(By.name("username")).sendKeys("Riccardo");
+    driver.findElement(By.name("password")).sendKeys("riccardo");
     driver.findElement(By.name("password")).sendKeys(Keys.ENTER);
-    driver.findElement(By.xpath("//input[@value=\'Casa Mia\']")).click();
+    driver.findElement(By.xpath("//input[@value=\'Hotel Virgilio\']")).click();
     driver.findElement(By.xpath("//button[@onclick=\"location.href=\'addRoomPage.jsp\'\"]")).click();
     driver.findElement(By.name("id")).click();
     driver.findElement(By.name("id")).sendKeys("10");

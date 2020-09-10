@@ -37,7 +37,7 @@ public class ExperienceTest {
 		ExperienceDao.setExperienceRow(reviewsTable, structure, dayIn, dayOut);
 		
 		Experience experience = ExperienceDao.getExperience(reviewsTable, index);
-		
-		assertEquals("", experience.getReview());
+
+		assertEquals(null, experience.getReview());
 	}
 }
