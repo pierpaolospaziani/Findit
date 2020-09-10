@@ -72,7 +72,6 @@ public class LogWindow {
         if (newUser) {
             label.setText("Registration completed, proceed with Login!");
             label.setStyle("-fx-text-fill: green;");
-            newUser = false;
         } else {
             label.setText("Insert Username and Password");
             label.setStyle("-fx-text-fill: black;");
