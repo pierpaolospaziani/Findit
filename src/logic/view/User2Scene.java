@@ -321,7 +321,7 @@ public class User2Scene extends HBox{
         expName1.setFont(new Font(24.0));
         expName1.setPrefHeight(50.0);
         String name = ((Experience)listExp.get(0)).getName();
-    	expName1.setText("----------1");
+    	expName1.setText("----------");
     	expName1.setDisable(true);
         if (name != null) {
         	expName1.setText(name);
@@ -333,7 +333,7 @@ public class User2Scene extends HBox{
         expName2.setFont(new Font(24.0));
         expName2.setPrefHeight(50.0);
         name = ((Experience)listExp.get(1)).getName();
-    	expName2.setText("----------2");
+    	expName2.setText("----------");
     	expName2.setDisable(true);
         if (name != null) {
         	expName2.setText(name);
@@ -345,7 +345,7 @@ public class User2Scene extends HBox{
         expName3.setFont(new Font(24.0));
         expName3.setPrefHeight(50.0);
         name = ((Experience)listExp.get(2)).getName();
-    	expName3.setText("----------3");
+    	expName3.setText("----------");
     	expName3.setDisable(true);
         if (name != null) {
         	expName3.setText(name);
@@ -357,7 +357,7 @@ public class User2Scene extends HBox{
         expName4.setFont(new Font(24.0));
         expName4.setPrefHeight(50.0);
         name = ((Experience)listExp.get(3)).getName();
-    	expName4.setText("----------4");
+    	expName4.setText("----------");
     	expName4.setDisable(true);
         if (name != null) {
         	expName4.setText(name);
@@ -369,7 +369,7 @@ public class User2Scene extends HBox{
         expName5.setFont(new Font(24.0));
         expName5.setPrefHeight(50.0);
         name = ((Experience)listExp.get(4)).getName();
-    	expName5.setText("----------5");
+    	expName5.setText("----------");
     	expName5.setDisable(true);
         if (name != null) {
         	expName5.setText(name);
@@ -381,7 +381,7 @@ public class User2Scene extends HBox{
         expName6.setFont(new Font(24.0));
         expName6.setPrefHeight(50.0);
         name = ((Experience)listExp.get(5)).getName();
-    	expName6.setText("----------6");
+    	expName6.setText("----------");
     	expName6.setDisable(true);
         if (name != null) {
         	expName6.setText(name);

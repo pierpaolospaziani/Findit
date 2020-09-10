@@ -234,7 +234,7 @@ public class HotelDao {
     				    	    	+ "'" + rooms + "',"
     				    			+ "'" + agenda + "',"
     		    					+ "'" + reviewsTable + "',"
-    		    					+ "'" + null + "')";
+    		    					+ "'')";
     				    	
     						hotelSt.executeUpdate(insertQuery);
     						hotelSt.executeUpdate(createRoomsTable);

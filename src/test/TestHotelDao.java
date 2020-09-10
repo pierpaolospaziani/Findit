@@ -19,8 +19,8 @@ class TestHotelDao {
 	@Test
 	void testGetHotelHotelPresentInDB() {
 		
-		Hotel hotelPresentInDb = HotelDao.getHotel("Casa Sinceri");
-		assertEquals("Casa Sinceri",hotelPresentInDb.getHotelName() );
+		Hotel hotelPresentInDb = HotelDao.getHotel("Hotel Virgilio");
+		assertEquals("Hotel Virgilio",hotelPresentInDb.getHotelName() );
 
 	}
 	

@@ -72,7 +72,7 @@
         ["xpath=//div[@id='box1']/form/input", "xpath:idRelative"],
         ["xpath=//input", "xpath:position"]
       ],
-      "value": "owner"
+      "value": "Riccardo"
     }, {
       "id": "28b6a900-35c1-423b-9af2-a5707fffe4ab",
       "comment": "",
@@ -85,7 +85,7 @@
         ["xpath=//div[@id='box1']/form/input[2]", "xpath:idRelative"],
         ["xpath=//input[2]", "xpath:position"]
       ],
-      "value": "owner"
+      "value": "riccardo"
     }, {
       "id": "73d27019-30a5-4760-a17f-a7434f1f6ff2",
       "comment": "",

@@ -16,7 +16,7 @@ import logic.model.Room;
 
 public class RoomTest {
 	
-	String hotelName = "Casa Mia";
+	String hotelName = "Hotel Virgilio";
 
 	@Test
 	void testGetRoomCasaMia() {
@@ -25,7 +25,7 @@ public class RoomTest {
 		String roomsTable = hotel.getHotelRooms();
 		int id = 1;
 		int beds = 10;
-		int price = 20;
+		int price = 45;
 		
 		Room room = RoomDao.getRoom(roomsTable, id);
 		

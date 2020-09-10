@@ -43,7 +43,7 @@ public class AddRoomTestPierpaolo {
 
 	driver.close();
     
-	String roomsTable = "CasaMiaRooms";
+	String roomsTable = "HotelVirgilioRooms";
 	int id = 10;
 	int price = 20;
 	

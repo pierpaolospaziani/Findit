@@ -21,8 +21,8 @@ class TestReviewDao {
 	@Test
 	void testGetReviewByCasaSinceri() {
 		
-		Hotel casaSinceri = HotelDao.getHotel("Casa Sinceri");
-		String table = casaSinceri.getHotelReviews();
+		Hotel hotel = HotelDao.getHotel("Hotel Virgilio");
+		String table = hotel.getHotelReviews();
 		
 		Review review;
 		try {

@@ -18,9 +18,9 @@ public class ReservationTest {
 	@Test
 	void testGetReservationCasaMia() {
 		
-		Hotel hotel = HotelDao.getHotel("Casa Mia");
+		Hotel hotel = HotelDao.getHotel("Hotel Virgilio");
 		String agenda = hotel.getHotelAgenda();
-		int date = 20201010;
+		int date = 20201021;
 		int id = 1;
 		String user = "Pierpaolo";
 		
@@ -32,10 +32,10 @@ public class ReservationTest {
 	@Test
 	void testSetReservationInCasaMia() {
 		
-		Hotel hotel = HotelDao.getHotel("Casa Mia");
+		Hotel hotel = HotelDao.getHotel("Hotel Virgilio");
 		String agenda = hotel.getHotelAgenda();
 		int id = 1;
-		int date = 20201010;
+		int date = 20201021;
 		String user = "Francesco";
 		
 		ReservationDao.setReservation(agenda, id, date, user);

@@ -18,7 +18,7 @@ public class ExperienceTest {
 		
 		String reviewsTable = "PierpaoloReview";
 		int index = 1;
-		String structure = "Casa Mia";
+		String structure = "Hotel Virgilio";
 		
 		Experience experience = ExperienceDao.getExperience(reviewsTable, index);
 		
@@ -31,7 +31,7 @@ public class ExperienceTest {
 		String reviewsTable = "PierpaoloReview";
 		int dayIn = 20201223;
 		int dayOut = 20201225;
-		String structure = "Casa Mia";
+		String structure = "Hotel Virgilio";
 		int index = 10;
 		
 		ExperienceDao.setExperienceRow(reviewsTable, structure, dayIn, dayOut);

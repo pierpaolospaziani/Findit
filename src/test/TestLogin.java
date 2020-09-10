@@ -45,7 +45,7 @@ class TestLogin {
 	void testCheckOwnerRegisteredOwner() {
 		
 		Login login = new Login();
-		String usernameOwner = "owner";
+		String usernameOwner = "Riccardo";
 		
 		Owner owner = login.checkOwner(usernameOwner);
 		

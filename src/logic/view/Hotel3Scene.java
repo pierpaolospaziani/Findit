@@ -147,6 +147,11 @@ public class Hotel3Scene extends VBox{
         textDescription.setMaxWidth(700.0);
         textDescription.setMinHeight(244.0);
         textDescription.setStyle("-fx-background-color: white;");
+
+        if (hotel.getHotelDescription().equals("")) {
+        	System.out.println("si");
+        	textDescription.setText("No description available");
+        }
         
         scrollPane.setContent(textDescription);
         scrollPane.setMaxWidth(700.0);
