@@ -272,38 +272,48 @@ public class LogWindow {
     	
     	if (registerAsUser.isSelected()) {
     		
-    		try {
-    			if(controller.registerUser()){
-    				window.close();
-    				isRegistred = true;
-    			}
-    		}catch(ExistingUsernameException | UsernameException e) {
-    			if (e.getClass().getName() == "logic.exceptions.UsernameException"){
-        			label.setText("Try a shorter Username!");
-    		        label.setStyle(labelStyle);
-    			} else {
-        			label.setText("This Username is already been used!");
-    		        label.setStyle(labelStyle);
-    			}
-    		}
+    		regUser(controller);
     		
     	} else {
     		
-    		try {
-    			if (controller.registerOwner()) {
-    				window.close();
-    				isRegistred = true;
-    			}
-    		}catch(ExistingOwnerException | UsernameException e) {
-    			if (e.getClass().getName() == "logic.exceptions.UsernameException"){
-        			label.setText("Try a shorter Username!");
-    		        label.setStyle(labelStyle);
-    			} else {
-        			label.setText("This Username is already been used!");
-    		        label.setStyle(labelStyle);
-    			}
-			}
+    		regOwner(controller);
     	}		      
+	}
+	
+	private void regUser(ProfileController controller) {
+		
+		try {
+			if(controller.registerUser()){
+				window.close();
+				isRegistred = true;
+			}
+		}catch(ExistingUsernameException | UsernameException e) {
+			if (e.getClass().getName().equals("logic.exceptions.UsernameException")){
+    			label.setText("Try a shorter Username!");
+		        label.setStyle(labelStyle);
+			} else {
+    			label.setText("This Username is already been used!");
+		        label.setStyle(labelStyle);
+			}
+		}
+	}
+
+	private void regOwner(ProfileController controller) {
+		
+		try {
+			if (controller.registerOwner()) {
+				window.close();
+				isRegistred = true;
+			}
+		}catch(ExistingOwnerException | UsernameException e) {
+			if (e.getClass().getName().equals("logic.exceptions.UsernameException")){
+    			label.setText("Try a shorter Username!");
+		        label.setStyle(labelStyle);
+			} else {
+    			label.setText("This Username is already been used!");
+		        label.setStyle(labelStyle);
+			}
+		}
 	}
 	
 	private void inizialize() {

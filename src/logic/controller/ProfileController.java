@@ -98,8 +98,7 @@ public class ProfileController {
 		String username = bean.getUsername();
 		
 		if(username.length() > 20) {
-			UsernameException exc = new UsernameException();
-			throw exc;
+			throw new UsernameException();
 		}
 		
 		String password = bean.getPassword();
@@ -122,8 +121,7 @@ public class ProfileController {
 		String username = bean.getUsername();
 		
 		if(username.length() > 20) {
-			UsernameException exc = new UsernameException();
-			throw exc;
+			throw new UsernameException();
 		}
 		
 		String password = bean.getPassword();
