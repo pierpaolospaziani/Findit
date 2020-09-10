@@ -288,7 +288,7 @@ public class LogWindow {
 				isRegistred = true;
 			}
 		}catch(ExistingUsernameException | UsernameException e) {
-			if (e.getClass().getName().equals("logic.exceptions.UsernameException")){
+			if (e instanceof UsernameException){
     			label.setText("Try a shorter Username!");
 		        label.setStyle(labelStyle);
 			} else {
@@ -306,7 +306,8 @@ public class LogWindow {
 				isRegistred = true;
 			}
 		}catch(ExistingOwnerException | UsernameException e) {
-			if (e.getClass().getName().equals("logic.exceptions.UsernameException")){
+			
+			if (e instanceof UsernameException){
     			label.setText("Try a shorter Username!");
 		        label.setStyle(labelStyle);
 			} else {
