@@ -8,7 +8,7 @@ public class ExistingOwnerException extends Exception {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -4497772924372885392L;
+	private static final long serialVersionUID = 1L;
 
 	
 	public ExistingOwnerException() {

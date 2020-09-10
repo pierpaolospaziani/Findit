@@ -17,6 +17,7 @@ import logic.dao.StructureDao;
 import logic.exceptions.ExistingOwnerException;
 import logic.exceptions.ExistingUsernameException;
 import logic.exceptions.LengthReviewException;
+import logic.exceptions.UsernameException;
 import logic.model.Experience;
 import logic.model.Hotel;
 import logic.model.Login;
@@ -73,7 +74,7 @@ public class ProfileController {
 		this.pane = pane;
 	}
 	
-	public void login() {
+	public void login(){
 		
 		String username = bean.getUsername();
 		String password = bean.getPassword();
@@ -92,9 +93,15 @@ public class ProfileController {
 		}
 	}
 	
-	public boolean registerUser() throws ExistingUsernameException {
+	public boolean registerUser() throws ExistingUsernameException, UsernameException {
 		
 		String username = bean.getUsername();
+		
+		if(username.length() > 20) {
+			UsernameException exc = new UsernameException();
+			throw exc;
+		}
+		
 		String password = bean.getPassword();
 		
 		boolean result = false;
@@ -110,9 +117,15 @@ public class ProfileController {
 		return result;
 	}
 	
-	public boolean registerOwner() throws ExistingOwnerException{
+	public boolean registerOwner() throws ExistingOwnerException, UsernameException{
 		
 		String username = bean.getUsername();
+		
+		if(username.length() > 20) {
+			UsernameException exc = new UsernameException();
+			throw exc;
+		}
+		
 		String password = bean.getPassword();
 		
 		boolean result = false;
@@ -429,10 +442,10 @@ public class ProfileController {
 	}
 	
 	public void addReview(Review review, String structure, int dayIn, int dayOut) throws LengthReviewException {
-		
-		if(review.getReviewText().length() > 50) {
-			throw new LengthReviewException();
-		}
+
+ 		if(review.getReviewText().length() > 50) {
+ 			throw new LengthReviewException();
+ 		}
 		
 		try {
 			Hotel hotel = HotelDao.getHotel(structure);

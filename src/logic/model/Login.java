@@ -36,7 +36,7 @@ public class Login {
 	}
 	
 	public boolean registerOwnerString(String username, String password ) throws ExistingOwnerException{
-		
+
 		boolean result = false;
 		
 		try {

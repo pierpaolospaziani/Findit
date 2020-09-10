@@ -284,14 +284,15 @@ public class LoginControllerWeb {
 		try {
 			Hotel hotel1 = HotelDao.getHotel(structure);
 			ExperienceDao.addReview(review, structure, dayIn, dayOut, user.getReviewsTable());
+		
 			int avg = ReviewDao.setReview(review.getReviewText(), review.getReviewVote(), user.getUsername(), hotel1.getHotelReviews());
+			
 			HotelDao.setRating(avg, structure);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
 	public int getPage() {
 		return pageWeb;
 	}

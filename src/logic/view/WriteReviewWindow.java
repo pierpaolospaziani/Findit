@@ -137,10 +137,10 @@ public class WriteReviewWindow {
 						review.setReviewText(reviewText);
 						review.setReviewVote(voto);
 						try {
-							controller.addReview(review, structure, in, out);
-						}catch(LengthReviewException e) {
-							e.showError();
-						}
+ 							controller.addReview(review, structure, in, out);
+ 						}catch(LengthReviewException e) {
+ 							e.showError();
+ 						}
 						window.close();
 						controller.loggedScene();
 					}

@@ -158,7 +158,7 @@ public class OwnerDao {
     	                ResultSet.CONCUR_READ_ONLY);
     		
     			ResultSet rs = ownerSt.executeQuery(searchOwnerQuery);
-    			
+
     			if (!rs.first()) {
 
     				rs.close();
@@ -195,7 +195,10 @@ public class OwnerDao {
     						}
     					}					
     					return true;
-    				}
+    				} else {
+            			
+        				throw new ExistingOwnerException("owner");
+        			}
     			} else {
     			
     				throw new ExistingOwnerException("owner");

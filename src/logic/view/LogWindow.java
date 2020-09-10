@@ -19,6 +19,7 @@ import logic.bean.LoginBean;
 import logic.controller.ProfileController;
 import logic.exceptions.ExistingOwnerException;
 import logic.exceptions.ExistingUsernameException;
+import logic.exceptions.UsernameException;
 
 public class LogWindow {
     
@@ -276,9 +277,14 @@ public class LogWindow {
     				window.close();
     				isRegistred = true;
     			}
-    		}catch(ExistingUsernameException e) {
-    			label.setText("This Username is already been used!");
-		        label.setStyle(labelStyle);
+    		}catch(ExistingUsernameException | UsernameException e) {
+    			if (e.getClass().getName() == "logic.exceptions.UsernameException"){
+        			label.setText("Try a shorter Username!");
+    		        label.setStyle(labelStyle);
+    			} else {
+        			label.setText("This Username is already been used!");
+    		        label.setStyle(labelStyle);
+    			}
     		}
     		
     	} else {
@@ -288,9 +294,14 @@ public class LogWindow {
     				window.close();
     				isRegistred = true;
     			}
-    		}catch(ExistingOwnerException e) {
-    				label.setText("This Username is already been used!");
-    				label.setStyle(labelStyle);
+    		}catch(ExistingOwnerException | UsernameException e) {
+    			if (e.getClass().getName() == "logic.exceptions.UsernameException"){
+        			label.setText("Try a shorter Username!");
+    		        label.setStyle(labelStyle);
+    			} else {
+        			label.setText("This Username is already been used!");
+    		        label.setStyle(labelStyle);
+    			}
 			}
     	}		      
 	}

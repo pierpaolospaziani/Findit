@@ -178,10 +178,10 @@ public class UserDao {
     					}
 
     					return true;
-    				}
+    				} else {
+        				throw new ExistingUsernameException("user") ;
+        			}
     			} else {
-    				
-    				//return false;  //qui pto uscita se esiste già l'username
     				throw new ExistingUsernameException("user") ;
     			}
         	} finally {
