@@ -48,7 +48,7 @@ public class LogWindow {
 	String labelStyle = "-fx-text-fill: #ff0000;";
 	String styleInput = "-fx-background-color: #e2e8ff; -fx-background-radius: 20;";
 	
-	public void log(ProfileController controller, LoginBean bean) {
+	public void log(ProfileController controller, LoginBean bean, boolean newUser) {
 		
 		loginScene = new VBox();
         loginHBox = new HBox();
@@ -69,10 +69,10 @@ public class LogWindow {
         loginHBox0.setAlignment(javafx.geometry.Pos.CENTER);
         loginHBox0.setSpacing(30.0);
         
-        if (isRegistred) {
+        if (newUser) {
             label.setText("Registration completed, proceed with Login!");
             label.setStyle("-fx-text-fill: green;");
-            isRegistred = false;
+            newUser = false;
         } else {
             label.setText("Insert Username and Password");
             label.setStyle("-fx-text-fill: black;");
@@ -256,7 +256,7 @@ public class LogWindow {
 			        label.setStyle(labelStyle);
 		        } else {
 			        
-		        	 reg(bean, controller);	
+		        	 isRegistred = reg(bean, controller);	
 		        }
 			}
 		});
@@ -265,27 +265,27 @@ public class LogWindow {
 	}
 	
 	
-	private void reg(LoginBean bean, ProfileController controller) {
+	private boolean reg(LoginBean bean, ProfileController controller) {
 		
 		bean.setUsername(usernameTextField.getText());
     	bean.setPassword(passwordTextField.getText());
     	
     	if (registerAsUser.isSelected()) {
     		
-    		regUser(controller);
+    		return regUser(controller);
     		
     	} else {
     		
-    		regOwner(controller);
+    		return regOwner(controller);
     	}		      
 	}
 	
-	private void regUser(ProfileController controller) {
+	private boolean regUser(ProfileController controller) {
 		
 		try {
 			if(controller.registerUser()){
 				window.close();
-				isRegistred = true;
+				return true;
 			}
 		} catch (ExistingUsernameException e) {
 			
@@ -297,14 +297,15 @@ public class LogWindow {
 			label.setText("Try a shorter Username!");
 	        label.setStyle(labelStyle);
 		}
+		return false;
 	}
 
-	private void regOwner(ProfileController controller) {
+	private boolean regOwner(ProfileController controller) {
 		
 		try {
 			if (controller.registerOwner()) {
 				window.close();
-				isRegistred = true;
+				return true;
 			}
 		} catch (ExistingOwnerException e) {
 			
@@ -316,6 +317,7 @@ public class LogWindow {
 			label.setText("Try a shorter Username!");
 	        label.setStyle(labelStyle);
 		}
+		return false;
 	}
 	
 	private void inizialize() {

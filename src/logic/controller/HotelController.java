@@ -483,7 +483,7 @@ public class HotelController {
 			
 			loginController.setBooking(true);
 			
-			loginController.openLogWindow();
+			loginController.openLogWindow(false);
 			
 		}
 		

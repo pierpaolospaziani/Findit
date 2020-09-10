@@ -154,9 +154,9 @@ public class ProfileController {
 		}
 	}
 	
-	public void openLogWindow() {
+	public void openLogWindow(boolean newUser) {
 		window = new LogWindow();
-		window.log(this,bean);
+		window.log(this,bean, newUser);
 	}
 	
 	public boolean openRegisterWindow() {

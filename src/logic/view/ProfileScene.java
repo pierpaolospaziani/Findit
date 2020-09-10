@@ -153,7 +153,7 @@ public class ProfileScene extends VBox{
         	@Override
         	public void handle(ActionEvent event) {
 
-				controller.openLogWindow();
+				controller.openLogWindow(false);
 			}
 		});
         
@@ -162,7 +162,7 @@ public class ProfileScene extends VBox{
         	public void handle(ActionEvent event) {
 				
 				if (controller.openRegisterWindow()) {
-					controller.openLogWindow();
+					controller.openLogWindow(true);
 	
 				}
 			}
