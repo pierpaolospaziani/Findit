@@ -305,15 +305,15 @@ public class LogWindow {
 				window.close();
 				isRegistred = true;
 			}
-		}catch(ExistingOwnerException | UsernameException e) {
+		} catch (ExistingOwnerException e) {
 			
-			if (e instanceof UsernameException){
-    			label.setText("Try a shorter Username!");
-		        label.setStyle(labelStyle);
-			} else {
-    			label.setText("This Username is already been used!");
-		        label.setStyle(labelStyle);
-			}
+			label.setText("This Username is already been used!");
+	        label.setStyle(labelStyle);
+	        
+		} catch (UsernameException e) {
+
+			label.setText("Try a shorter Username!");
+	        label.setStyle(labelStyle);
 		}
 	}
 	
