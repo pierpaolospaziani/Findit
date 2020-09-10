@@ -19,7 +19,7 @@ class TestReviewDao {
 
 	
 	@Test
-	void testGetReviewByCasaSinceri() {
+	void testGetReviewByHotelVirgilio() {
 		
 		Hotel hotel = HotelDao.getHotel("Hotel Virgilio");
 		String table = hotel.getHotelReviews();

@@ -21,7 +21,7 @@ class TestLogin {
 	void testCheckUserRegisteredUser() {
 		
 		Login login = new Login();
-		String username = "simone";
+		String username = "Simone";
 		
 		User user = login.checkUser(username);
 		
@@ -45,7 +45,7 @@ class TestLogin {
 	void testCheckOwnerRegisteredOwner() {
 		
 		Login login = new Login();
-		String usernameOwner = "Riccardo";
+		String usernameOwner = "Mario";
 		
 		Owner owner = login.checkOwner(usernameOwner);
 		
@@ -67,7 +67,7 @@ class TestLogin {
 	void testRegisterUserStringUserExisting() {
 		
 		Login login = new Login();
-		String username = "simone";
+		String username = "Simone";
 		String password = "asfsvf";
 		boolean result = true;
 		
@@ -84,8 +84,8 @@ class TestLogin {
 	void testRegisterOwnerStringOwnerExisting() {
 		
 		Login login = new Login();
-		String usernameOwner = "owner";
-		String password = "asfsvf";
+		String usernameOwner = "Riccardo";
+		String password = "riccardo";
 		boolean result = true;
 		
 		try {
