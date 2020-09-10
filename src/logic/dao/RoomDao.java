@@ -35,17 +35,19 @@ public class RoomDao {
 
     	    	String bedsQuery = "select beds from " + roomsTable + whereId + id + "'";
     	    	String priceQuery = "select price from " + roomsTable + whereId + id + "'";
-    		
+
     			room.setRoomId(id);
     			
     			ResultSet rs = roomSt.executeQuery(bedsQuery);
+    			rs.next();
     			int roomBeds = rs.getInt("beds");
     			room.setBeds(roomBeds);		
     			rs.close();
     			
     			ResultSet rs1 = roomSt.executeQuery(priceQuery);
-    			int rightPrice = rs.getInt("price");
-    			room.setRoomId(rightPrice);
+    			rs1.next();
+    			int rightPrice = rs1.getInt("price");
+    			room.setPrice(rightPrice);
     			rs1.close();
         
         	} finally {
@@ -62,7 +64,7 @@ public class RoomDao {
 		} catch(Exception e){
 	        System.exit(1);
 	        }
-    	
+
 		return room;
     }
 	
